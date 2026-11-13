@@ -1,0 +1,178 @@
+{
+  "methodology": {
+    "method": "Same-model text-only authored role simulations",
+    "samplesPerScenario": 1,
+    "externalAIUsed": false,
+    "audioUsed": false,
+    "promptCount": 9,
+    "limitations": "Fresh illustrative transcripts authored and self-judged by the same model. No external API execution, independent judge, image input, or audio input. Pass judgments apply only to each sampled criterion, not reliability or every prompt branch.",
+    "teacherFeedbackReview": "Static review confirms every exported prompt explicitly requires teacher feedback during chat: correction, modeling, retry, usage feedback, or feedback after a completed section. These samples illustrate those mechanisms rather than proving provider behavior.",
+    "revisionProvenance": "2 replacement and 0 additional same-model authored text-only role simulations, one self-judged sample per case. 7 unchanged-target case transcripts and judgments retained; integrity digests added. No external API or audio execution; samples illustrate scoped criteria, not reliability.",
+    "evidenceIntegrity": "Canonical case SHA-256 covers instructions hash, inputs, responses, and judgments; it is an integrity check, not independent semantic validation. Added digests do not count as fresh model samples."
+  },
+  "scenarios": [
+    {
+      "id": "opening-daily-check-in",
+      "promptId": "daily-check-in",
+      "promptSha256": "48da433deca4c95ce3c714ff0c3a97953d9a18ed594c4c1d4cdeaa447b922172",
+      "learnerTurns": [],
+      "assistantTurns": ["What would you like to talk about?"],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What would you like to talk about?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
+      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
+      "evidenceSha256": "5b77bd63f98d81ba6d0bfd460e45875d62170fb86a58be67436dfa31666f0312"
+    },
+    {
+      "id": "opening-gentle-start",
+      "promptId": "gentle-start",
+      "promptSha256": "f7d8e878cc8d596bacc28cb78f924a608a4f2370490c635a4b1d7a3d0c734246",
+      "learnerTurns": [],
+      "assistantTurns": ["How was your day?"],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "How was your day?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
+      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
+      "evidenceSha256": "21fa7723e76b47ff99b10c2640aa655fa8752f5ba661283bc6aa450aadf044f5"
+    },
+    {
+      "id": "opening-focused-correction",
+      "promptId": "focused-correction",
+      "variant": "full",
+      "source": "current",
+      "promptSha256": "c12c8fc1707720ca2232e5a7bfe3257eaccaeb9333831bb750ded32190b55cd6",
+      "learnerTurns": [],
+      "assistantTurns": ["What is one thing you did yesterday?"],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What is one thing you did yesterday?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Ask the mode-specific opening and wait.",
+      "rationale": "Fresh authored sample satisfies only the stated criterion. No reliability or provider behavior is inferred.",
+      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
+      "evidenceSha256": "b3bd89bdf48f8b9e898b82d91fb81298e34ce61561b07a8dfcefbfa159b19a10"
+    },
+    {
+      "id": "opening-expression-upgrade",
+      "promptId": "expression-upgrade",
+      "variant": "full",
+      "source": "current",
+      "promptSha256": "76366465dc0d0bbf8b53c9e9d0ab96341c7f46710a1bd20b05fc141dbe28b02c",
+      "learnerTurns": [],
+      "assistantTurns": ["What do you like doing as a hobby?"],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What do you like doing as a hobby?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Ask the mode-specific opening and wait.",
+      "rationale": "Fresh authored sample satisfies only the stated criterion. No reliability or provider behavior is inferred.",
+      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
+      "evidenceSha256": "4839b8a6e01f42a9c24df96ba389c56d92d4317ac803d9a516c3bd7c332eee98"
+    },
+    {
+      "id": "opening-roleplay-coach",
+      "promptId": "roleplay-coach",
+      "promptSha256": "42388bdcfb01e90cc2daf733b1d09b5fc3dc3941feabae2bd989015600ae91c5",
+      "learnerTurns": [],
+      "assistantTurns": ["Which situation would you like to practice?"],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Which situation would you like to practice?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
+      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
+      "evidenceSha256": "7f64f625fc6d793b9163bf34f5d51e920672d3ae714a622c647218d125b34786"
+    },
+    {
+      "id": "opening-friendly-debate",
+      "promptId": "friendly-debate",
+      "promptSha256": "4d800082dccc6daca7f9ba05c41c77b27cf1b6f0d951ca96f146ee4d1aee0532",
+      "learnerTurns": [],
+      "assistantTurns": ["Which topic would you like to debate?"],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Which topic would you like to debate?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
+      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
+      "evidenceSha256": "b8e61422d58d7d514aabbe80669ba490d95c8377dbd39cbfa0d2b3bdfd075e66"
+    },
+    {
+      "id": "opening-word-riddle",
+      "promptId": "word-riddle",
+      "promptSha256": "e7ac808106d570821bc0081bf64ac00cb2d303022e06a9fa28a8c8a08b08b92f",
+      "learnerTurns": [],
+      "assistantTurns": [
+        "You use this small object to open a lock. What is it?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "You use this small object to open a lock. What is it?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
+      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
+      "evidenceSha256": "cc349a67233c98f37fadb2191e29b48f2a1fdf195dcfc627bf68b1d848e49413"
+    },
+    {
+      "id": "opening-visual-vocabulary",
+      "promptId": "visual-vocabulary",
+      "promptSha256": "4ef40dbfad910b5d586597c843db0b0d132ed49b074b7adefe1cb1307a2661fc",
+      "learnerTurns": [],
+      "assistantTurns": [
+        "Could you share a photo if this chat supports images, or describe one object near you?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Could you share a photo if this chat supports images, or describe one object near you?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
+      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
+      "evidenceSha256": "db3d283e11dea04dc6ec994e51b4bb0f0257cc9683c5e88cce31402528c157a4"
+    },
+    {
+      "id": "opening-story-summary",
+      "promptId": "story-summary",
+      "promptSha256": "f3832c53ce041cda69556828f41f27441b84729c2cede354c2a2c3fa4e506869",
+      "learnerTurns": [],
+      "assistantTurns": ["What would you like to retell?"],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What would you like to retell?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
+      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
+      "evidenceSha256": "68ec7a4a16c885c5788f8f0f4061891a9381c281b13deaf4a964b413c5b1dcf6"
+    }
+  ]
+}

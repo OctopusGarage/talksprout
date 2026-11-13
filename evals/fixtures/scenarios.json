@@ -1,0 +1,547 @@
+{
+  "methodology": {
+    "method": "Same-model text-only authored role simulations",
+    "samplesPerScenario": 1,
+    "externalAIUsed": false,
+    "audioUsed": false,
+    "promptCount": 9,
+    "limitations": "Fresh illustrative transcripts authored and self-judged by the same model. No external API execution, independent judge, image input, or audio input. Pass judgments apply only to each sampled criterion, not reliability or every prompt branch.",
+    "teacherFeedbackReview": "Static review confirms every exported prompt explicitly requires teacher feedback during chat: correction, modeling, retry, usage feedback, or feedback after a completed section. These samples illustrate those mechanisms rather than proving provider behavior.",
+    "revisionProvenance": "2 replacement and 2 additional same-model authored text-only role simulations, one self-judged sample per case. 7 unchanged-target case transcripts and judgments retained; integrity digests added. No external API or audio execution; samples illustrate scoped criteria, not reliability.",
+    "evidenceIntegrity": "Canonical case SHA-256 covers instructions hash, inputs, responses, and judgments; it is an integrity check, not independent semantic validation. Added digests do not count as fresh model samples."
+  },
+  "scenarios": [
+    {
+      "id": "teaching-daily-check-in",
+      "promptId": "daily-check-in",
+      "promptSha256": "48da433deca4c95ce3c714ff0c3a97953d9a18ed594c4c1d4cdeaa447b922172",
+      "learnerTurns": ["My weekend. I go hiking yesterday.", "Near home."],
+      "assistantTurns": [
+        "What would you like to talk about?",
+        "That sounds refreshing. Say “I went hiking yesterday” for the past. Where did you hike?",
+        "That sounds convenient. What did you enjoy most?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What would you like to talk about?"
+        },
+        {
+          "role": "user",
+          "content": "My weekend. I go hiking yesterday."
+        },
+        {
+          "role": "assistant",
+          "content": "That sounds refreshing. Say “I went hiking yesterday” for the past. Where did you hike?"
+        },
+        {
+          "role": "user",
+          "content": "Near home."
+        },
+        {
+          "role": "assistant",
+          "content": "That sounds convenient. What did you enjoy most?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Respond to meaning, correct one grammar issue, then ask one related follow-up.",
+      "rationale": "The coach reacts to hiking, corrects go to went while preserving yesterday, and accepts the later fragment without a forced correction.",
+      "evidenceSha256": "5479ee4069e2293959b32338da7ceb3a97da8edb5d24cea12cf317664543754d"
+    },
+    {
+      "id": "teaching-gentle-start",
+      "promptId": "gentle-start",
+      "promptSha256": "f7d8e878cc8d596bacc28cb78f924a608a4f2370490c635a4b1d7a3d0c734246",
+      "learnerTurns": ["今天很累。Many work.", "Yes, tea now."],
+      "assistantTurns": [
+        "How was your day?",
+        "That sounds tiring. You can say, “I had a lot of work today.” Can you rest now?",
+        "Tea sounds nice. You can say, “I’m having tea now.” Do you like hot tea?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "How was your day?"
+        },
+        {
+          "role": "user",
+          "content": "今天很累。Many work."
+        },
+        {
+          "role": "assistant",
+          "content": "That sounds tiring. You can say, “I had a lot of work today.” Can you rest now?"
+        },
+        {
+          "role": "user",
+          "content": "Yes, tea now."
+        },
+        {
+          "role": "assistant",
+          "content": "Tea sounds nice. You can say, “I’m having tea now.” Do you like hot tea?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Model simple English from Chinese and fragments without shame or mandatory repetition.",
+      "rationale": "Both replies give warm English models and easy follow-ups without grammar labels or retry demands.",
+      "evidenceSha256": "fbb640ad143143b1bf32b36c2fc8cada920ead7bde2023a9d86e48c03e147059"
+    },
+    {
+      "id": "teaching-focused-correction",
+      "promptId": "focused-correction",
+      "variant": "full",
+      "source": "current",
+      "promptSha256": "c12c8fc1707720ca2232e5a7bfe3257eaccaeb9333831bb750ded32190b55cd6",
+      "learnerTurns": [
+        "Yesterday I go shopping.",
+        "Why do I need went instead of go?",
+        "Skip that retry, please."
+      ],
+      "assistantTurns": [
+        "What did you do yesterday?",
+        "You went shopping yesterday. Say “I went shopping yesterday” because yesterday needs the past tense. Try that sentence again.",
+        "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it.",
+        "Sure. What do you usually shop for?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What did you do yesterday?"
+        },
+        {
+          "role": "user",
+          "content": "Yesterday I go shopping."
+        },
+        {
+          "role": "assistant",
+          "content": "You went shopping yesterday. Say “I went shopping yesterday” because yesterday needs the past tense. Try that sentence again."
+        },
+        {
+          "role": "user",
+          "content": "Why do I need went instead of go?"
+        },
+        {
+          "role": "assistant",
+          "content": "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it."
+        },
+        {
+          "role": "user",
+          "content": "Skip that retry, please."
+        },
+        {
+          "role": "assistant",
+          "content": "Sure. What do you usually shop for?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Correct one real error, answer pure English clarification outside grading, preserve the pending retry, and honor explicit skip.",
+      "rationale": "Fresh authored sample satisfies only the stated criterion. No reliability or provider behavior is inferred.",
+      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
+      "evidenceSha256": "6a8f8b854b7c8ee2af76ad961c0103230f9de647beb6147016c50d636444f0ba"
+    },
+    {
+      "id": "teaching-expression-upgrade",
+      "promptId": "expression-upgrade",
+      "variant": "full",
+      "source": "current",
+      "promptSha256": "76366465dc0d0bbf8b53c9e9d0ab96341c7f46710a1bd20b05fc141dbe28b02c",
+      "learnerTurns": [
+        "Yesterday I go shopping.",
+        "Why do I need went instead of go?",
+        "Skip that retry, please."
+      ],
+      "assistantTurns": [
+        "Tell me about an activity you enjoyed recently.",
+        "Your meaning is clear; the tense needs correcting. A natural rewrite is “I went shopping yesterday.” Use went for the past; try that revision.",
+        "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it.",
+        "Sure. What do you usually shop for?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Tell me about an activity you enjoyed recently."
+        },
+        {
+          "role": "user",
+          "content": "Yesterday I go shopping."
+        },
+        {
+          "role": "assistant",
+          "content": "Your meaning is clear; the tense needs correcting. A natural rewrite is “I went shopping yesterday.” Use went for the past; try that revision."
+        },
+        {
+          "role": "user",
+          "content": "Why do I need went instead of go?"
+        },
+        {
+          "role": "assistant",
+          "content": "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it."
+        },
+        {
+          "role": "user",
+          "content": "Skip that retry, please."
+        },
+        {
+          "role": "assistant",
+          "content": "Sure. What do you usually shop for?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Correct one real error, answer pure English clarification outside grading, preserve the pending retry, and honor explicit skip.",
+      "rationale": "Fresh authored sample satisfies only the stated criterion. No reliability or provider behavior is inferred.",
+      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
+      "evidenceSha256": "959e0448a41cf3437c2b4aca4c732d2be2b73fbdb700d0434232592fdcef82bb"
+    },
+    {
+      "id": "teaching-roleplay-coach",
+      "promptId": "roleplay-coach",
+      "promptSha256": "42388bdcfb01e90cc2daf733b1d09b5fc3dc3941feabae2bd989015600ae91c5",
+      "learnerTurns": [
+        "Ordering coffee.",
+        "A coffee with two milk.",
+        "Small, please."
+      ],
+      "assistantTurns": [
+        "Which situation would you like to practice?",
+        "I’ll be the barista, and you’ll be the customer. Welcome! What would you like?",
+        "Certainly, a coffee with milk. Coaching note: say “with some milk”; milk is usually uncountable. What size would you like?",
+        "Of course. Is that for here or to go?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Which situation would you like to practice?"
+        },
+        {
+          "role": "user",
+          "content": "Ordering coffee."
+        },
+        {
+          "role": "assistant",
+          "content": "I’ll be the barista, and you’ll be the customer. Welcome! What would you like?"
+        },
+        {
+          "role": "user",
+          "content": "A coffee with two milk."
+        },
+        {
+          "role": "assistant",
+          "content": "Certainly, a coffee with milk. Coaching note: say “with some milk”; milk is usually uncountable. What size would you like?"
+        },
+        {
+          "role": "user",
+          "content": "Small, please."
+        },
+        {
+          "role": "assistant",
+          "content": "Of course. Is that for here or to go?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Establish the chosen scene, respond in character, label language feedback, and continue the scene.",
+      "rationale": "The barista responds to the order before correcting milk in a labeled note. The scene continues without inventing payment or completion.",
+      "evidenceSha256": "48866f9c7c0418a640167585d81f0ed7d3e896ec1aa8785942d57f4d75406eb4"
+    },
+    {
+      "id": "teaching-friendly-debate",
+      "promptId": "friendly-debate",
+      "promptSha256": "4d800082dccc6daca7f9ba05c41c77b27cf1b6f0d951ca96f146ee4d1aee0532",
+      "learnerTurns": [
+        "Working from home.",
+        "I prefer it because it save time.",
+        "We can have a short video call."
+      ],
+      "assistantTurns": [
+        "Which topic would you like to debate?",
+        "What is your view on working from home?",
+        "Saving travel time is a useful benefit, though I’d argue that working in person can make collaboration easier. Language note: say “it saves time,” with “saves” after “it.” How would you handle collaboration from home?",
+        "That is a practical option, though calls may miss spontaneous conversations. How would you make room for those?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Which topic would you like to debate?"
+        },
+        {
+          "role": "user",
+          "content": "Working from home."
+        },
+        {
+          "role": "assistant",
+          "content": "What is your view on working from home?"
+        },
+        {
+          "role": "user",
+          "content": "I prefer it because it save time."
+        },
+        {
+          "role": "assistant",
+          "content": "Saving travel time is a useful benefit, though I’d argue that working in person can make collaboration easier. Language note: say “it saves time,” with “saves” after “it.” How would you handle collaboration from home?"
+        },
+        {
+          "role": "user",
+          "content": "We can have a short video call."
+        },
+        {
+          "role": "assistant",
+          "content": "That is a practical option, though calls may miss spontaneous conversations. How would you make room for those?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Engage with the point, correct language separately from disagreement, and challenge one idea at a time.",
+      "rationale": "Only save becomes saves; the preference is not treated as an English error. The natural next answer is accepted while the debate continues.",
+      "evidenceSha256": "7f3bbb2c3970f2f9a9c19cb8a9eb5b43c234de9bb78628e93695b2299de8922d"
+    },
+    {
+      "id": "teaching-word-riddle",
+      "promptId": "word-riddle",
+      "promptSha256": "e7ac808106d570821bc0081bf64ac00cb2d303022e06a9fa28a8c8a08b08b92f",
+      "learnerTurns": ["A key.", "Yesterday I lose my key.", "Yes."],
+      "assistantTurns": [
+        "You use this small object to open a lock. What is it?",
+        "Yes, that fits! For example, “I keep my key in my bag.” Can you make your own sentence with “key”?",
+        "That sounds frustrating. Say “Yesterday I lost my key”; “lost” is the past form of “lose.” Would you like another round?",
+        "You use this object to keep rain off your head. What is it?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "You use this small object to open a lock. What is it?"
+        },
+        {
+          "role": "user",
+          "content": "A key."
+        },
+        {
+          "role": "assistant",
+          "content": "Yes, that fits! For example, “I keep my key in my bag.” Can you make your own sentence with “key”?"
+        },
+        {
+          "role": "user",
+          "content": "Yesterday I lose my key."
+        },
+        {
+          "role": "assistant",
+          "content": "That sounds frustrating. Say “Yesterday I lost my key”; “lost” is the past form of “lose.” Would you like another round?"
+        },
+        {
+          "role": "user",
+          "content": "Yes."
+        },
+        {
+          "role": "assistant",
+          "content": "You use this object to keep rain off your head. What is it?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Withhold the answer, accept a correct guess, elicit a sentence, and give usage feedback before another round.",
+      "rationale": "The clue hides key. The learner sentence receives a past-tense correction before a new round is offered, and the next clue waits for consent.",
+      "evidenceSha256": "a0c6a816574764a330ff629ed8eb11f0a373d6591c15a80ab76332f41049f8cb"
+    },
+    {
+      "id": "teaching-visual-vocabulary",
+      "promptId": "visual-vocabulary",
+      "promptSha256": "4ef40dbfad910b5d586597c843db0b0d132ed49b074b7adefe1cb1307a2661fc",
+      "learnerTurns": [
+        "No image. It is a red cup. Its surface feel smooth.",
+        "I use it for tea."
+      ],
+      "assistantTurns": [
+        "Could you share a photo if this chat supports images, or describe one object near you?",
+        "Your description gives me a clear idea of the cup. Say “Its surface feels smooth,” with “feels” after “surface.” What do you use it for?",
+        "That sounds useful for a tea break. Do you use it every day?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Could you share a photo if this chat supports images, or describe one object near you?"
+        },
+        {
+          "role": "user",
+          "content": "No image. It is a red cup. Its surface feel smooth."
+        },
+        {
+          "role": "assistant",
+          "content": "Your description gives me a clear idea of the cup. Say “Its surface feels smooth,” with “feels” after “surface.” What do you use it for?"
+        },
+        {
+          "role": "user",
+          "content": "I use it for tea."
+        },
+        {
+          "role": "assistant",
+          "content": "That sounds useful for a tea break. Do you use it every day?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Ground feedback in text when no image exists, correct one issue, and extend without inventing perception.",
+      "rationale": "All object details come from the learner. The coach corrects agreement and asks about use without claiming to see an image or requesting the same description again.",
+      "evidenceSha256": "e13b85c7d50b1506ac0abbaff3d5d5863c7d45ff6699b612a60224a0afdc2c6a"
+    },
+    {
+      "id": "teaching-story-summary",
+      "promptId": "story-summary",
+      "promptSha256": "f3832c53ce041cda69556828f41f27441b84729c2cede354c2a2c3fa4e506869",
+      "learnerTurns": [
+        "My first day at work.",
+        "I borrowed my colleague a pen...",
+        "She needed it for a form. That section is complete.",
+        "It helped us start talking."
+      ],
+      "assistantTurns": [
+        "What would you like to retell?",
+        "Tell me a short section in your own English, and let me know when that section is complete.",
+        "I’m following; continue when you’re ready.",
+        "You helped your colleague with her form. Say “I lent my colleague a pen”; “lent” means you gave it to her temporarily. Why did that moment stand out to you?",
+        "That small favor helped you connect. What did you talk about next?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What would you like to retell?"
+        },
+        {
+          "role": "user",
+          "content": "My first day at work."
+        },
+        {
+          "role": "assistant",
+          "content": "Tell me a short section in your own English, and let me know when that section is complete."
+        },
+        {
+          "role": "user",
+          "content": "I borrowed my colleague a pen..."
+        },
+        {
+          "role": "assistant",
+          "content": "I’m following; continue when you’re ready."
+        },
+        {
+          "role": "user",
+          "content": "She needed it for a form. That section is complete."
+        },
+        {
+          "role": "assistant",
+          "content": "You helped your colleague with her form. Say “I lent my colleague a pen”; “lent” means you gave it to her temporarily. Why did that moment stand out to you?"
+        },
+        {
+          "role": "user",
+          "content": "It helped us start talking."
+        },
+        {
+          "role": "assistant",
+          "content": "That small favor helped you connect. What did you talk about next?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Wait through intermediate fragments, then respond to the completed section with word-choice feedback and one follow-up.",
+      "rationale": "The spoken-style fragment is text, not audio. The coach waits for section completion before correcting borrowed to lent using the later context, then continues without a long analysis.",
+      "evidenceSha256": "eb0977301cd8aa731e8a42d5a1a5add67264de6db7b4410ae8977b8cc5408576"
+    },
+    {
+      "id": "heldout-resume-focused-correction-full",
+      "promptId": "focused-correction",
+      "variant": "full",
+      "source": "current",
+      "promptSha256": "c12c8fc1707720ca2232e5a7bfe3257eaccaeb9333831bb750ded32190b55cd6",
+      "learnerTurns": [
+        "I go shopping yesterday. What about you?",
+        "Why do I need went instead of go?",
+        "I went shopping yesterday."
+      ],
+      "assistantTurns": [
+        "What did you do yesterday?",
+        "I do not have shopping trips myself. You went shopping yesterday. Say “I went shopping yesterday” because yesterday needs the past tense. Try that sentence again.",
+        "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it.",
+        "That works. What did you buy?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What did you do yesterday?"
+        },
+        {
+          "role": "user",
+          "content": "I go shopping yesterday. What about you?"
+        },
+        {
+          "role": "assistant",
+          "content": "I do not have shopping trips myself. You went shopping yesterday. Say “I went shopping yesterday” because yesterday needs the past tense. Try that sentence again."
+        },
+        {
+          "role": "user",
+          "content": "Why do I need went instead of go?"
+        },
+        {
+          "role": "assistant",
+          "content": "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it."
+        },
+        {
+          "role": "user",
+          "content": "I went shopping yesterday."
+        },
+        {
+          "role": "assistant",
+          "content": "That works. What did you buy?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Correct the real tense error even when an answer includes a social question; answer pure English clarification outside grading, preserve the pending retry, and advance after success.",
+      "rationale": "Fresh authored sample satisfies only the stated criterion. The mixed answer retains its tense correction despite “What about you?”; the subsequent clarification is explained rather than graded.",
+      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
+      "evidenceSha256": "63953f48daf166b983a9525a74cf007e805531edffeff0fa50fbf3454a5c0cf4"
+    },
+    {
+      "id": "heldout-resume-expression-upgrade-full",
+      "promptId": "expression-upgrade",
+      "variant": "full",
+      "source": "current",
+      "promptSha256": "76366465dc0d0bbf8b53c9e9d0ab96341c7f46710a1bd20b05fc141dbe28b02c",
+      "learnerTurns": [
+        "I go shopping yesterday. What about you?",
+        "Why do I need went instead of go?",
+        "I went shopping yesterday."
+      ],
+      "assistantTurns": [
+        "Tell me about an activity you enjoyed recently.",
+        "I do not have shopping trips myself. Your meaning is clear; the tense needs correcting. A natural rewrite is “I went shopping yesterday.” Use went for the past; try that revision.",
+        "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it.",
+        "That works. What did you buy?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Tell me about an activity you enjoyed recently."
+        },
+        {
+          "role": "user",
+          "content": "I go shopping yesterday. What about you?"
+        },
+        {
+          "role": "assistant",
+          "content": "I do not have shopping trips myself. Your meaning is clear; the tense needs correcting. A natural rewrite is “I went shopping yesterday.” Use went for the past; try that revision."
+        },
+        {
+          "role": "user",
+          "content": "Why do I need went instead of go?"
+        },
+        {
+          "role": "assistant",
+          "content": "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it."
+        },
+        {
+          "role": "user",
+          "content": "I went shopping yesterday."
+        },
+        {
+          "role": "assistant",
+          "content": "That works. What did you buy?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Correct the real tense error even when an answer includes a social question; answer pure English clarification outside grading, preserve the pending retry, and advance after success.",
+      "rationale": "Fresh authored sample satisfies only the stated criterion. The mixed answer retains its tense correction despite “What about you?”; the subsequent clarification is explained rather than graded.",
+      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
+      "evidenceSha256": "575e07a59509b2e6253200c96b26712ba08755f4395dd0c6102ef670651c4aea"
+    }
+  ]
+}

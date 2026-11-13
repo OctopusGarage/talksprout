@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#234e41" />
+    <title>TalkSprout · Reload</title>
+    <style>
+      body {
+        max-width: 440px;
+        margin: 12vh auto;
+        padding: 28px;
+        background: #faf9f5;
+        color: #234e41;
+        font:
+          16px/1.8 system-ui,
+          sans-serif;
+      }
+      h1 {
+        font-size: 28px;
+      }
+      button {
+        border: 0;
+        border-radius: 9px;
+        padding: 14px 22px;
+        background: #234e41;
+        color: white;
+        font: inherit;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TalkSprout</h1>
+    <p id="message">重新打开应用，收藏和语言设置会保留。</p>
+    <button id="reload" type="button">重新打开</button>
+    <script>
+      (function () {
+        var button = document.getElementById("reload");
+        var english = !/^zh/i.test(navigator.language || "");
+        try {
+          var saved = localStorage.getItem("talksprout:locale");
+          if (saved) english = saved === "en";
+        } catch (_) {}
+        if (english) {
+          document.documentElement.lang = "en";
+          document.getElementById("message").textContent =
+            "Reopen the app. Your favorites and language preference will stay saved.";
+          button.textContent = "Reopen app";
+        }
+        button.addEventListener("click", function () {
+          button.disabled = true;
+          var jobs = [];
+          var root = new URL("./", location.href);
+          if ("serviceWorker" in navigator)
+            jobs.push(
+              navigator.serviceWorker
+                .getRegistrations()
+                .then(function (registrations) {
+                  return Promise.all(
+                    registrations
+                      .filter(function (r) {
+                        return r.scope === root.href;
+                      })
+                      .map(function (r) {
+                        return r.unregister();
+                      }),
+                  );
+                }),
+            );
+          if ("caches" in window)
+            jobs.push(
+              caches.keys().then(function (keys) {
+                return Promise.all(
+                  keys
+                    .filter(function (key) {
+                      return key.indexOf("talksprout-") === 0;
+                    })
+                    .map(function (key) {
+                      return caches.delete(key);
+                    }),
+                );
+              }),
+            );
+          Promise.all(jobs)
+            .catch(function () {})
+            .then(function () {
+              root.searchParams.set("refresh", String(Date.now()));
+              location.replace(root.href);
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

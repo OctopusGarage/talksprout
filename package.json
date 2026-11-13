@@ -1,0 +1,41 @@
+{
+  "name": "talksprout",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "tsx --test tests/*.test.ts",
+    "test:e2e": "playwright test",
+    "typecheck": "tsc --noEmit",
+    "eval": "tsx evals/run.ts",
+    "test:webkit": "playwright test tests/shell.spec.ts tests/clipboard.spec.ts --browser=webkit"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^7.0.0"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=10"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

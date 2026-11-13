@@ -1,0 +1,705 @@
+{
+  "methodology": {
+    "method": "Same-model authored text-only role simulations",
+    "samplesPerScenario": 1,
+    "promptCount": 9,
+    "targetInstructions": "Only each exported spokenPrompt was used as target instructions. Full prompts were consulted only to describe compression, not as simulation instructions.",
+    "externalAIUsed": false,
+    "providerAPIUsed": false,
+    "audioUsed": false,
+    "imageInputUsed": false,
+    "independentJudgeUsed": false,
+    "proxy": true,
+    "limitations": "Illustrative transcripts and judgments authored by the same model in this session, not independently executed model conversations. No voice testing, audio parity evidence, provider compatibility evidence, reliability measurement, or measured timing. Pass applies only to the sampled criterion. Compressed rules are not assumed to hold; untested branches remain unknown.",
+    "hashMethod": "SHA256 of UTF-8 spokenPrompt from the runtime src/prompts.ts export, without normalization.",
+    "revision": {
+      "changedRuntimeTargets": [
+        "focused-correction",
+        "expression-upgrade",
+        "roleplay-coach"
+      ],
+      "sampleProvenance": "Three existing cases replaced with fresh authored samples; two held-out retry cases added. Six other existing records retained verbatim against HEAD. Samples are self-judged text-only illustrations.",
+      "wordCountMethod": "Whitespace-delimited words in runtime spokenPrompt; contractions count as one word.",
+      "runtimeWordCounts": {
+        "daily-check-in": 65,
+        "gentle-start": 62,
+        "focused-correction": 79,
+        "expression-upgrade": 85,
+        "roleplay-coach": 76,
+        "friendly-debate": 74,
+        "word-riddle": 73,
+        "visual-vocabulary": 78,
+        "story-summary": 73
+      }
+    },
+    "revisionProvenance": "3 replacement and 2 additional same-model authored text-only role simulations, one self-judged sample per case. 6 unchanged-target case transcripts and judgments retained; integrity digests added. No external API or audio execution; samples illustrate scoped criteria, not reliability.",
+    "evidenceIntegrity": "Canonical case SHA-256 covers instructions hash, inputs, responses, and judgments; it is an integrity check, not independent semantic validation. Added digests do not count as fresh model samples."
+  },
+  "scenarios": [
+    {
+      "id": "spoken-daily-check-in",
+      "promptId": "daily-check-in",
+      "variant": "spoken",
+      "promptSha256": "531742ab6e61f13139e787ccb66e42938bb303523d71ffddc566af4ccb911b90",
+      "learnerTurns": [
+        "My trip. I go to Kyoto yesterday.",
+        "I loved the gardens.",
+        "Please review what we practiced.",
+        "Finish the practice now."
+      ],
+      "assistantTurns": [
+        "What would you like to talk about?",
+        "Kyoto sounds like a lovely trip. Say “I went to Kyoto yesterday.” What did you enjoy there?",
+        "They sound peaceful. Which garden was your favorite?",
+        "You described your Kyoto trip and said you loved the gardens. We practiced “I went to Kyoto yesterday,” using “went” for the past. Your sentence “I loved the gardens” was already natural.",
+        "Practice finished. Remember “went” when talking about yesterday. Thanks for sharing your Kyoto trip."
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What would you like to talk about?"
+        },
+        {
+          "role": "user",
+          "content": "My trip. I go to Kyoto yesterday."
+        },
+        {
+          "role": "assistant",
+          "content": "Kyoto sounds like a lovely trip. Say “I went to Kyoto yesterday.” What did you enjoy there?"
+        },
+        {
+          "role": "user",
+          "content": "I loved the gardens."
+        },
+        {
+          "role": "assistant",
+          "content": "They sound peaceful. Which garden was your favorite?"
+        },
+        {
+          "role": "user",
+          "content": "Please review what we practiced."
+        },
+        {
+          "role": "assistant",
+          "content": "You described your Kyoto trip and said you loved the gardens. We practiced “I went to Kyoto yesterday,” using “went” for the past. Your sentence “I loved the gardens” was already natural."
+        },
+        {
+          "role": "user",
+          "content": "Finish the practice now."
+        },
+        {
+          "role": "assistant",
+          "content": "Practice finished. Remember “went” when talking about yesterday. Thanks for sharing your Kyoto trip."
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Respond to meaning, correct one real error, and follow up without rewriting natural English. On request, review only completed practice and finish without a new question.",
+      "rationale": "The past-tense correction preserves yesterday; the natural second answer receives no rewrite. Re-evaluation against the final review-enabled spoken text leaves the original sampled coaching judgment unchanged; the retained original turns do not invoke review. The appended review names only supplied trip details and the actual correction; the explicit finish request ends without a question.",
+      "comparison": {
+        "preserved": [
+          "Meaning-first response",
+          "One useful correction",
+          "Natural-answer acceptance",
+          "Requested review and stop controls are explicit in target text; sampled in appended ending"
+        ],
+        "compressed": [
+          "Detailed review/finish command aliases and review grounding rules (review and stop intent are explicit)",
+          "Detailed language and material safeguards"
+        ]
+      },
+      "sampleProvenance": "All transcript turns retained verbatim from the preceding fixture revision; runtime target hash unchanged; no fresh simulation.",
+      "evidenceSha256": "4e2887e9de6ec88f3a545014e90b8506dd6367a3b2e0bf95a38d67b4c5e3bfff"
+    },
+    {
+      "id": "spoken-gentle-start",
+      "promptId": "gentle-start",
+      "variant": "spoken",
+      "promptSha256": "e04ee76429547f3f0c3a25416ed68f4516fd3b14d95cab64735d739962704f6a",
+      "learnerTurns": ["今天很累，我工作很多。", "Yes, I can rest."],
+      "assistantTurns": [
+        "How was your day?",
+        "That sounds tiring. You can say, “I’m tired. I had a lot of work today.” Can you rest now?",
+        "That is good. What helps you relax?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "How was your day?"
+        },
+        {
+          "role": "user",
+          "content": "今天很累，我工作很多。"
+        },
+        {
+          "role": "assistant",
+          "content": "That sounds tiring. You can say, “I’m tired. I had a lot of work today.” Can you rest now?"
+        },
+        {
+          "role": "user",
+          "content": "Yes, I can rest."
+        },
+        {
+          "role": "assistant",
+          "content": "That is good. What helps you relax?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Model simple English from Chinese warmly without mandatory repetition.",
+      "rationale": "The coach supplies usable English and an easy follow-up, then accepts a natural reply. Re-evaluation against the final review-enabled spoken text leaves the original sampled coaching judgment unchanged; the retained original turns do not invoke review.",
+      "comparison": {
+        "preserved": [
+          "Warm modeling",
+          "Chinese-to-English help",
+          "No required repetition",
+          "Requested review and stop controls are explicit in target text; not invoked in this retained sample"
+        ],
+        "compressed": [
+          "A1–A2 level label",
+          "Two-example help limit",
+          "Detailed review/finish command aliases and review grounding rules (review and stop intent are explicit)"
+        ]
+      },
+      "sampleProvenance": "All transcript turns retained verbatim from the preceding fixture revision; runtime target hash unchanged; no fresh simulation.",
+      "evidenceSha256": "142670f9ec3e2bf71df1cbeca63b1fbc904293688aee8ff26c6c6217a6a59882"
+    },
+    {
+      "id": "spoken-focused-correction",
+      "promptId": "focused-correction",
+      "variant": "spoken",
+      "source": "current",
+      "promptSha256": "faa1eb7a6fd02eb658c2941d5f4c6f6ce87c6c3882936e6b6ebd08a7a4fea32b",
+      "learnerTurns": [
+        "Yesterday I go shopping.",
+        "Why do I need went instead of go?",
+        "Skip that retry, please."
+      ],
+      "assistantTurns": [
+        "What did you do yesterday?",
+        "You went shopping yesterday. Say “I went shopping yesterday” because yesterday needs the past tense. Try that sentence again.",
+        "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it.",
+        "Sure. What do you usually shop for?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What did you do yesterday?"
+        },
+        {
+          "role": "user",
+          "content": "Yesterday I go shopping."
+        },
+        {
+          "role": "assistant",
+          "content": "You went shopping yesterday. Say “I went shopping yesterday” because yesterday needs the past tense. Try that sentence again."
+        },
+        {
+          "role": "user",
+          "content": "Why do I need went instead of go?"
+        },
+        {
+          "role": "assistant",
+          "content": "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it."
+        },
+        {
+          "role": "user",
+          "content": "Skip that retry, please."
+        },
+        {
+          "role": "assistant",
+          "content": "Sure. What do you usually shop for?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Correct one real error, answer pure English clarification outside grading, preserve the pending retry, and honor explicit skip.",
+      "rationale": "Fresh authored sample satisfies only the stated criterion. No reliability or provider behavior is inferred.",
+      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
+      "evidenceSha256": "2e396110ba503606e2b1b29a020ed49adf408849407bb7f24d1bb137b5f43e8b"
+    },
+    {
+      "id": "spoken-expression-upgrade",
+      "promptId": "expression-upgrade",
+      "variant": "spoken",
+      "source": "current",
+      "promptSha256": "d67ee99d3e536acbb233a1e5827d33a00116cd1430035447ffb97473593b8ee1",
+      "learnerTurns": [
+        "Yesterday I go shopping.",
+        "Why do I need went instead of go?",
+        "Skip that retry, please."
+      ],
+      "assistantTurns": [
+        "Tell me about an activity you enjoyed recently.",
+        "Your meaning is clear; the tense needs correcting. A natural rewrite is “I went shopping yesterday.” Use went for the past; try that revision.",
+        "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it.",
+        "Sure. What do you usually shop for?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Tell me about an activity you enjoyed recently."
+        },
+        {
+          "role": "user",
+          "content": "Yesterday I go shopping."
+        },
+        {
+          "role": "assistant",
+          "content": "Your meaning is clear; the tense needs correcting. A natural rewrite is “I went shopping yesterday.” Use went for the past; try that revision."
+        },
+        {
+          "role": "user",
+          "content": "Why do I need went instead of go?"
+        },
+        {
+          "role": "assistant",
+          "content": "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it."
+        },
+        {
+          "role": "user",
+          "content": "Skip that retry, please."
+        },
+        {
+          "role": "assistant",
+          "content": "Sure. What do you usually shop for?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Correct one real error, answer pure English clarification outside grading, preserve the pending retry, and honor explicit skip.",
+      "rationale": "Fresh authored sample satisfies only the stated criterion. No reliability or provider behavior is inferred.",
+      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
+      "evidenceSha256": "c8755fd2fc9b38af799fc09055c1a50d7e39ac9722c794db81989d72af9a13e4"
+    },
+    {
+      "id": "spoken-roleplay-coach",
+      "promptId": "roleplay-coach",
+      "variant": "spoken",
+      "source": "current",
+      "promptSha256": "bffa0a0fbcec88ea6453dee7d7dee6a056b3a997bbf99d4a647f6d8d1dc918e0",
+      "learnerTurns": [
+        "A hotel bill dispute. You are the receptionist.",
+        "I disagree with that charge.",
+        "Help me ask for a detailed bill.",
+        "I did not used the minibar. Could I see the bill?"
+      ],
+      "assistantTurns": [
+        "Which situation would you like to practice?",
+        "Receptionist: There is a minibar charge on the bill. Did you use the minibar?",
+        "Receptionist: I can check it. Was the minibar unopened when you left?",
+        "Language note: Pausing the scene for help: say “Could I see an itemized bill, please?” Try it when ready.",
+        "Receptionist: Certainly, I can show you the bill. Language note: Say “I did not use the minibar”; after did not, use the base form. Which charge should we check first?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Which situation would you like to practice?"
+        },
+        {
+          "role": "user",
+          "content": "A hotel bill dispute. You are the receptionist."
+        },
+        {
+          "role": "assistant",
+          "content": "Receptionist: There is a minibar charge on the bill. Did you use the minibar?"
+        },
+        {
+          "role": "user",
+          "content": "I disagree with that charge."
+        },
+        {
+          "role": "assistant",
+          "content": "Receptionist: I can check it. Was the minibar unopened when you left?"
+        },
+        {
+          "role": "user",
+          "content": "Help me ask for a detailed bill."
+        },
+        {
+          "role": "assistant",
+          "content": "Language note: Pausing the scene for help: say “Could I see an itemized bill, please?” Try it when ready."
+        },
+        {
+          "role": "user",
+          "content": "I did not used the minibar. Could I see the bill?"
+        },
+        {
+          "role": "assistant",
+          "content": "Receptionist: Certainly, I can show you the bill. Language note: Say “I did not use the minibar”; after did not, use the base form. Which charge should we check first?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Accept natural disagreement without correction; pause character for help; label at most one real language correction per answer as Language note.",
+      "rationale": "Natural disagreement is accepted unchanged. Help pauses the scene and supplies a usable phrase. The final response corrects only did not used to did not use, preserves intent, and asks one scene question. This is one authored illustration, not measured model behavior.",
+      "sampleProvenance": "Fresh same-model authored text-only role simulation against the final spoken role-play instruction with an explicit one-real-error limit. One self-judged sample; no external API, audio, or independent judge execution.",
+      "evidenceSha256": "973cc5e9e03e52dca1cd4cd897cc1bf3781439a56fcf1a2a32456ab165dae247"
+    },
+    {
+      "id": "spoken-friendly-debate",
+      "promptId": "friendly-debate",
+      "variant": "spoken",
+      "promptSha256": "97c717666b35eb0fc223ce217354f928437bac93e5b8a4e846e267298add2134",
+      "learnerTurns": [
+        "Working from home.",
+        "Everyone should work from home because it save time.",
+        "Daily calls can help."
+      ],
+      "assistantTurns": [
+        "Which topic would you like to debate?",
+        "What is your view on working from home?",
+        "Saving travel time is a fair point, but working together in person can help teams communicate. Language tip: say “it saves time.” How would you keep teamwork strong at home?",
+        "That is clear English. Calls help, but spontaneous conversations can be harder online. How would you make room for those?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Which topic would you like to debate?"
+        },
+        {
+          "role": "user",
+          "content": "Working from home."
+        },
+        {
+          "role": "assistant",
+          "content": "What is your view on working from home?"
+        },
+        {
+          "role": "user",
+          "content": "Everyone should work from home because it save time."
+        },
+        {
+          "role": "assistant",
+          "content": "Saving travel time is a fair point, but working together in person can help teams communicate. Language tip: say “it saves time.” How would you keep teamwork strong at home?"
+        },
+        {
+          "role": "user",
+          "content": "Daily calls can help."
+        },
+        {
+          "role": "assistant",
+          "content": "That is clear English. Calls help, but spontaneous conversations can be harder online. How would you make room for those?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Oppose the argument respectfully while correcting language rather than opinion.",
+      "rationale": "Only saves is corrected; the opposing view is clearly separate and the natural follow-up answer is accepted. Re-evaluation against the final review-enabled spoken text leaves the original sampled coaching judgment unchanged; the retained original turns do not invoke review.",
+      "comparison": {
+        "preserved": [
+          "Opposing view",
+          "Language-opinion separation",
+          "One follow-up",
+          "Requested review and stop controls are explicit in target text; not invoked in this retained sample"
+        ],
+        "compressed": [
+          "Uncertain factual-claim handling",
+          "Three-topic fallback",
+          "Detailed review limits and command aliases"
+        ]
+      },
+      "sampleProvenance": "All transcript turns retained verbatim from the preceding fixture revision; runtime target hash unchanged; no fresh simulation.",
+      "evidenceSha256": "1011176ffb3c87d8ec18594c8743a744c0cdecf2756c0504edd9aec7bb6aec25"
+    },
+    {
+      "id": "spoken-word-riddle",
+      "promptId": "word-riddle",
+      "variant": "spoken",
+      "promptSha256": "566c71994b6b90791f16ffafb77231ee4a11d2c426bcf6d7d25c89b4f642cd70",
+      "learnerTurns": [
+        "A spoon.",
+        "An armchair.",
+        "My armchair are comfortable."
+      ],
+      "assistantTurns": [
+        "You sit on this piece of furniture, and it has a back. What is it?",
+        "A spoon is for eating, so it does not fit. Hint: you might put this beside a table. What is your guess?",
+        "Yes, an armchair fits. For example, “I read in my armchair.” Can you make your own sentence with “armchair”?",
+        "Say “My armchair is comfortable.” Use “is” with one armchair. Would you like another round?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "You sit on this piece of furniture, and it has a back. What is it?"
+        },
+        {
+          "role": "user",
+          "content": "A spoon."
+        },
+        {
+          "role": "assistant",
+          "content": "A spoon is for eating, so it does not fit. Hint: you might put this beside a table. What is your guess?"
+        },
+        {
+          "role": "user",
+          "content": "An armchair."
+        },
+        {
+          "role": "assistant",
+          "content": "Yes, an armchair fits. For example, “I read in my armchair.” Can you make your own sentence with “armchair”?"
+        },
+        {
+          "role": "user",
+          "content": "My armchair are comfortable."
+        },
+        {
+          "role": "assistant",
+          "content": "Say “My armchair is comfortable.” Use “is” with one armchair. Would you like another round?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Reject an incompatible guess, accept a fitting alternative, elicit usage and correct before offering another round.",
+      "rationale": "Armchair fits the clue even though chair would also fit. Sentence feedback precedes the next-round offer; no secret-answer restriction is imposed. Re-evaluation against the final review-enabled spoken text leaves the original sampled coaching judgment unchanged; the retained original turns do not invoke review.",
+      "comparison": {
+        "preserved": [
+          "Clue without answer",
+          "Accept any fitting guess",
+          "Example then learner sentence",
+          "Usage correction before next round",
+          "Requested review and stop controls are explicit in target text; not invoked in this retained sample"
+        ],
+        "compressed": [
+          "Three-unsuccessful-guess reveal offer",
+          "Explicit A2–B1 difficulty",
+          "Detailed review/finish command aliases and review grounding rules (review and stop intent are explicit)"
+        ]
+      },
+      "sampleProvenance": "All transcript turns retained verbatim from the preceding fixture revision; runtime target hash unchanged; no fresh simulation.",
+      "evidenceSha256": "d91fdc4f71ea05bcfa77184729643b92c4566e32d5000f047880dd11739ed039"
+    },
+    {
+      "id": "spoken-visual-vocabulary",
+      "promptId": "visual-vocabulary",
+      "variant": "spoken",
+      "promptSha256": "a19bb693236c5ee9da2c7bc6d4b7f1816d9258f196566a9cac60120162132522",
+      "learnerTurns": [
+        "No photo. A cup on my desk.",
+        "It have a blue handle.",
+        "I drink tea from it."
+      ],
+      "assistantTurns": [
+        "What would you like to describe?",
+        "You could call it a cup and use words like “small” or “smooth” if they fit. How would you describe your cup?",
+        "Say “It has a blue handle.” Use “has” with “it.” What do you use it for?",
+        "That sounds natural. Is it comfortable to hold?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What would you like to describe?"
+        },
+        {
+          "role": "user",
+          "content": "No photo. A cup on my desk."
+        },
+        {
+          "role": "assistant",
+          "content": "You could call it a cup and use words like “small” or “smooth” if they fit. How would you describe your cup?"
+        },
+        {
+          "role": "user",
+          "content": "It have a blue handle."
+        },
+        {
+          "role": "assistant",
+          "content": "Say “It has a blue handle.” Use “has” with “it.” What do you use it for?"
+        },
+        {
+          "role": "user",
+          "content": "I drink tea from it."
+        },
+        {
+          "role": "assistant",
+          "content": "That sounds natural. Is it comfortable to hold?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Use only a text description, scaffold vocabulary conditionally, correct and follow up.",
+      "rationale": "No image is claimed. Suggested adjectives are conditional, and the handle comes from the learner. The correction focuses on has. Re-evaluation against the final review-enabled spoken text leaves the original sampled coaching judgment unchanged; the retained original turns do not invoke review.",
+      "comparison": {
+        "preserved": [
+          "Text-only object option",
+          "Evidence boundary",
+          "Vocabulary scaffolding",
+          "Correction and follow-up",
+          "Requested review and stop controls are explicit in target text; not invoked in this retained sample"
+        ],
+        "compressed": [
+          "Explicit uncertainty wording",
+          "Up-to-three adjective limit",
+          "Complete-description extension rule",
+          "Detailed review/finish command aliases and review grounding rules (review and stop intent are explicit)"
+        ]
+      },
+      "sampleProvenance": "All transcript turns retained verbatim; punctuation-only target change re-evaluated, hash refreshed; no fresh simulation.",
+      "evidenceSha256": "2d8593bd36c190c4a8ff2f823871dc14735ea68edd3e1194dab916ee6e2e8ef0"
+    },
+    {
+      "id": "spoken-story-summary",
+      "promptId": "story-summary",
+      "variant": "spoken",
+      "promptSha256": "ea7fab351d05b0e832f062b6a42e94c5b1d16b414daeb1d1c5bb7b83ebe50a53",
+      "learnerTurns": [
+        "A story about my train trip.",
+        "Yesterday I miss the train. I have more to tell.",
+        "I took the next train and arrived at noon. That section is complete."
+      ],
+      "assistantTurns": [
+        "What would you like to retell?",
+        "Please tell me a short section in your own words.",
+        "Go on; I’ll wait until you finish this section.",
+        "You found another train and arrived at noon. Say “Yesterday I missed the train” for the past. What did you do after arriving?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What would you like to retell?"
+        },
+        {
+          "role": "user",
+          "content": "A story about my train trip."
+        },
+        {
+          "role": "assistant",
+          "content": "Please tell me a short section in your own words."
+        },
+        {
+          "role": "user",
+          "content": "Yesterday I miss the train. I have more to tell."
+        },
+        {
+          "role": "assistant",
+          "content": "Go on; I’ll wait until you finish this section."
+        },
+        {
+          "role": "user",
+          "content": "I took the next train and arrived at noon. That section is complete."
+        },
+        {
+          "role": "assistant",
+          "content": "You found another train and arrived at noon. Say “Yesterday I missed the train” for the past. What did you do after arriving?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Wait for explicit section completion, then correct one issue and discuss provided content.",
+      "rationale": "The coach withholds correction during the unfinished section and preserves the past-time meaning after completion. No outside story details are invented. Re-evaluation against the final review-enabled spoken text leaves the original sampled coaching judgment unchanged; the retained original turns do not invoke review.",
+      "comparison": {
+        "preserved": [
+          "Section completion before feedback",
+          "Meaning-preserving correction",
+          "Content follow-up",
+          "Provided-information boundary",
+          "Requested review and stop controls are explicit in target text; not invoked in this retained sample"
+        ],
+        "compressed": [
+          "Explicit intermediate-turn protocol",
+          "Fact-versus-language distinction",
+          "Detailed review/finish command aliases and review grounding rules (review and stop intent are explicit)"
+        ]
+      },
+      "sampleProvenance": "All transcript turns retained verbatim from the preceding fixture revision; runtime target hash unchanged; no fresh simulation.",
+      "evidenceSha256": "4181f6fd11e98f6d16fa1fd5742e502ce0554b1f028c5fa9738f97f08762b514"
+    },
+    {
+      "id": "heldout-resume-focused-correction-spoken",
+      "promptId": "focused-correction",
+      "variant": "spoken",
+      "source": "current",
+      "promptSha256": "faa1eb7a6fd02eb658c2941d5f4c6f6ce87c6c3882936e6b6ebd08a7a4fea32b",
+      "learnerTurns": [
+        "I go shopping yesterday. What about you?",
+        "Why do I need went instead of go?",
+        "I went shopping yesterday."
+      ],
+      "assistantTurns": [
+        "What did you do yesterday?",
+        "I do not have shopping trips myself. You went shopping yesterday. Say “I went shopping yesterday” because yesterday needs the past tense. Try that sentence again.",
+        "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it.",
+        "That works. What did you buy?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "What did you do yesterday?"
+        },
+        {
+          "role": "user",
+          "content": "I go shopping yesterday. What about you?"
+        },
+        {
+          "role": "assistant",
+          "content": "I do not have shopping trips myself. You went shopping yesterday. Say “I went shopping yesterday” because yesterday needs the past tense. Try that sentence again."
+        },
+        {
+          "role": "user",
+          "content": "Why do I need went instead of go?"
+        },
+        {
+          "role": "assistant",
+          "content": "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it."
+        },
+        {
+          "role": "user",
+          "content": "I went shopping yesterday."
+        },
+        {
+          "role": "assistant",
+          "content": "That works. What did you buy?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Correct the real tense error even when an answer includes a social question; answer pure English clarification outside grading, preserve the pending retry, and advance after success.",
+      "rationale": "Fresh authored sample satisfies only the stated criterion. The mixed answer retains its tense correction despite “What about you?”; the subsequent clarification is explained rather than graded.",
+      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
+      "evidenceSha256": "82eda74d2283cecbe47f27e0da61b109f01b30a1e2204654d17eb26d3820fe64"
+    },
+    {
+      "id": "heldout-resume-expression-upgrade-spoken",
+      "promptId": "expression-upgrade",
+      "variant": "spoken",
+      "source": "current",
+      "promptSha256": "d67ee99d3e536acbb233a1e5827d33a00116cd1430035447ffb97473593b8ee1",
+      "learnerTurns": [
+        "I go shopping yesterday. What about you?",
+        "Why do I need went instead of go?",
+        "I went shopping yesterday."
+      ],
+      "assistantTurns": [
+        "Tell me about an activity you enjoyed recently.",
+        "I do not have shopping trips myself. Your meaning is clear; the tense needs correcting. A natural rewrite is “I went shopping yesterday.” Use went for the past; try that revision.",
+        "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it.",
+        "That works. What did you buy?"
+      ],
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Tell me about an activity you enjoyed recently."
+        },
+        {
+          "role": "user",
+          "content": "I go shopping yesterday. What about you?"
+        },
+        {
+          "role": "assistant",
+          "content": "I do not have shopping trips myself. Your meaning is clear; the tense needs correcting. A natural rewrite is “I went shopping yesterday.” Use went for the past; try that revision."
+        },
+        {
+          "role": "user",
+          "content": "Why do I need went instead of go?"
+        },
+        {
+          "role": "assistant",
+          "content": "Yesterday places the action in the past, and went is the past form of go. Your retry is still pending; you can resume or skip it."
+        },
+        {
+          "role": "user",
+          "content": "I went shopping yesterday."
+        },
+        {
+          "role": "assistant",
+          "content": "That works. What did you buy?"
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Correct the real tense error even when an answer includes a social question; answer pure English clarification outside grading, preserve the pending retry, and advance after success.",
+      "rationale": "Fresh authored sample satisfies only the stated criterion. The mixed answer retains its tense correction despite “What about you?”; the subsequent clarification is explained rather than graded.",
+      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
+      "evidenceSha256": "cb62602432fea6105d64f63d97689939b95b949708e69c5e50b14b34da6e1f42"
+    }
+  ]
+}
