@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createAppUpdateManager, type AppUpdateSnapshot } from "./app-update";
 import { getOfflineStatus, type OfflineStatus } from "./offline-readiness";
+import { createOfflineCheck } from "./offline-check";
 export type { OfflineStatus } from "./offline-readiness";
 const completionKey = "talksprout:update-completed";
 function consumeCompletion() {
@@ -29,8 +30,13 @@ export function useAppUpdate() {
     if (!import.meta.env.PROD) return;
     let disposed = false;
     let registration: ServiceWorkerRegistration | undefined;
-    let checking = false;
-    let offlinePoll: ReturnType<typeof setTimeout> | undefined;
+    const offlineCheck = createOfflineCheck({
+      read: () => getOfflineStatus(caches, registration!.scope, !!registration!.installing),
+      publish: setOfflineStatus,
+      visible: () => !!registration && document.visibilityState === "visible",
+      schedule: (callback, delay) => setTimeout(callback, delay),
+      cancel: clearTimeout,
+    });
     const watched = new Set<ServiceWorker>();
     const observeWorker = () => {
       const worker = registration?.installing;
@@ -40,27 +46,19 @@ export function useAppUpdate() {
       }
       refreshOffline();
     };
-    function refreshOffline() { void checkOffline(); }
-    const checkOffline = async () => {
-      if (checking || !registration) return;
-      checking = true;
-      const status = await getOfflineStatus(caches, registration.scope, !!registration.installing);
-      checking = false;
-      if (disposed) return;
-      setOfflineStatus(status);
-      clearTimeout(offlinePoll);
-      // Stop disk reads once evidence is conclusive; resume/lifecycle events recheck eviction.
-      if (status === "installing" || status === "unknown")
-        offlinePoll = setTimeout(refreshOffline, 2000);
-    };
+    function refreshOffline() { offlineCheck.restart(); }
     const updates = createAppUpdateManager({
       container: navigator.serviceWorker,
       onChange: (next) => {
         setCompleted(false);
         setSnapshot(next);
       },
-      onRegistrationError: () => setOfflineStatus("unavailable"),
+      onRegistrationError: () => {
+        offlineCheck.suspend();
+        if (!disposed) setOfflineStatus("unavailable");
+      },
       onRegistration: (reg) => {
+        if (disposed) return;
         registration = reg;
         reg.addEventListener("updatefound", observeWorker);
         observeWorker();
@@ -76,24 +74,25 @@ export function useAppUpdate() {
     const resume = () => {
       if (document.visibilityState === "visible") {
         updates.resume(navigator.onLine);
-        void checkOffline();
-      }
+        offlineCheck.resume();
+      } else offlineCheck.suspend();
     };
+    const reconnect = () => { offlineCheck.restart(); resume(); };
     document.addEventListener("visibilitychange", resume);
     window.addEventListener("pageshow", resume);
-    window.addEventListener("online", resume);
+    window.addEventListener("online", reconnect);
     window.addEventListener("focus", resume);
     void updates.start(`${import.meta.env.BASE_URL}sw.js`);
     return () => {
       disposed = true;
-      clearTimeout(offlinePoll);
+      offlineCheck.dispose();
       registration?.removeEventListener("updatefound", observeWorker);
       for (const worker of watched) worker.removeEventListener("statechange", refreshOffline);
       updates.dispose();
       manager.current = null;
       document.removeEventListener("visibilitychange", resume);
       window.removeEventListener("pageshow", resume);
-      window.removeEventListener("online", resume);
+      window.removeEventListener("online", reconnect);
       window.removeEventListener("focus", resume);
     };
   }, []);

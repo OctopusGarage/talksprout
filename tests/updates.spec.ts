@@ -101,7 +101,6 @@ test("real worker updates reload once after initial claim and on return visits",
     const favorite = page.locator('[data-favorite="daily-check-in"]');
     await favorite.click();
     await expect(favorite).toHaveAttribute("aria-pressed", "true");
-    await expect(page.locator("#favorite-count")).toHaveText("1");
     async function update(expectedLoads: number) {
       release++;
       await page.evaluate(async () => {
@@ -139,7 +138,6 @@ test("real worker updates reload once after initial claim and on return visits",
       await expect(page.locator("#library-heading")).toHaveText(
         "Conversation coaches",
       );
-      await expect(page.locator("#favorite-count")).toHaveText("1");
       await expect(favorite).toHaveAttribute("aria-pressed", "true");
       expect(
         await page.evaluate(() => localStorage.getItem("talksprout:favorites")),

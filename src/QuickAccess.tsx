@@ -1,4 +1,5 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { focusPracticeCollection } from "./home-focus";
 import { allPrompts } from "./prompts";
 import { learningPrompts } from "./content/learning";
 import { scenes } from "./scenes";
@@ -19,15 +20,34 @@ export function SavedPracticeList({ items, locale, onRemove }: { items: Practice
   const [expanded, setExpanded] = useState(false);
   const listId = useId();
   const canExpand = items.length > 3;
+  const list = useRef<HTMLDivElement>(null);
+  const previousFocus = useRef<{ element: HTMLElement; index: number } | null>(null);
+  useLayoutEffect(() => {
+    const previous = previousFocus.current;
+    if (!previous || previous.element.isConnected) return;
+    previousFocus.current = null;
+    // Restore only removed focus; a new connected target belongs to the user.
+    if (document.activeElement !== document.body) return;
+    const rows = list.current?.querySelectorAll<HTMLElement>(".quick-open");
+    const target = rows?.[Math.min(previous.index, rows.length - 1)];
+    if (target) target.focus({ preventScroll: true });
+    else focusPracticeCollection();
+  }, [items, expanded]);
   useEffect(() => {
     if (!canExpand) setExpanded(false);
   }, [canExpand]);
   if (!items.length) return null;
   const en = locale === "en";
   const visibleItems = expanded ? items : items.slice(0, 3);
-  return <section className="quick-access" aria-label={en ? "Saved practice combinations" : "常用练习组合"}>
+  return <section className="quick-access" aria-label={en ? "Saved practice combinations" : "常用练习组合"}
+    onFocusCapture={(event) => {
+      const element = event.target as HTMLElement;
+      const row = element.closest(".quick-row");
+      const rows = Array.from(list.current?.children ?? []);
+      previousFocus.current = { element, index: row ? rows.indexOf(row) : rows.length - 1 };
+    }}>
     <h2 className="section-label">{en ? "Saved combinations" : "常用组合"}</h2>
-    <div className="native-list" id={listId}>{visibleItems.map(item => <div className="quick-row" key={shortcutKey(item)}>
+    <div className="native-list" id={listId} ref={list}>{visibleItems.map(item => <div className="quick-row" key={shortcutKey(item)}>
       <button className="quick-open" onClick={() => open(practiceHref(item), item.promptId)}>
         <strong>{shortcutLabel(item, locale)}</strong>
         <small>{item.variant === "spoken" ? (en ? "Spoken opening" : "语音开场白") : (en ? "Full prompt" : "完整提示词")}{item.pace === "mock" ? (en ? " · Mock interview" : " · 模拟面试") : ""}</small>

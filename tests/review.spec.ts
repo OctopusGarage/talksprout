@@ -20,7 +20,6 @@ test("start and wrap-up stay separate through search, favorites, Back and reload
   await page.getByRole("searchbox").fill("roleplay");
   await expect(page.locator(".card")).toHaveCount(0);
   await page.getByRole("link", { name: "开始练习", exact: true }).click();
-  await expect(page.locator("#favorite-count")).toHaveText("0");
   await page.locator("#favorites").click();
   await expect(page.locator(".card")).toHaveCount(0);
   await page.goBack();
@@ -28,7 +27,6 @@ test("start and wrap-up stay separate through search, favorites, Back and reload
   await expect(page.locator(".card")).toHaveCount(0);
   await page.getByRole("button", { name: "清除筛选", exact: true }).click();
   await expect(page.locator(".card")).toHaveCount(4);
-  await expect(page.locator("#favorite-count")).toHaveText("1");
   await page.reload();
   await expect(
     page.getByRole("link", { name: "结束与复习", exact: true }),

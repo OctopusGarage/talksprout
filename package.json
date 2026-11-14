@@ -11,7 +11,7 @@
     "test:e2e": "playwright test",
     "typecheck": "tsc --noEmit",
     "eval": "tsx evals/run.ts",
-    "test:webkit": "playwright test tests/shell.spec.ts tests/clipboard.spec.ts tests/scenes.spec.ts tests/updates.spec.ts tests/update-feedback.spec.ts tests/learning.spec.ts tests/learning-expansion.spec.ts tests/optimizations.spec.ts tests/cache-scopes.spec.ts tests/consistency.spec.ts tests/quick-access.spec.ts --browser=webkit",
+    "test:webkit": "playwright test tests/shell.spec.ts tests/clipboard.spec.ts tests/scenes.spec.ts tests/updates.spec.ts tests/update-feedback.spec.ts tests/learning.spec.ts tests/learning-expansion.spec.ts tests/optimizations.spec.ts tests/cache-scopes.spec.ts tests/consistency.spec.ts tests/quick-access.spec.ts tests/polish.spec.ts --browser=webkit",
     "eval:live": "tsx evals/export-live.ts && python3 evals/live.py",
     "eval:learning:live": "tsx evals/export-live.ts --learning && python3 evals/live.py --cases .superpowers/model-run/learning-cases.json --output .superpowers/model-run/learning-current.json",
     "eval:english:live": "tsx evals/export-live.ts --english && python3 evals/live.py --cases .superpowers/model-run/english-cases.json --output .superpowers/model-run/english-current.json",

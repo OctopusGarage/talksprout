@@ -21,11 +21,11 @@ test("first practice guide, collection focus and independent learning favorites"
 test("saved scene combinations restore format and pace without retaining private background", async ({ page }) => {
   await page.goto("/#library?prompt=roleplay-coach&scene=project-deep-dive&pace=mock&format=spoken");
   await expect(page.getByRole("tab", { name: "语音开场白", exact: true })).toHaveAttribute("aria-selected", "true");
-  await page.getByRole("button", { name: "收藏此组合", exact: true }).click();
+  await page.getByRole("button", { name: "保存常用组合", exact: true }).click();
   await page.getByRole("tab", { name: "完整提示词", exact: true }).click();
   await page.locator(".scene-settings summary").click();
   await page.locator("#scene-background").fill("PRIVATE_BACKGROUND_8364");
-  await page.getByRole("button", { name: "收藏此组合", exact: true }).click();
+  await page.getByRole("button", { name: "保存常用组合", exact: true }).click();
   const saved = await page.evaluate(() => localStorage.getItem("talksprout:practice-shortcuts"));
   expect(saved).not.toContain("PRIVATE_BACKGROUND_8364");
   await page.keyboard.press("Escape");

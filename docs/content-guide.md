@@ -18,7 +18,7 @@ Each supplementary prompt has a decorative emoji, bilingual title, purpose, use 
 - `src/content/collections.ts`: bilingual directory names and descriptions.
 - `src/prompts.ts`: exports `prompts` (nine conversation starters), `reviewPrompts` (four reviews), and `allPrompts` for shared storage and rendering.
 
-Start practice shows three directories. Wrap-up & Review is a separate navigation tab with four choices and one recommendation. The practice-home search covers all coaches; collection searches and saved filters stay within their collection. Review search and favorites stay within review, including their counts; opening prompts never appear in review results. Existing collection links remain valid.
+Start practice shows three directories. Wrap-up & Review is a separate navigation tab with four choices and one recommendation. The practice-home search covers all coaches; collection searches and saved filters stay within their collection. Review search and favorites stay within review; opening prompts never appear in review results. Existing collection links remain valid. Favorites use only a heart icon, with the accessible name Saved / 收藏 and pressed state; do not add visible category labels or a count.
 
 ## Preserve meaningful differences
 
@@ -114,3 +114,9 @@ The optional first-practice guide can be dismissed. Everyday and service example
 All speaking/review favorites, helper favorites, combinations and recent copies use `useSavedPrompts.ts`. Each mutation rereads persisted state and applies the requested membership, rather than toggling stale persisted membership. Browser Web Locks serialize writes across app windows where available. Without that API, latest-state merging and storage events cover sequential stale-window updates; simultaneous writes are not guaranteed atomic. Storage failures retain explicit feedback and pending per-item intents for the current session; retries apply those intents to the latest persisted state, preserving unrelated external additions/removals. The combination list displays three entries initially and has an accessible bilingual expand/collapse control.
 
 Safe format, source, scene and pace changes replace the current sheet URL while preserving its history state. Picker selection waits until its temporary history entry closes before replacing the parent. Route hydration must not discard in-memory private background during these local updates. Reload deliberately drops background; links and saved records never include it.
+
+## Focus and bounded offline readiness checks
+
+Removing a focused saved combination moves focus to the next visible row, the previous row if it was last, or the first practice collection when empty. When another window removes the focused expansion control, focus moves into the remaining list. Guide dismissal moves focus to the next useful home action. Never override a new connected user focus target, including deferred dialog focus restoration.
+
+`offline-check.ts` separates readiness scheduling from service-worker update activation. Each burst performs one immediate check plus at most five retries after 2, 4, 8, 16 and 30 seconds. Stop after ready/unavailable or the retry limit, suspend while hidden, and recheck on foreground/resume, reconnect or worker lifecycle. Repeated foreground events during a running burst do not reset its budget. Serialize cache reads and discard stale/disposed results. This policy does not establish a measured battery improvement or physical-device compatibility.

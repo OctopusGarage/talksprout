@@ -61,6 +61,8 @@ export function PromptDialog({
       d.close();
       requestAnimationFrame(() => {
         if (document.querySelector("dialog[open]") || location.hash.split("?")[0] !== originBase) return;
+        const focused = document.activeElement;
+        if (focused !== document.body && focused?.isConnected && focused !== previous) return;
         if (previous?.isConnected) previous.focus({ preventScroll: true });
         else
           document

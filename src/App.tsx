@@ -560,7 +560,7 @@ export default function App() {
             url.search = "";
             url.hash = practiceHref(entry);
             return <div className="practice-actions">
-              <button className="save-combination" aria-pressed={stored} onClick={() => { void savedPrompts.toggleShortcut(entry).then(ok => { if (!ok) setMessage(t.saveError); }); }}>{stored ? s("取消组合收藏", "Remove saved combination") : s("收藏此组合", "Save this combination")}</button>
+              <button className="save-combination" aria-pressed={stored} onClick={() => { void savedPrompts.toggleShortcut(entry).then(ok => { if (!ok) setMessage(t.saveError); }); }}>{stored ? s("移除常用组合", "Remove practice combination") : s("保存常用组合", "Save practice combination")}</button>
               <details><summary>{s("分享练习链接", "Share practice link")}</summary>
                 <label htmlFor="practice-link">{s("教练、场景与练习方式", "Coach, scenario and format")}</label>
                 <input id="practice-link" readOnly value={url.href} />

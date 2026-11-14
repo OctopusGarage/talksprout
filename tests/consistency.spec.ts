@@ -84,13 +84,13 @@ test('concurrent windows preserve both combinations under Web Locks', async ({ b
   await a.goto(`${baseURL}/#library?prompt=daily-check-in`);
   await b.goto(`${baseURL}/#library?prompt=gentle-start`);
   expect(await a.evaluate(() => typeof navigator.locks?.request)).toBe('function');
-  await Promise.all([a.getByRole('button', { name:'收藏此组合', exact:true }).click(), b.getByRole('button', { name:'收藏此组合', exact:true }).click()]);
-  await expect(a.getByRole('button', { name:'取消组合收藏', exact:true })).toBeVisible();
-  await expect(b.getByRole('button', { name:'取消组合收藏', exact:true })).toBeVisible();
+  await Promise.all([a.getByRole('button', { name:'保存常用组合', exact:true }).click(), b.getByRole('button', { name:'保存常用组合', exact:true }).click()]);
+  await expect(a.getByRole('button', { name:'移除常用组合', exact:true })).toBeVisible();
+  await expect(b.getByRole('button', { name:'移除常用组合', exact:true })).toBeVisible();
   const saved = JSON.parse(await a.evaluate(() => localStorage.getItem('talksprout:practice-shortcuts')) ?? '[]');
   expect(saved.map((item: {promptId: string}) => item.promptId).sort()).toEqual(['daily-check-in','gentle-start']);
-  await a.getByRole('button', { name:'取消组合收藏', exact:true }).click();
-  await expect(a.getByRole('button', { name:'收藏此组合', exact:true })).toBeVisible();
+  await a.getByRole('button', { name:'移除常用组合', exact:true }).click();
+  await expect(a.getByRole('button', { name:'保存常用组合', exact:true })).toBeVisible();
   await b.keyboard.press('Escape');
   await expect(b.locator('.quick-row')).toHaveCount(1);
   await context.close();

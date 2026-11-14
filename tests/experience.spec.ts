@@ -35,7 +35,7 @@ test("bilingual directories, modal feedback, focus and locale persistence", asyn
     "搜索陪练模式",
   );
 });
-test("old favorites cannot surface removed tools or inflate visible counts", async ({
+test("old favorites cannot surface removed tools", async ({
   page,
 }) => {
   await page.addInitScript(() => {
@@ -51,7 +51,6 @@ test("old favorites cannot surface removed tools or inflate visible counts", asy
   await page.goto("/");
   await page.locator("#favorites").click();
   await expect(page.locator(".card")).toHaveCount(1);
-  await expect(page.locator("#favorite-count")).toHaveText("1");
   await expect(page.locator(".card h3")).toHaveText("温柔引导纠正");
 });
 test("main views, prompt and settings sheets, and recovery have no detected AA violations", async ({

@@ -57,9 +57,6 @@ export function PromptLibrary({
       (p.kind === "review") === reviewing &&
       (!current || reviewing || p.category === current.category),
   );
-  const favoriteCount = favorites.filter((id) =>
-    stagePrompts.some((p) => p.id === id),
-  ).length;
   const searching = !!query.trim() || favoritesOnly;
   const matches = filterPrompts(stagePrompts, {
     query,
@@ -110,14 +107,12 @@ export function PromptLibrary({
         </label>
         <button
           id="favorites"
-          aria-label={en ? "Saved prompts" : "收藏的提示词"}
+          aria-label={en ? "Saved" : "收藏"}
           className="favorites-filter"
           aria-pressed={favoritesOnly}
           onClick={() => update({ favoritesOnly: !favoritesOnly })}
         >
           <Icon name="heart" />
-          <span>{en ? "Saved" : "收藏"}</span>
-          <span id="favorite-count">{favoriteCount}</span>
         </button>
       </div>
       {searching && (
@@ -237,8 +232,8 @@ export function PromptLibrary({
               <p>
                 {favoritesOnly
                   ? en
-                    ? "Tap a heart to keep a prompt handy."
-                    : "点一下爱心，把常用提示词留在这里。"
+                    ? "Tap a heart beside a prompt to save it here."
+                    : "点提示词旁的爱心，即可收藏。"
                   : en
                     ? "Try another word or clear your filters."
                     : "换个关键词，或清除筛选。"}

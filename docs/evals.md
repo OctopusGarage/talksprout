@@ -15,12 +15,12 @@ Release evaluation on 2026-11-14 covers nine coaching modes, four review modes, 
 | Complete composition matrix | 936 coach/scenario/pace combinations, 1,872 payloads |
 | Real GPT-4.1 text API cases | 719 accepted cases across five target archives; 764 final target responses; raw case gates 715 pass, 4 fail, 0 uncertain; eight calibration examples counted separately |
 | Static semantic adjudication | 4 confirmed judge false positives accepted; raw verdicts retained |
-| Unit tests | 106 passed |
-| Chromium browser tests | 75 passed |
-| WebKit browser/PWA tests | 55 passed |
+| Unit tests | 113 passed |
+| Chromium browser tests | 81 passed |
+| WebKit browser/PWA tests | 61 passed |
 | TypeScript and production build | Passed |
 
-The current application checks passed 106 unit tests, 75 Chromium browser tests and 55 WebKit browser tests. The recorded API suites are separate from these application checks.
+The current application checks passed 113 unit tests, 81 Chromium browser tests and 61 WebKit browser tests. The recorded API suites are separate from these application checks.
 
 
 The 46 base references and 79 scene references are authored text simulations, not external-provider API runs. The separate live API corpus below contains real executions. Neither corpus is evidence of learning effectiveness or broad provider reliability. Fixtures contain exact prompt hashes; changed text requires refreshed sessions. See [methodology](../evals/README.md) and [fixtures](../evals/fixtures/).
@@ -47,7 +47,7 @@ All nine modes include a separate compact English opening. Text simulations chec
 
 Four reviews have separate full and spoken simulations; additional cases cover another-transcript source isolation and missing context. These are authored text examples, not API execution or independent evidence of reliability. They check genuine errors versus optional style, speaker attribution, contextual vocabulary, reference IPA uncertainty, self-contained recall questions with a separate answer key, and oral fallback when written output is unavailable.
 
-Browser checks cover purpose separation through search, favorites, counts, browser Back and reload; exact copying of current-chat, transcript-template, and spoken payloads; source reset and manual-copy selection; offline review access; bilingual mobile layouts and accessibility scans.
+Browser checks cover purpose separation through search, favorites, result counts, browser Back and reload; exact copying of current-chat, transcript-template, and spoken payloads; source reset and manual-copy selection; offline review access; bilingual mobile layouts and accessibility scans.
 
 ## Teaching coverage
 
@@ -227,3 +227,11 @@ Local favorites, combinations and recent-copy metadata now merge mutations again
 Safe format, source, scene and pace changes replace the current sheet URL; no private background enters it. Picker cleanup returns to the parent entry before replacement. Reload restores the safe selection and drops private background. Current-option persistence tests wait for the completed selection before reloading, since Web Lock transactions are asynchronous. The home list defaults to three combinations and supports bilingual keyboard-operable expansion. Language claims are explicitly limited to review and learning-helper explanations; coach prompt bodies remain unchanged.
 
 The usability materials under `docs/usability/` include task cards, a session record, and blank raw/aggregation CSV headers. No recruitment, interviews, timings or completion results were produced.
+
+## Icon controls, focus and offline retry follow-up
+
+The favorite filter shows only its heart icon. Its accessible name remains Saved / 收藏, with pressed state and a 44-pixel minimum target. The visible category labels and count were removed; persistence and scope are checked through actual saved rows and favorite states. No prompt bodies or model archives changed in this follow-up.
+
+Browser regressions cover dismissing the guide, deleting focused rows, external removal of an expansion control, returning to the collection after deleting the last combination even when recent copies exist, and preserving a new focus target during deferred dialog cleanup. Deterministic scheduler tests cover finite 2/4/8/16/30-second backoff, hidden suspension, lifecycle/resume, serialized reads, rejection and disposal. These timer tests are authored simulations, separate from real worker browser checks and physical-device observations.
+
+The physical-device handoff checklist is unexecuted. No new participant sessions, model/API calls, battery measurements or audio/provider compatibility results are claimed.

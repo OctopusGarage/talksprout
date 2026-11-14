@@ -368,6 +368,9 @@ p {
   color: #596d60;
 }
 .favorites-filter {
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -386,10 +389,6 @@ p {
   background: var(--tint);
   border-color: #9bb69f;
   color: var(--green);
-}
-#favorite-count {
-  font-variant-numeric: tabular-nums;
-  font-size: 11px;
 }
 .section-label {
   font-size: 12px;
@@ -1093,9 +1092,6 @@ summary {
   .favorites-filter {
     padding: 11px 10px;
     gap: 5px;
-  }
-  .favorites-filter > span:not(#favorite-count) {
-    display: none;
   }
   .favorites-filter svg {
     width: 18px;
