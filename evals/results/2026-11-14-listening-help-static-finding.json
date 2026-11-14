@@ -1,0 +1,15 @@
+{
+  "method": "static-semantic-review-not-model-execution",
+  "sourceArchive": "evals/results/2026-11-14-listening-followup-first.json",
+  "caseId": "learning-help-listening-check",
+  "rawEvidenceSha256": "a20941acfa15898795756d740dcb8434edde9487c29e951e604e17e1b1427eee",
+  "observedReply": "好的，给你一个小提示：  \n你需要注意文中关于“tickets”的那句话。它说明了参观博物馆前需要做的一件事。你可以再听一遍，特别关注“Tickets must be booked online.”这句话。\n\n你可以再试着回答：去博物馆之前，参观者需要做什么？",
+  "rawJudge": {
+    "id": "learning-help-listening-check",
+    "judgment": "pass",
+    "reason": "The reply gives a concise hint focused on the relevant transcript sentence, preserves the current exercise, and invites the learner to try again without shaming or restarting. It does not reveal the answer or transcript, and the help is in Chinese as requested. No new question is introduced beyond the original pending one."
+  },
+  "judgment": "fail",
+  "reason": "The learner requests generic help rather than the answer or source wording. Quoting Tickets must be booked online directly supplies the required answer before another attempt. The judge falsely states that no transcript or answer was revealed. A help criterion that broadly allowed relevant information missed the original prompt requirement.",
+  "status": "Requires generic hint-only remediation and stricter check-help criteria; not accepted behavioral evidence."
+}

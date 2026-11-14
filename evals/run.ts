@@ -1,3 +1,5 @@
+import { validateFrozenArchive, validateOriginalFinding, validateHelpFinding, validateSessionReviews } from './frozen-validate';
+import { validateCalibration } from './calibration-validate';
 import { createEnglishCases, createSessionCases } from "./session-cases";
 import { createLearningLiveCases } from "./learning-live-cases";
 import { learningPrompts } from "../src/content/learning";
@@ -20,7 +22,17 @@ const learningLive = validateLiveArchive(
 );
 const englishLive = validateLiveArchive(JSON.parse(readFileSync("evals/fixtures/english-live-api.json", "utf8")), createEnglishCases());
 const sessionLive = validateLiveArchive(JSON.parse(readFileSync("evals/fixtures/session-live-api.json", "utf8")), createSessionCases());
+const calibration = validateCalibration(JSON.parse(readFileSync('evals/fixtures/judge-calibration.json', 'utf8')));
+const frozen = validateFrozenArchive(JSON.parse(readFileSync('evals/fixtures/frozen-live-api.json', 'utf8')));
 const issues: string[] = [
+  ...validateOriginalFinding(JSON.parse(readFileSync('evals/results/2026-11-14-frozen-verification-initial.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-frozen-verification-static-finding.json', 'utf8'))),
+  ...validateHelpFinding(JSON.parse(readFileSync('evals/results/2026-11-14-listening-followup-first.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-listening-help-static-finding.json', 'utf8'))),
+  ...validateHelpFinding(JSON.parse(readFileSync('evals/results/2026-11-14-listening-followup-second.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-listening-help-second-static-finding.json', 'utf8'))),
+  ...validateSessionReviews(JSON.parse(readFileSync('evals/results/2026-11-14-listening-followup-third-sessions.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-first-question-static-findings.json', 'utf8')).findings),
+  ...validateSessionReviews(JSON.parse(readFileSync('evals/results/2026-11-14-listening-followup-second-sessions.json', 'utf8')), [JSON.parse(readFileSync('evals/results/2026-11-14-volunteer-judge-static-review.json', 'utf8'))]),
+  ...validateSessionReviews(JSON.parse(readFileSync('evals/fixtures/frozen-live-api.json', 'utf8')), [JSON.parse(readFileSync('evals/results/2026-11-14-station-semantic-review.json', 'utf8'))]),
+  ...calibration.issues,
+  ...frozen.issues,
   ...englishLive.issues,
   ...sessionLive.issues,
   ...validateLearningArchive(JSON.parse(readFileSync("evals/fixtures/learning-static.json", "utf8"))),
@@ -67,6 +79,8 @@ console.log(
         readFileSync("evals/fixtures/scene-presets.json", "utf8"),
       ).cases.length,
       compositionMatrix: matrix,
+      judgeCalibration: { cases: calibration.cases, method: 'Recorded real pinned same-model judge calls on agent-authored labeled replies; no target calls, no independent judge' },
+      frozenVerification: { cases: frozen.cases, targetTurns: 28, untunedRetainedSessions: 3, tunedRegressionSessions: 3, freshAfterRemediationSessions: 1, method: 'Recorded agent-authored actual-history scripts; original raw false pass preserved separately; not blind independent validation' },
       focusedTextApi: { englishCases: englishLive.cases, sessions: sessionLive.cases, sessionTargetTurns: 32, method: "Recorded real text API evidence; sessions use actual preceding replies and isolated turn-prefix same-model judges; no new requests in this command" },
       liveApi: {
         cases: live.cases,

@@ -47,3 +47,16 @@ Repeat the task portion for each of the three tasks. After all sessions, group r
 ## Measurement limits
 
 TalkSprout does not automatically track these sessions, read external AI conversations, or measure AI outcomes or learning progress. Timing, completion, and observations in this protocol are manually recorded with consent. Browser navigation evidence, copied prompt text, authored model-role simulations, and real model/API execution are separate evidence types. This study does not establish audio or provider compatibility, response quality, or improvement in English proficiency.
+
+## Ready-to-run materials and aggregation
+
+- [Participant task cards](usability/task-cards.md): read-aloud goals, completion criteria, assistance rules, optional crowded-home task, and a clearly labeled fictional transcript.
+- [Blank session record](usability/session-record.md): copy privately for each consenting participant.
+- [Task records CSV](usability/task-records.csv): one row per participant/task, headers only until sessions occur.
+- [Aggregation CSV](usability/aggregation.csv): one row per task/language/app revision, headers only until observations exist.
+
+Before recruitment, assign a facilitator and record the exact app revision and device/browser. Do not commit identifiable participant records or recordings. Keep raw records private; share only consented, de-identified findings. These materials do not recruit participants or constitute a completed human study.
+
+For aggregation, count `independent`, `assisted`, and `not_completed` as attempted; keep `not_attempted` separate. Report counts and denominators for each task and language, including skipped optional task T2b. Calculate median elapsed seconds only from completed timed tasks, label that subset and its sample count, and retain unsuccessful attempts in the raw observations. Do not combine provider waiting time with app navigation time without labeling it. Calculate confidence medians only from numeric answers and report the sample count. Leave unavailable measurements blank, never zero. Include contradictory observations and link every proposed change to participant codes and observable behavior. With 5–8 participants, treat these as qualitative patterns rather than population estimates.
+
+Current execution status: task materials prepared; recruitment, participant sessions, timing collection, and aggregation remain unperformed. Browser regressions and model evaluations elsewhere in this repository are separate evidence and cannot fill these participant records.

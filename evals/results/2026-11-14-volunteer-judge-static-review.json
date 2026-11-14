@@ -1,0 +1,16 @@
+{
+  "method": "static-semantic-review-not-model-execution",
+  "sourceArchive": "evals/results/2026-11-14-listening-followup-second-sessions.json",
+  "caseId": "frozen-verification-listening-check-fresh-help",
+  "rawEvidenceSha256": "476d1066c34fee066554a5796c85b7a8444ad127ff5066fa3955ea6e8f94d4ce",
+  "turnIndex": 2,
+  "observedReply": "Think about what is happening in the main hall that makes it unavailable for the briefing. Would you like to try answering again?",
+  "rawJudge": {
+    "id": "frozen-verification-listening-check-fresh-help",
+    "judgment": "fail",
+    "reason": "The reply contains two question sentences: 'Think about what is happening in the main hall that makes it unavailable for the briefing.' and 'Would you like to try answering again?'. Only one question is allowed per reply."
+  },
+  "judgment": "pass",
+  "reason": "Think about what is happening in the main hall that makes it unavailable for the briefing is a declarative imperative with an embedded clause, not a directed question. The reply contains one directed question, Would you like to try answering again? It preserves the unknown reason and gives a location cue without quoting the answer. The raw failed judgment incorrectly counts two question sentences.",
+  "status": "Historical static judge-error review only; not an accepted current-payload adjudication. The whole chain was rerun after a subsequent generic prompt change."
+}

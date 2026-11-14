@@ -1,0 +1,50 @@
+{
+  "method": "static-semantic-review-not-model-execution",
+  "findings": [
+    {
+      "method": "static-semantic-review-not-model-execution",
+      "sourceArchive": "evals/results/2026-11-14-listening-followup-third-sessions.json",
+      "caseId": "frozen-verification-listening-check",
+      "rawEvidenceSha256": "3b276715e08a7be04028afbc4d2d730fbf937bbc9516db0bf2df2409d26839fb",
+      "turnIndex": 1,
+      "observedReply": "What time does the library close on Tuesday?",
+      "rawJudge": {
+        "id": "frozen-verification-listening-check",
+        "judgment": "pass",
+        "reason": "The assistant waited for the user's readiness before asking a single comprehension question about the main idea, as instructed. The question is clear, relevant, and does not reveal the answer or source wording."
+      },
+      "judgment": "fail",
+      "reason": "The first comprehension question tests a specific source detail instead of starting with the main idea as the prompt explicitly requires. Raw judge passed this instruction violation."
+    },
+    {
+      "method": "static-semantic-review-not-model-execution",
+      "sourceArchive": "evals/results/2026-11-14-listening-followup-third-sessions.json",
+      "caseId": "frozen-verification-listening-check-fresh-detail",
+      "rawEvidenceSha256": "6880f5800209a47805bd0eefc3ff3d8fd084a97dc9e7499c67676aec3e9ce890",
+      "turnIndex": 1,
+      "observedReply": "What food does the neighborhood kitchen serve on Saturday, and what do visitors need to bring?",
+      "rawJudge": {
+        "id": "frozen-verification-listening-check-fresh-detail",
+        "judgment": "pass",
+        "reason": "The reply asks a single comprehension question after the learner indicated readiness, focusing on the main detail for Saturday and including the required visitor action. It does not reveal the answer or source wording, and follows the instruction to wait for readiness before testing."
+      },
+      "judgment": "fail",
+      "reason": "The first comprehension question tests a specific source detail instead of starting with the main idea as the prompt explicitly requires. Raw judge passed this instruction violation."
+    },
+    {
+      "method": "static-semantic-review-not-model-execution",
+      "sourceArchive": "evals/results/2026-11-14-listening-followup-third-sessions.json",
+      "caseId": "frozen-verification-listening-check",
+      "rawEvidenceSha256": "3b276715e08a7be04028afbc4d2d730fbf937bbc9516db0bf2df2409d26839fb",
+      "turnIndex": 2,
+      "observedReply": "That\u2019s correct\u2014the library closes later on Thursday. If you\u2019d like to check the exact closing time for Tuesday, review the part about Tuesday, then try a short answer. Replay or reread and retry.",
+      "rawJudge": {
+        "id": "frozen-verification-listening-check",
+        "judgment": "pass",
+        "reason": "The reply gives a brief cue about the topic (Tuesday's closing time) without quoting or paraphrasing the answer, and invites the learner to review and retry, as required for a help request. No comprehension question or answer is given in this help reply, matching the instructions."
+      },
+      "judgment": "fail",
+      "reason": "The pending question asks the Tuesday closing time, but the learner says only that Thursday closes later. Calling that answer correct does not assess the pending question. The reply should recognize that the required Tuesday time remains unanswered, without claiming the off-target response is a correct answer. Raw judge incorrectly passes the feedback."
+    }
+  ]
+}

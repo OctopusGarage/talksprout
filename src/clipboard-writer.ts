@@ -1,6 +1,6 @@
 export interface ClipboardRequest {
   text: string;
-  onDelivered?: () => void;
+  onDelivered?: () => void | Promise<void>;
   onSuccess?: () => void;
   onFailure?: () => void;
 }
@@ -30,7 +30,7 @@ export function createClipboardWriter(
           if (current()) request.onFailure?.();
           return false;
         }
-        request.onDelivered?.();
+        await request.onDelivered?.();
         if (current()) request.onSuccess?.();
         return true;
       } finally {

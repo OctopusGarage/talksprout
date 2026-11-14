@@ -31,3 +31,14 @@
 .practice-actions details { font-size: 13px; }
 .practice-actions details > label { margin-top: 10px; }
 #practice-link { display: block; width: 100%; padding: 10px; margin: 8px 0; border: 1px solid var(--border); border-radius: 8px; background: var(--canvas); font-size: 12px; }
+
+.quick-access-toggle {
+  margin-top: 8px;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  font-size: 13px;
+  cursor: pointer;
+}

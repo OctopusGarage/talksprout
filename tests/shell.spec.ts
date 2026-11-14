@@ -614,7 +614,7 @@ test("right-edge back dismisses the scenario browser before its parent prompt", 
   await swipeFromRight(page);
   await expect(page.locator(".scene-browser")).toHaveCount(0);
   await expect(page.locator("#detail")).toBeVisible();
-  await expect(page).toHaveURL(/#collection\/companions\?prompt=daily-check-in$/);
+  await expect(page).toHaveURL(/#collection\/companions\?prompt=daily-check-in&scene=basketball$/);
   await expect(page.locator("#prompt-text")).toContainText("Basketball");
   await expect(page.getByLabel("补充背景（可选）")).toHaveValue("I play on weekends.");
   await swipeFromRight(page);

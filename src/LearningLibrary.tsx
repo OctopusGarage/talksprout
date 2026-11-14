@@ -18,7 +18,7 @@ interface Props {
   favorites: string[];
   recent: RecentPrompt[];
   onFavorite: (id: string) => void;
-  onDelivered: (id: string) => boolean;
+  onDelivered: (id: string) => Promise<boolean>;
 }
 
 export function LearningLibrary({ locale, promptId, copying, writer, favorites, recent, onFavorite, onDelivered }: Props) {
@@ -63,7 +63,7 @@ export function LearningLibrary({ locale, promptId, copying, writer, favorites, 
     let persisted = true;
     await writer.write({
       text: learningPromptText(selected, locale),
-      onDelivered: () => { persisted = onDelivered(selected.id); },
+      onDelivered: async () => { persisted = await onDelivered(selected.id); },
       onSuccess: () => {
         setCopied(true);
         setMessage((en ? "Copied! Paste into your AI with the material." : "已复制！粘贴到常用 AI，并提供相关材料。") +

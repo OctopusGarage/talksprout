@@ -13,8 +13,7 @@ import { SavedPracticeList, RecentList } from "./QuickAccess";
 import { useSavedPrompts } from "./useSavedPrompts";
 import { usePromptClipboard } from "./usePromptClipboard";
 import { practiceHref, shortcutKey, type PracticeShortcut, type RecentPrompt } from "./shortcuts";
-import { readSaved, writeSaved } from "./library";
-import { useNavigation, navigate } from "./navigation";
+import { useNavigation, navigate, replacePromptOptions } from "./navigation";
 import { useAppFrame } from "./useAppFrame";
 import { useRightEdgeBack } from "./useRightEdgeBack";
 import { collections } from "./content/collections";
@@ -29,7 +28,6 @@ import { UpdateBanner } from "./UpdateBanner";
 import { PromptDialog } from "./PromptDialog";
 import { dictionary, initialLocale, type Locale } from "./i18n";
 const prompts: Prompt[] = sourcePrompts;
-const currentPromptIDs = new Set(prompts.map((p) => p.id));
 let storage: Storage | null = null;
 try {
   storage = window.localStorage;
@@ -43,12 +41,8 @@ export default function App() {
   const frame = useAppFrame(route.base);
   const lastPractice = useRef("#library");
   if (route.page === "practice") lastPractice.current = route.base;
-  const [locale, setLocale] = useState<Locale>(initialLocale),
-    [favorites, setFavorites] = useState<string[]>(() =>
-      readSaved(storage, "talksprout:favorites").filter((id) =>
-        currentPromptIDs.has(id),
-      ),
-    );
+  const [locale, setLocale] = useState<Locale>(initialLocale);
+  const favorites = savedPrompts.favorites;
   const [modal, setModal] = useState<{
       prompt: Prompt | null;
       content: ReactNode;
@@ -67,7 +61,7 @@ export default function App() {
   const install = useRef<(Event & { prompt: () => Promise<void> }) | null>(
     null,
   );
-  const manualHydration = useRef<string | null>(null);
+  const localHydration = useRef<string | null>(null);
   const active = useRef(modal);
   active.current = modal;
   const t = dictionary[locale],
@@ -105,11 +99,11 @@ export default function App() {
   useLayoutEffect(() => {
     writer.invalidate();
     setCopied(false);
-    const preserveManual = manualHydration.current === location.hash;
-    manualHydration.current = null;
+    const preserveLocalState = localHydration.current === location.hash;
+    localHydration.current = null;
     if (route.promptId) {
       const prompt = prompts.find((p) => p.id === route.promptId);
-      if (prompt && !preserveManual) {
+      if (prompt && !preserveLocalState) {
         setSceneSelection(route.sceneSelection);
         setVariant(route.format ?? "full");
         setReviewSource(route.reviewSource ?? "current");
@@ -169,8 +163,12 @@ export default function App() {
       if (scene.pace === "mock") params.set("pace", "mock");
     }
     const href = `${base}?${params}`;
-    if (preserveManual && location.hash !== href) manualHydration.current = href;
+    if (preserveManual && location.hash !== href) localHydration.current = href;
     navigate(href, { talksproutPrompt: p.id });
+  };
+  const syncOptions = (format: PromptVariant, source: ReviewSource, scene?: SceneSelection) => {
+    if (modal?.prompt) replacePromptOptions(route.base, modal.prompt.id, format, source, scene,
+      hash => { localHydration.current = hash; });
   };
   const resetCopyFeedback = () => {
     writer.invalidate();
@@ -218,9 +216,6 @@ export default function App() {
             : null,
     `${route.base}:${route.promptId ?? route.learningPromptId ?? ""}:${route.infoId ?? ""}`,
   );
-  const save = (key: string, value: string[]) => {
-    if (!writeSaved(storage, key, value)) setMessage(t.saveError);
-  };
   const detail = (p: Prompt) => {
     resetCopyFeedback();
     setSceneSelection(undefined);
@@ -244,11 +239,11 @@ export default function App() {
     let persisted = true;
     await writer.write({
       text: promptText(composeScene(p, scene), format, source, locale),
-      onDelivered: () => {
+      onDelivered: async () => {
         const entry: RecentPrompt = p.kind === "review"
           ? { kind: "review", promptId: p.id, variant: format, source }
           : { kind: "practice", ...shortcut(p, format, scene) };
-        persisted = savedPrompts.record(entry);
+        persisted = await savedPrompts.record(entry);
       },
       onSuccess: () => {
         const success = p.kind === "review"
@@ -316,8 +311,8 @@ export default function App() {
                 )}
               </p>
               <p>{s(
-                "听读写辅助有独立收藏。常用组合保存教练、场景与练习方式；分享链接和最近复制都不包含补充背景。讲解语言跟随界面选择。",
-                "Learning helpers have separate favorites. Saved combinations keep the coach, scenario and format. Links and recent copies exclude extra background. Explanation language follows the interface.",
+                "听读写辅助有独立收藏。常用组合保存教练、场景与练习方式；分享链接和最近复制都不包含补充背景。复习和听读写辅助的讲解语言跟随界面选择；陪练以英语练习为主，可向 AI 请求中文帮助。",
+                "Learning helpers have separate favorites. Saved combinations keep the coach, scenario and format. Links and recent copies exclude extra background. Review and learning-helper explanations follow the interface language. Conversation coaches focus on English practice; ask your AI for Chinese help when needed.",
               )}</p>
               <p>
                 {s(
@@ -499,16 +494,12 @@ export default function App() {
               onCopy={(p) => void copy(p)}
               homeExtras={<>
                 <FirstPracticeGuide locale={locale} />
-                <SavedPracticeList items={savedPrompts.shortcuts} locale={locale} onRemove={(item) => { if (!savedPrompts.toggleShortcut(item)) setMessage(t.saveError); }} />
+                <SavedPracticeList items={savedPrompts.shortcuts} locale={locale} onRemove={(item) => { void savedPrompts.toggleShortcut(item).then(ok => { if (!ok) setMessage(t.saveError); }); }} />
                 <RecentList items={savedPrompts.recent.filter(item => item.kind === "practice")} locale={locale} />
               </>}
               reviewExtras={<RecentList items={savedPrompts.recent.filter(item => item.kind === "review")} locale={locale} />}
               onFavorite={(id) => {
-                const next = favorites.includes(id)
-                  ? favorites.filter((value) => value !== id)
-                  : [...favorites, id];
-                setFavorites(next);
-                save("talksprout:favorites", next);
+                void savedPrompts.toggleFavorite(id).then(ok => { if (!ok) setMessage(t.saveError); });
               }}
             />
           </div>
@@ -521,7 +512,7 @@ export default function App() {
                 writer={writer}
                 favorites={savedPrompts.learningFavorites}
                 recent={savedPrompts.recent.filter(item => item.kind === "learning")}
-                onFavorite={(id) => { if (!savedPrompts.toggleLearningFavorite(id)) setMessage(t.saveError); }}
+                onFavorite={(id) => { void savedPrompts.toggleLearningFavorite(id).then(ok => { if (!ok) setMessage(t.saveError); }); }}
                 onDelivered={(id) => savedPrompts.record({ kind: "learning", promptId: id })}
               />
             </div>
@@ -569,7 +560,7 @@ export default function App() {
             url.search = "";
             url.hash = practiceHref(entry);
             return <div className="practice-actions">
-              <button className="save-combination" aria-pressed={stored} onClick={() => { if (!savedPrompts.toggleShortcut(entry)) setMessage(t.saveError); }}>{stored ? s("取消组合收藏", "Remove saved combination") : s("收藏此组合", "Save this combination")}</button>
+              <button className="save-combination" aria-pressed={stored} onClick={() => { void savedPrompts.toggleShortcut(entry).then(ok => { if (!ok) setMessage(t.saveError); }); }}>{stored ? s("取消组合收藏", "Remove saved combination") : s("收藏此组合", "Save this combination")}</button>
               <details><summary>{s("分享练习链接", "Share practice link")}</summary>
                 <label htmlFor="practice-link">{s("教练、场景与练习方式", "Coach, scenario and format")}</label>
                 <input id="practice-link" readOnly value={url.href} />
@@ -588,6 +579,7 @@ export default function App() {
           onSceneChange={(next) => {
             resetCopyFeedback();
             setSceneSelection(next);
+            syncOptions(variant, reviewSource, next);
           }}
           content={modal.content}
           message={message}
@@ -599,12 +591,14 @@ export default function App() {
           onSourceChange={(source) => {
             resetCopyFeedback();
             setReviewSource(source);
+            syncOptions(variant, source, sceneSelection);
             setMessage("");
             setManual(false);
           }}
           onVariantChange={(format) => {
             resetCopyFeedback();
             setVariant(format);
+            syncOptions(format, reviewSource, sceneSelection);
             setMessage("");
             setManual(false);
           }}

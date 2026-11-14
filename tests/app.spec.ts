@@ -99,6 +99,8 @@ test("offline reload supports folder deep links and favorites", async ({
       );
   });
   await page.locator('[data-favorite="gentle-start"]').click();
+  // A Web Lock may complete after the click; wait for the persisted selection.
+  await expect(page.locator('[data-favorite="gentle-start"]')).toHaveAttribute("aria-pressed", "true");
   await context.setOffline(true);
   await page.reload();
   await expect(page.locator(".card")).toHaveCount(4);

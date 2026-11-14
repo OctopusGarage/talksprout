@@ -1,0 +1,383 @@
+{
+  "method": "authored-pairs-real-openai-judge",
+  "labelProvenance": "agent-authored-labeled-pairs",
+  "requestedModel": "gpt-4.1-2025-04-14",
+  "endpoint": "https://api.openai.com/v1/chat/completions",
+  "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+  "startedAt": "2026-11-14T14:00:24.781106+00:00",
+  "cases": [
+    {
+      "example": {
+        "id": "calibration-questions-single",
+        "pair": "questions",
+        "expectedJudgment": "pass",
+        "labelRationale": "One directed inquiry.",
+        "criterion": "Ask at most one question in total across character and coaching text.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "You are a cafe clerk. Help me order tea."
+          }
+        ],
+        "reply": "Which tea would you like?"
+      },
+      "judge": {
+        "id": "calibration-questions-single",
+        "judgment": "pass",
+        "reason": "Only one question is asked: 'Which tea would you like?' This meets the one-question limit."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek8anyxGQhMuhQe3N0BBImL1MWaF6",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794664825,
+        "usage": {
+          "prompt_tokens": 437,
+          "completion_tokens": 43,
+          "total_tokens": 480,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"calibration-questions-single\",\"judgment\":\"pass\",\"reason\":\"Only one question is asked: 'Which tea would you like?' This meets the one-question limit.\"}]}",
+        "latencyMs": 1270
+      },
+      "agrees": true,
+      "evidenceSha256": "573629686d3c3f32dd666f3ea9ff04bb093a82e01e35554df7f58ec7eaac2605"
+    },
+    {
+      "example": {
+        "id": "calibration-questions-stacked",
+        "pair": "questions",
+        "expectedJudgment": "fail",
+        "labelRationale": "Two independent directed inquiries.",
+        "criterion": "Ask at most one question in total across character and coaching text.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "You are a cafe clerk. Help me order tea."
+          }
+        ],
+        "reply": "Which tea would you like? Would you prefer a window seat?"
+      },
+      "judge": {
+        "id": "calibration-questions-stacked",
+        "judgment": "fail",
+        "reason": "The reply asks two separate questions: one about tea choice and another about seating preference, violating the one-question limit."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek8aopf1Ne8pA3F6BDMraGyg4VfTj",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794664826,
+        "usage": {
+          "prompt_tokens": 445,
+          "completion_tokens": 47,
+          "total_tokens": 492,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"calibration-questions-stacked\",\"judgment\":\"fail\",\"reason\":\"The reply asks two separate questions: one about tea choice and another about seating preference, violating the one-question limit.\"}]}",
+        "latencyMs": 1230
+      },
+      "agrees": true,
+      "evidenceSha256": "5c7564bcdfa8f02d04c0eb294f2d4e5b0716bdddda26098dac2ce1a014b6b953"
+    },
+    {
+      "example": {
+        "id": "calibration-cards-distinct",
+        "pair": "cards",
+        "expectedJudgment": "pass",
+        "labelRationale": "Past habit and completed action are distinct targets.",
+        "criterion": "Make two review cards with distinct semantic learning targets and separate answers. Do not produce two paraphrases with the same answer.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Practice: I used to collect stamps. I have already mailed the parcel."
+          }
+        ],
+        "reply": "Questions: 1. Express a former stamp-collecting habit. 2. Say the parcel has been sent already.\nAnswers: 1. I used to collect stamps. 2. I have already mailed the parcel."
+      },
+      "judge": {
+        "id": "calibration-cards-distinct",
+        "judgment": "pass",
+        "reason": "Each card targets a distinct semantic point: one about a past habit, the other about a completed action. The answers are not paraphrases of each other."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek8apO6Jl3faUAVZXsP722vEMo0Og",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794664827,
+        "usage": {
+          "prompt_tokens": 494,
+          "completion_tokens": 55,
+          "total_tokens": 549,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"calibration-cards-distinct\",\"judgment\":\"pass\",\"reason\":\"Each card targets a distinct semantic point: one about a past habit, the other about a completed action. The answers are not paraphrases of each other.\"}]}",
+        "latencyMs": 1235
+      },
+      "agrees": true,
+      "evidenceSha256": "e6bfe29055b40ad330a903ef0aaaea010d0369193bdd4cb044cc2983950bea45"
+    },
+    {
+      "example": {
+        "id": "calibration-cards-duplicate",
+        "pair": "cards",
+        "expectedJudgment": "fail",
+        "labelRationale": "Both cards test the identical past-habit answer.",
+        "criterion": "Make two review cards with distinct semantic learning targets and separate answers. Do not produce two paraphrases with the same answer.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Practice: I used to collect stamps. I have already mailed the parcel."
+          }
+        ],
+        "reply": "Questions: 1. Express a former stamp-collecting habit. 2. How do you say you collected stamps in the past?\nAnswers: 1. I used to collect stamps. 2. I used to collect stamps."
+      },
+      "judge": {
+        "id": "calibration-cards-duplicate",
+        "judgment": "fail",
+        "reason": "Both questions target the same semantic point and have identical answers, violating the instruction to create two cards with distinct learning targets and separate answers."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek8arsRAIfHrq1C2fxfeR7oHVpLgH",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794664829,
+        "usage": {
+          "prompt_tokens": 496,
+          "completion_tokens": 51,
+          "total_tokens": 547,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"calibration-cards-duplicate\",\"judgment\":\"fail\",\"reason\":\"Both questions target the same semantic point and have identical answers, violating the instruction to create two cards with distinct learning targets and separate answers.\"}]}",
+        "latencyMs": 1414
+      },
+      "agrees": true,
+      "evidenceSha256": "fe7adf9590a0d3fc18f5476cc3d8e74f39ba04efdcdfba889d31d3f2e5712901"
+    },
+    {
+      "example": {
+        "id": "calibration-withholding-withheld",
+        "pair": "withholding",
+        "expectedJudgment": "pass",
+        "labelRationale": "Asks and waits without answer leakage.",
+        "criterion": "The learner is ready. Ask one comprehension question, then wait for the learner attempt before showing the answer.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Text: The bakery opens at seven. I am ready."
+          }
+        ],
+        "reply": "What time does the bakery open?"
+      },
+      "judge": {
+        "id": "calibration-withholding-withheld",
+        "judgment": "pass",
+        "reason": "The reply asks one clear comprehension question and does not provide the answer, as instructed."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek8asTeRKb00sD5SkqoELtuGp5mXa",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794664830,
+        "usage": {
+          "prompt_tokens": 448,
+          "completion_tokens": 41,
+          "total_tokens": 489,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"calibration-withholding-withheld\",\"judgment\":\"pass\",\"reason\":\"The reply asks one clear comprehension question and does not provide the answer, as instructed.\"}]}",
+        "latencyMs": 1159
+      },
+      "agrees": true,
+      "evidenceSha256": "dc63da12abd46a29579f1f0b2af29d844db7b5da243fc37dbbcb1f5d2f04da57"
+    },
+    {
+      "example": {
+        "id": "calibration-withholding-leaked",
+        "pair": "withholding",
+        "expectedJudgment": "fail",
+        "labelRationale": "Leaks the answer before the learner attempts.",
+        "criterion": "The learner is ready. Ask one comprehension question, then wait for the learner attempt before showing the answer.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Text: The bakery opens at seven. I am ready."
+          }
+        ],
+        "reply": "What time does the bakery open? The answer is seven."
+      },
+      "judge": {
+        "id": "calibration-withholding-leaked",
+        "judgment": "fail",
+        "reason": "The reply asks a comprehension question but immediately provides the answer, violating the instruction to wait for the learner's attempt before showing the answer."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek8atDupjZwyL34ZPph3lTLXigplX",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794664831,
+        "usage": {
+          "prompt_tokens": 453,
+          "completion_tokens": 51,
+          "total_tokens": 504,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"calibration-withholding-leaked\",\"judgment\":\"fail\",\"reason\":\"The reply asks a comprehension question but immediately provides the answer, violating the instruction to wait for the learner's attempt before showing the answer.\"}]}",
+        "latencyMs": 1371
+      },
+      "agrees": true,
+      "evidenceSha256": "3830d034aa2cf57024edebc184291575b96f0ce15b150c84a6e65b41a3eb7caa"
+    },
+    {
+      "example": {
+        "id": "calibration-tense-past",
+        "pair": "tense",
+        "expectedJudgment": "pass",
+        "labelRationale": "Preserves standard source spelling and past tense.",
+        "criterion": "Prepare text-only shadowing. Preserve the source words and grammatical tense; wanted to is not want to or wanna. Offer linking suggestions without claiming audio access.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Source: Last autumn I wanted to visit the lighthouse."
+          }
+        ],
+        "reply": "Last autumn / I wanted to visit / the lighthouse. Keep wanted in the past tense; practise the phrase slowly, then connect the words without dropping the past-tense ending."
+      },
+      "judge": {
+        "id": "calibration-tense-past",
+        "judgment": "pass",
+        "reason": "The reply preserves the source words and grammatical tense, keeps 'wanted' in the past tense, and offers linking suggestions without referencing audio."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek8avqRvqMtqGdQhX0T1Ao1VGv28o",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794664833,
+        "usage": {
+          "prompt_tokens": 485,
+          "completion_tokens": 51,
+          "total_tokens": 536,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"calibration-tense-past\",\"judgment\":\"pass\",\"reason\":\"The reply preserves the source words and grammatical tense, keeps 'wanted' in the past tense, and offers linking suggestions without referencing audio.\"}]}",
+        "latencyMs": 1308
+      },
+      "agrees": true,
+      "evidenceSha256": "e8f513a53a6692e06da77db2bf33b52830d6b0cc5441a63fa567d116d3a42b1b"
+    },
+    {
+      "example": {
+        "id": "calibration-tense-lost",
+        "pair": "tense",
+        "expectedJudgment": "fail",
+        "labelRationale": "Substitutes a present-tense reduction for the past-tense phrase.",
+        "criterion": "Prepare text-only shadowing. Preserve the source words and grammatical tense; wanted to is not want to or wanna. Offer linking suggestions without claiming audio access.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Source: Last autumn I wanted to visit the lighthouse."
+          }
+        ],
+        "reply": "Last autumn / I wanted to visit / the lighthouse. Say wanted to as wanna, just like want to, for natural connected speech."
+      },
+      "judge": {
+        "id": "calibration-tense-lost",
+        "judgment": "fail",
+        "reason": "The reply incorrectly suggests saying 'wanted to' as 'wanna', which is not standard or accurate; 'wanna' is only used for 'want to', not 'wanted to'. This changes the grammatical tense, violating the instruction to preserve the source words and tense."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek8awXYE0wptC5X5rjD8S81WVafRF",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794664834,
+        "usage": {
+          "prompt_tokens": 477,
+          "completion_tokens": 79,
+          "total_tokens": 556,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"calibration-tense-lost\",\"judgment\":\"fail\",\"reason\":\"The reply incorrectly suggests saying 'wanted to' as 'wanna', which is not standard or accurate; 'wanna' is only used for 'want to', not 'wanted to'. This changes the grammatical tense, violating the instruction to preserve the source words and tense.\"}]}",
+        "latencyMs": 1450
+      },
+      "agrees": true,
+      "evidenceSha256": "7316a769d2dc8b2ac3ade9357899d1d60775df97bce8c1ce788c6b87f7d9f67d"
+    }
+  ],
+  "completedAt": "2026-11-14T14:00:35.241999+00:00",
+  "summary": {
+    "agree": 8,
+    "disagree": 0
+  }
+}

@@ -332,6 +332,8 @@ test("new categories and bilingual search follow the persisted English locale on
   await expect(page.locator(".spoken-script")).toContainText("returning an item");
   expect(await page.locator("#detail").evaluate((e) => e.scrollWidth <= e.clientWidth)).toBe(true);
   await page.reload();
+  await expect(page.locator(".scene-trigger")).toContainText("Returning an item");
   await browse(page);
-  await expect(page.getByRole("button", { name: "Everyday Services", exact: true })).toBeVisible();
+  // Reload now restores the selected scene and opens its group, not the category root.
+  await expect(page.getByRole("button", { name: "Returning an item", exact: true })).toBeVisible();
 });

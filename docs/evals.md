@@ -13,14 +13,14 @@ Release evaluation on 2026-11-14 covers nine coaching modes, four review modes, 
 | Authored opening / teaching / spoken / review references | 9 / 11 / 11 / 15 accepted cases |
 | Authored scene references | 79 accepted cases; 51 added references are authored, not API runs |
 | Complete composition matrix | 936 coach/scenario/pace combinations, 1,872 payloads |
-| Real GPT-4.1 text API cases | 712 accepted cases across four archives; 736 final target responses; raw case gates 708 pass, 4 fail, 0 uncertain |
+| Real GPT-4.1 text API cases | 719 accepted cases across five target archives; 764 final target responses; raw case gates 715 pass, 4 fail, 0 uncertain; eight calibration examples counted separately |
 | Static semantic adjudication | 4 confirmed judge false positives accepted; raw verdicts retained |
-| Unit tests | 97 passed |
-| Chromium browser tests | 66 passed |
-| WebKit browser/PWA tests | 46 passed |
+| Unit tests | 106 passed |
+| Chromium browser tests | 75 passed |
+| WebKit browser/PWA tests | 55 passed |
 | TypeScript and production build | Passed |
 
-The current application checks passed 97 unit tests, 66 Chromium browser tests and 46 WebKit browser tests. The recorded API suites are separate from these application checks.
+The current application checks passed 106 unit tests, 75 Chromium browser tests and 55 WebKit browser tests. The recorded API suites are separate from these application checks.
 
 
 The 46 base references and 79 scene references are authored text simulations, not external-provider API runs. The separate live API corpus below contains real executions. Neither corpus is evidence of learning effectiveness or broad provider reliability. Fixtures contain exact prompt hashes; changed text requires refreshed sessions. See [methodology](../evals/README.md) and [fixtures](../evals/fixtures/).
@@ -181,10 +181,49 @@ The first Linux CI run caught a phantom update banner: the initial worker was al
 
 ## Focused end-to-end and English-locale checks
 
-The optimization workflow adds separate English-locale (34 rendered payloads) and held-out end-to-end (eight four-turn scripts) suites. The latter feeds actual preceding target responses into subsequent requests; its authored learner scripts do not make it an interactive learner-outcome study. The runner pins `gpt-4.1-2025-04-14` by default, supports exact-input affected selection and validates sealed whole-session resume caches. Reports distinguish newly selected cases from retained historical evidence. See [focused suite methodology and commands](../evals/README.md#focused-optimization-suites-snapshot-pinned).
+The optimization workflow adds separate English-locale (34 rendered payloads) and tuned regression end-to-end (eight four-turn scripts) suites. The latter feeds actual preceding target responses into subsequent requests; its authored learner scripts do not make it an interactive learner-outcome study. The runner pins `gpt-4.1-2025-04-14` by default, supports exact-input affected selection and validates sealed whole-session resume caches. Reports distinguish newly selected cases from retained historical evidence. See [focused suite methodology and commands](../evals/README.md#focused-optimization-suites-snapshot-pinned).
 
 The first new real runs are retained as flagged historical evidence in `evals/results/2026-11-14-optimization-initial.json`. Their raw judge pass rates are not release acceptance: passing-output review exposed missed multiple questions, repeated card targets and an inaccurate shadowing suggestion. Focused results were accepted separately after correction and review; the historical 670-case suite was not freshly re-executed in full by this optimization.
 
 The accepted focused evidence now adds **34 English-locale cases** and **eight sessions with 32 actual target turns**, with raw passing judgments. Ordinary `pnpm eval` validates these committed archives without API calls. These are separate from the original 670 isolated cases; retained exact outputs during targeted retries are not fresh repeated samples. Intermediate judge mistakes and real failures remain available in the optimization result archives.
 
-The accepted legacy refresh replaces 216 speaking/review records (207 full-payload cases and nine compact cases) and 12 supplementary records while preserving 442 original records. The merged archives retain original alias-request metadata for original rows and exact pinned snapshot/policy provenance for refreshed rows. Together with the focused suites, current evidence contains **712 accepted cases and 736 final target responses**; raw case gates are **708 pass, four fail, zero uncertain**, with four bound static semantic adjudications. The additional adjudication independently confirms that a tense-unmarked Chinese cue does not assert present tense when the source-grounded English answer remains past tense. This refresh is targeted, not a new comprehensive run or repeated-trial study.
+The accepted legacy refresh replaces 216 speaking/review records (207 full-payload cases and nine compact cases) and 12 supplementary records while preserving 442 original records. The merged archives retain original alias-request metadata for original rows and exact pinned snapshot/policy provenance for refreshed rows. At that optimization checkpoint, evidence contained **712 accepted cases and 736 final target responses**; raw case gates are **708 pass, four fail, zero uncertain**, with four bound static semantic adjudications. The additional adjudication independently confirms that a tense-unmarked Chinese cue does not assert present tense when the source-grounded English answer remains past tense. This refresh is targeted, not a new comprehensive run or repeated-trial study.
+
+
+## Judge calibration and frozen authored verification (2026-11-14)
+
+The eight legacy `session-heldout-*` IDs remain stable for archive compatibility. These scripts were used during prompt refinement and are **tuned regression evidence**, not held-out or blind validation. Their archived inputs and outputs are unchanged by this follow-up.
+
+`evals/calibration-cases.json` contains four agent-authored positive/negative pairs: one versus stacked questions, distinct versus duplicate card targets, withheld versus leaked comprehension answers, and preserved past tense versus incorrect “wanted to” → “wanna” advice. Labels and replies are authored expectations, **not human labels or model-generated target evidence**. `evals/calibrate.py` sends each reply and criterion to one isolated real `gpt-4.1-2025-04-14` judge request using the current live policy; expected labels and rationales are omitted from requests. The first run agreed on **8/8** labels (four positive and four negative). Raw judge text, response IDs, usage and evidence hashes are committed in `evals/fixtures/judge-calibration.json`.
+
+`pnpm eval` requires exact examples, unchanged labels, current policy, unique complete pinned executions, consistent raw verdicts and agreement on every example. Disagreement blocks acceptance; there is no relabel-to-pass or calibration adjudication path. These eight examples are a **narrow sanity check**, not a demonstrated judge error rate or general judge reliability. Subsequent real-session raw false passes below show why a perfect calibration score does not establish reliability. This is same-model judging, not independent model diversity.
+
+Four new learner scripts in `evals/frozen-cases.ts` were frozen before their first execution, distinct from the earlier eight scripts. They cover museum ticket exchange, source-grounded distinct review cards, comprehension readiness, and past-tense shadowing preparation. Each has four target turns using actual preceding target replies and a separate isolated same-model judge per turn. These are **frozen authored verification**, not blind independent validation: the implementing agent authored the initial inputs.
+
+The initial four chains ran before prompt changes and received raw judgments of **4 pass / 0 fail / 0 uncertain**, but static review found two question sentences in a listening reply. Later targeted runs exposed answer leakage on generic help and detail questions before the required main-idea question. Another raw failure mistakenly counted an imperative as a second question. All original replies and judge outcomes remain in `evals/results/2026-11-14-frozen-verification-initial.json`, the `listening-followup-*` archives, and separate evidence-bound static findings. Raw passes are not relabeled as clean behavioral evidence. The generic comprehension rules and affected archives were updated; model outputs were not rewritten to fit expectations.
+
+The library, kitchen and volunteer scripts became **tuned regression** through remediation. Three unaffected original chains retain their first-run outputs. A final station-announcement script was supplied by a separate reviewer context and run once after the earlier hint and question-order checks stabilized. Reviewer authorship does not make it blind independent validation. No further prompt tuning followed that execution. Exact classification metadata is required by the frozen archive validator.
+
+Only affected exact inputs are refreshed: twelve supplementary cases for the two comprehension-check prompts and two English-locale cases, while 96 supplementary and 32 English rows remain unchanged. The older eight-session regression archive and 562-case speaking/review archive are retained. There was no broad rerun of all 712 earlier cases. Human observations remain unperformed; these calls do not establish audio support, other-provider compatibility, learning outcomes or physical-device behavior.
+
+Opt-in commands require an existing `OPENAI_API_KEY` environment variable; credentials are supplied only through curl stdin:
+
+```sh
+pnpm eval:calibration:live --output .superpowers/model-run/calibration-new.json
+pnpm eval:frozen:live --workers 4
+```
+
+The calibration runner refuses to overwrite its output. Preserve unsuccessful raw attempts before accepting evidence. Ordinary `pnpm eval` makes no network requests. The eight calibration replies add only judge calls, not target cases. Counts of model calls describe execution provenance, not independent trials or learning outcomes.
+
+
+The final station help reply says, “Focus on the change in departure location for a specific train. Replay or reread and try again.” Static semantic review accepts this as the explicitly permitted topic cue: it withholds the train/time/platform numbers and bicycle/rear-carriage instruction, rather than giving the complete main idea covering changes and boarding rules. Topic cues necessarily overlap with the source; this does not permit the specific required fact, answer-bearing quotation or a complete answer paraphrase. This is an agent static interpretation of a boundary case, not a human label, independent judge, or waiver. The unchanged raw pass and evidence-bound rationale are retained in `evals/results/2026-11-14-station-semantic-review.json`.
+
+Final accepted evidence adds **seven actual-history chains / 28 target turns**: three retained untuned original chains, three tuned listening regressions, and one first-run reviewer-authored post-remediation station script. The last script has four raw passing turn judgments; no prompt, source, rubric or expected label was changed to fit it. Across all five target archives, the total is **719 accepted cases / 764 target responses**, with raw case gates **715 pass / four fail / zero uncertain** and the existing four bound static judge-error adjudications. The eight calibration examples are separate from target totals. This follow-up produced **100 distinct real target responses and 108 distinct real judge responses**, including calibration, remediation attempts and preserved failures; these are not 100 independent validation trials.
+
+## Saved-state and route consistency follow-up
+
+Local favorites, combinations and recent-copy metadata now merge mutations against fresh persisted state. Browser Web Locks serialize supported multi-window writes; without that API, sequential stale-window merges remain covered but concurrent atomicity is not claimed. Failed writes retain per-item pending intents for the current session. External additions and removals are reconciled while storage is failing, and recovery retries those intents without replacing newer arrays. Tests distinguish permanent write failure, transient failure/recovery, simultaneous combination saves, fallback behavior and normal cross-window removal.
+
+Safe format, source, scene and pace changes replace the current sheet URL; no private background enters it. Picker cleanup returns to the parent entry before replacement. Reload restores the safe selection and drops private background. Current-option persistence tests wait for the completed selection before reloading, since Web Lock transactions are asynchronous. The home list defaults to three combinations and supports bilingual keyboard-operable expansion. Language claims are explicitly limited to review and learning-helper explanations; coach prompt bodies remain unchanged.
+
+The usability materials under `docs/usability/` include task cards, a session record, and blank raw/aggregation CSV headers. No recruitment, interviews, timings or completion results were produced.

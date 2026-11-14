@@ -1,0 +1,16 @@
+{
+  "method": "static-semantic-review-not-model-execution",
+  "sourceArchive": "evals/results/2026-11-14-frozen-verification-initial.json",
+  "caseId": "frozen-verification-listening-check",
+  "rawEvidenceSha256": "e7088dcaaf4d481ec3e6f6033655344bacb17ed188cc74e0d3a2fcad0179ee40",
+  "turnIndex": 2,
+  "observedReply": "Your answer shows you understood the main idea: the library closes later on Thursday than on Tuesday.\n\nWould you like to answer a question about a specific detail? If so:  \nOn what day does the library close at six?",
+  "rawJudge": {
+    "id": "frozen-verification-listening-check",
+    "judgment": "pass",
+    "reason": "The reply correctly confirms the user's understanding, relates it to the source, and offers a single follow-up detail question as allowed. No answers or summaries are revealed before the user's attempt. Instructions about readiness, question timing, and answer withholding are followed."
+  },
+  "judgment": "fail",
+  "reason": "The third reply directs two independent questions at the learner: whether to answer a detail question, and which day closes at six. The one-question instruction and turn criterion permit only one. The same-model judge incorrectly passed this reply. Original inputs, raw output and raw pass remain preserved.",
+  "status": "Requires generic instruction remediation and targeted regression; this initial frozen run is not behavioral acceptance."
+}

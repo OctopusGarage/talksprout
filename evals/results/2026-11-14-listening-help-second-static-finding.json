@@ -1,0 +1,14 @@
+{
+  "method": "static-semantic-review-not-model-execution",
+  "sourceArchive": "evals/results/2026-11-14-listening-followup-second.json",
+  "caseId": "learning-help-listening-check",
+  "rawEvidenceSha256": "817fd81e194ea10171bc45821a93faca1f1cc6b5ed59d530bad4b93db7d0ae04",
+  "observedReply": "好的，这句话的关键信息是：参观者需要提前做什么？你可以再听一遍，注意“must be booked online”这部分。你觉得这是什么意思？",
+  "rawJudge": {
+    "id": "learning-help-listening-check",
+    "judgment": "pass",
+    "reason": "The reply gives a small clue in Chinese, points to the relevant part of the transcript without quoting answer-bearing text, and preserves the pending question. It does not reveal the answer or restart the task, matching the help request criterion."
+  },
+  "judgment": "fail",
+  "reason": "The generic hint quotes must be booked online, which supplies the required booking fact, and asks two directed question sentences in Chinese. The raw judge incorrectly passes both violations. This run remains unresolved failure evidence, not accepted release output."
+}

@@ -1,0 +1,16 @@
+{
+  "method": "static-semantic-review-not-model-execution",
+  "reviewer": "codex-semantic-review",
+  "caseId": "frozen-verification-listening-check-fresh-station",
+  "rawEvidenceSha256": "3c9d9ffd958ff311c93011821fee350782e25a4308dccb33f53aea0164d538c6",
+  "turnIndex": 2,
+  "observedReply": "Focus on the change in departure location for a specific train. Replay or reread and try again.",
+  "rawJudge": {
+    "id": "frozen-verification-listening-check-fresh-station",
+    "judgment": "pass",
+    "reason": "The reply gives a brief clue about the topic (change in departure location for a specific train) without quoting, paraphrasing, or revealing the answer. It invites the learner to replay or reread and try again, and does not ask a new question. This matches the help instructions."
+  },
+  "judgment": "pass",
+  "reason": "The prompt explicitly permits a brief cue about the topic or place to check. This cue identifies a topic without revealing the train/time/platform numbers, the bicycle rule or the required rear carriage. It does not supply the full main idea covering announcement changes and boarding instructions. Topical overlap is unavoidable for a topic cue. This interpretation accepts a topic cue but would reject the specific required fact, answer-bearing quotation, or complete paraphrase of the answer.",
+  "limitation": "Agent static semantic assessment, not a human label, independent model judgment, waiver, or statistical reliability claim; raw model judgment remains unchanged."
+}

@@ -1,0 +1,117 @@
+{
+  "method": "agent-authored-labeled-pairs",
+  "cases": [
+    {
+      "id": "calibration-questions-single",
+      "pair": "questions",
+      "expectedJudgment": "pass",
+      "labelRationale": "One directed inquiry.",
+      "criterion": "Ask at most one question in total across character and coaching text.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "You are a cafe clerk. Help me order tea."
+        }
+      ],
+      "reply": "Which tea would you like?"
+    },
+    {
+      "id": "calibration-questions-stacked",
+      "pair": "questions",
+      "expectedJudgment": "fail",
+      "labelRationale": "Two independent directed inquiries.",
+      "criterion": "Ask at most one question in total across character and coaching text.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "You are a cafe clerk. Help me order tea."
+        }
+      ],
+      "reply": "Which tea would you like? Would you prefer a window seat?"
+    },
+    {
+      "id": "calibration-cards-distinct",
+      "pair": "cards",
+      "expectedJudgment": "pass",
+      "labelRationale": "Past habit and completed action are distinct targets.",
+      "criterion": "Make two review cards with distinct semantic learning targets and separate answers. Do not produce two paraphrases with the same answer.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Practice: I used to collect stamps. I have already mailed the parcel."
+        }
+      ],
+      "reply": "Questions: 1. Express a former stamp-collecting habit. 2. Say the parcel has been sent already.\nAnswers: 1. I used to collect stamps. 2. I have already mailed the parcel."
+    },
+    {
+      "id": "calibration-cards-duplicate",
+      "pair": "cards",
+      "expectedJudgment": "fail",
+      "labelRationale": "Both cards test the identical past-habit answer.",
+      "criterion": "Make two review cards with distinct semantic learning targets and separate answers. Do not produce two paraphrases with the same answer.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Practice: I used to collect stamps. I have already mailed the parcel."
+        }
+      ],
+      "reply": "Questions: 1. Express a former stamp-collecting habit. 2. How do you say you collected stamps in the past?\nAnswers: 1. I used to collect stamps. 2. I used to collect stamps."
+    },
+    {
+      "id": "calibration-withholding-withheld",
+      "pair": "withholding",
+      "expectedJudgment": "pass",
+      "labelRationale": "Asks and waits without answer leakage.",
+      "criterion": "The learner is ready. Ask one comprehension question, then wait for the learner attempt before showing the answer.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Text: The bakery opens at seven. I am ready."
+        }
+      ],
+      "reply": "What time does the bakery open?"
+    },
+    {
+      "id": "calibration-withholding-leaked",
+      "pair": "withholding",
+      "expectedJudgment": "fail",
+      "labelRationale": "Leaks the answer before the learner attempts.",
+      "criterion": "The learner is ready. Ask one comprehension question, then wait for the learner attempt before showing the answer.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Text: The bakery opens at seven. I am ready."
+        }
+      ],
+      "reply": "What time does the bakery open? The answer is seven."
+    },
+    {
+      "id": "calibration-tense-past",
+      "pair": "tense",
+      "expectedJudgment": "pass",
+      "labelRationale": "Preserves standard source spelling and past tense.",
+      "criterion": "Prepare text-only shadowing. Preserve the source words and grammatical tense; wanted to is not want to or wanna. Offer linking suggestions without claiming audio access.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Source: Last autumn I wanted to visit the lighthouse."
+        }
+      ],
+      "reply": "Last autumn / I wanted to visit / the lighthouse. Keep wanted in the past tense; practise the phrase slowly, then connect the words without dropping the past-tense ending."
+    },
+    {
+      "id": "calibration-tense-lost",
+      "pair": "tense",
+      "expectedJudgment": "fail",
+      "labelRationale": "Substitutes a present-tense reduction for the past-tense phrase.",
+      "criterion": "Prepare text-only shadowing. Preserve the source words and grammatical tense; wanted to is not want to or wanna. Offer linking suggestions without claiming audio access.",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Source: Last autumn I wanted to visit the lighthouse."
+        }
+      ],
+      "reply": "Last autumn / I wanted to visit / the lighthouse. Say wanted to as wanna, just like want to, for natural connected speech."
+    }
+  ]
+}

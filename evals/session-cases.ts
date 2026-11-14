@@ -35,7 +35,7 @@ export function createEnglishCases(): LiveCase[] {
   ];
 }
 
-// Authored learner scripts are held out from the existing seeded follow-up probes.
+// Tuned regression learner scripts; legacy heldout IDs remain stable for archive compatibility.
 // No assistant histories: live.py appends the actual target reply before each next input.
 export function createSessionCases(): LiveCase[] {
   const specs = [

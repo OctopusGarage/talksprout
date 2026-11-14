@@ -99,3 +99,30 @@ export function useNavigation() {
   }, []);
   return route;
 }
+
+/** Replace safe selections in the existing sheet entry; never serialize private background. */
+export function replacePromptOptions(
+  base: string, promptId: string, format: PromptVariant, source: ReviewSource,
+  scene: SceneSelection | undefined, beforeReplace: (hash: string) => void,
+) {
+  const params = new URLSearchParams({ prompt: promptId });
+  if (format === "spoken") params.set("format", "spoken");
+  if (allPrompts.find(p => p.id === promptId)?.kind === "review") {
+    if (source === "transcript") params.set("source", source);
+  } else if (scene) {
+    params.set("scene", scene.sceneId);
+    if (scene.pace === "mock") params.set("pace", "mock");
+  }
+  const href = `${base}?${params}`;
+  const replace = () => {
+    const current = readRoute();
+    if (current.base !== base || current.promptId !== promptId || location.hash === href) return;
+    beforeReplace(href);
+    history.replaceState(history.state, "", href);
+    window.dispatchEvent(new Event("talksprout:navigate"));
+  };
+  // The picker temporarily owns a separate history entry. Replace its parent only
+  // after it closes, otherwise its Back cleanup would restore the old selection.
+  if (history.state?.talksproutSceneBrowser) window.addEventListener("popstate", replace, { once: true });
+  else replace();
+}

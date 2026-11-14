@@ -30,3 +30,16 @@ test("delivered data is recorded but stale feedback is suppressed after navigati
   await next;
   assert.equal(feedback, 0);
 });
+
+test("asynchronous metadata completion keeps feedback current and the writer serialized", async () => {
+  let finish!: () => void;
+  let feedback = 0;
+  const writer = createClipboardWriter(async () => {}, () => "same");
+  const pending = writer.write({ text: "first", onDelivered: () => new Promise<void>(resolve => { finish = resolve; }), onSuccess: () => { feedback++; } });
+  await Promise.resolve();
+  assert.equal(await writer.write({ text: "second" }), false);
+  writer.invalidate();
+  finish();
+  assert.equal(await pending, true);
+  assert.equal(feedback, 0);
+});

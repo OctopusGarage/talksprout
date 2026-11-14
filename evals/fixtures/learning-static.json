@@ -9,8 +9,8 @@
     },
     {
       "id": "listening-check",
-      "promptSha256": "c2a005c2a927bdff32039a9e4f0648b4750ca8706f0dfcb4e498701117ab7f42",
-      "rationale": "Statically reviewed revised readiness gate: a fresh task first asks the learner to listen and indicate readiness, then stops without a comprehension question. Existing pending tasks continue. Source access, help and stopping rules remain distinct. This is not an execution record."
+      "promptSha256": "3c9417a8cbd56b29050cdccecb81233b61b9497230847c7b33d5dbec8a4e803a",
+      "rationale": "Static editorial review on 2026-11-14: readiness gate precedes the exact first main-idea question; later turns ask at most one focused question. Generic help pauses questions and gives a non-answer-bearing cue, with a neutral fallback, no source quote and no disclosure of the required fact; explicit answer/source requests still permit explanation. These are prompt-content checks, not new target, judge or audio executions."
     },
     {
       "id": "reading-guide",
@@ -19,8 +19,8 @@
     },
     {
       "id": "reading-check",
-      "promptSha256": "f9b3eeb83324046f5232364dab85b559a36e0c48adf4d4624ac1d4442955d3e2",
-      "rationale": "Statically reviewed: waits for reading and learner answers, grounds questions and feedback in source evidence, accepts equivalent answers and ambiguity, and avoids an upfront answer key or calibrated score."
+      "promptSha256": "4ae33f2526554d175ba2e3d0f3e73099a2dd26f2b60460127c76b05a07ea3fa4",
+      "rationale": "Static editorial review on 2026-11-14: source grounding and readiness remain distinct from generic help. Generic help uses a non-answer-bearing cue and declarative retry, with no quoted or paraphrased answer and no question; explicit requests for answer/source wording remain supported. This is editorial content review, not model or audio execution."
     },
     {
       "id": "writing-feedback",
