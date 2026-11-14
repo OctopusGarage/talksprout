@@ -1,3 +1,6 @@
+import { createLearningLiveCases } from "./learning-live-cases";
+import { learningPrompts } from "../src/content/learning";
+import { validateLearningArchive } from "./learning-validate";
 import { readFileSync } from "node:fs";
 import { prompts, categories } from "../src/prompts";
 import { suiteNames, validateArchive, type SuiteName } from "./validate";
@@ -10,9 +13,15 @@ const matrix = validateCompositionMatrix();
 const live = validateLiveArchive(
   JSON.parse(readFileSync("evals/fixtures/live-api.json", "utf8")),
 );
+const learningLive = validateLiveArchive(
+  JSON.parse(readFileSync("evals/fixtures/learning-live-api.json", "utf8")),
+  createLearningLiveCases(),
+);
 const issues: string[] = [
+  ...validateLearningArchive(JSON.parse(readFileSync("evals/fixtures/learning-static.json", "utf8"))),
   ...matrix.issues,
   ...live.issues,
+  ...learningLive.issues,
   ...validateSceneArchive(
     JSON.parse(readFileSync("evals/fixtures/scene-presets.json", "utf8")),
   ),
@@ -48,6 +57,7 @@ console.log(
       method:
         "Static contracts, sealed authored archives, and recorded live API evidence; this invocation makes no new API calls",
       results: validated.results,
+      supplementaryPrompts: { count: learningPrompts.length, method: "Static editorial review and recorded real text API execution; no audio tests", liveCases: learningLive.cases, adjudications: learningLive.adjudications },
       scenePresetCases: JSON.parse(
         readFileSync("evals/fixtures/scene-presets.json", "utf8"),
       ).cases.length,

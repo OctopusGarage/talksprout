@@ -4,6 +4,9 @@ Run `pnpm eval` to validate prompt contracts, authored reference archives, the c
 
 ## Fixtures
 
+- [Supplementary real text execution](fixtures/learning-live-api.json): 108 real GPT-4.1 target/judge cases across all 18 prompts, separate from static reviews and audio testing.
+- [Supplementary learning prompts](fixtures/learning-static.json): 18 static editorial reviews bound to exact prompt hashes. These contain no assistant responses and are separate from the authored simulations and recorded API evidence below.
+
 - [Opening sessions](fixtures/openings.json): one first-turn simulation for each of the nine coaching modes.
 - [Multi-turn scenarios](fixtures/scenarios.json): eleven multi-turn teaching cases across nine coaching modes, covering feedback, correction timing, retries, role-play, and material-grounded conversation.
 - [Spoken openings](fixtures/spoken.json): compact-form text simulations, assessed separately from the full prompt.
@@ -51,9 +54,11 @@ The selected payloads are distinct from base coach payloads. Release refinements
 
 Each target receives the copied prompt as a user message plus synthetic conversation context, without its grading criterion. Every judge request contains exactly one case and uses the same model as the target; this is isolated grading, not an independent judging model. The policy digest includes the one-case batch size. Validators require a distinct recorded judge response ID for each case. A mechanical question-mark count supplements semantic review but cannot detect every compound or quoted inquiry.
 
-The final raw judge result is 561 pass, one fail and zero uncertain. A separate Codex static reviewer accepted the gentle-coach natural-answer case: the learner's previous question had been answered, and the target correctly accepted the natural wording and asked one related follow-up as required. The raw failure, exact reply, payload and original evidence hash remain bound to the adjudication. Final release gates are 562 pass, zero unresolved failures. No actual instruction violation is waived.
+The latest comprehensive run executes all 562 speaking/review cases and a separate 108 supplementary cases (670 final exact-input cases in total). Supplementary coverage includes startup/missing inputs, supplied material, help, stopping, quoted-instruction isolation, and seeded follow-ups for every prompt. Follow-up histories contain authored assistant turns: these are real target/judge executions with synthetic context, not end-to-end multi-turn conversations.
 
-Full-suite target execution was repeated during this release. The final archive reuses exact-input targets from the final full run; eight transcript cases changed by the final source gate were re-executed. All 562 replies received fresh, one-case judge requests under the current policy. Later same-release resumes retained only unchanged case records; the changed transcript inputs received fresh targets and judgments. One sample per case does not establish statistical reliability.
+Raw final judgments are 667 pass, three fail and zero uncertain across both archives. Separate static semantic adjudications accept three false positives: the gentle coach correctly asks a single related follow-up after an answer; the expression coach selects “make sure,” which is literally present in the supplied source; and a single source-grounded past-tense card is wrongly rejected as unrelated general grammar. Original target replies, raw failed judgments and evidence digests remain bound to those reviews. Final release gates are 670 pass with no unresolved actual failure.
+
+The first fresh full run found actual problems in role-play question counting, vocabulary-source leakage, duplicate card targets and email shortening. Follow-up checks also exposed duplicate compact cards and compact source/output-branch mistakes, which were corrected with an explicit first-matching-branch prompt. Their original raw findings and judge false negatives are retained in `results/2026-11-14-comprehensive-findings.json`. Prompts were corrected and exact affected cases were re-executed. Unchanged records from this same comprehensive run were retained with `--resume`, not presented as repeated fresh samples. All final replies have isolated same-model judge executions. This does not establish statistical reliability or audio compatibility.
 
 The fixed manifest in `live-coverage.ts` now records all 160 scenes. Future additions remain visibly pending until real executions are accepted; missing or modified recorded cases still fail. The full current generator emits 562 cases. After accepting a future expanded real archive, update the manifest and coverage tests together. Exact inputs, policy, execution provenance, summary counts, raw judgments and any adjudications are validated. Digests detect drift; they are not provider signatures.
 
@@ -65,8 +70,10 @@ To execute a new opt-in run:
 OPENAI_API_KEY=... pnpm eval:live
 # Optional controls, passed to the Python runner:
 pnpm eval:live --workers 4 --output .superpowers/model-run/my-run.json
+# Separate supplementary suite:
+pnpm eval:learning:live --workers 4
 ```
 
 Use an existing environment variable or secret manager for the key; never commit credentials. The runner requires Python 3 and curl, uses normal TLS verification, and sends credentials only through curl stdin. It writes raw results into the ignored workflow directory. Review failures before accepting a new release snapshot; do not reseal obsolete results into passes. `--resume` retains only exact-input target samples and checks the grading-policy hash before reusing judgments. The live script can incur API charges; ordinary CI and `pnpm eval` use the committed evidence and need no API key.
 
-The authored reference suites were independently re-authored/re-reviewed for the revised prompts while preserving learner/source inputs. Later refinements retain already fresh examples only after explicit review recorded in their provenance. These authored references remain separate from real API samples. Neither text suite establishes microphone recognition, pronunciation accuracy, physical iPhone PWA behavior, learning outcomes, long-session reliability, or compatibility with other providers. Spoken scripts are text inputs here. Compact review cards cap at three cards; full cards retain the larger maximum.
+The authored reference suites were independently re-authored/re-reviewed for the revised prompts while preserving learner/source inputs. Later refinements retain already fresh examples only after explicit review recorded in their provenance. These authored references remain separate from real API samples. Neither text suite establishes microphone recognition, pronunciation accuracy, physical iPhone PWA behavior, learning outcomes, long-session reliability, or compatibility with other providers. Spoken scripts are text inputs here. Compact review cards produce one card when written output and practice are available; full cards retain the larger maximum.

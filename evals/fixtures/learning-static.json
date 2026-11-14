@@ -1,0 +1,96 @@
+{
+  "method": "static-editorial-review",
+  "limitations": "Authored static review of prompt instructions only. No model replies, API execution, audio compatibility tests or learning-effectiveness evidence.",
+  "cases": [
+    {
+      "id": "listening-guide",
+      "promptSha256": "8a9bbac6c060d53f8ce5e02b444d0107411ab71dba628799830b278694869df0",
+      "rationale": "Statically reviewed: requests a specific segment, distinguishes audio access from transcript-only explanation, limits expressions and avoids invented playback or timestamps. Does not validate acoustic analysis."
+    },
+    {
+      "id": "listening-check",
+      "promptSha256": "0d661cb038bbe4554074cdba2e6c9122910e8b7b467fcca0187738acf3cbb448",
+      "rationale": "Statically reviewed: source gate precedes readiness and one-question attempts; clues and learner-controlled replay precede answer reveal. Separates comprehension from answer grammar and disclaims UI playback control."
+    },
+    {
+      "id": "reading-guide",
+      "promptSha256": "3d9edb4a20c7dc7b719f0410c4456eaa42145cb18400e210536758b545c744cb",
+      "rationale": "Statically reviewed: explains a supplied excerpt directly, distinguishes inference from text, bounds incomplete material and reserves exhaustive translation for an explicit request. This is assisted reading, not a comprehension test."
+    },
+    {
+      "id": "reading-check",
+      "promptSha256": "f9b3eeb83324046f5232364dab85b559a36e0c48adf4d4624ac1d4442955d3e2",
+      "rationale": "Statically reviewed: waits for reading and learner answers, grounds questions and feedback in source evidence, accepts equivalent answers and ambiguity, and avoids an upfront answer key or calibrated score."
+    },
+    {
+      "id": "writing-feedback",
+      "promptSha256": "2a4e9b4b8f833d0876e174eef633e34922db163f6cf1f1f915a980412c886bcd",
+      "rationale": "Statically reviewed: requires a learner draft, checks purpose and organization as well as language, preserves facts, labels optional style and waits for self-revision unless full rewriting is requested."
+    },
+    {
+      "id": "writing-practice",
+      "promptSha256": "34c40083f602b7946845670395778417d9c24ec8ab3c7d2ec6d10f226e6562d7",
+      "rationale": "Statically reviewed: provides a hypothetical brief, waits for learner production, offers bounded feedback, preserves the task during help and makes subsequent practice optional. Does not infer durable improvement from a polished revision."
+    },
+    {
+      "id": "listening-dictation",
+      "promptSha256": "06bd418254dde4d6695b5fc56e1212f3c85b024edcd7fd93710ce99a04b0f01f",
+      "rationale": "Statically reviewed: requires a learner attempt and matching reference, distinguishes spelling from meaning and uncertain automatic transcripts, and makes no confirmed acoustic diagnosis from text."
+    },
+    {
+      "id": "listening-shadowing",
+      "promptSha256": "d338c58905cdf46f1c7c1738b4f00971cb01c6d4ef0d3863c4a80b3411cea61c",
+      "rationale": "Statically reviewed: identifies imitation rather than a listening test, preserves source wording during phrase grouping, and bounds rhythm suggestions, playback and learner pronunciation feedback by actual audio access."
+    },
+    {
+      "id": "listening-notes",
+      "promptSha256": "df47c9e08dc5df256d1281d0e7b4e8dd6d8f559a77b270df654b3b483d9c52d1",
+      "rationale": "Statically reviewed: waits for learner notes by default; distinguishes proposals, decisions, action owners and unstated dates. Explicitly requested summaries remain source assistance, not learner achievement."
+    },
+    {
+      "id": "listening-expressions",
+      "promptSha256": "f69c44cce14cb10224a175389a09730dad0296ef3b6228bc7f4b456c2875be1d",
+      "rationale": "Statically reviewed: selects short phrases actually in the supplied source, labels invented examples, explains register and asks for learner reuse without forced correction or pronunciation inference."
+    },
+    {
+      "id": "reading-sentences",
+      "promptSha256": "323d73776e32f953f2ba8a7328ef722554ac84d0a7b1f9207bb642e0c3d46a1c",
+      "rationale": "Statically reviewed: separates core clause and modifiers while preserving negation and certainty; requests context for unresolved references and labels simpler paraphrases."
+    },
+    {
+      "id": "reading-actions",
+      "promptSha256": "63a94f8694f62a7e3bbba7c5ff619bee98515ff8e4052622a117e7ceddd0c020",
+      "rationale": "Statically reviewed: grounds requested actions and dates in source wording, distinguishes suggestions from obligations, preserves date ambiguity and never sends or claims completion of a reply."
+    },
+    {
+      "id": "reading-technical",
+      "promptSha256": "ab11e827a90c7d5e3766e37f6fe8274d218d1cc37de5cc494a27382812f97e95",
+      "rationale": "Statically reviewed: preserves commands and version strings, explains modal language and documentation structure, and forbids execution or invented API compatibility."
+    },
+    {
+      "id": "reading-vocabulary",
+      "promptSha256": "1ca3e4cd31a73d47951026f2039702c3e4d3fcf52305b7d2f32b4ffe51ecb2d4",
+      "rationale": "Statically reviewed: contextual meanings and collocations remain grounded in supplied wording, examples are labeled, unsupported dictionary verification is prohibited and learner sentence feedback accepts alternatives."
+    },
+    {
+      "id": "writing-email",
+      "promptSha256": "478d2c1337abd344d72bf4559ba0cc5b13f086f91258d44251499d30a3133f8e",
+      "rationale": "Statically reviewed: clarifies intended reply rather than assuming agreement, asks for learner production, limits models to explicit requests and avoids invented commitments or sent-mail claims."
+    },
+    {
+      "id": "writing-messages",
+      "promptSha256": "ef4ebd0b4593c462bcaed92e3b5bc7ed655d9ea79db24eeda442cb33cfc2f67d",
+      "rationale": "Statically reviewed: distinguishes facts, estimates and next steps; requires purpose and learner attempt, avoids manufactured progress, blame or promises, and explains limited clarity and tone changes."
+    },
+    {
+      "id": "writing-intent",
+      "promptSha256": "cb63f1d63e3b98063d100ae98b2cb75f86aeea6eeb55bb4b1f0df56d04deaa19",
+      "rationale": "Statically reviewed: preserves Chinese communicative intent, uncertainty and emotional force; offers a natural English option with explanations and a learner transfer attempt, without over-elaboration."
+    },
+    {
+      "id": "writing-summary",
+      "promptSha256": "88e2b1ba4938821fef045f65133d53e97504121bb673f5cad3e73f8464eb76cf",
+      "rationale": "Statically reviewed: distinguishes source from learner draft, summary from paraphrase and factual fidelity from grammar; requires learner attempt and preserves attribution without plagiarism-score claims."
+    }
+  ]
+}

@@ -276,7 +276,7 @@
       "promptId": "roleplay-coach",
       "variant": "spoken",
       "source": "current",
-      "promptSha256": "ed14c8535ee8e8670fd33d8424abd163c834036320bfeb70ab2fa026fe2804c2",
+      "promptSha256": "edf717364a6e65763f0552d0f8ac69b64c4e5eb5aa9f7c0ab990a0309fef61c7",
       "learnerTurns": [
         "A hotel bill dispute. You are the receptionist.",
         "I disagree with that charge.",
@@ -330,9 +330,9 @@
       ],
       "judgment": "pass",
       "criterion": "Accept natural disagreement without correction; pause character for help; label at most one real language correction per answer as Language note.",
-      "rationale": "Fresh authored text role simulation, authored and reviewed against the revised instructions by the release-review agent; self-judged reference evidence, not external API execution, audio testing, or an independent model judge. Accept natural disagreement without correction; pause character for help; label at most one real language correction per answer as Language note. Every assistant turn was newly authored; learner/source inputs were retained.",
-      "sampleProvenance": "Fresh authored text role simulation, authored and reviewed against the revised instructions by the release-review agent; self-judged reference evidence, not external API execution, audio testing, or an independent model judge.",
-      "evidenceSha256": "8130783f981a95d88874b25ac0f3d36f6511d635657737b2806a4269161fa19c"
+      "rationale": "Existing authored text retained after explicit static semantic re-review on 2026-11-14 against the revised exact prompt. Roleplay asks at most one question per turn; vocabulary headwords occur in actual practice; cards test distinct targets with preserved time reference. Learner inputs and assistant replies are unchanged. This refresh is not a new simulation, model/API execution or audio test.",
+      "sampleProvenance": "Existing authored text retained after explicit static semantic re-review on 2026-11-14 against the revised exact prompt. Roleplay asks at most one question per turn; vocabulary headwords occur in actual practice; cards test distinct targets with preserved time reference. Learner inputs and assistant replies are unchanged. This refresh is not a new simulation, model/API execution or audio test.",
+      "evidenceSha256": "d13cf864f90834f2fd2d6ee8fc11d1282d05477f8cfd12d52f564dcdc5512ecd"
     },
     {
       "id": "spoken-friendly-debate",

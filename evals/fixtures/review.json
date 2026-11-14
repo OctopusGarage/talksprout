@@ -121,7 +121,7 @@
       "promptId": "vocabulary-ipa-review",
       "variant": "full",
       "source": "current",
-      "promptSha256": "caedfb313ef751a58c46b87b23166ed2dc31acd47f98912ce6ffb71047a33f0e",
+      "promptSha256": "b72b2943cf86e3abf9db0652012b466bb0360b9d9be7736b20bd3a2e89431e4a",
       "turns": [
         {
           "role": "user",
@@ -153,16 +153,16 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. This undefined case preserves the selected coaching contract. The affected target response was freshly authored or aligned to its exact opening; all learner/source inputs are preserved.",
-      "evidenceSha256": "54ec279795c964dca90a210f7d77d93fa750653428e251cb8d213d652af8f841",
-      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review."
+      "rationale": "Existing authored text retained after explicit static semantic re-review on 2026-11-14 against the revised exact prompt. Roleplay asks at most one question per turn; vocabulary headwords occur in actual practice; cards test distinct targets with preserved time reference. Learner inputs and assistant replies are unchanged. This refresh is not a new simulation, model/API execution or audio test.",
+      "evidenceSha256": "e2c833721d1a407b6d04f37ab0fe6b3a33f5ef351424d7cef8176f3d9775299a",
+      "sampleProvenance": "Existing authored text retained after explicit static semantic re-review on 2026-11-14 against the revised exact prompt. Roleplay asks at most one question per turn; vocabulary headwords occur in actual practice; cards test distinct targets with preserved time reference. Learner inputs and assistant replies are unchanged. This refresh is not a new simulation, model/API execution or audio test."
     },
     {
       "id": "cards-full",
       "promptId": "review-cards",
       "variant": "full",
       "source": "current",
-      "promptSha256": "36ff8a62931bf3d502bed90189b0bd23ed4c97ebbe192247d82087452e920d77",
+      "promptSha256": "bc24ef2ce6c500970c05e312e193e89c4692c5d7515ece7532af85592986ac4a",
       "turns": [
         {
           "role": "user",
@@ -194,10 +194,10 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. This undefined case preserves the selected coaching contract. The affected target response was freshly authored or aligned to its exact opening; all learner/source inputs are preserved.",
+      "rationale": "Existing authored text retained after explicit static semantic re-review on 2026-11-14 against the revised exact prompt. Roleplay asks at most one question per turn; vocabulary headwords occur in actual practice; cards test distinct targets with preserved time reference. Learner inputs and assistant replies are unchanged. This refresh is not a new simulation, model/API execution or audio test.",
       "provenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review.",
-      "evidenceSha256": "4ecd1cdbcb694ccb0b257ac8040a5251ee447565c105cd39312a41ca1ac7c2b6",
-      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review."
+      "evidenceSha256": "56cdbb702c67728989170105f4be24ac838e315c26350ad322a6be7ab39f9d5f",
+      "sampleProvenance": "Existing authored text retained after explicit static semantic re-review on 2026-11-14 against the revised exact prompt. Roleplay asks at most one question per turn; vocabulary headwords occur in actual practice; cards test distinct targets with preserved time reference. Learner inputs and assistant replies are unchanged. This refresh is not a new simulation, model/API execution or audio test."
     },
     {
       "id": "notes-spoken",
@@ -303,7 +303,7 @@
       "promptId": "review-cards",
       "variant": "spoken",
       "source": "current",
-      "promptSha256": "2734ae1e82bcc8a5a7d0b19e4036a5d659889156027cd7d6b3b8f5f64b253040",
+      "promptSha256": "38b067c71ce3b944ea09260b52b5eba5b3755606b750e3053e831e354a9566ec",
       "learnerTurns": [
         "I enjoy cycling.",
         "Please finish and make the requested written review."
@@ -327,9 +327,9 @@
       ],
       "judgment": "pass",
       "criterion": "Sparse available practice yields one grounded learning point, no invented errors or padding, and a complete written response.",
-      "rationale": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge. Sparse available practice yields one grounded learning point, no invented errors or padding, and a complete written response. Previously fresh authored target replies remain appropriate and are retained after explicit re-review. Source inputs and turn shape remain unchanged.",
-      "sampleProvenance": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge.",
-      "evidenceSha256": "191915740a7855ffef237e96a33dc10b27fa2122c3a3f58b85f3d4fd7f2d229f"
+      "rationale": "Existing authored text retained after explicit static semantic re-review on 2026-11-14 against the revised exact prompt. Roleplay asks at most one question per turn; vocabulary headwords occur in actual practice; cards test distinct targets with preserved time reference. Learner inputs and assistant replies are unchanged. This refresh is not a new simulation, model/API execution or audio test.",
+      "sampleProvenance": "Existing authored text retained after explicit static semantic re-review on 2026-11-14 against the revised exact prompt. Roleplay asks at most one question per turn; vocabulary headwords occur in actual practice; cards test distinct targets with preserved time reference. Learner inputs and assistant replies are unchanged. This refresh is not a new simulation, model/API execution or audio test.",
+      "evidenceSha256": "9110b7ab16fe76f6e831a6a53a5c10494ba0efe0428a04a317935665e53988e5"
     },
     {
       "id": "transcript-isolation",
@@ -473,12 +473,12 @@
       "promptId": "review-cards",
       "variant": "spoken",
       "source": "current",
-      "promptSha256": "2734ae1e82bcc8a5a7d0b19e4036a5d659889156027cd7d6b3b8f5f64b253040",
+      "promptSha256": "38b067c71ce3b944ea09260b52b5eba5b3755606b750e3053e831e354a9566ec",
       "learnerTurns": [
         "Please review our practice. No earlier conversation is available here."
       ],
       "assistantTurns": [
-        "There is no practice history available to build cards from. Please paste the conversation first."
+        "Please provide the practice conversation."
       ],
       "turns": [
         {
@@ -487,14 +487,14 @@
         },
         {
           "role": "assistant",
-          "content": "There is no practice history available to build cards from. Please paste the conversation first."
+          "content": "Please provide the practice conversation."
         }
       ],
       "judgment": "pass",
       "criterion": "Absent usable context requests the conversation before generating any learning claims.",
-      "rationale": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge. Absent usable context requests the conversation before generating any learning claims. Previously fresh authored target replies remain appropriate and are retained after explicit re-review. Source inputs and turn shape remain unchanged.",
-      "sampleProvenance": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge.",
-      "evidenceSha256": "2e8726805170de3debd5bc97ff57bf20f563acd4241e148b9f9ca94201a0546e"
+      "rationale": "Fresh authored replacement of the assistant reply on 2026-11-14 to match the revised exact missing-history branch. The learner input is unchanged; the reply is the explicitly requested Please provide the practice conversation. This authored example is separate from real API execution and audio tests.",
+      "sampleProvenance": "Fresh authored replacement of the assistant reply on 2026-11-14 to match the revised exact missing-history branch. The learner input is unchanged; the reply is the explicitly requested Please provide the practice conversation. This authored example is separate from real API execution and audio tests.",
+      "evidenceSha256": "681d37f2dbbce86de1a4e725c502e7ae03f90b76e08aceeb9534aea1483e026a"
     },
     {
       "id": "heldout-notes-voice-only",

@@ -2,6 +2,10 @@
 
 ## Scope
 
+The supplementary directory contains 18 listening, reading and writing prompts. `learning-static.json` retains separate editorial reviews, while `learning-live-api.json` records 108 real GPT-4.1 text target/judge executions. `pnpm eval` checks both, together with the 562 current speaking/review cases. Browser tests independently check bilingual navigation, exact clipboard content, accessible sheets and layouts. No actual audio or learning-outcome tests were performed.
+
+The comprehensive release has **670 accepted exact-input text cases**. Raw judgments are **667 pass, three fail, zero uncertain**. The three failures are confirmed judge errors with bound static semantic adjudications; actual failures were fixed and re-executed. Follow-up assistant histories are authored seeds, not end-to-end model conversations. Unchanged cases from the same full run were reused only during targeted retries. Earlier six- and eighteen-prompt UI checks did not include these real model runs.
+
 Release evaluation on 2026-11-14 covers nine coaching modes, four review modes, and 160 optional presets (31 everyday, 13 travel, 12 services, 48 workplace, 56 interview). Static composition, authored reference simulations, real text API execution, and browser/PWA tests are separate evidence types.
 
 | Check | Release result |
@@ -9,12 +13,14 @@ Release evaluation on 2026-11-14 covers nine coaching modes, four review modes, 
 | Authored opening / teaching / spoken / review references | 9 / 11 / 11 / 15 accepted cases |
 | Authored scene references | 79 accepted cases; 51 added references are authored, not API runs |
 | Complete composition matrix | 936 coach/scenario/pace combinations, 1,872 payloads |
-| Real GPT-4.1 text API cases | 562 accepted; raw judge 561 pass, 1 fail, 0 uncertain |
-| Independent semantic adjudication | 1 natural-answer follow-up false positive accepted; raw verdict retained |
-| Unit tests | 72 passed |
-| Chromium browser tests | 56 passed |
-| WebKit browser/PWA tests | 36 passed |
+| Real GPT-4.1 text API cases | 670 accepted (562 speaking/review + 108 supplementary); raw judge 667 pass, 3 fail, 0 uncertain |
+| Static semantic adjudication | 3 confirmed judge false positives accepted; raw verdicts retained |
+| Unit tests | 76 passed |
+| Chromium browser tests | 60 passed |
+| WebKit browser/PWA tests | 40 passed |
 | TypeScript and production build | Passed |
+
+The latest release checks passed 76 unit tests, 60 Chromium browser tests and 40 WebKit browser tests. The recorded API suites are separate from these application checks.
 
 
 The 46 base references and 79 scene references are authored text simulations, not external-provider API runs. The separate live API corpus below contains real executions. Neither corpus is evidence of learning effectiveness or broad provider reliability. Fixtures contain exact prompt hashes; changed text requires refreshed sessions. See [methodology](../evals/README.md) and [fixtures](../evals/fixtures/).
@@ -25,11 +31,11 @@ The expanded catalog has real text API coverage for all 160 scenes. The fixed li
 
 The [accepted archive](../evals/fixtures/live-api.json) contains 562 current-input text cases against `gpt-4.1-2025-04-14`, covering every scene in both formats with a recommended coach, technical mock interviews, all base coaches, reviews and interaction edge cases. Real API coverage is narrower than the full static matrix of 936 combinations.
 
-Final raw judgments are **561 pass, one fail, zero uncertain**. One separate static semantic review accepts the gentle-coach natural-answer reply because its single follow-up is required, not an additional question in the previous turn. Its exact input, reply, raw failed judgment and original evidence digest remain bound to the adjudication. All 562 release gates pass; no true instruction violation is waived.
+The speaking archive's raw results are 560 pass and two fail, with static adjudications accepting the single-question gentle-coach follow-up and a one-card past-tense exercise grounded in actual hiking practice. The supplementary archive's raw results are 107 pass and one fail, with a static adjudication confirming that “make sure” occurs in the source and is a permitted selection. Each adjudication binds the exact input, observed reply, raw judgment and pre-adjudication evidence digest. No actual violation is waived.
 
-Each case now has its own same-model judge request, with a unique recorded response ID. This avoids feeding multiple full and compact instruction sets to one grading request. It is not an independent judging model. Exact-input target replies from the final full run were retained for isolated rejudging, and the eight changed transcript inputs were re-executed. Reused current-input records are not counted as fresh requests on later resumes.
+The comprehensive first run exposed four actual issues: a spoken role-play turn asked two questions; vocabulary review included instruction-only wording; cards repeated the same past-tense target across formats; and an email rewrite claimed meaningful shortening with effectively unchanged length. Updated prompts constrain whole-reply question counts, require source headwords, merge inflections, deduplicate learning targets and check shortening. Further checks exposed compact-card duplication and source/output-branch mistakes. The final compact prompt applies the first matching branch: oral-only recap when writing is unavailable; an exact request when learner practice is absent; otherwise one grounded card. Affected targets and judges were re-executed; unchanged exact-input records from the full run were retained. `results/2026-11-14-comprehensive-findings.json` preserves the flagged original outputs, including both real issues and judge mistakes.
 
-Release findings drove coherent early-stop handling (no invented progress before an exercise answer), exactly one spoken role-play opening, an exclusive oral-only sentence-review branch, and a balanced source gate that both rejects missing transcripts and accepts short valid transcripts. Affected authored fixtures were semantically re-reviewed; raw flagged outputs remain in [results](../evals/results/). Synthetic touch regression tests also exposed and fixed parent-sheet dismissal when the scenario picker was open.
+The 108 supplementary probes cover all 18 prompts with missing input, normal material, help, stopping, quoted-instruction isolation and follow-up checks. Each uses an isolated same-model judge call. Follow-up histories are authored synthetic context. Four affected authored reference outputs (role-play spoken, vocabulary full, cards full and cards spoken) were explicitly re-reviewed and retained with updated provenance and prompt hashes. The missing-history spoken-card reference was reauthored to the new exact request. These authored updates are distinct from API re-execution.
 
 These are text evaluations. They do not establish audio recognition, pronunciation assessment, physical iPhone PWA gesture compatibility, learning effectiveness, long-session reliability or compatibility with other providers. `pnpm eval` validates recorded evidence without network calls; `pnpm eval:live` performs optional paid API requests.
 

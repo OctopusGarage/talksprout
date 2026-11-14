@@ -171,6 +171,16 @@ export function PromptLibrary({
               ? "Copy a prompt to your AI, or read its short spoken opening aloud."
               : "复制给常用 AI，或照着简短语音开场白念。"}
           </p>
+          <div className="learning-entry">
+            <button onClick={() => navigate("#learning")}>
+              <Icon name="book" />
+              <span>
+                <strong>{en ? "Listening, reading & writing" : "听读写辅助"}</strong>
+                <small>{en ? "Extra prompts for your other English practice." : "为其他英语学习需求，补充几个实用提示词。"}</small>
+              </span>
+              <Icon name="chevron" />
+            </button>
+          </div>
         </>
       ) : (
         <>

@@ -21,7 +21,9 @@ export function PromptDialog({
   onSourceChange,
   sceneSelection,
   onSceneChange,
+  footer,
 }: {
+  footer?: ReactNode;
   sceneSelection?: SceneSelection;
   onSceneChange?: (selection?: SceneSelection) => void;
   locale: Locale;
@@ -355,6 +357,7 @@ export function PromptDialog({
           content
         )}
       </div>
+      {footer}
       {p && (
         <footer className="sheet-footer">
           {" "}

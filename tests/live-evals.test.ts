@@ -15,7 +15,7 @@ test("recorded live executions and all composed payloads satisfy release coverag
   const live = validateLiveArchive(archive());
   assert.deepEqual(live.issues, []);
   assert.equal(live.cases, 562);
-  assert.equal(live.adjudications, 1);
+  assert.equal(live.adjudications, 2);
   const matrix = validateCompositionMatrix();
   assert.equal(matrix.combinations, 936);
   assert.equal(matrix.payloads, 1872);

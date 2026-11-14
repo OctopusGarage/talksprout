@@ -15,6 +15,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--model', default=os.environ.get('TALKSPROUT_EVAL_MODEL', 'gpt-4.1'))
 parser.add_argument('--workers', type=int, default=6)
 parser.add_argument('--limit', type=int)
+parser.add_argument('--cases', default='.superpowers/model-run/cases.json')
 parser.add_argument('--output', default='.superpowers/model-run/live-current.json')
 parser.add_argument('--resume', action='store_true')
 args = parser.parse_args()
@@ -25,7 +26,7 @@ if not 1 <= args.workers <= 12:
     raise SystemExit('workers must be between 1 and 12')
 root = Path('.superpowers/model-run')
 root.mkdir(parents=True, exist_ok=True)
-cases = json.loads((root / 'cases.json').read_text())
+cases = json.loads(Path(args.cases).read_text())
 if args.limit:
     cases = cases[:args.limit]
 output = Path(args.output)
@@ -150,6 +151,8 @@ for row in archive['cases']:
     row['evidenceSha256'] = digest({k:v for k,v in row.items() if k != 'evidenceSha256'})
 archive['completedAt'] = now()
 archive['summary'] = {kind:sum(r.get('gateJudgment') == kind for r in archive['cases']) for kind in ['pass','fail','uncertain']}
+archive['rawJudgeSummary'] = dict(archive['summary'])
+archive['adjudications'] = 0
 save()
 print(json.dumps(archive['summary']), flush=True)
 if archive['summary']['fail'] or archive['summary']['uncertain']:

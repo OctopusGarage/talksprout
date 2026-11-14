@@ -9,8 +9,11 @@ Reusable prompts for learning English with AI: choose a conversation coach, prac
 - **Start practice:** choose a collection and coaching style. Copy the full prompt into a new AI conversation, or read its short spoken opening aloud.
 - **Wrap-up & Review:** send a review prompt at the end of that same conversation to create notes, sentence practice, vocabulary, or self-test cards.
 - **Settings:** choose the interface language, find installation help, and read the instructions.
+- **Listening, reading & writing:** open the secondary entry below the speaking collections for 18 supplementary prompts, with six choices per direction. Tasks include dictation comparison, meeting notes, shadowing preparation, complex sentences, emails and notices, technical documentation, email replies, workplace messages, and summary/paraphrase practice. Each entry includes a decorative emoji and concrete use examples; three direction buttons keep the directory compact. Copy a prompt to your AI and supply material there. These prompts stay separate from coach search and review.
 
 The interface supports Chinese and English. Prompt instructions are in English; review prompts request English learning examples with concise Chinese explanations. TalkSprout provides prompts for your preferred AI app; it does not run an AI chat itself.
+
+Supplementary links use `#learning` and `#learning?prompt=writing-feedback`. Details show preparation, usage and a single English prompt, without spoken openings or scenario settings. If the external AI cannot access a source, the prompt requests usable excerpts or transcripts. This app does not process links or files; audio/video compatibility depends on the chosen AI and has not been tested here.
 
 ## Conversation coaches
 
@@ -87,7 +90,7 @@ pnpm test:e2e
 pnpm test:webkit
 ```
 
-The release evaluation checks 1,872 composed payloads and 79 authored scene references. The 562 recorded real GPT-4.1 text cases cover all 160 scenes and remain separate from authored simulations. Each case has an isolated same-model judge call; one raw judge false positive is retained with a bound semantic review. Optional fresh execution uses `OPENAI_API_KEY` with `pnpm eval:live` (Python 3 and curl required); it can incur API charges. Normal CI validates committed evidence without credentials. See the evaluation methodology for coverage, provenance and limitations.
+The release evaluation checks 1,872 composed payloads, 79 authored scene references, and 670 recorded real GPT-4.1 text cases: 562 speaking/review cases across all 160 scenes plus 108 cases across all 18 supplementary prompts. Each target reply has an isolated same-model judge call. Three confirmed raw judge false positives are preserved with bound static semantic reviews; no actual instruction violation is waived. Optional fresh execution uses `OPENAI_API_KEY` with `pnpm eval:live` and `pnpm eval:learning:live` (Python 3 and curl required); these can incur API charges. Normal CI validates committed evidence without credentials. See the evaluation methodology for coverage, provenance and limitations.
 
 Run `pnpm preview` after building to inspect the production app. React and strict TypeScript are used for the application. Content lives in `src/content/`; `src/prompts.ts` exports the conversation starters, reviews, and combined library.
 

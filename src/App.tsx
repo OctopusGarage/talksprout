@@ -14,6 +14,7 @@ import { useRightEdgeBack } from "./useRightEdgeBack";
 import { collections } from "./content/collections";
 import { Icon } from "./Icon";
 import { Settings } from "./Settings";
+import { LearningLibrary } from "./LearningLibrary";
 import { PromptLibrary } from "./PromptLibrary";
 import { composeScene, type SceneSelection } from "./scenes";
 import { promptText } from "./prompt-text";
@@ -180,10 +181,18 @@ export default function App() {
             history.back();
           else closeModal();
         }
-      : route.collection
-        ? () => navigate("#library")
-        : null,
-    `${route.base}:${route.promptId ?? ""}:${route.infoId ?? ""}`,
+      : route.learningPromptId
+        ? () => {
+            if (history.state?.talksproutLearningPrompt === route.learningPromptId)
+              history.back();
+            else navigate("#learning");
+          }
+        : route.page === "learning"
+          ? () => navigate("#library")
+          : route.collection
+            ? () => navigate("#library")
+            : null,
+    `${route.base}:${route.promptId ?? route.learningPromptId ?? ""}:${route.infoId ?? ""}`,
   );
   const save = (key: string, value: string[]) => {
     if (!writeSaved(storage, key, value)) setMessage(t.saveError);
@@ -317,15 +326,17 @@ export default function App() {
   };
   const currentCollection = collections.find((c) => c.id === route.collection);
   const title =
-    route.page === "settings"
-      ? s("设置", "Settings")
-      : route.page === "review"
-        ? s("结束与复习", "Wrap-up & Review")
-        : currentCollection
-          ? en
-            ? currentCollection.titleEn
-            : currentCollection.category
-          : s("开始练习", "Start practice");
+    route.page === "learning"
+      ? s("听读写辅助", "Listening, reading & writing")
+      : route.page === "settings"
+        ? s("设置", "Settings")
+        : route.page === "review"
+          ? s("结束与复习", "Wrap-up & Review")
+          : currentCollection
+            ? en
+              ? currentCollection.titleEn
+              : currentCollection.category
+            : s("开始练习", "Start practice");
   return (
     <div className={`app-shell${frame.keyboardOpen ? " keyboard-open" : ""}`}>
       <a
@@ -374,7 +385,12 @@ export default function App() {
               <a
                 key={page}
                 href={href}
-                aria-current={route.page === page ? "page" : undefined}
+                aria-current={
+                  route.page === page ||
+                  (page === "practice" && route.page === "learning")
+                    ? "page"
+                    : undefined
+                }
                 onClick={(event) => {
                   event.preventDefault();
                   if (location.hash === href)
@@ -406,10 +422,15 @@ export default function App() {
       </aside>
       <main className="app-main">
         <header className="app-header">
-          {route.page === "practice" && route.collection && (
+          {((route.page === "practice" && route.collection) ||
+            route.page === "learning") && (
             <button
               className="back-button icon-button"
-              aria-label={s("← 返回分类", "← Back to collections")}
+              aria-label={
+                route.page === "learning"
+                  ? s("← 返回练习", "← Back to practice")
+                  : s("← 返回分类", "← Back to collections")
+              }
               onClick={() => navigate("#library")}
             >
               <Icon name="back" />
@@ -450,7 +471,10 @@ export default function App() {
           aria-label={s("页面内容", "Page content")}
           tabIndex={0}
         >
-          <div className="workspace" hidden={route.page === "settings"}>
+          <div
+            className="workspace"
+            hidden={route.page === "settings" || route.page === "learning"}
+          >
             <PromptLibrary
               locale={locale}
               purpose={route.page === "review" ? "review" : "practice"}
@@ -468,6 +492,17 @@ export default function App() {
               }}
             />
           </div>
+          {route.page === "learning" && (
+            <div className="workspace">
+              <LearningLibrary
+                locale={locale}
+                promptId={route.learningPromptId}
+                copying={copying}
+                setCopying={setCopying}
+                busy={clipboardBusy}
+              />
+            </div>
+          )}
           {route.page === "settings" && (
             <div className="workspace">
               <Settings
@@ -487,7 +522,7 @@ export default function App() {
           )}
         </div>
       </main>
-      {!modal && (
+      {!modal && !route.learningPromptId && (
         <div
           id="toast"
           role="status"

@@ -144,7 +144,7 @@ OUTPUT OVERRIDE: If I declared writing unavailable, ignore all sheet instruction
     ],
     mode: "both",
     needsMaterial: true,
-    version: 3,
+    version: 4,
     prompt: `Our practice is finished. Build a compact vocabulary review list.
 Select up to ten useful words, phrases, or collocations. Prioritize items I asked about, misused, or needed help expressing. Do not assume every word in the conversation is unfamiliar to me. If there is no evidence of difficulty, label an item as a useful expression rather than an unknown word.
 For each item, include:
@@ -155,6 +155,8 @@ For each item, include:
 - A useful collocation.
 - A sentence from our conversation, or a clearly labeled new example based on it.
 - A short usage note only if helpful.
+Every selected headword or phrase must occur in the actual practice exchange, not just in these instructions or your new examples. If only a few qualify, stop there; never add a vocabulary item just to fill the list.
+Merge different inflections of the same word or phrase into one item: go hiking and went hiking belong together, with the tense explained inside that item.
 Merge duplicates. Prefer useful chunks over isolated words where appropriate. Avoid long synonym lists, unsupported difficulty labels, or claims about my pronunciation. IPA describes a reference pronunciation, not how I actually sounded.
 
 ${grounding}`,
@@ -198,23 +200,23 @@ Counts are maximums. Don't restart practice.`,
     ],
     mode: "both",
     needsMaterial: true,
-    version: 3,
+    version: 4,
     prompt: `Our practice is finished. Turn its learning points into up to eight self-study review cards.
-Prioritize useful corrections, expressions I needed help with, and reusable vocabulary. Give each card one clear learning target. Avoid duplicate cards testing the same learning point.
+Prioritize useful corrections, expressions I needed help with, and reusable vocabulary. Give each card one clear learning target. Use each distinct learning target only once across all card formats. A correction, translation cue and gap-fill that all test go versus went are duplicates, not three targets. Stop after the genuinely distinct targets, even if that means only two or three cards. Preserve the source meaning and time reference.
 Use a suitable mix of:
 - A Chinese meaning or situation cue requiring an English response.
 - A short gap-fill with enough context to make the target clear.
 - A sentence correction based on a genuine mistake I made, only if one exists.
 Present all numbered questions first, then a separate answer key with matching numbers. Answers should include a suggested English response, a brief Chinese explanation, and acceptable alternatives where appropriate.
 Do not reveal the answer in the question. Do not require one exact wording when several answers work. Do not invent learner mistakes. Clearly label newly written practice sentences, which must practice learning points actually present in the conversation.
+Before responding, remove any card whose suggested answer repeats another card's corrected sentence, even if its format differs. Do not reuse a corrected sentence as a translation or gap-fill card. For a very short exchange, one or two distinct cards are enough.
 Make each card understandable without reopening the transcript. Do not output an app-specific import format or claim the cards were saved or scheduled. Produce the complete cards, not an interactive quiz.
 
 ${grounding}`,
-    spokenPrompt: `If no earlier learner practice exists, request the conversation instead.
-If I say writing is unavailable, give only a brief oral recap without IPA or worksheets instead.
-Otherwise make up to three distinct cards grounded in practice: Chinese cues, gaps, or genuine corrections.
-Put questions before a separate answer key with Chinese explanations and natural alternatives.
-Label new examples; never invent facts.
-This request is not practice. No practice or voice-only means NO cards.`,
+    spokenPrompt: `Let's finish. Follow the FIRST matching branch.
+If I said writing is unavailable, give ONLY a brief oral recap: no cards, questions, answers or IPA.
+Otherwise, if earlier chat has no learner practice answers, reply exactly "Please provide the practice conversation." and stop.
+Otherwise use those earlier answers to write ONE self-study card, then a separate answer with Chinese explanation and natural alternatives.
+This request is not practice. Label new examples; never invent facts.`,
   },
 ];

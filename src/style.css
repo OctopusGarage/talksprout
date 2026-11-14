@@ -1588,3 +1588,98 @@ summary {
     padding-inline: 10px;
   }
 }
+
+.learning-entry {
+  margin-top: 28px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+.learning-entry button,
+.learning-prompt {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 17px 18px;
+  text-align: left;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.learning-entry button > span,
+.learning-prompt > span {
+  flex: 1;
+  min-width: 0;
+}
+.learning-entry strong,
+.learning-entry small,
+.learning-prompt strong,
+.learning-prompt small {
+  display: block;
+}
+.learning-entry small,
+.learning-prompt small {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.learning-prompt + .learning-prompt {
+  border-top: 1px solid var(--border);
+}
+.learning-group { margin-top: 24px; }
+
+.learning-directions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 22px;
+}
+.learning-directions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 13px 6px;
+  min-height: 54px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 14px;
+}
+.learning-directions button[aria-pressed="true"] {
+  background: var(--tint);
+  border-color: var(--green);
+  color: var(--green);
+}
+.learning-directions small { color: var(--muted); }
+.direction-emoji { font-size: 20px; line-height: 1; }
+.learning-group-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.learning-group-heading .section-label { margin: 0; }
+.learning-group-heading > span { font-size: 12px; color: var(--muted); }
+.learning-group-description { margin: 8px 4px 18px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.learning-list .learning-prompt { align-items: flex-start; padding: 19px 16px; gap: 12px; }
+.learning-list .learning-prompt-emoji {
+  flex: 0 0 40px;
+  display: grid;
+  place-items: center;
+  height: 40px;
+  border-radius: 12px;
+  background: #edf1f8;
+  font-size: 22px;
+}
+.learning-reading .learning-prompt-emoji { background: #edf2e8; }
+.learning-writing .learning-prompt-emoji { background: #f7f0e5; }
+.learning-prompt > svg { flex: 0 0 18px; width: 18px; height: 18px; margin-top: 12px; color: var(--muted); }
+.learning-prompt .learning-examples { display: block; margin-top: 9px; font-size: 11px; color: var(--muted); line-height: 1.6; }
+.learning-detail-title { display: flex; align-items: center; gap: 10px; }
+.learning-detail-examples { color: var(--muted); font-size: 13px; }
+.learning-copy { display: flex; align-items: center; justify-content: center; gap: 8px; }
+@media (max-width: 360px) {
+  .learning-directions button { gap: 4px; font-size: 13px; }
+  .learning-list .learning-prompt { padding: 17px 12px; gap: 10px; }
+  .learning-list .learning-prompt-emoji { flex-basis: 34px; height: 34px; font-size: 20px; }
+}

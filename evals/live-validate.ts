@@ -1,4 +1,4 @@
-import { createLiveCases } from "./live-cases";
+import { createLiveCases, type LiveCase } from "./live-cases";
 import { recordedSceneIds } from "./live-coverage";
 import { evidenceDigest } from "./validate";
 import policy from "./live-policy.json";
@@ -18,7 +18,7 @@ const singleQuestionPurposes = new Set([
   "adapted-topic",
   "mock-follow-up",
 ]);
-export function validateLiveArchive(value: unknown) {
+export function validateLiveArchive(value: unknown, expectedCases: LiveCase[] = createLiveCases()) {
   const issues: string[] = [];
   const recorded = new Set(recordedSceneIds);
   const known = new Set(scenes.map((scene) => scene.id));
@@ -49,7 +49,7 @@ export function validateLiveArchive(value: unknown) {
   if (value.judgePolicySha256 !== policyHash)
     issues.push("live: stale judge policy");
   const expected = new Map(
-    createLiveCases()
+    expectedCases
       .filter((c) => !c.selection || recorded.has(c.selection.sceneId))
       .map((c) => [c.id, c]),
   );

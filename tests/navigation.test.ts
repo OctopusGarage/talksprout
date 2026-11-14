@@ -9,6 +9,7 @@ test("existing collection and review URLs retain their destination", () => {
     collection: "companions",
     base: "#collection/companions",
     promptId: null,
+    learningPromptId: null,
     infoId: null,
   });
   assert.equal(readRoute("#collection/materials").collection, "materials");
@@ -32,4 +33,14 @@ test("settings sheets can be deep linked without leaking into practice routes", 
   assert.equal(readRoute("#settings?info=install").infoId, "install");
   assert.equal(readRoute("#library?info=about").infoId, null);
   assert.equal(readRoute("#settings?info=unknown").infoId, null);
+});
+
+
+test("supplementary links stay separate from coaches and reviews", () => {
+  assert.equal(readRoute("#learning?prompt=writing-feedback").learningPromptId, "writing-feedback");
+  assert.equal(readRoute("#learning?prompt=writing-feedback").promptId, null);
+  for (const path of ["#library", "#review", "#settings", "#collection/materials"])
+    assert.equal(readRoute(`${path}?prompt=writing-feedback`).learningPromptId, null);
+  assert.equal(readRoute("#learning?prompt=daily-check-in").promptId, null);
+  assert.equal(readRoute("#learning?prompt=missing").learningPromptId, null);
 });
