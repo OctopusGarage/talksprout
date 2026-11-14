@@ -1,7 +1,22 @@
 import { readFileSync } from "node:fs";
 import { prompts, categories } from "../src/prompts";
 import { suiteNames, validateArchive, type SuiteName } from "./validate";
-const issues: string[] = [];
+import { validateSceneArchive } from "./scene-validate";
+import {
+  validateLiveArchive,
+  validateCompositionMatrix,
+} from "./live-validate";
+const matrix = validateCompositionMatrix();
+const live = validateLiveArchive(
+  JSON.parse(readFileSync("evals/fixtures/live-api.json", "utf8")),
+);
+const issues: string[] = [
+  ...matrix.issues,
+  ...live.issues,
+  ...validateSceneArchive(
+    JSON.parse(readFileSync("evals/fixtures/scene-presets.json", "utf8")),
+  ),
+];
 for (const p of prompts) {
   if (
     !categories.includes(p.category) ||
@@ -31,8 +46,13 @@ console.log(
   JSON.stringify(
     {
       method:
-        "Contract and sealed authored archive validation; no fresh AI inference or independent semantic judgment",
+        "Static contracts, sealed authored archives, and recorded live API evidence; this invocation makes no new API calls",
       results: validated.results,
+      scenePresetCases: JSON.parse(
+        readFileSync("evals/fixtures/scene-presets.json", "utf8"),
+      ).cases.length,
+      compositionMatrix: matrix,
+      liveApi: { cases: live.cases, adjudications: live.adjudications },
       issues,
     },
     null,

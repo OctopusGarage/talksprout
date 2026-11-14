@@ -7,33 +7,38 @@
     "promptCount": 9,
     "limitations": "Fresh illustrative transcripts authored and self-judged by the same model. No external API execution, independent judge, image input, or audio input. Pass judgments apply only to each sampled criterion, not reliability or every prompt branch.",
     "teacherFeedbackReview": "Static review confirms every exported prompt explicitly requires teacher feedback during chat: correction, modeling, retry, usage feedback, or feedback after a completed section. These samples illustrate those mechanisms rather than proving provider behavior.",
-    "revisionProvenance": "2 replacement and 0 additional same-model authored text-only role simulations, one self-judged sample per case. 7 unchanged-target case transcripts and judgments retained; integrity digests added. No external API or audio execution; samples illustrate scoped criteria, not reliability.",
+    "revisionProvenance": "Frozen-release authored review refreshed 3 newly stale cases only. Existing authored examples retained after explicit semantic re-review where appropriate; exact base roleplay setup aligned. This reference review is separate from live API results and audio testing.",
     "evidenceIntegrity": "Canonical case SHA-256 covers instructions hash, inputs, responses, and judgments; it is an integrity check, not independent semantic validation. Added digests do not count as fresh model samples."
   },
   "scenarios": [
     {
       "id": "opening-daily-check-in",
       "promptId": "daily-check-in",
-      "promptSha256": "48da433deca4c95ce3c714ff0c3a97953d9a18ed594c4c1d4cdeaa447b922172",
+      "promptSha256": "da57839cea86f8f664f347034c7ff269aa3457c31c96dce6991d400b89cda70b",
       "learnerTurns": [],
-      "assistantTurns": ["What would you like to talk about?"],
+      "assistantTurns": [
+        "What topic would you enjoy chatting about today?"
+      ],
       "turns": [
         {
           "role": "assistant",
-          "content": "What would you like to talk about?"
+          "content": "What topic would you enjoy chatting about today?"
         }
       ],
       "judgment": "pass",
       "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
-      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
-      "evidenceSha256": "5b77bd63f98d81ba6d0bfd460e45875d62170fb86a58be67436dfa31666f0312"
+      "rationale": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge. Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context. Previously fresh authored target replies remain appropriate and are retained after explicit re-review. Source inputs and turn shape remain unchanged.",
+      "evidenceSha256": "311fa0d08ec8eb6b8416d8161b52df4d1cef744ed42a0d36ef3a1664bb42b581",
+      "sampleProvenance": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge."
     },
     {
       "id": "opening-gentle-start",
       "promptId": "gentle-start",
-      "promptSha256": "f7d8e878cc8d596bacc28cb78f924a608a4f2370490c635a4b1d7a3d0c734246",
+      "promptSha256": "f1485b7684cdf5992ebc53b64340862fe08cf35d2bc35775863d066fa1385c6f",
       "learnerTurns": [],
-      "assistantTurns": ["How was your day?"],
+      "assistantTurns": [
+        "How was your day?"
+      ],
       "turns": [
         {
           "role": "assistant",
@@ -42,55 +47,62 @@
       ],
       "judgment": "pass",
       "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
-      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
-      "evidenceSha256": "21fa7723e76b47ff99b10c2640aa655fa8752f5ba661283bc6aa450aadf044f5"
+      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context. The affected target response was freshly authored or aligned to its exact opening; all learner/source inputs are preserved.",
+      "evidenceSha256": "5b014043fee86cc1ce59d4b5ce44222e665507c39e74273ec3bf739c2bf0aab0",
+      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review."
     },
     {
       "id": "opening-focused-correction",
       "promptId": "focused-correction",
       "variant": "full",
       "source": "current",
-      "promptSha256": "c12c8fc1707720ca2232e5a7bfe3257eaccaeb9333831bb750ded32190b55cd6",
+      "promptSha256": "eff5445d6cdf030e4b95d5676279f10ca46a272ab9e3d18b39c5c95e69709790",
       "learnerTurns": [],
-      "assistantTurns": ["What is one thing you did yesterday?"],
+      "assistantTurns": [
+        "What did you do yesterday evening?"
+      ],
       "turns": [
         {
           "role": "assistant",
-          "content": "What is one thing you did yesterday?"
+          "content": "What did you do yesterday evening?"
         }
       ],
       "judgment": "pass",
       "criterion": "Ask the mode-specific opening and wait.",
-      "rationale": "Fresh authored sample satisfies only the stated criterion. No reliability or provider behavior is inferred.",
-      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
-      "evidenceSha256": "b3bd89bdf48f8b9e898b82d91fb81298e34ce61561b07a8dfcefbfa159b19a10"
+      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Ask the mode-specific opening and wait. Previously fresh authored assistant turns were explicitly re-reviewed and retained because their behavior remains appropriate; all learner/source inputs are preserved.",
+      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review.",
+      "evidenceSha256": "9592133f712dd5aca024fa07326c06bb91ec2da9fb8e18708dcdedbd740bb4f3"
     },
     {
       "id": "opening-expression-upgrade",
       "promptId": "expression-upgrade",
       "variant": "full",
       "source": "current",
-      "promptSha256": "76366465dc0d0bbf8b53c9e9d0ab96341c7f46710a1bd20b05fc141dbe28b02c",
+      "promptSha256": "1d9d371f9516ede4da692b03d62d411c17f054e584610132f155e1f93e754167",
       "learnerTurns": [],
-      "assistantTurns": ["What do you like doing as a hobby?"],
+      "assistantTurns": [
+        "What do you enjoy doing in your spare time?"
+      ],
       "turns": [
         {
           "role": "assistant",
-          "content": "What do you like doing as a hobby?"
+          "content": "What do you enjoy doing in your spare time?"
         }
       ],
       "judgment": "pass",
       "criterion": "Ask the mode-specific opening and wait.",
-      "rationale": "Fresh authored sample satisfies only the stated criterion. No reliability or provider behavior is inferred.",
-      "sampleProvenance": "Fresh same-model authored text-only role simulation against the narrowed clarification rule; one self-judged sample. No external API, audio, or independent judge execution.",
-      "evidenceSha256": "4839b8a6e01f42a9c24df96ba389c56d92d4317ac803d9a516c3bd7c332eee98"
+      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Ask the mode-specific opening and wait. Previously fresh authored assistant turns were explicitly re-reviewed and retained because their behavior remains appropriate; all learner/source inputs are preserved.",
+      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review.",
+      "evidenceSha256": "f869657c1cab3371e7f79c0849441cfa924d756a08e8b22cdcf33b78f1747b78"
     },
     {
       "id": "opening-roleplay-coach",
       "promptId": "roleplay-coach",
-      "promptSha256": "42388bdcfb01e90cc2daf733b1d09b5fc3dc3941feabae2bd989015600ae91c5",
+      "promptSha256": "9649b8069c72d2955f9f509a9b513d0be33e98310a07ad0f6b64d3026fca73af",
       "learnerTurns": [],
-      "assistantTurns": ["Which situation would you like to practice?"],
+      "assistantTurns": [
+        "Which situation would you like to practice?"
+      ],
       "turns": [
         {
           "role": "assistant",
@@ -99,80 +111,89 @@
       ],
       "judgment": "pass",
       "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
-      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
-      "evidenceSha256": "7f64f625fc6d793b9163bf34f5d51e920672d3ae714a622c647218d125b34786"
+      "rationale": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: exact role-play setup question, stop-command priority, pending-task help, grounded answerable review cards, usable natural transcript sentences, and scene opening as a question to the learner. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge. Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context. The setup question is aligned to the exact required line. Source inputs and turn shape remain unchanged.",
+      "evidenceSha256": "0c0126a3cbd3c40bc1f828ed5082068b3f008c7573d1dd144b17055a274fdda6",
+      "sampleProvenance": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: exact role-play setup question, stop-command priority, pending-task help, grounded answerable review cards, usable natural transcript sentences, and scene opening as a question to the learner. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge."
     },
     {
       "id": "opening-friendly-debate",
       "promptId": "friendly-debate",
-      "promptSha256": "4d800082dccc6daca7f9ba05c41c77b27cf1b6f0d951ca96f146ee4d1aee0532",
+      "promptSha256": "2cc4d145184353fdb653052e1082e081442e96de5653d3e50fbbabb6d52ce99f",
       "learnerTurns": [],
-      "assistantTurns": ["Which topic would you like to debate?"],
+      "assistantTurns": [
+        "What topic shall we discuss from opposite sides?"
+      ],
       "turns": [
         {
           "role": "assistant",
-          "content": "Which topic would you like to debate?"
+          "content": "What topic shall we discuss from opposite sides?"
         }
       ],
       "judgment": "pass",
       "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
-      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
-      "evidenceSha256": "b8e61422d58d7d514aabbe80669ba490d95c8377dbd39cbfa0d2b3bdfd075e66"
+      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context. Previously fresh authored assistant turns were explicitly re-reviewed and retained because their behavior remains appropriate; all learner/source inputs are preserved.",
+      "evidenceSha256": "3dd8712b1e88c3e11c2f64ac312f2741ea96dbd3e19ba7ef5ccec16376729a48",
+      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review."
     },
     {
       "id": "opening-word-riddle",
       "promptId": "word-riddle",
-      "promptSha256": "e7ac808106d570821bc0081bf64ac00cb2d303022e06a9fa28a8c8a08b08b92f",
+      "promptSha256": "a18d8f871a4ce6e54c23bc5fe8514ae4d729fa99d58123e805287882e4dd515d",
       "learnerTurns": [],
       "assistantTurns": [
-        "You use this small object to open a lock. What is it?"
+        "This small object fits into a lock and lets you open it. What is it?"
       ],
       "turns": [
         {
           "role": "assistant",
-          "content": "You use this small object to open a lock. What is it?"
+          "content": "This small object fits into a lock and lets you open it. What is it?"
         }
       ],
       "judgment": "pass",
       "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
-      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
-      "evidenceSha256": "cc349a67233c98f37fadb2191e29b48f2a1fdf195dcfc627bf68b1d848e49413"
+      "rationale": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge. Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context. Previously fresh authored target replies remain appropriate and are retained after explicit re-review. Source inputs and turn shape remain unchanged.",
+      "evidenceSha256": "f9e0aabca9bac476adc63a2ce8cdcec578c87b0642f4199b56431fe27e4b327c",
+      "sampleProvenance": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge."
     },
     {
       "id": "opening-visual-vocabulary",
       "promptId": "visual-vocabulary",
-      "promptSha256": "4ef40dbfad910b5d586597c843db0b0d132ed49b074b7adefe1cb1307a2661fc",
+      "promptSha256": "e4ecee7627b3dc501c5dd3bd8a602dc4e0a6e3e0fef9d7a69a58285d6038f3ff",
       "learnerTurns": [],
       "assistantTurns": [
-        "Could you share a photo if this chat supports images, or describe one object near you?"
+        "Please upload a photo if images are supported here, or describe an object beside you."
       ],
       "turns": [
         {
           "role": "assistant",
-          "content": "Could you share a photo if this chat supports images, or describe one object near you?"
+          "content": "Please upload a photo if images are supported here, or describe an object beside you."
         }
       ],
       "judgment": "pass",
       "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
-      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
-      "evidenceSha256": "db3d283e11dea04dc6ec994e51b4bb0f0257cc9683c5e88cce31402528c157a4"
+      "rationale": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge. Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context. Previously fresh authored target replies remain appropriate and are retained after explicit re-review. Source inputs and turn shape remain unchanged.",
+      "evidenceSha256": "c0e9d2ee064a8525a88f4e3e36fe7c989e8f1c193c63a780e7ed70efbf03be5c",
+      "sampleProvenance": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge."
     },
     {
       "id": "opening-story-summary",
       "promptId": "story-summary",
-      "promptSha256": "f3832c53ce041cda69556828f41f27441b84729c2cede354c2a2c3fa4e506869",
+      "promptSha256": "0e135769970ccc6de70b4dd2164a69b56d8d1984a4016949083bb62ea987a361",
       "learnerTurns": [],
-      "assistantTurns": ["What would you like to retell?"],
+      "assistantTurns": [
+        "Which story or experience would you like to retell?"
+      ],
       "turns": [
         {
           "role": "assistant",
-          "content": "What would you like to retell?"
+          "content": "Which story or experience would you like to retell?"
         }
       ],
       "judgment": "pass",
       "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
-      "rationale": "The opening follows the final start instruction and waits. Later teacher feedback is assessed in the paired teaching case.",
-      "evidenceSha256": "68ec7a4a16c885c5788f8f0f4061891a9381c281b13deaf4a964b413c5b1dcf6"
+      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context. Previously fresh authored assistant turns were explicitly re-reviewed and retained because their behavior remains appropriate; all learner/source inputs are preserved.",
+      "evidenceSha256": "0d0ae743b3232bc5e36fa13d842a044dea4e06be2112fb3e033bea27d4093432",
+      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review."
     }
   ]
 }

@@ -5,10 +5,8 @@ import { resolve, extname } from "node:path";
 
 test("real worker updates reload once after initial claim and on return visits", async ({
   page,
-  browserName,
   context,
 }) => {
-  test.skip(browserName !== "chromium", "Chromium worker lifecycle regression");
   const dist = resolve(import.meta.dirname, "../dist");
   let release = 0;
   const server = createServer(async (request, response) => {

@@ -11,7 +11,8 @@
     "test:e2e": "playwright test",
     "typecheck": "tsc --noEmit",
     "eval": "tsx evals/run.ts",
-    "test:webkit": "playwright test tests/shell.spec.ts tests/clipboard.spec.ts --browser=webkit"
+    "test:webkit": "playwright test tests/shell.spec.ts tests/clipboard.spec.ts tests/scenes.spec.ts tests/updates.spec.ts tests/update-feedback.spec.ts --browser=webkit",
+    "eval:live": "tsx evals/export-live.ts && python3 evals/live.py"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",

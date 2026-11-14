@@ -14,7 +14,10 @@ import { collections } from "./content/collections";
 import { Icon } from "./Icon";
 import { Settings } from "./Settings";
 import { PromptLibrary } from "./PromptLibrary";
+import { composeScene, type SceneSelection } from "./scenes";
 import { promptText } from "./prompt-text";
+import { useAppUpdate } from "./useAppUpdate";
+import { UpdateBanner } from "./UpdateBanner";
 import { PromptDialog } from "./PromptDialog";
 import { dictionary, initialLocale, type Locale } from "./i18n";
 const prompts: Prompt[] = sourcePrompts;
@@ -25,6 +28,8 @@ try {
 } catch {}
 export default function App() {
   const route = useNavigation();
+  const appUpdate = useAppUpdate();
+  const [sceneSelection, setSceneSelection] = useState<SceneSelection>();
   const frame = useAppFrame(route.base);
   const lastPractice = useRef("#library");
   if (route.page === "practice") lastPractice.current = route.base;
@@ -54,15 +59,13 @@ export default function App() {
       () =>
         matchMedia("(display-mode: standalone)").matches ||
         !!(navigator as Navigator & { standalone?: boolean }).standalone,
-    ),
-    [waiting, setWaiting] = useState<ServiceWorker | null>(null);
+    );
   const install = useRef<(Event & { prompt: () => Promise<void> }) | null>(
     null,
   );
   const copyGeneration = useRef(0);
   const clipboardBusy = useRef(false);
   const recentRef = useRef(recent);
-  const updateRequested = useRef(false);
   const active = useRef(modal);
   active.current = modal;
   const t = dictionary[locale],
@@ -94,65 +97,16 @@ export default function App() {
     };
   }, []);
   useEffect(() => {
-    if (!("serviceWorker" in navigator) || !import.meta.env.PROD) return;
-    let controlled = !!navigator.serviceWorker.controller;
-    let refreshing = false;
-    let disposed = false;
-    let registration: ServiceWorkerRegistration | undefined;
-    let installing: ServiceWorker | null = null;
-    const change = () => {
-      if (!navigator.serviceWorker.controller) return;
-      if (!controlled && !updateRequested.current) {
-        controlled = true;
-        return;
-      }
-      controlled = true;
-      if (!refreshing) {
-        refreshing = true;
-        location.reload();
-      }
-    };
-    const check = () => {
-      if (!disposed) setWaiting(registration?.waiting ?? null);
-    };
-    const observe = () => {
-      installing?.removeEventListener("statechange", check);
-      installing = registration?.installing ?? null;
-      installing?.addEventListener("statechange", check);
-      check();
-    };
-    const resume = () => {
-      if (document.visibilityState === "visible" && navigator.onLine)
-        void registration?.update().catch(() => {});
-    };
-    navigator.serviceWorker.addEventListener("controllerchange", change);
-    document.addEventListener("visibilitychange", resume);
-    navigator.serviceWorker
-      .register(`${import.meta.env.BASE_URL}sw.js`)
-      .then((reg) => {
-        if (disposed) return;
-        registration = reg;
-        reg.addEventListener("updatefound", observe);
-        observe();
-      })
-      .catch(() => {
-        if (!disposed)
-          setMessage(en ? "Offline cache unavailable." : "离线缓存暂不可用。");
-      });
-    return () => {
-      disposed = true;
-      navigator.serviceWorker.removeEventListener("controllerchange", change);
-      document.removeEventListener("visibilitychange", resume);
-      registration?.removeEventListener("updatefound", observe);
-      installing?.removeEventListener("statechange", check);
-    };
-  }, []);
+    if (appUpdate.cacheUnavailable)
+      setMessage(en ? "Offline cache unavailable." : "离线缓存暂不可用。");
+  }, [appUpdate.cacheUnavailable, en]);
   useLayoutEffect(() => {
     copyGeneration.current++;
     setCopied(false);
     if (route.promptId) {
       const prompt = prompts.find((p) => p.id === route.promptId);
       if (prompt && active.current?.prompt?.id !== prompt.id) {
+        setSceneSelection(undefined);
         setVariant("full");
         setReviewSource("current");
         setManual(false);
@@ -220,6 +174,7 @@ export default function App() {
   };
   const detail = (p: Prompt) => {
     resetCopyFeedback();
+    setSceneSelection(undefined);
     setVariant("full");
     setReviewSource("current");
     setMessage("");
@@ -231,6 +186,7 @@ export default function App() {
     p: Prompt,
     format: PromptVariant = "full",
     source: ReviewSource = "current",
+    scene?: SceneSelection,
   ) => {
     // Start the browser API during the click gesture; never queue a later write.
     if (clipboardBusy.current) return;
@@ -244,7 +200,9 @@ export default function App() {
     setManual(false);
     setMessage("");
     try {
-      await navigator.clipboard.writeText(promptText(p, format, source));
+      await navigator.clipboard.writeText(
+        promptText(composeScene(p, scene), format, source),
+      );
       const next = [
         p.id,
         ...recentRef.current.filter((id) => id !== p.id),
@@ -461,20 +419,12 @@ export default function App() {
             <Icon name="language" />
           </button>
         </header>
-        {waiting && (
-          <div id="update-bar" className="app-banner" role="status">
-            <span>{s("新版本已就绪", "An update is ready")}</span>
-            <button
-              id="update"
-              onClick={() => {
-                updateRequested.current = true;
-                waiting.postMessage("SKIP_WAITING");
-              }}
-            >
-              {s("更新并重新打开", "Update and reload")}
-            </button>
-          </div>
-        )}
+        <UpdateBanner
+          snapshot={appUpdate.snapshot}
+          completed={appUpdate.completed}
+          locale={locale}
+          onUpdate={appUpdate.requestUpdate}
+        />
         <div
           className="page-scroll"
           data-testid="page-scroll"
@@ -534,7 +484,14 @@ export default function App() {
       {modal && (
         <PromptDialog
           locale={locale}
-          prompt={modal.prompt}
+          prompt={
+            modal.prompt ? composeScene(modal.prompt, sceneSelection) : null
+          }
+          sceneSelection={sceneSelection}
+          onSceneChange={(next) => {
+            resetCopyFeedback();
+            setSceneSelection(next);
+          }}
           content={modal.content}
           message={message}
           manual={manual}
@@ -555,7 +512,10 @@ export default function App() {
             setManual(false);
           }}
           onClose={closeModal}
-          onCopy={(p, format) => void copy(p, format, reviewSource)}
+          onCopy={(_p, format) => {
+            if (modal.prompt)
+              void copy(modal.prompt, format, reviewSource, sceneSelection);
+          }}
         />
       )}
     </div>

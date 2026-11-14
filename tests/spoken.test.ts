@@ -10,7 +10,11 @@ test("each coach has a short standalone English script for speaking aloud", () =
     assert.ok(!text.includes("/"), p.id);
     assert.match(text, /short|brief/i, p.id);
     assert.match(text, /one (?:easy )?question|one follow-up/i, p.id);
-    assert.match(text, /correct|model|feedback|fix a real issue/i, p.id);
+    assert.match(
+      text,
+      /correct|model|feedback|rewrite|fix a real issue/i,
+      p.id,
+    );
     assert.match(text, /start|ask|clue/i, p.id);
   }
 });

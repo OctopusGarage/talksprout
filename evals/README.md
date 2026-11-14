@@ -1,6 +1,6 @@
 # Evaluations
 
-Run `pnpm eval` to validate prompt contracts and archived simulation fixtures. This command does not generate new AI responses.
+Run `pnpm eval` to validate prompt contracts, authored reference archives, the complete composition matrix, and recorded live API evidence. This command does not generate new AI responses or make network requests.
 
 ## Fixtures
 
@@ -38,3 +38,31 @@ Reviews end the session rather than configure another coach. Check coverage of a
 When prompt text changes, regenerate affected sessions. Do not rewrite recorded outputs solely to obtain a passing judgment. Unchanged-text fixtures may be retained; state that reuse when reporting results.
 
 Browser checks run separately with `pnpm build`, `pnpm test:e2e`, and `pnpm test:webkit`. Install Chromium and WebKit with `pnpm exec playwright install chromium webkit` first. The WebKit suite covers the app frame and delayed clipboard state transitions. Its clipboard adapters test application payloads and completion ordering; Chromium also checks actual clipboard access and manual-copy fallback. Real worker lifecycle and isolated public-asset build checks cover update behavior and cache invalidation. See the [evaluation report](../docs/evals.md) for coverage and limitations.
+
+## Composed scenario presets
+
+`fixtures/scene-presets.json` adds 28 authored text cases: 12 representative presets in both full and spoken form, plus multi-turn retry/clarification, mock interview review, background instruction isolation, and stopping. Cases record the selection, background, pacing, composed payload digest, authored turns, rationale and evidence digest. `scene-validate.ts` rejects stale payloads or evidence and missing representative/edge coverage. `pnpm eval` includes this archive.
+
+The selected payloads are distinct from base coach payloads. Original unselected prompt bytes are unchanged, so existing base archives are retained without resealing. Scenario cases were authored and reviewed for the composed instructions; identical first turns across formats do not establish equal provider behavior. These cases do not represent fresh model/API inference, independent judgments, repeated trials, audio tests, or exhaustive semantic coverage of all 136 presets and coach combinations. Unit tests check catalog integrity and composition contracts for every compatible pair; browser tests cover actual picker, preview and clipboard interactions. Re-review authored outputs and rationales before updating digests after composition changes.
+
+## Live API release evidence
+
+[`fixtures/live-api.json`](fixtures/live-api.json) records 514 isolated text cases executed against OpenAI `gpt-4.1` (reported snapshot `gpt-4.1-2025-04-14`). Coverage includes every one of the 136 presets in full and spoken text with its recommended coach, all 56 technical presets in both mock-interview formats, all nine base coaches, natural answers/help/stopping, retry detours, technical coaching, adapted debate/game topics, background isolation, and all four reviews with current/missing/transcript/voice-only-text cases.
+
+Each target receives the copied prompt as a user message plus synthetic conversation context, without the evaluation criterion. A separate call to the same model judges the output; these are separate calls, not an independent judging model. A mechanical opening check also rejects multiple question marks. This simple check is an aid, not a complete semantic detector of compound or quoted questions. The final raw judge result is 513 pass, zero fail, one uncertain. A separate Codex release reviewer accepted the uncertain visual-opening case: a concise request for a photo or object description is valid without interrogative punctuation. The original output and judgment are retained alongside the bound adjudication. No strict failure is waived.
+
+Records retain exact input messages, payload hashes, response IDs, reported models, finish reasons, usage, target replies, judge reasons/provenance, contract checks and evidence digests. The validator requires exact current case coverage, current inputs and grading policy, complete executions, and a final pass for every case. Adjudications must match the original response, payload, raw judge and raw evidence digest. Digests detect drift; they are not provider signatures or independent proof of authorship.
+
+[`results/2026-11-14-regressions.json`](results/2026-11-14-regressions.json) preserves historical flagged outputs from refinement rounds rather than relabeling them as current passes. True failures drove stricter single-focus openings, context-specific help, early stopping, natural-description acceptance, grounded short cards and explicit oral fallback. An overly strict judge also produced false positives, documented in the records. Current-input target replies may be retained during the same release session only when the complete case is identical; changing the judge model or policy invalidates cached judgments while retaining eligible target responses.
+
+To execute a new opt-in run:
+
+```sh
+OPENAI_API_KEY=... pnpm eval:live
+# Optional controls, passed to the Python runner:
+pnpm eval:live --workers 4 --output .superpowers/model-run/my-run.json
+```
+
+Use an existing environment variable or secret manager for the key; never commit credentials. The runner requires Python 3 and curl, uses normal TLS verification, and sends credentials only through curl stdin. It writes raw results into the ignored workflow directory. Review failures before accepting a new release snapshot; do not reseal obsolete results into passes. `--resume` retains only exact-input target samples and checks the grading-policy hash before reusing judgments. The live script can incur API charges; ordinary CI and `pnpm eval` use the committed evidence and need no API key.
+
+The authored reference suites were independently re-authored/re-reviewed for the revised prompts while preserving learner/source inputs. Later refinements retain already fresh examples only after explicit review recorded in their provenance. These authored references remain separate from real API samples. Neither text suite establishes microphone recognition, pronunciation accuracy, physical iPhone PWA behavior, learning outcomes, long-session reliability, or compatibility with other providers. Spoken scripts are text inputs here. Compact review cards cap at three cards; full cards retain the larger maximum.

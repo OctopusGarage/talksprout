@@ -2,20 +2,32 @@
 
 ## Scope
 
-Nine conversation-coaching modes, organized into three directories. Each coaching mode has an archived first-turn example and a multi-turn teaching example. Four post-conversation reviews are evaluated separately from those coaching modes.
+Release evaluation on 2026-11-14 covers nine coaching modes, four review modes, and 136 optional presets (32 everyday, 48 workplace, 56 interview). Static composition, authored reference simulations, real text API execution, and browser/PWA tests are separate evidence types.
 
-| Check                                | Recorded result                           |
-| ------------------------------------ | ----------------------------------------- |
-| Opening role simulations             | 9 pass judgments across 9 modes           |
-| Multi-turn teaching simulations      | 11 pass judgments across 9 modes          |
-| Spoken-opening simulations           | 11 pass judgments across 9 modes          |
-| Post-conversation review simulations | 15 scoped pass judgments across 4 reviews |
-| Unit tests                           | 43 tests passed                           |
-| Browser experience tests             | 39 Chromium tests passed                  |
-| WebKit app-frame and clipboard tests | 18 tests passed                           |
-| TypeScript and production build      | Passed                                    |
+| Check | Release result |
+| --- | --- |
+| Authored opening / teaching / spoken / review references | 9 / 11 / 11 / 15 accepted cases |
+| Authored scene references | 28 accepted cases |
+| Complete composition matrix | 800 coach/scenario/pace combinations, 1,600 payloads |
+| Real GPT-4.1 text API cases | 514 accepted; raw judge 513 pass, 0 fail, 1 uncertain |
+| Independent semantic adjudication | 1 imperative-opening false positive accepted; raw verdict retained |
+| Unit tests | 65 passed |
+| Chromium browser tests | 50 passed |
+| WebKit browser/PWA tests | 30 passed |
+| TypeScript and production build | Passed |
 
-The 46 archived examples are one-sample, same-model authored text simulations, not external-provider API runs, repeated independent trials, or evidence of learning effectiveness. Fixtures contain exact prompt hashes; changed text requires refreshed sessions. See [methodology](../evals/README.md) and [fixtures](../evals/fixtures/).
+
+The 46 base references and 28 scene references are authored text simulations, not external-provider API runs. The separate live API corpus below contains real executions. Neither corpus is evidence of learning effectiveness or broad provider reliability. Fixtures contain exact prompt hashes; changed text requires refreshed sessions. See [methodology](../evals/README.md) and [fixtures](../evals/fixtures/).
+
+## Real API evaluation for this release
+
+The [live archive](../evals/fixtures/live-api.json) records 514 isolated cases against OpenAI `gpt-4.1`, reported as `gpt-4.1-2025-04-14`. The suite exercises every preset's recommended coach in full and spoken text, every technical mock scenario in both formats, all base coaches and review purposes, and help, stopping, correct answers, retry clarification/skip/success, background isolation, missing context, transcript isolation and a text simulation of voice-only fallback.
+
+Separate same-model calls judge responses, augmented by a mechanical opening-question check. Final raw judgments are **513 pass, zero fail and one uncertain**. A separate Codex reviewer accepted the uncertain case because “Please send a photo or describe the object…” is a valid concise startup request without a question mark. Its input, response, raw judgment and original evidence hash are preserved with the adjudication. There is no waived strict failure in the current release corpus.
+
+[Historical findings](../evals/results/2026-11-14-regressions.json) retain failed outputs from refinement rounds. These drove concrete one-focus openings, pending-task help, stop priority, natural-description acceptance, grounded shorter cards, and explicit missing-context/oral branches. Prompt changes invalidate corresponding payload evidence. Within the release session, target responses are reused only for identical complete inputs; changing judge policy or model invalidates cached judgments. Previously generated authored references were re-authored/re-reviewed separately, preserving source/learner inputs.
+
+The live corpus is one text sample per current case. Same-model grading is correlated and required the documented independent adjudication. It does not establish microphone recognition, pronunciation quality, physical iPhone PWA behavior, long-session stability or compatibility with other providers. `pnpm eval` validates committed evidence without making new API calls; `pnpm eval:live` performs optional new calls using an environment-provided key. See [methodology](../evals/README.md).
 
 ## Spoken openings
 
@@ -131,7 +143,7 @@ The runtime and instruction fixes now have the following evidence:
 | Insufficient archived-eval validation           | Twenty-five validator unit cases cover malformed records, exact purpose/variant coverage, missing teaching/isolation evidence, duplicated turns, strict pass-only release acceptance, and input/response/verdict integrity. The original six insufficient-fixture mutations are rejected even after resealing where structural checks apply.                                         |
 | Short-form grounding and conversational detours | Short reviews retain missing-context recovery, bounded selection, and a voice-only recap without IPA/worksheets. Retry coaches distinguish clarification/help from answers and allow resume or explicit skip. Spoken role-play separates character speech from a labeled language note while preserving genuine-error feedback.                                                      |
 
-Current release checks: **43 unit tests, 39 Chromium browser tests, and 18 WebKit cases pass**, along with the TypeScript/production build and the sealed archive validator. The expanded 70-scan/100-layout audit above belongs to the earlier audited revision; it is not relabeled as a fresh run after remediation.
+The earlier remediation checkpoint recorded **43 unit tests, 39 Chromium browser tests, and 18 WebKit cases**, plus build and archive validation. These counts describe that earlier revision, not the current release. The expanded 70-scan/100-layout audit above belongs to the earlier audited revision; it is not relabeled as a fresh run after remediation.
 
 The archive now contains **46 authored cases**: 12 existing cases were refreshed for changed instructions or source data, 9 edge cases were added, and the transcripts and judgments of 25 unchanged-target cases were retained. All records received integrity metadata; that migration is not a new model evaluation. New cases cover clarification, skipping and resuming retries, mixed answers containing social questions, missing review context, and voice-only recap behavior. Instruction scripts remain English-only and at most 85 words.
 
@@ -139,8 +151,16 @@ These changes close the reproduced implementation and validator defects. Authore
 
 ## Limits
 
-Live provider sessions, microphones, pronunciation, long conversations, iOS/Android installation, and learning outcomes remain unverified. Passing short text cases does not establish sustained coaching quality or reliable behavior across external AI services.
+Broader provider coverage, microphones, pronunciation, long conversations, physical iOS/Android installation, and learning outcomes remain unverified. This release adds the scoped GPT-4.1 text API evidence described above. Passing short text cases does not establish sustained coaching quality or reliable behavior across external AI services.
 
 ## Touch and keyboard focus follow-up
 
 Input modality now controls non-editable focus rings across prompt rows, favorite and copy buttons, navigation, settings, and language options. Pointer input clears decorative outlines without discarding restored focus; keyboard input restores visible focus. Search fields retain their editing cue and manual-copy text remains selectable. A touch-context regression covers sheet return, controlled stale-focus transitions, toolbar controls, language selection, and instructions. Chromium and WebKit emulation do not replace verification on a physical iPhone.
+
+## Scenario preset evidence
+
+The optional scenario layer adds 136 named presets (32 everyday, 48 workplace, 56 interview). Its separate archive contains 28 authored role simulations over composed payloads; see `evals/README.md` for representative coverage and limitations. Unselected prompts use the base coach instructions without scenario composition. The release prompt refinements and refreshed reference archives are documented above. Catalog/assembly tests cover all supported combinations; browser checks cover scenario replacement, background editing, both formats, exact clipboard delivery, fallback, stale completions, language persistence, keyboard use and narrow-screen accessibility. These forms of evidence remain separate from the real API text corpus added in this release and from audio/provider testing, which remains unverified.
+
+## PWA update verification
+
+The update manager now publishes immediate progress, observes worker and controller state, polls briefly for confirmed activation, and reconciles on foreground/pageshow/focus/reconnect. After 12 seconds it offers retry instead of silently waiting or blindly reloading. Dedicated session storage supports a brief completion acknowledgment; preferences are preserved. Unit lifecycle simulations cover missed events, timeout/retry, stale workers, initial claim and disposal. Deterministic browser simulations cover visible standalone-state feedback; real local HTTP-served service workers verify actual cache installation, two release cycles, exactly-once reload and offline recovery in both Chromium and WebKit. These browser tests do not replace a physical iPhone Home Screen test.

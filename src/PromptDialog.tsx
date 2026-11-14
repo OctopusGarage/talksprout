@@ -1,4 +1,6 @@
 import { useEffect, useRef, type ReactNode } from "react";
+import { ScenarioPicker } from "./ScenarioPicker";
+import type { SceneSelection } from "./scenes";
 import { Icon } from "./Icon";
 import { promptText } from "./prompt-text";
 import { dictionary, metadata, categoryEnglish, type Locale } from "./i18n";
@@ -17,7 +19,11 @@ export function PromptDialog({
   onVariantChange,
   reviewSource = "current",
   onSourceChange,
+  sceneSelection,
+  onSceneChange,
 }: {
+  sceneSelection?: SceneSelection;
+  onSceneChange?: (selection?: SceneSelection) => void;
   locale: Locale;
   prompt: Prompt | null;
   content: ReactNode;
@@ -110,6 +116,15 @@ export function PromptDialog({
         {p ? (
           <>
             {!en && <p className="english-title">{p.english}</p>}
+            {onSceneChange && (
+              <ScenarioPicker
+                key={p.id}
+                prompt={p}
+                locale={locale}
+                selection={sceneSelection}
+                onChange={onSceneChange}
+              />
+            )}
             <div
               className="prompt-formats"
               role="tablist"

@@ -1,0 +1,63 @@
+import type { Scene, SceneCategory } from "./scenes";
+export const categoryEmoji: Record<SceneCategory, string> = {
+  everyday: "🌿",
+  workplace: "💼",
+  interview: "💻",
+};
+export const groupEmoji: Record<string, string> = {
+  "ball-sports": "🏀",
+  outdoors: "🥾",
+  "travel-stories": "🧳",
+  "travel-logistics": "✈️",
+  food: "🍳",
+  culture: "🎬",
+  "daily-life": "🏡",
+  connections: "🌱",
+  career: "👋",
+  meetings: "🎙️",
+  product: "🧩",
+  delivery: "🗓️",
+  relationships: "🤝",
+  "technical-communication": "📊",
+  "async-incidents": "💬",
+  business: "📋",
+  experience: "👤",
+  algorithms: "🧠",
+  runtime: "⚙️",
+  backend: "🔌",
+  databases: "🗄️",
+  concurrency: "🔀",
+  distributed: "🌐",
+  "system-design": "🏗️",
+  reliability: "📈",
+  engineering: "🛠️",
+  frontend: "🖥️",
+  "data-ml": "🔬",
+  llm: "✨",
+  agents: "🤖",
+};
+const sceneEmoji: Record<string, string> = {
+  basketball: "🏀",
+  football: "⚽",
+  tennis: "🎾",
+  badminton: "🏸",
+  running: "🏃",
+  fitness: "💪",
+  hiking: "🥾",
+  cycling: "🚲",
+  cooking: "🍳",
+  coffee: "☕",
+  "ordering-food": "🍽️",
+  "hometown-food": "🍜",
+  music: "🎵",
+  reading: "📚",
+  gaming: "🎮",
+  movies: "🎬",
+  pets: "🐾",
+  shopping: "🛍️",
+  hotel: "🏨",
+};
+export const sceneIcon = (scene: Scene) =>
+  sceneEmoji[scene.id] ??
+  groupEmoji[scene.group] ??
+  categoryEmoji[scene.category];
