@@ -2,6 +2,7 @@ import type { Scene } from "./types";
 export const everydayScenes = [
   {
     id: "basketball",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "ball-sports",
     title: {
@@ -19,6 +20,7 @@ export const everydayScenes = [
   },
   {
     id: "football",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "ball-sports",
     title: {
@@ -35,6 +37,7 @@ export const everydayScenes = [
   },
   {
     id: "tennis",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "ball-sports",
     title: {
@@ -51,6 +54,7 @@ export const everydayScenes = [
   },
   {
     id: "badminton",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "ball-sports",
     title: {
@@ -67,6 +71,7 @@ export const everydayScenes = [
   },
   {
     id: "running",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "outdoors",
     title: {
@@ -83,6 +88,7 @@ export const everydayScenes = [
   },
   {
     id: "fitness",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "outdoors",
     title: {
@@ -99,6 +105,7 @@ export const everydayScenes = [
   },
   {
     id: "hiking",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "outdoors",
     title: {
@@ -115,6 +122,7 @@ export const everydayScenes = [
   },
   {
     id: "cycling",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "outdoors",
     title: {
@@ -130,136 +138,8 @@ export const everydayScenes = [
     recommendedCoachIds: ["daily-check-in", "gentle-start"],
   },
   {
-    id: "travel-plans",
-    category: "everyday",
-    group: "travel-stories",
-    title: {
-      zh: "旅行计划",
-      en: "Travel plans",
-    },
-    context: "Friends have different budgets and destination preferences.",
-    learnerRole: "a conversation partner",
-    partnerRole: "a friend",
-    goal: "Compare destinations and negotiate a shared itinerary.",
-    opening: "Where would you like to go on your next trip?",
-    spokenCue: "Travel plans",
-    recommendedCoachIds: ["daily-check-in", "gentle-start"],
-  },
-  {
-    id: "city-exploration",
-    category: "everyday",
-    group: "travel-stories",
-    title: {
-      zh: "城市探索",
-      en: "Exploring a city",
-    },
-    context: "A friend has one free afternoon in a new city.",
-    learnerRole: "a conversation partner",
-    partnerRole: "a friend",
-    goal: "Explain what interests you and suggest a flexible route.",
-    opening: "What would you like to explore first in a new city?",
-    spokenCue: "Exploring a city",
-    recommendedCoachIds: ["daily-check-in", "gentle-start"],
-  },
-  {
-    id: "nature-travel",
-    category: "everyday",
-    group: "travel-stories",
-    title: {
-      zh: "自然风光",
-      en: "Nature trips",
-    },
-    context: "Friends are choosing between mountains and the coast.",
-    learnerRole: "a conversation partner",
-    partnerRole: "a friend",
-    goal: "Describe scenery and compare activities and travel effort.",
-    opening: "Would you choose the mountains or the coast?",
-    spokenCue: "Nature trips",
-    recommendedCoachIds: ["daily-check-in", "gentle-start"],
-  },
-  {
-    id: "travel-stories",
-    category: "everyday",
-    group: "travel-stories",
-    title: {
-      zh: "旅行见闻",
-      en: "Travel stories",
-    },
-    context: "A friend asks about a memorable trip you choose to describe.",
-    learnerRole: "a conversation partner",
-    partnerRole: "a friend",
-    goal: "Tell a clear story and explain what surprised you.",
-    opening: "Where did you go on a memorable trip?",
-    spokenCue: "Travel stories",
-    recommendedCoachIds: ["daily-check-in", "gentle-start"],
-  },
-  {
-    id: "airport",
-    category: "everyday",
-    group: "travel-logistics",
-    title: {
-      zh: "机场与交通",
-      en: "Airport transfers",
-    },
-    context: "A traveler needs to confirm a route from the airport.",
-    learnerRole: "a conversation partner",
-    partnerRole: "a friend",
-    goal: "Ask about transfer options, timing and luggage.",
-    opening: "Where are you trying to get to from the airport?",
-    spokenCue: "Airport transfers",
-    recommendedCoachIds: ["daily-check-in", "gentle-start"],
-  },
-  {
-    id: "hotel",
-    category: "everyday",
-    group: "travel-logistics",
-    title: {
-      zh: "酒店入住",
-      en: "Hotel check-in",
-    },
-    context: "A guest arrives at a hotel with a booking to confirm.",
-    learnerRole: "a hotel guest",
-    partnerRole: "a receptionist",
-    goal: "Confirm the booking and ask about practical arrangements.",
-    opening: "Could I have the name on your booking?",
-    spokenCue: "Hotel check-in",
-    recommendedCoachIds: ["daily-check-in", "gentle-start"],
-  },
-  {
-    id: "directions",
-    category: "everyday",
-    group: "travel-logistics",
-    title: {
-      zh: "问路与公共交通",
-      en: "Directions & transit",
-    },
-    context: "A traveler is unsure which stop or exit to use.",
-    learnerRole: "a conversation partner",
-    partnerRole: "a friend",
-    goal: "Ask for directions and repeat key details to confirm understanding.",
-    opening: "Where would you like to go?",
-    spokenCue: "Directions & transit",
-    recommendedCoachIds: ["daily-check-in", "gentle-start"],
-  },
-  {
-    id: "booking-change",
-    category: "everyday",
-    group: "travel-logistics",
-    title: {
-      zh: "预订变更",
-      en: "Changing a booking",
-    },
-    context:
-      "A traveler needs different dates; availability and fees are unknown.",
-    learnerRole: "a traveler",
-    partnerRole: "a booking agent",
-    goal: "Explain the change and ask about options before agreeing.",
-    opening: "Which part of your booking do you need to change?",
-    spokenCue: "Changing a booking",
-    recommendedCoachIds: ["daily-check-in", "gentle-start"],
-  },
-  {
     id: "cooking",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "food",
     title: {
@@ -276,23 +156,8 @@ export const everydayScenes = [
     recommendedCoachIds: ["daily-check-in", "gentle-start"],
   },
   {
-    id: "ordering-food",
-    category: "everyday",
-    group: "food",
-    title: {
-      zh: "餐厅点餐",
-      en: "Ordering food",
-    },
-    context: "A diner is choosing a meal with preferences to clarify.",
-    learnerRole: "a diner",
-    partnerRole: "a server",
-    goal: "Ask about ingredients and place a clear order.",
-    opening: "What would you like to order?",
-    spokenCue: "Ordering food",
-    recommendedCoachIds: ["daily-check-in", "gentle-start"],
-  },
-  {
     id: "coffee",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "food",
     title: {
@@ -309,6 +174,7 @@ export const everydayScenes = [
   },
   {
     id: "hometown-food",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "food",
     title: {
@@ -325,6 +191,7 @@ export const everydayScenes = [
   },
   {
     id: "movies",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "culture",
     title: {
@@ -341,6 +208,7 @@ export const everydayScenes = [
   },
   {
     id: "music",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "culture",
     title: {
@@ -357,6 +225,7 @@ export const everydayScenes = [
   },
   {
     id: "reading",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "culture",
     title: {
@@ -373,6 +242,7 @@ export const everydayScenes = [
   },
   {
     id: "gaming",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "culture",
     title: {
@@ -389,6 +259,7 @@ export const everydayScenes = [
   },
   {
     id: "pets",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "daily-life",
     title: {
@@ -405,6 +276,7 @@ export const everydayScenes = [
   },
   {
     id: "shopping",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "daily-life",
     title: {
@@ -421,6 +293,7 @@ export const everydayScenes = [
   },
   {
     id: "home-life",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "daily-life",
     title: {
@@ -437,6 +310,7 @@ export const everydayScenes = [
   },
   {
     id: "weekend",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "daily-life",
     title: {
@@ -453,6 +327,7 @@ export const everydayScenes = [
   },
   {
     id: "new-friends",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "connections",
     title: {
@@ -469,6 +344,7 @@ export const everydayScenes = [
   },
   {
     id: "learning",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "connections",
     title: {
@@ -485,6 +361,7 @@ export const everydayScenes = [
   },
   {
     id: "habits",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "connections",
     title: {
@@ -501,6 +378,7 @@ export const everydayScenes = [
   },
   {
     id: "future-plans",
+    topicActivities: ["debate", "word-game"],
     category: "everyday",
     group: "connections",
     title: {

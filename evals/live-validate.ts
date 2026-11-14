@@ -1,4 +1,5 @@
 import { createLiveCases } from "./live-cases";
+import { recordedSceneIds } from "./live-coverage";
 import { evidenceDigest } from "./validate";
 import policy from "./live-policy.json";
 import { prompts } from "../src/prompts";
@@ -19,8 +20,20 @@ const singleQuestionPurposes = new Set([
 ]);
 export function validateLiveArchive(value: unknown) {
   const issues: string[] = [];
+  const recorded = new Set(recordedSceneIds);
+  const known = new Set(scenes.map((scene) => scene.id));
+  for (const id of recorded)
+    if (!known.has(id)) issues.push(`live: recorded scene missing from catalog: ${id}`);
+  const pendingSceneIds = scenes
+    .filter((scene) => !recorded.has(scene.id))
+    .map((scene) => scene.id);
+  const coverage = {
+    recordedScenes: recorded.size,
+    pendingScenes: pendingSceneIds.length,
+    pendingSceneIds,
+  };
   if (!object(value) || !Array.isArray(value.cases))
-    return { issues: ["live: missing cases"], cases: 0, adjudications: 0 };
+    return { issues: [...issues, "live: missing cases"], cases: 0, adjudications: 0, ...coverage };
   if (
     value.method !== "live-openai-chat-completions" ||
     !text(value.completedAt) ||
@@ -35,8 +48,13 @@ export function validateLiveArchive(value: unknown) {
   });
   if (value.judgePolicySha256 !== policyHash)
     issues.push("live: stale judge policy");
-  const expected = new Map(createLiveCases().map((c) => [c.id, c]));
+  const expected = new Map(
+    createLiveCases()
+      .filter((c) => !c.selection || recorded.has(c.selection.sceneId))
+      .map((c) => [c.id, c]),
+  );
   const seen = new Set<string>();
+  const judgeResponseIds = new Set<string>();
   let adjudications = 0;
   const rawCounts: Record<string, number> = { pass: 0, fail: 0, uncertain: 0 };
   for (const item of value.cases) {
@@ -100,6 +118,12 @@ export function validateLiveArchive(value: unknown) {
       execution.finishReason !== "stop"
     )
       fail("missing live judge execution");
+    else if (policy.batch_size === 1) {
+      const responseId = String(execution.responseId);
+      if (judgeResponseIds.has(responseId))
+        fail("judge execution must be isolated to one case");
+      judgeResponseIds.add(responseId);
+    }
     if (
       object(judge) &&
       typeof judge.judgment === "string" &&
@@ -160,7 +184,7 @@ export function validateLiveArchive(value: unknown) {
     value.summary.uncertain !== 0
   )
     issues.push("live: inconsistent release summary");
-  return { issues, cases: value.cases.length, adjudications };
+  return { issues, cases: value.cases.length, adjudications, ...coverage };
 }
 export function validateCompositionMatrix() {
   const issues: string[] = [];

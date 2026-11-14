@@ -2,6 +2,7 @@ import type { Scene } from "./types";
 export const workplaceScenes = [
   {
     id: "work-01",
+    topicActivities: [],
     category: "workplace",
     group: "career",
     title: {
@@ -20,6 +21,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-25",
+    topicActivities: [],
     category: "workplace",
     group: "career",
     title: {
@@ -37,6 +39,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-26",
+    topicActivities: [],
     category: "workplace",
     group: "career",
     title: {
@@ -54,6 +57,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-27",
+    topicActivities: [],
     category: "workplace",
     group: "career",
     title: {
@@ -71,6 +75,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-20",
+    topicActivities: [],
     category: "workplace",
     group: "career",
     title: {
@@ -88,6 +93,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-43",
+    topicActivities: [],
     category: "workplace",
     group: "career",
     title: {
@@ -105,6 +111,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-06",
+    topicActivities: [],
     category: "workplace",
     group: "meetings",
     title: {
@@ -122,6 +129,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-14",
+    topicActivities: [],
     category: "workplace",
     group: "meetings",
     title: {
@@ -139,6 +147,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-28",
+    topicActivities: [],
     category: "workplace",
     group: "meetings",
     title: {
@@ -156,6 +165,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-11",
+    topicActivities: [],
     category: "workplace",
     group: "meetings",
     title: {
@@ -174,6 +184,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-45",
+    topicActivities: [],
     category: "workplace",
     group: "meetings",
     title: {
@@ -192,6 +203,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-44",
+    topicActivities: [],
     category: "workplace",
     group: "meetings",
     title: {
@@ -209,6 +221,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-03",
+    topicActivities: [],
     category: "workplace",
     group: "product",
     title: {
@@ -227,6 +240,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-29",
+    topicActivities: [],
     category: "workplace",
     group: "product",
     title: {
@@ -245,6 +259,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-30",
+    topicActivities: [],
     category: "workplace",
     group: "product",
     title: {
@@ -262,6 +277,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-02",
+    topicActivities: [],
     category: "workplace",
     group: "product",
     title: {
@@ -279,6 +295,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-32",
+    topicActivities: [],
     category: "workplace",
     group: "product",
     title: {
@@ -297,6 +314,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-34",
+    topicActivities: [],
     category: "workplace",
     group: "product",
     title: {
@@ -315,6 +333,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-04",
+    topicActivities: [],
     category: "workplace",
     group: "delivery",
     title: {
@@ -333,6 +352,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-33",
+    topicActivities: [],
     category: "workplace",
     group: "delivery",
     title: {
@@ -350,6 +370,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-16",
+    topicActivities: [],
     category: "workplace",
     group: "delivery",
     title: {
@@ -367,6 +388,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-17",
+    topicActivities: [],
     category: "workplace",
     group: "delivery",
     title: {
@@ -384,6 +406,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-18",
+    topicActivities: [],
     category: "workplace",
     group: "delivery",
     title: {
@@ -402,6 +425,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-48",
+    topicActivities: [],
     category: "workplace",
     group: "delivery",
     title: {
@@ -419,6 +443,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-05",
+    topicActivities: [],
     category: "workplace",
     group: "relationships",
     title: {
@@ -436,6 +461,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-09",
+    topicActivities: [],
     category: "workplace",
     group: "relationships",
     title: {
@@ -453,6 +479,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-21",
+    topicActivities: [],
     category: "workplace",
     group: "relationships",
     title: {
@@ -470,6 +497,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-13",
+    topicActivities: [],
     category: "workplace",
     group: "relationships",
     title: {
@@ -487,6 +515,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-41",
+    topicActivities: [],
     category: "workplace",
     group: "relationships",
     title: {
@@ -504,6 +533,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-42",
+    topicActivities: [],
     category: "workplace",
     group: "relationships",
     title: {
@@ -521,6 +551,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-10",
+    topicActivities: [],
     category: "workplace",
     group: "technical-communication",
     title: {
@@ -539,6 +570,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-31",
+    topicActivities: [],
     category: "workplace",
     group: "technical-communication",
     title: {
@@ -557,6 +589,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-35",
+    topicActivities: [],
     category: "workplace",
     group: "technical-communication",
     title: {
@@ -575,6 +608,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-23",
+    topicActivities: [],
     category: "workplace",
     group: "technical-communication",
     title: {
@@ -593,6 +627,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-38",
+    topicActivities: [],
     category: "workplace",
     group: "technical-communication",
     title: {
@@ -612,6 +647,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-46",
+    topicActivities: [],
     category: "workplace",
     group: "technical-communication",
     title: {
@@ -630,6 +666,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-12",
+    topicActivities: [],
     category: "workplace",
     group: "async-incidents",
     title: {
@@ -648,6 +685,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-19",
+    topicActivities: [],
     category: "workplace",
     group: "async-incidents",
     title: {
@@ -665,6 +703,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-08",
+    topicActivities: [],
     category: "workplace",
     group: "async-incidents",
     title: {
@@ -683,6 +722,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-07",
+    topicActivities: [],
     category: "workplace",
     group: "async-incidents",
     title: {
@@ -700,6 +740,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-47",
+    topicActivities: [],
     category: "workplace",
     group: "async-incidents",
     title: {
@@ -717,6 +758,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-37",
+    topicActivities: [],
     category: "workplace",
     group: "async-incidents",
     title: {
@@ -736,6 +778,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-22",
+    topicActivities: [],
     category: "workplace",
     group: "business",
     title: {
@@ -753,6 +796,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-15",
+    topicActivities: [],
     category: "workplace",
     group: "business",
     title: {
@@ -771,6 +815,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-24",
+    topicActivities: [],
     category: "workplace",
     group: "business",
     title: {
@@ -788,6 +833,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-36",
+    topicActivities: [],
     category: "workplace",
     group: "business",
     title: {
@@ -805,6 +851,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-39",
+    topicActivities: [],
     category: "workplace",
     group: "business",
     title: {
@@ -823,6 +870,7 @@ export const workplaceScenes = [
   },
   {
     id: "work-40",
+    topicActivities: [],
     category: "workplace",
     group: "business",
     title: {

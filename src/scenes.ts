@@ -3,6 +3,12 @@ import type { Scene, SceneSelection } from "./content/scenes/types";
 import { everydayScenes } from "./content/scenes/everyday";
 import { workplaceScenes } from "./content/scenes/workplace";
 import { interviewScenes } from "./content/scenes/interview";
+import { travelScenes } from "./content/scenes/travel";
+import {
+  additionalEverydayScenes,
+  servicesScenes,
+  additionalTravelScenes,
+} from "./content/scenes/expansion";
 export { sceneGroups } from "./content/scenes/groups";
 export type {
   Scene,
@@ -11,6 +17,10 @@ export type {
 } from "./content/scenes/types";
 export const scenes: Scene[] = [
   ...everydayScenes,
+  ...additionalEverydayScenes,
+  ...travelScenes,
+  ...additionalTravelScenes,
+  ...servicesScenes,
   ...workplaceScenes,
   ...interviewScenes,
 ];
@@ -18,6 +28,14 @@ export const sceneCategories = [
   {
     id: "everyday",
     title: { zh: "生活与兴趣", en: "Everyday Life & Interests" },
+  },
+  {
+    id: "travel",
+    title: { zh: "旅行与出行", en: "Travel & Getting Around" },
+  },
+  {
+    id: "services",
+    title: { zh: "日常办事与服务", en: "Everyday Services" },
   },
   {
     id: "workplace",
@@ -39,9 +57,11 @@ const conversationIds = new Set([
 export function compatibleScenes(prompt: Prompt): Scene[] {
   if (prompt.kind === "review" || prompt.needsMaterial) return [];
   if (conversationIds.has(prompt.id)) return scenes;
-  // Debate needs opinions; guessing games use everyday words rather than interview tasks.
-  if (prompt.id === "friendly-debate" || prompt.id === "word-riddle")
-    return scenes.filter((scene) => scene.category === "everyday");
+  // Topic suitability is independent of where a scene appears in the browser.
+  if (prompt.id === "friendly-debate")
+    return scenes.filter((scene) => scene.topicActivities.includes("debate"));
+  if (prompt.id === "word-riddle")
+    return scenes.filter((scene) => scene.topicActivities.includes("word-game"));
   return [];
 }
 const spokenLoops: Record<string, string> = {
@@ -54,7 +74,7 @@ const spokenLoops: Record<string, string> = {
   "expression-upgrade":
     "Assess clarity; rewrite only real issues and await a retry or explicit skip. Answer clarification without grading; preserve the pending retry. Score wording only if asked, never pronunciation. Accept natural answers unchanged.",
   "roleplay-coach":
-    "Open with the question and optional greeting, without Language notes. Afterward respond in character; label a real correction Language note. Honor retries.",
+    "Open with exactly the given question only, without greetings or Language notes. Then stay in character; label genuine corrections Language note. Honor retries.",
   "friendly-debate":
     "Take the opposite view respectfully. Respond to my argument and correct one real language issue if needed. Disagreement is not a language error.",
   "word-riddle":

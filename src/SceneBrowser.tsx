@@ -224,7 +224,11 @@ export function SceneBrowser({
             category &&
             !group &&
             sceneGroups
-              .filter((g) => g.category === category)
+              .filter(
+                (g) =>
+                  g.category === category &&
+                  available.some((scene) => scene.group === g.id),
+              )
               .map((g) => (
                 <button
                   key={g.id}

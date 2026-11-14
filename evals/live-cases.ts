@@ -136,7 +136,9 @@ export function createLiveCases(): LiveCase[] {
         p,
         variant,
         "base-opening",
-        "Follow this exact coach's opening and mechanism. Ask one question or give one clue as instructed, never a worksheet or full answer. Do not claim access to missing media.",
+        p.id === "visual-vocabulary"
+          ? "Request a photo or object description and wait. A concise imperative request without a question mark is valid startup behavior. Do not claim access to missing media, invent details or give a worksheet."
+          : "Follow this exact coach's opening and mechanism. Ask one question or give one clue as instructed, never a worksheet or full answer. Do not claim access to missing media.",
       );
       const ctx = contexts[p.id];
       const before: LiveMessage[] = ctx.material
@@ -203,7 +205,7 @@ export function createLiveCases(): LiveCase[] {
         p,
         variant,
         "retry-clarification",
-        "Explain the language clarification briefly, keep the pending retry, and do not grade this question or move to a new topic.",
+        "Explain the language clarification briefly, keep the pending retry, and do not grade this question or move to a new topic. Restating the original pending question explicitly as a retry is not a new task unless the supplied instructions prohibit doing so.",
         {
           after: [...prior, { role: "user", content: "Why not ‘have gone’?" }],
         },

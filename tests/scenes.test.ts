@@ -11,10 +11,12 @@ import { promptText } from "../src/prompt-text";
 
 const coach = prompts.find((p) => p.id === "roleplay-coach")!;
 test("catalog has complete bilingual stable named records and handbook provenance", () => {
-  assert.equal(scenes.length, 136);
-  assert.equal(new Set(scenes.map((s) => s.id)).size, 136);
+  assert.equal(scenes.length, 160);
+  assert.equal(new Set(scenes.map((s) => s.id)).size, 160);
   for (const [category, count] of [
-    ["everyday", 32],
+    ["everyday", 31],
+    ["travel", 13],
+    ["services", 12],
     ["workplace", 48],
     ["interview", 56],
   ] as const)
@@ -149,4 +151,20 @@ test("all technical mock compositions preserve deferred feedback and short spoke
     );
     assert.ok(result.spokenPrompt.split(/\s+/).length <= 85, scene.id);
   }
+});
+
+test("travel migration preserves existing topic activities and services stay conversational", () => {
+  const migrated = ["travel-plans", "city-exploration", "nature-travel", "travel-stories", "airport", "hotel", "directions", "booking-change", "ordering-food"];
+  for (const id of migrated) {
+    assert.equal(scenes.find((s) => s.id === id)?.category, "travel");
+    for (const coachId of ["friendly-debate", "word-riddle"])
+      assert.ok(compatibleScenes(prompts.find((p) => p.id === coachId)!).some((s) => s.id === id));
+  }
+  for (const id of ["return-item", "rental-inquiry", "service-appointment", "lost-baggage", "decline-invitation"]) {
+    const scene = scenes.find((s) => s.id === id);
+    assert.ok(scene, id);
+    assert.ok(compatibleScenes(coach).some((s) => s.id === id));
+  }
+  for (const coachId of ["friendly-debate", "word-riddle"])
+    assert.ok(compatibleScenes(prompts.find((p) => p.id === coachId)!).every((s) => s.category !== "services"));
 });

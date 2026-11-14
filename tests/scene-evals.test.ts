@@ -76,3 +76,15 @@ test("unknown purposes and nonalternating dialogues are rejected even when seale
   row.evidenceSha256 = evidenceDigest(row);
   assert.ok(validateSceneArchive(turns).some((s) => s.includes("alternate")));
 });
+
+
+test("new service, travel and social scenes require authored coverage in both formats", () => {
+  for (const sceneId of ["return-item", "lost-baggage", "decline-invitation"]) {
+    const missing = archive();
+    missing.cases = missing.cases.filter(
+      (row: { selection: { sceneId: string }; variant: string }) =>
+        row.selection.sceneId !== sceneId || row.variant !== "spoken",
+    );
+    assert.ok(validateSceneArchive(missing).some((issue) => issue.includes(`missing ${sceneId}/spoken`)));
+  }
+});

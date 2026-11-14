@@ -24,7 +24,11 @@ Each mode defines how the AI teaches, when it corrects, and how the conversation
 
 ## Practice scenarios
 
-The scenario picker contains 136 presets across Everyday Life & Interests (32), Tech Workplace Communication (48), and Software Engineering Interviews (56). Scenarios default to No preset and remain collapsed behind a single settings row. Open the picker to search in Chinese or English, browse grouped lists, and tap a scenario to fill the prompt with a hypothetical situation, roles, goal, and opening. Selecting another preset replaces the previous setup. Workplace presets retain unit references to the supplied 48-unit communication handbook.
+The scenario picker contains 160 presets across Everyday Life & Interests (31), Travel & Getting Around (13), Everyday Services (12), Tech Workplace Communication (48), and Software Engineering Interviews (56). Scenarios default to No preset and remain collapsed behind a single settings row. Open the picker to search in Chinese or English, browse grouped lists, and tap a scenario to fill the prompt with a hypothetical situation, roles, goal, and opening. Selecting another preset replaces the previous setup. Workplace presets retain unit references to the supplied 48-unit communication handbook.
+
+Travel includes existing trip planning, transport, hotel and dining topics plus missing baggage, cancelled flights, room problems and incorrect orders. Everyday Services covers returns, deliveries, bills, housing, appointments and local services. Everyday social practice includes invitations, favours, boundaries, apologies and misunderstandings. These are hypothetical communication exercises; service policies, charges and outcomes must be confirmed rather than invented.
+
+Scene browsing categories and coach suitability are separate: moving existing travel topics preserves their debate and vocabulary-game support. New service and travel problem-solving scenes use conversation or role-play coaches.
 
 Expand Scenario settings to add up to 2,000 characters of optional background to the full prompt. This background is held only in the current sheet session, is not saved locally, and is included when you copy the full prompt to your external AI. The short spoken opening keeps the topic, role where applicable, and coaching loop; provide detailed background during the conversation.
 
@@ -50,6 +54,8 @@ Each review also has a short **Spoken wrap-up** for the current chat. Request wr
 ## Navigation and local data
 
 Phones use bottom navigation; desktop uses a sidebar. Only the content area scrolls. Prompt sheets keep the copy action visible and support browser Back, Escape, and focus restoration. A pending copy finishes before another write can start; switching formats or leaving a sheet clears its copy feedback. Existing collection links remain valid; a prompt link looks like `#collection/companions?prompt=daily-check-in`.
+
+On touchscreens, swipe left from the rightmost 32 pixels and release after at least 72 pixels to close a sheet or return from a collection to the library. Top-level views stay in place. Vertical, multi-touch, text-field, and text-selection gestures do not trigger this action. Browser tests cover the application gesture logic; actual iOS Home Screen gesture behavior requires device testing.
 
 Search and saved filters remain separate for practice, each practice collection, and review. The practice-home search covers all coaches; collection searches stay within that collection. Filters and scroll positions last for the current session, while favorites, recent-copy IDs, and language preferences are saved on this device.
 
@@ -81,7 +87,7 @@ pnpm test:e2e
 pnpm test:webkit
 ```
 
-The release evaluation covers 1,600 composed payloads and records 514 real GPT-4.1 text cases separately from authored role simulations. Optional fresh execution uses `OPENAI_API_KEY` with `pnpm eval:live` (Python 3 and curl required); it can incur API charges. Normal CI validates committed evidence without credentials. See the evaluation methodology for coverage, provenance and limitations.
+The release evaluation checks 1,872 composed payloads and 79 authored scene references. The 562 recorded real GPT-4.1 text cases cover all 160 scenes and remain separate from authored simulations. Each case has an isolated same-model judge call; one raw judge false positive is retained with a bound semantic review. Optional fresh execution uses `OPENAI_API_KEY` with `pnpm eval:live` (Python 3 and curl required); it can incur API charges. Normal CI validates committed evidence without credentials. See the evaluation methodology for coverage, provenance and limitations.
 
 Run `pnpm preview` after building to inspect the production app. React and strict TypeScript are used for the application. Content lives in `src/content/`; `src/prompts.ts` exports the conversation starters, reviews, and combined library.
 

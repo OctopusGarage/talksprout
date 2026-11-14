@@ -9,6 +9,12 @@ import { promptText } from "../src/prompt-text";
 import { evidenceDigest } from "./validate";
 import type { PromptVariant } from "../src/types";
 
+import {
+  additionalEverydayScenes,
+  servicesScenes,
+  additionalTravelScenes,
+} from "../src/content/scenes/expansion";
+
 export const representativeSceneIds = [
   "basketball",
   "tennis",
@@ -22,6 +28,7 @@ export const representativeSceneIds = [
   "race-conditions",
   "url-shortener",
   "agent-tools",
+  ...[...additionalEverydayScenes, ...servicesScenes, ...additionalTravelScenes].map((scene) => scene.id),
 ];
 export function scenePayloadDigest(
   promptId: string,

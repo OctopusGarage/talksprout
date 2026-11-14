@@ -2,6 +2,7 @@ import type { Scene } from "./types";
 export const interviewScenes = [
   {
     id: "technical-intro",
+    topicActivities: [],
     category: "interview",
     group: "experience",
     title: {
@@ -19,6 +20,7 @@ export const interviewScenes = [
   },
   {
     id: "project-deep-dive",
+    topicActivities: [],
     category: "interview",
     group: "experience",
     title: {
@@ -36,6 +38,7 @@ export const interviewScenes = [
   },
   {
     id: "failure-story",
+    topicActivities: [],
     category: "interview",
     group: "experience",
     title: {
@@ -54,6 +57,7 @@ export const interviewScenes = [
   },
   {
     id: "conflict-influence",
+    topicActivities: [],
     category: "interview",
     group: "experience",
     title: {
@@ -72,6 +76,7 @@ export const interviewScenes = [
   },
   {
     id: "clarify-problem",
+    topicActivities: [],
     category: "interview",
     group: "algorithms",
     title: {
@@ -90,6 +95,7 @@ export const interviewScenes = [
   },
   {
     id: "explain-algorithm",
+    topicActivities: [],
     category: "interview",
     group: "algorithms",
     title: {
@@ -107,6 +113,7 @@ export const interviewScenes = [
   },
   {
     id: "complexity",
+    topicActivities: [],
     category: "interview",
     group: "algorithms",
     title: {
@@ -125,6 +132,7 @@ export const interviewScenes = [
   },
   {
     id: "edge-cases",
+    topicActivities: [],
     category: "interview",
     group: "algorithms",
     title: {
@@ -143,6 +151,7 @@ export const interviewScenes = [
   },
   {
     id: "types-abstraction",
+    topicActivities: [],
     category: "interview",
     group: "runtime",
     title: {
@@ -161,6 +170,7 @@ export const interviewScenes = [
   },
   {
     id: "memory-gc",
+    topicActivities: [],
     category: "interview",
     group: "runtime",
     title: {
@@ -177,6 +187,7 @@ export const interviewScenes = [
   },
   {
     id: "error-handling",
+    topicActivities: [],
     category: "interview",
     group: "runtime",
     title: {
@@ -195,6 +206,7 @@ export const interviewScenes = [
   },
   {
     id: "async-runtime",
+    topicActivities: [],
     category: "interview",
     group: "runtime",
     title: {
@@ -213,6 +225,7 @@ export const interviewScenes = [
   },
   {
     id: "api-contract",
+    topicActivities: [],
     category: "interview",
     group: "backend",
     title: {
@@ -229,6 +242,7 @@ export const interviewScenes = [
   },
   {
     id: "auth",
+    topicActivities: [],
     category: "interview",
     group: "backend",
     title: {
@@ -245,6 +259,7 @@ export const interviewScenes = [
   },
   {
     id: "idempotency",
+    topicActivities: [],
     category: "interview",
     group: "backend",
     title: {
@@ -262,6 +277,7 @@ export const interviewScenes = [
   },
   {
     id: "api-evolution",
+    topicActivities: [],
     category: "interview",
     group: "backend",
     title: {
@@ -280,6 +296,7 @@ export const interviewScenes = [
   },
   {
     id: "data-modeling",
+    topicActivities: [],
     category: "interview",
     group: "databases",
     title: {
@@ -297,6 +314,7 @@ export const interviewScenes = [
   },
   {
     id: "transactions",
+    topicActivities: [],
     category: "interview",
     group: "databases",
     title: {
@@ -313,6 +331,7 @@ export const interviewScenes = [
   },
   {
     id: "slow-query",
+    topicActivities: [],
     category: "interview",
     group: "databases",
     title: {
@@ -329,6 +348,7 @@ export const interviewScenes = [
   },
   {
     id: "sql-nosql",
+    topicActivities: [],
     category: "interview",
     group: "databases",
     title: {
@@ -346,6 +366,7 @@ export const interviewScenes = [
   },
   {
     id: "race-conditions",
+    topicActivities: [],
     category: "interview",
     group: "concurrency",
     title: {
@@ -362,6 +383,7 @@ export const interviewScenes = [
   },
   {
     id: "locks-deadlocks",
+    topicActivities: [],
     category: "interview",
     group: "concurrency",
     title: {
@@ -378,6 +400,7 @@ export const interviewScenes = [
   },
   {
     id: "pools-backpressure",
+    topicActivities: [],
     category: "interview",
     group: "concurrency",
     title: {
@@ -394,6 +417,7 @@ export const interviewScenes = [
   },
   {
     id: "cancellation",
+    topicActivities: [],
     category: "interview",
     group: "concurrency",
     title: {
@@ -410,6 +434,7 @@ export const interviewScenes = [
   },
   {
     id: "replication",
+    topicActivities: [],
     category: "interview",
     group: "distributed",
     title: {
@@ -427,6 +452,7 @@ export const interviewScenes = [
   },
   {
     id: "sharding",
+    topicActivities: [],
     category: "interview",
     group: "distributed",
     title: {
@@ -443,6 +469,7 @@ export const interviewScenes = [
   },
   {
     id: "message-delivery",
+    topicActivities: [],
     category: "interview",
     group: "distributed",
     title: {
@@ -461,6 +488,7 @@ export const interviewScenes = [
   },
   {
     id: "partial-failure",
+    topicActivities: [],
     category: "interview",
     group: "distributed",
     title: {
@@ -478,6 +506,7 @@ export const interviewScenes = [
   },
   {
     id: "url-shortener",
+    topicActivities: [],
     category: "interview",
     group: "system-design",
     title: {
@@ -496,6 +525,7 @@ export const interviewScenes = [
   },
   {
     id: "chat-system",
+    topicActivities: [],
     category: "interview",
     group: "system-design",
     title: {
@@ -512,6 +542,7 @@ export const interviewScenes = [
   },
   {
     id: "orders-inventory",
+    topicActivities: [],
     category: "interview",
     group: "system-design",
     title: {
@@ -529,6 +560,7 @@ export const interviewScenes = [
   },
   {
     id: "job-scheduler",
+    topicActivities: [],
     category: "interview",
     group: "system-design",
     title: {
@@ -545,6 +577,7 @@ export const interviewScenes = [
   },
   {
     id: "latency-throughput",
+    topicActivities: [],
     category: "interview",
     group: "reliability",
     title: {
@@ -561,6 +594,7 @@ export const interviewScenes = [
   },
   {
     id: "caching",
+    topicActivities: [],
     category: "interview",
     group: "reliability",
     title: {
@@ -577,6 +611,7 @@ export const interviewScenes = [
   },
   {
     id: "overload",
+    topicActivities: [],
     category: "interview",
     group: "reliability",
     title: {
@@ -593,6 +628,7 @@ export const interviewScenes = [
   },
   {
     id: "incident-debugging",
+    topicActivities: [],
     category: "interview",
     group: "reliability",
     title: {
@@ -610,6 +646,7 @@ export const interviewScenes = [
   },
   {
     id: "test-strategy",
+    topicActivities: [],
     category: "interview",
     group: "engineering",
     title: {
@@ -626,6 +663,7 @@ export const interviewScenes = [
   },
   {
     id: "code-review-interview",
+    topicActivities: [],
     category: "interview",
     group: "engineering",
     title: {
@@ -642,6 +680,7 @@ export const interviewScenes = [
   },
   {
     id: "technical-debt",
+    topicActivities: [],
     category: "interview",
     group: "engineering",
     title: {
@@ -658,6 +697,7 @@ export const interviewScenes = [
   },
   {
     id: "cicd",
+    topicActivities: [],
     category: "interview",
     group: "engineering",
     title: {
@@ -675,6 +715,7 @@ export const interviewScenes = [
   },
   {
     id: "render-state",
+    topicActivities: [],
     category: "interview",
     group: "frontend",
     title: {
@@ -692,6 +733,7 @@ export const interviewScenes = [
   },
   {
     id: "frontend-performance",
+    topicActivities: [],
     category: "interview",
     group: "frontend",
     title: {
@@ -708,6 +750,7 @@ export const interviewScenes = [
   },
   {
     id: "accessibility",
+    topicActivities: [],
     category: "interview",
     group: "frontend",
     title: {
@@ -724,6 +767,7 @@ export const interviewScenes = [
   },
   {
     id: "fullstack-contracts",
+    topicActivities: [],
     category: "interview",
     group: "frontend",
     title: {
@@ -740,6 +784,7 @@ export const interviewScenes = [
   },
   {
     id: "batch-stream",
+    topicActivities: [],
     category: "interview",
     group: "data-ml",
     title: {
@@ -757,6 +802,7 @@ export const interviewScenes = [
   },
   {
     id: "data-quality",
+    topicActivities: [],
     category: "interview",
     group: "data-ml",
     title: {
@@ -773,6 +819,7 @@ export const interviewScenes = [
   },
   {
     id: "model-evaluation",
+    topicActivities: [],
     category: "interview",
     group: "data-ml",
     title: {
@@ -790,6 +837,7 @@ export const interviewScenes = [
   },
   {
     id: "training-inference",
+    topicActivities: [],
     category: "interview",
     group: "data-ml",
     title: {
@@ -806,6 +854,7 @@ export const interviewScenes = [
   },
   {
     id: "rag",
+    topicActivities: [],
     category: "interview",
     group: "llm",
     title: {
@@ -824,6 +873,7 @@ export const interviewScenes = [
   },
   {
     id: "context-management",
+    topicActivities: [],
     category: "interview",
     group: "llm",
     title: {
@@ -841,6 +891,7 @@ export const interviewScenes = [
   },
   {
     id: "structured-output",
+    topicActivities: [],
     category: "interview",
     group: "llm",
     title: {
@@ -859,6 +910,7 @@ export const interviewScenes = [
   },
   {
     id: "llm-tradeoffs",
+    topicActivities: [],
     category: "interview",
     group: "llm",
     title: {
@@ -877,6 +929,7 @@ export const interviewScenes = [
   },
   {
     id: "agent-selection",
+    topicActivities: [],
     category: "interview",
     group: "agents",
     title: {
@@ -894,6 +947,7 @@ export const interviewScenes = [
   },
   {
     id: "agent-tools",
+    topicActivities: [],
     category: "interview",
     group: "agents",
     title: {
@@ -912,6 +966,7 @@ export const interviewScenes = [
   },
   {
     id: "agent-state",
+    topicActivities: [],
     category: "interview",
     group: "agents",
     title: {
@@ -929,6 +984,7 @@ export const interviewScenes = [
   },
   {
     id: "agent-evals",
+    topicActivities: [],
     category: "interview",
     group: "agents",
     title: {

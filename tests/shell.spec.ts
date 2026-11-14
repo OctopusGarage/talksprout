@@ -524,3 +524,100 @@ test("touch dismissal restores focus without a row outline and keyboard focus st
     await context.close();
   }
 });
+
+// Synthetic touch payloads exercise app gesture handling, not iOS system gestures.
+async function swipeFromRight(
+  page: Page,
+  options: { startX?: number; dx?: number; moveDx?: number; dy?: number; cancel?: boolean; multi?: boolean; selector?: string } = {},
+) {
+  await page.evaluate((options) => {
+    const x = options.startX ?? innerWidth - 8;
+    const y = 240;
+    const target = options.selector
+      ? document.querySelector(options.selector)!
+      : document.elementFromPoint(x, y)!;
+    const point = (clientX: number, clientY: number, identifier = 1) =>
+      ({ identifier, target, clientX, clientY });
+    const start = point(x, y);
+    const end = point(x + (options.dx ?? -100), y + (options.dy ?? 0));
+    type Point = ReturnType<typeof point>;
+    const emit = (type: string, touches: Point[], changedTouches: Point[]) => {
+      // Desktop WebKit exposes Touch but disallows its constructor.
+      const event = new Event(type, { bubbles: true, cancelable: true });
+      Object.defineProperties(event, {
+        touches: { value: touches },
+        changedTouches: { value: changedTouches },
+      });
+      target.dispatchEvent(event);
+    };
+    emit("touchstart", [start], [start]);
+    if (options.multi) emit("touchstart", [start, point(x - 20, y, 2)], [point(x - 20, y, 2)]);
+    const moved = point(x + (options.moveDx ?? options.dx ?? -100), y + (options.dy ?? 0));
+    emit("touchmove", [moved], [moved]);
+    emit(options.cancel ? "touchcancel" : "touchend", [], [end]);
+  }, options);
+}
+
+test("right-edge left swipe closes details and returns collections without leaving the app", async ({ page }) => {
+  await page.goto("/#collection/companions");
+  await page.locator('[data-detail="daily-check-in"]').click();
+  await swipeFromRight(page);
+  await expect(page.locator("#detail")).toBeHidden();
+  await expect(page).toHaveURL(/#collection\/companions$/);
+  await swipeFromRight(page);
+  await expect(page).toHaveURL(/#library$/);
+  await swipeFromRight(page);
+  await expect(page).toHaveURL(/#library$/);
+
+  await page.goto("/#settings?info=about");
+  await swipeFromRight(page);
+  await expect(page.locator("#detail")).toBeHidden();
+  await expect(page).toHaveURL(/#settings$/);
+  await page.goto("/#collection/companions?prompt=daily-check-in");
+  await swipeFromRight(page);
+  await expect(page.locator("#detail")).toBeHidden();
+  await expect(page).toHaveURL(/#collection\/companions$/);
+});
+
+test("right-edge back ignores scrolling, short, reversed, cancelled, multi-touch and text gestures", async ({ page }) => {
+  await page.goto("/#collection/companions?prompt=daily-check-in");
+  for (const options of [
+    { dy: 140 }, { dx: -30 }, { moveDx: -100, dx: -20 }, { startX: 200 }, { dx: 100 },
+    { cancel: true }, { multi: true }, { selector: "#prompt-text" },
+  ]) {
+    await swipeFromRight(page, options);
+    await expect(page.locator("#detail")).toBeVisible();
+  }
+  await page.evaluate(() => {
+    const range = document.createRange();
+    range.selectNodeContents(document.getElementById("dialog-title")!);
+    window.getSelection()!.removeAllRanges();
+    window.getSelection()!.addRange(range);
+  });
+  await swipeFromRight(page);
+  await expect(page.locator("#detail")).toBeVisible();
+  await page.evaluate(() => window.getSelection()!.removeAllRanges());
+  await swipeFromRight(page);
+  await expect(page.locator("#detail")).toBeHidden();
+});
+
+test("right-edge back dismisses the scenario browser before its parent prompt", async ({ page }) => {
+  await page.goto("/#collection/companions");
+  await page.locator('[data-detail="daily-check-in"]').click();
+  await page.locator(".scene-trigger").click();
+  await page.locator("#scene-search").fill("篮球");
+  await page.getByRole("button", { name: "篮球", exact: true }).click();
+  await page.locator(".scene-settings > summary").click();
+  await page.getByLabel("补充背景（可选）").fill("I play on weekends.");
+  await page.locator(".scene-trigger").click();
+  await expect(page.locator(".scene-browser")).toBeVisible();
+  await swipeFromRight(page);
+  await expect(page.locator(".scene-browser")).toHaveCount(0);
+  await expect(page.locator("#detail")).toBeVisible();
+  await expect(page).toHaveURL(/#collection\/companions\?prompt=daily-check-in$/);
+  await expect(page.locator("#prompt-text")).toContainText("Basketball");
+  await expect(page.getByLabel("补充背景（可选）")).toHaveValue("I play on weekends.");
+  await swipeFromRight(page);
+  await expect(page.locator("#detail")).toBeHidden();
+  await expect(page).toHaveURL(/#collection\/companions$/);
+});

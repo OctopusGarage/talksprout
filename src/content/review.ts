@@ -93,7 +93,7 @@ Don't restart practice.`,
     ],
     mode: "both",
     needsMaterial: true,
-    version: 3,
+    version: 5,
     prompt: `Our practice is finished. Create a sentence review sheet.
 Select up to eight high-value items, prioritizing expressions I struggled with, genuine corrections, and natural sentences worth reusing.
 For each item, show:
@@ -106,14 +106,10 @@ Keep sentences conversational and suitable for speaking. Do not make them artifi
 End with up to three Chinese meaning cues for me to express in English, followed by suggested answers in a separate section. Accept other natural answers with the same meaning. These are saved self-study tasks, not the start of an interactive quiz.
 
 ${grounding}`,
-    spokenPrompt: `Let's finish.
-Honor my stated output limits: if writing is unavailable, give ONLY a brief oral recap without IPA or worksheets, then stop.
-Otherwise, review up to eight sentences from available conversation only.
-If context is missing, ask for it.
-Quote exact wording, label speakers, and explain in Chinese.
-Correct genuine errors; keep natural sentences and label optional alternatives.
-Put up to three Chinese recall cues before a separate English answer key.
-Counts are maximums. Don't restart practice.`,
+    spokenPrompt: `Let's finish. Use earlier learner practice only.
+If none exists, request it and stop.
+Otherwise review up to eight exact sentences, with speaker labels and Chinese explanations. Correct real errors; keep natural wording. Put up to three Chinese recall cues before a separate English answer key.
+OUTPUT OVERRIDE: If I declared writing unavailable, ignore all sheet instructions above. Your ENTIRE reply must be three short spoken recap sentences, without quotes, headings, lists, cues, IPA or answers. Then stop.`,
   },
   {
     id: "vocabulary-ipa-review",

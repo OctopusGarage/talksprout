@@ -38,7 +38,7 @@ judge_system = judge_policy['system']
 judge_policy_sha = digest({'model':args.model, **judge_policy})
 archive = dict(method='live-openai-chat-completions', requestedModel=args.model,
                endpoint='https://api.openai.com/v1/chat/completions', startedAt=now(),
-               judgePolicySha256=judge_policy_sha, sampling='One target response per case, temperature 0; separate same-model judge calls, not an independent model or audio test.', cases=[])
+               judgePolicySha256=judge_policy_sha, sampling='One target response per case, temperature 0; one isolated case per same-model judge call, not an independent model or audio test.', cases=[])
 prior = {}
 if args.resume and output.exists():
     old = json.loads(output.read_text())
@@ -130,7 +130,11 @@ for row in archive['cases']:
         row['judge'] = {'id':row['case']['id'],'judgment':'fail','reason':'Target execution failed, returned no text or was truncated.'}
     elif 'judge' not in row:
         valid.append(row)
-batches = [valid[i:i+6] for i in range(0,len(valid),6)]
+# Isolate each case so full and compact instructions cannot leak across judgments.
+batch_size = judge_policy.get('batch_size', 1)
+if batch_size != 1:
+    raise SystemExit('Judge requests must contain exactly one case')
+batches = [valid[i:i+batch_size] for i in range(0,len(valid),batch_size)]
 print(f'Judging {len(valid)} target replies in {len(batches)} independent requests to the same model.', flush=True)
 with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
     futures = [pool.submit(judge_batch, batch) for batch in batches]

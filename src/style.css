@@ -816,6 +816,7 @@ p {
   color: var(--green);
 }
 .sheet-content {
+  touch-action: pan-y pinch-zoom;
   flex: 1;
   min-height: 0;
   overflow-y: auto;

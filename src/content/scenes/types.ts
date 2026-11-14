@@ -1,4 +1,9 @@
-export type SceneCategory = "everyday" | "workplace" | "interview";
+export type SceneCategory =
+  | "everyday"
+  | "travel"
+  | "services"
+  | "workplace"
+  | "interview";
 export interface BilingualLabel {
   zh: string;
   en: string;
@@ -8,10 +13,12 @@ export interface SceneGroup {
   category: SceneCategory;
   title: BilingualLabel;
 }
+export type TopicActivity = "debate" | "word-game";
 export interface Scene {
   id: string;
   category: SceneCategory;
   group: string;
+  topicActivities: TopicActivity[];
   title: BilingualLabel;
   context: string;
   learnerRole: string;

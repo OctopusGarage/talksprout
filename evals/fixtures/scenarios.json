@@ -14,7 +14,7 @@
     {
       "id": "teaching-daily-check-in",
       "promptId": "daily-check-in",
-      "promptSha256": "da57839cea86f8f664f347034c7ff269aa3457c31c96dce6991d400b89cda70b",
+      "promptSha256": "356f95f62ce181a45b93958bef9d5169f2e47e83f9ba9268afac41d67ad7f7e0",
       "learnerTurns": [
         "My weekend. I go hiking yesterday.",
         "Near home."
@@ -48,14 +48,14 @@
       ],
       "judgment": "pass",
       "criterion": "Respond to meaning, correct one grammar issue, then ask one related follow-up.",
-      "rationale": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge. Respond to meaning, correct one grammar issue, then ask one related follow-up. Previously fresh authored target replies remain appropriate and are retained after explicit re-review. Source inputs and turn shape remain unchanged.",
-      "evidenceSha256": "5f76ecf2acf8912524e907091e312db165c719b03a24ed626416494803aee4fd",
-      "sampleProvenance": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge."
+      "rationale": "Retained after semantic review: The learner provides actual exercise content before feedback; topic selection is setup, and help or clarification is support rather than a completed exercise. Feedback is grounded in the sampled answers. This exchange does not test stopping before an exercise answer.",
+      "evidenceSha256": "e16c610eb2f3f74d67d60931f62b48e04dde8fa97c3abe3bc7f94d170a47916b",
+      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
     },
     {
       "id": "teaching-gentle-start",
       "promptId": "gentle-start",
-      "promptSha256": "f1485b7684cdf5992ebc53b64340862fe08cf35d2bc35775863d066fa1385c6f",
+      "promptSha256": "8a81edfb259d52983c951d1bc689820674b4acd15352108c5d66d78716865aea",
       "learnerTurns": [
         "今天很累。Many work.",
         "Yes, tea now."
@@ -89,16 +89,16 @@
       ],
       "judgment": "pass",
       "criterion": "Model simple English from Chinese and fragments without shame or mandatory repetition.",
-      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Model simple English from Chinese and fragments without shame or mandatory repetition. The affected target response was freshly authored or aligned to its exact opening; all learner/source inputs are preserved.",
-      "evidenceSha256": "91ad763d57b3f64cee427aac030fa8622b289a0116ebe8aeb3d9d88daed97d20",
-      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review."
+      "rationale": "Retained after semantic review: The learner provides actual exercise content before feedback; topic selection is setup, and help or clarification is support rather than a completed exercise. Feedback is grounded in the sampled answers. This exchange does not test stopping before an exercise answer.",
+      "evidenceSha256": "76df288a2c6e595da39b15ce4900879ec4cb718f3d49aa78860cc62a62ed5ffc",
+      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
     },
     {
       "id": "teaching-focused-correction",
       "promptId": "focused-correction",
       "variant": "full",
       "source": "current",
-      "promptSha256": "eff5445d6cdf030e4b95d5676279f10ca46a272ab9e3d18b39c5c95e69709790",
+      "promptSha256": "0e8fe21b4e917afcc0fb05204ca0bf2efccc04ee138b2d512008476195a3ec15",
       "learnerTurns": [
         "Yesterday I go shopping.",
         "Why do I need went instead of go?",
@@ -142,16 +142,16 @@
       ],
       "judgment": "pass",
       "criterion": "Correct one real error, answer pure English clarification outside grading, preserve the pending retry, and honor explicit skip.",
-      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Correct one real error, answer pure English clarification outside grading, preserve the pending retry, and honor explicit skip. Previously fresh authored assistant turns were explicitly re-reviewed and retained because their behavior remains appropriate; all learner/source inputs are preserved.",
-      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review.",
-      "evidenceSha256": "9a4c24861a05e578b54cb5a2976cb1fea1b66b43eaa4765359b570db78921e10"
+      "rationale": "Retained after semantic review: The learner provides actual exercise content before feedback; topic selection is setup, and help or clarification is support rather than a completed exercise. Feedback is grounded in the sampled answers. This exchange does not test stopping before an exercise answer.",
+      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
+      "evidenceSha256": "0972204f913af8b3dcc5ef5ffa5ae7284d17d195049981c69f4abe8888cac2d6"
     },
     {
       "id": "teaching-expression-upgrade",
       "promptId": "expression-upgrade",
       "variant": "full",
       "source": "current",
-      "promptSha256": "1d9d371f9516ede4da692b03d62d411c17f054e584610132f155e1f93e754167",
+      "promptSha256": "b7ac01bc3f4e7ffd4527edebc067745c7da024dc2c1de0861f562e616bd05745",
       "learnerTurns": [
         "Yesterday I go shopping.",
         "Why do I need went instead of go?",
@@ -195,14 +195,14 @@
       ],
       "judgment": "pass",
       "criterion": "Correct one real error, answer pure English clarification outside grading, preserve the pending retry, and honor explicit skip.",
-      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Correct one real error, answer pure English clarification outside grading, preserve the pending retry, and honor explicit skip. Previously fresh authored assistant turns were explicitly re-reviewed and retained because their behavior remains appropriate; all learner/source inputs are preserved.",
-      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review.",
-      "evidenceSha256": "2d10899cf7963fb2bc5fc141a0fe43f49c1682c3ba17cf8daebbe72fba0de936"
+      "rationale": "Retained after semantic review: The learner provides actual exercise content before feedback; topic selection is setup, and help or clarification is support rather than a completed exercise. Feedback is grounded in the sampled answers. This exchange does not test stopping before an exercise answer.",
+      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
+      "evidenceSha256": "3d76202fddb3135ac71118e2ca5f3f40e5d2abf425c7711f486c4192435c695e"
     },
     {
       "id": "teaching-roleplay-coach",
       "promptId": "roleplay-coach",
-      "promptSha256": "9649b8069c72d2955f9f509a9b513d0be33e98310a07ad0f6b64d3026fca73af",
+      "promptSha256": "db1dda5f40d1c15468a0771473764845f47f1bb4c901afa58a0194add549dbd9",
       "learnerTurns": [
         "Ordering coffee.",
         "A coffee with two milk.",
@@ -246,14 +246,14 @@
       ],
       "judgment": "pass",
       "criterion": "Establish the chosen scene, respond in character, label language feedback, and continue the scene.",
-      "rationale": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: exact role-play setup question, stop-command priority, pending-task help, grounded answerable review cards, usable natural transcript sentences, and scene opening as a question to the learner. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge. Establish the chosen scene, respond in character, label language feedback, and continue the scene. The setup question is aligned to the exact required line. Source inputs and turn shape remain unchanged.",
-      "evidenceSha256": "975f61400e07e4b7011093a25eefc88b1994273ff44a49058e7876b921c18cd2",
-      "sampleProvenance": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: exact role-play setup question, stop-command priority, pending-task help, grounded answerable review cards, usable natural transcript sentences, and scene opening as a question to the learner. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge."
+      "rationale": "Retained after semantic review: The learner provides actual exercise content before feedback; topic selection is setup, and help or clarification is support rather than a completed exercise. Feedback is grounded in the sampled answers. This exchange does not test stopping before an exercise answer.",
+      "evidenceSha256": "63cf7aeac385555b0ab27b289905c3c54506400d9a175fc1e4ce02e0b1190cda",
+      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
     },
     {
       "id": "teaching-friendly-debate",
       "promptId": "friendly-debate",
-      "promptSha256": "2cc4d145184353fdb653052e1082e081442e96de5653d3e50fbbabb6d52ce99f",
+      "promptSha256": "bfe153ed38eb2d67980b773602b33a0dea3744b3bd6f5623b53904d50faf06be",
       "learnerTurns": [
         "Working from home.",
         "I prefer it because it save time.",
@@ -297,14 +297,14 @@
       ],
       "judgment": "pass",
       "criterion": "Engage with the point, correct language separately from disagreement, and challenge one idea at a time.",
-      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Engage with the point, correct language separately from disagreement, and challenge one idea at a time. Previously fresh authored assistant turns were explicitly re-reviewed and retained because their behavior remains appropriate; all learner/source inputs are preserved.",
-      "evidenceSha256": "0fd699c595929795622ec5205cc9b537c35a7caa301daa1d3b56529c6e720771",
-      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review."
+      "rationale": "Retained after semantic review: The learner provides actual exercise content before feedback; topic selection is setup, and help or clarification is support rather than a completed exercise. Feedback is grounded in the sampled answers. This exchange does not test stopping before an exercise answer.",
+      "evidenceSha256": "5216759419d54805b637b46f404e45ff3cc75fd0c48326a8d62a6b4b0d897627",
+      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
     },
     {
       "id": "teaching-word-riddle",
       "promptId": "word-riddle",
-      "promptSha256": "a18d8f871a4ce6e54c23bc5fe8514ae4d729fa99d58123e805287882e4dd515d",
+      "promptSha256": "36e7dd01d20b0bd6690ff981de1f8a0cc2c78d4c252d4dfb33f85930c80d7934",
       "learnerTurns": [
         "A key.",
         "Yesterday I lose my key.",
@@ -348,14 +348,14 @@
       ],
       "judgment": "pass",
       "criterion": "Withhold the answer, accept a correct guess, elicit a sentence, and give usage feedback before another round.",
-      "rationale": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge. Withhold the answer, accept a correct guess, elicit a sentence, and give usage feedback before another round. Previously fresh authored target replies remain appropriate and are retained after explicit re-review. Source inputs and turn shape remain unchanged.",
-      "evidenceSha256": "3d43754e744e243956fb0fece575fb31fd69996f4927359a4d745a92a8c643c8",
-      "sampleProvenance": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge."
+      "rationale": "Retained after semantic review: The learner provides actual exercise content before feedback; topic selection is setup, and help or clarification is support rather than a completed exercise. Feedback is grounded in the sampled answers. This exchange does not test stopping before an exercise answer.",
+      "evidenceSha256": "c894aaff92f4053b563cb60a857daeca556307e58cd43fc905f1c8a038fb1aa4",
+      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
     },
     {
       "id": "teaching-visual-vocabulary",
       "promptId": "visual-vocabulary",
-      "promptSha256": "e4ecee7627b3dc501c5dd3bd8a602dc4e0a6e3e0fef9d7a69a58285d6038f3ff",
+      "promptSha256": "1d47ffdb6feaf04f9762c72c898b78cc82dcc569c60620902afa63355d1861df",
       "learnerTurns": [
         "No image. It is a red cup. Its surface feel smooth.",
         "I use it for tea."
@@ -389,14 +389,14 @@
       ],
       "judgment": "pass",
       "criterion": "Ground feedback in text when no image exists, correct one issue, and extend without inventing perception.",
-      "rationale": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge. Ground feedback in text when no image exists, correct one issue, and extend without inventing perception. Previously fresh authored target replies remain appropriate and are retained after explicit re-review. Source inputs and turn shape remain unchanged.",
-      "evidenceSha256": "e0d0cd01acec918795f09ee146342781965a490501519d767357fc2b5a13a7cb",
-      "sampleProvenance": "Fresh authored reference text, explicitly re-reviewed by the release-review agent against frozen release instructions: same-pending-question help with labeled hypothetical answers, latest-turn visual grounding, one-phrase visual help, no completed guessing rounds before a guess, exact focused spoken stop response, and at most three grounded spoken review cards with no-history and voice-only branches. This is authored text simulation and self-judgment, not external API execution, audio testing, or an independent model judge."
+      "rationale": "Retained after semantic review: The learner provides actual exercise content before feedback; topic selection is setup, and help or clarification is support rather than a completed exercise. Feedback is grounded in the sampled answers. This exchange does not test stopping before an exercise answer.",
+      "evidenceSha256": "2ef665f8558c75cf0d43a759ba7d920ceea4f8bff7d24fe82bc31effff407035",
+      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
     },
     {
       "id": "teaching-story-summary",
       "promptId": "story-summary",
-      "promptSha256": "0e135769970ccc6de70b4dd2164a69b56d8d1984a4016949083bb62ea987a361",
+      "promptSha256": "21b6eafdb1f5a38c29ee3716e1d406fec133ec6198ec0f3fe9d17378bea83bb2",
       "learnerTurns": [
         "My first day at work.",
         "I borrowed my colleague a pen...",
@@ -450,16 +450,16 @@
       ],
       "judgment": "pass",
       "criterion": "Wait through intermediate fragments, then respond to the completed section with word-choice feedback and one follow-up.",
-      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Wait through intermediate fragments, then respond to the completed section with word-choice feedback and one follow-up. Previously fresh authored assistant turns were explicitly re-reviewed and retained because their behavior remains appropriate; all learner/source inputs are preserved.",
-      "evidenceSha256": "d35aa6a5b47f73b56dcc281d9b8b4f46954ad88c1559e8e7c94d8f5bfb50dd21",
-      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review."
+      "rationale": "Retained after semantic review: The learner provides actual exercise content before feedback; topic selection is setup, and help or clarification is support rather than a completed exercise. Feedback is grounded in the sampled answers. This exchange does not test stopping before an exercise answer.",
+      "evidenceSha256": "efbd014e62ca16e26fafacc85f8e6593f37295becb8566b9fdcf872df9c8318e",
+      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
     },
     {
       "id": "heldout-resume-focused-correction-full",
       "promptId": "focused-correction",
       "variant": "full",
       "source": "current",
-      "promptSha256": "eff5445d6cdf030e4b95d5676279f10ca46a272ab9e3d18b39c5c95e69709790",
+      "promptSha256": "0e8fe21b4e917afcc0fb05204ca0bf2efccc04ee138b2d512008476195a3ec15",
       "learnerTurns": [
         "I go shopping yesterday. What about you?",
         "Why do I need went instead of go?",
@@ -503,16 +503,16 @@
       ],
       "judgment": "pass",
       "criterion": "Correct the real tense error even when an answer includes a social question; answer pure English clarification outside grading, preserve the pending retry, and advance after success.",
-      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Correct the real tense error even when an answer includes a social question; answer pure English clarification outside grading, preserve the pending retry, and advance after success. Previously fresh authored assistant turns were explicitly re-reviewed and retained because their behavior remains appropriate; all learner/source inputs are preserved.",
-      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review.",
-      "evidenceSha256": "c56ed867f9ee5ff2272476f1cccdcc9aebcbc0afeec95e669703069be6ba2eef"
+      "rationale": "Retained after semantic review: A real learner exercise answer precedes correction. Pure clarification and skip requests are handled as support for the pending retry, with no additional completed exercise or invented progress attributed to them. No pre-answer stop occurs.",
+      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
+      "evidenceSha256": "0a9a771e0d2fbb18b0d717030d0bb078f45523868ca80f25b1202afb45f725e6"
     },
     {
       "id": "heldout-resume-expression-upgrade-full",
       "promptId": "expression-upgrade",
       "variant": "full",
       "source": "current",
-      "promptSha256": "1d9d371f9516ede4da692b03d62d411c17f054e584610132f155e1f93e754167",
+      "promptSha256": "b7ac01bc3f4e7ffd4527edebc067745c7da024dc2c1de0861f562e616bd05745",
       "learnerTurns": [
         "I go shopping yesterday. What about you?",
         "Why do I need went instead of go?",
@@ -556,9 +556,9 @@
       ],
       "judgment": "pass",
       "criterion": "Correct the real tense error even when an answer includes a social question; answer pure English clarification outside grading, preserve the pending retry, and advance after success.",
-      "rationale": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review. Correct the real tense error even when an answer includes a social question; answer pure English clarification outside grading, preserve the pending retry, and advance after success. Previously fresh authored assistant turns were explicitly re-reviewed and retained because their behavior remains appropriate; all learner/source inputs are preserved.",
-      "sampleProvenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review.",
-      "evidenceSha256": "8c5defab618a0c4537f887f8c9f5d11b1d3ed0907fcf65d1cac825523712bb19"
+      "rationale": "Retained after semantic review: A real learner exercise answer precedes correction. Pure clarification and skip requests are handled as support for the pending retry, with no additional completed exercise or invented progress attributed to them. No pre-answer stop occurs.",
+      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
+      "evidenceSha256": "1059d4af36846840f1c0b0e7fa94290a613ae7c531a0d6c22cd4168edcd2f5ee"
     }
   ]
 }

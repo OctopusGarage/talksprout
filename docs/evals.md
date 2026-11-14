@@ -2,32 +2,36 @@
 
 ## Scope
 
-Release evaluation on 2026-11-14 covers nine coaching modes, four review modes, and 136 optional presets (32 everyday, 48 workplace, 56 interview). Static composition, authored reference simulations, real text API execution, and browser/PWA tests are separate evidence types.
+Release evaluation on 2026-11-14 covers nine coaching modes, four review modes, and 160 optional presets (31 everyday, 13 travel, 12 services, 48 workplace, 56 interview). Static composition, authored reference simulations, real text API execution, and browser/PWA tests are separate evidence types.
 
 | Check | Release result |
 | --- | --- |
 | Authored opening / teaching / spoken / review references | 9 / 11 / 11 / 15 accepted cases |
-| Authored scene references | 28 accepted cases |
-| Complete composition matrix | 800 coach/scenario/pace combinations, 1,600 payloads |
-| Real GPT-4.1 text API cases | 514 accepted; raw judge 513 pass, 0 fail, 1 uncertain |
-| Independent semantic adjudication | 1 imperative-opening false positive accepted; raw verdict retained |
-| Unit tests | 66 passed |
-| Chromium browser tests | 50 passed |
-| WebKit browser/PWA tests | 30 passed |
+| Authored scene references | 79 accepted cases; 51 added references are authored, not API runs |
+| Complete composition matrix | 936 coach/scenario/pace combinations, 1,872 payloads |
+| Real GPT-4.1 text API cases | 562 accepted; raw judge 561 pass, 1 fail, 0 uncertain |
+| Independent semantic adjudication | 1 natural-answer follow-up false positive accepted; raw verdict retained |
+| Unit tests | 72 passed |
+| Chromium browser tests | 56 passed |
+| WebKit browser/PWA tests | 36 passed |
 | TypeScript and production build | Passed |
 
 
-The 46 base references and 28 scene references are authored text simulations, not external-provider API runs. The separate live API corpus below contains real executions. Neither corpus is evidence of learning effectiveness or broad provider reliability. Fixtures contain exact prompt hashes; changed text requires refreshed sessions. See [methodology](../evals/README.md) and [fixtures](../evals/fixtures/).
+The 46 base references and 79 scene references are authored text simulations, not external-provider API runs. The separate live API corpus below contains real executions. Neither corpus is evidence of learning effectiveness or broad provider reliability. Fixtures contain exact prompt hashes; changed text requires refreshed sessions. See [methodology](../evals/README.md) and [fixtures](../evals/fixtures/).
 
-## Real API evaluation for this release
+The expanded catalog has real text API coverage for all 160 scenes. The fixed live manifest has no pending current scenes; future catalog additions remain pending until executed. Authored references and static checks remain separate from model execution. Browser coverage includes five-category browsing, exact copied payloads, topic compatibility, bilingual search and nested swipe-back dismissal that preserves the parent prompt and optional background.
 
-The [live archive](../evals/fixtures/live-api.json) records 514 isolated cases against OpenAI `gpt-4.1`, reported as `gpt-4.1-2025-04-14`. The suite exercises every preset's recommended coach in full and spoken text, every technical mock scenario in both formats, all base coaches and review purposes, and help, stopping, correct answers, retry clarification/skip/success, background isolation, missing context, transcript isolation and a text simulation of voice-only fallback.
+## Recorded real API evaluation
 
-Separate same-model calls judge responses, augmented by a mechanical opening-question check. Final raw judgments are **513 pass, zero fail and one uncertain**. A separate Codex reviewer accepted the uncertain case because “Please send a photo or describe the object…” is a valid concise startup request without a question mark. Its input, response, raw judgment and original evidence hash are preserved with the adjudication. There is no waived strict failure in the current release corpus.
+The [accepted archive](../evals/fixtures/live-api.json) contains 562 current-input text cases against `gpt-4.1-2025-04-14`, covering every scene in both formats with a recommended coach, technical mock interviews, all base coaches, reviews and interaction edge cases. Real API coverage is narrower than the full static matrix of 936 combinations.
 
-[Historical findings](../evals/results/2026-11-14-regressions.json) retain failed outputs from refinement rounds. These drove concrete one-focus openings, pending-task help, stop priority, natural-description acceptance, grounded shorter cards, and explicit missing-context/oral branches. Prompt changes invalidate corresponding payload evidence. Within the release session, target responses are reused only for identical complete inputs; changing judge policy or model invalidates cached judgments. Previously generated authored references were re-authored/re-reviewed separately, preserving source/learner inputs.
+Final raw judgments are **561 pass, one fail, zero uncertain**. One separate static semantic review accepts the gentle-coach natural-answer reply because its single follow-up is required, not an additional question in the previous turn. Its exact input, reply, raw failed judgment and original evidence digest remain bound to the adjudication. All 562 release gates pass; no true instruction violation is waived.
 
-The live corpus is one text sample per current case. Same-model grading is correlated and required the documented independent adjudication. It does not establish microphone recognition, pronunciation quality, physical iPhone PWA behavior, long-session stability or compatibility with other providers. `pnpm eval` validates committed evidence without making new API calls; `pnpm eval:live` performs optional new calls using an environment-provided key. See [methodology](../evals/README.md).
+Each case now has its own same-model judge request, with a unique recorded response ID. This avoids feeding multiple full and compact instruction sets to one grading request. It is not an independent judging model. Exact-input target replies from the final full run were retained for isolated rejudging, and the eight changed transcript inputs were re-executed. Reused current-input records are not counted as fresh requests on later resumes.
+
+Release findings drove coherent early-stop handling (no invented progress before an exercise answer), exactly one spoken role-play opening, an exclusive oral-only sentence-review branch, and a balanced source gate that both rejects missing transcripts and accepts short valid transcripts. Affected authored fixtures were semantically re-reviewed; raw flagged outputs remain in [results](../evals/results/). Synthetic touch regression tests also exposed and fixed parent-sheet dismissal when the scenario picker was open.
+
+These are text evaluations. They do not establish audio recognition, pronunciation assessment, physical iPhone PWA gesture compatibility, learning effectiveness, long-session reliability or compatibility with other providers. `pnpm eval` validates recorded evidence without network calls; `pnpm eval:live` performs optional paid API requests.
 
 ## Spoken openings
 
@@ -159,7 +163,7 @@ Input modality now controls non-editable focus rings across prompt rows, favorit
 
 ## Scenario preset evidence
 
-The optional scenario layer adds 136 named presets (32 everyday, 48 workplace, 56 interview). Its separate archive contains 28 authored role simulations over composed payloads; see `evals/README.md` for representative coverage and limitations. Unselected prompts use the base coach instructions without scenario composition. The release prompt refinements and refreshed reference archives are documented above. Catalog/assembly tests cover all supported combinations; browser checks cover scenario replacement, background editing, both formats, exact clipboard delivery, fallback, stale completions, language persistence, keyboard use and narrow-screen accessibility. These forms of evidence remain separate from the real API text corpus added in this release and from audio/provider testing, which remains unverified.
+The optional scenario layer contains 160 named presets (31 everyday, 13 travel, 12 services, 48 workplace, 56 interview). Its separate archive contains 79 authored role simulations over composed payloads; see `evals/README.md` for representative coverage and limitations. Unselected prompts use the base coach instructions without scenario composition. The release prompt refinements and refreshed reference archives are documented above. Catalog/assembly tests cover all supported combinations; browser checks cover scenario replacement, background editing, both formats, exact clipboard delivery, fallback, stale completions, language persistence, keyboard use and narrow-screen accessibility. These forms of evidence remain separate from the real API text corpus added in this release and from audio/provider testing, which remains unverified.
 
 ## PWA update verification
 

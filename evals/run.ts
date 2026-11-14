@@ -52,7 +52,16 @@ console.log(
         readFileSync("evals/fixtures/scene-presets.json", "utf8"),
       ).cases.length,
       compositionMatrix: matrix,
-      liveApi: { cases: live.cases, adjudications: live.adjudications },
+      liveApi: {
+        cases: live.cases,
+        adjudications: live.adjudications,
+        recordedScenes: live.recordedScenes,
+        pendingScenes: live.pendingScenes,
+        pendingSceneIds: live.pendingSceneIds,
+        pendingStatus: live.pendingScenes
+          ? "Pending scenes have no recorded API executions; this invocation makes no new API calls"
+          : "All current scenes have recorded API executions; this invocation makes no new API calls",
+      },
       issues,
     },
     null,

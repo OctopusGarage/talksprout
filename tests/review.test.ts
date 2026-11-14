@@ -37,7 +37,7 @@ test("transcript source changes only full review instructions", () => {
     assert.ok(template.startsWith(p.prompt));
     assert.match(
       template,
-      /use only the transcript enclosed below, not the surrounding chat/,
+      /Use only the conversation inside the transcript block below, never the surrounding chat/,
     );
     assert.ok(
       template.endsWith(

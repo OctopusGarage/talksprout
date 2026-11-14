@@ -18,7 +18,7 @@ export const sceneGroups = [
   },
   {
     id: "travel-stories",
-    category: "everyday",
+    category: "travel",
     title: {
       zh: "旅行体验",
       en: "Travel experiences",
@@ -26,7 +26,7 @@ export const sceneGroups = [
   },
   {
     id: "travel-logistics",
-    category: "everyday",
+    category: "travel",
     title: {
       zh: "旅途沟通",
       en: "Travel logistics",
@@ -239,5 +239,45 @@ export const sceneGroups = [
       zh: "AI Agent 工程",
       en: "AI agent engineering",
     },
+  },
+  {
+    id: "travel-dining",
+    category: "travel",
+    title: { zh: "旅途餐饮", en: "Dining out" },
+  },
+  {
+    id: "travel-problems",
+    category: "travel",
+    title: { zh: "旅途问题处理", en: "Travel problems" },
+  },
+  {
+    id: "invitations-requests",
+    category: "everyday",
+    title: { zh: "邀请与请求", en: "Invitations & requests" },
+  },
+  {
+    id: "social-repair",
+    category: "everyday",
+    title: { zh: "理解与关系维护", en: "Understanding & relationships" },
+  },
+  {
+    id: "retail-support",
+    category: "services",
+    title: { zh: "购物与售后", en: "Shopping & support" },
+  },
+  {
+    id: "housing-community",
+    category: "services",
+    title: { zh: "租住与社区", en: "Housing & community" },
+  },
+  {
+    id: "appointments",
+    category: "services",
+    title: { zh: "预约与接待", en: "Appointments & reception" },
+  },
+  {
+    id: "everyday-services",
+    category: "services",
+    title: { zh: "通信与生活服务", en: "Plans & local services" },
   },
 ] satisfies SceneGroup[];

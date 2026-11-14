@@ -286,3 +286,52 @@ test("picker keeps focus inside its sheet, uses green keyboard focus and restore
     "false",
   );
 });
+
+test("five scene categories expose services and migrated travel with exact preview and clipboard", async ({ page }) => {
+  await page.goto("/#library?prompt=roleplay-coach");
+  await browse(page);
+  await expect(page.locator(".scene-list > .scene-row:not(.scene-none)")).toHaveCount(5);
+  await page.getByRole("button", { name: "日常办事与服务", exact: true }).click();
+  await page.getByRole("button", { name: "购物与售后", exact: true }).click();
+  await page.getByRole("button", { name: "退换商品", exact: true }).click();
+  await expect(page.locator("#prompt-text")).toContainText("Returning an item");
+  await page.getByRole("button", { name: "复制完整提示词", exact: true }).click();
+  expect(await page.evaluate(() => (window as unknown as { sceneCopy: string }).sceneCopy))
+    .toBe(await page.locator("#prompt-text").inputValue());
+  await choose(page, "行李未到");
+  await expect(page.locator("#prompt-text")).toContainText("Missing baggage");
+  await choose(page, "婉拒邀请");
+  await expect(page.locator("#prompt-text")).toContainText("Declining an invitation");
+});
+
+test("travel topic support survives migration and unavailable topic groups stay hidden", async ({ page }) => {
+  for (const coach of ["friendly-debate", "word-riddle"]) {
+    await page.goto(`/#library?prompt=${coach}`);
+    await browse(page);
+    await expect(page.getByRole("button", { name: "日常办事与服务", exact: true })).toHaveCount(0);
+    await page.getByRole("button", { name: "旅行与出行", exact: true }).click();
+    await expect(page.getByRole("button", { name: "旅途问题处理", exact: true })).toHaveCount(0);
+    await page.getByRole("button", { name: "旅途沟通", exact: true }).click();
+    await page.getByRole("button", { name: "酒店入住", exact: true }).click();
+    await expect(page.locator("#prompt-text")).toContainText("Hotel check-in");
+    await expect(page.locator("#prompt-text")).toContainText(coach === "friendly-debate" ? "opinion discussion" : "vocabulary theme");
+  }
+});
+
+test("new categories and bilingual search follow the persisted English locale on narrow phones", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  await page.goto("/#library?prompt=roleplay-coach");
+  await page.evaluate(() => localStorage.setItem("talksprout:locale", "en"));
+  await page.reload();
+  await browse(page);
+  await expect(page.getByRole("button", { name: "Travel & Getting Around", exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Everyday Services", exact: true }).click();
+  await page.locator("#scene-search").fill("退换商品");
+  await page.getByRole("button", { name: "Returning an item", exact: true }).click();
+  await page.getByRole("tab", { name: "Spoken opening", exact: true }).click();
+  await expect(page.locator(".spoken-script")).toContainText("returning an item");
+  expect(await page.locator("#detail").evaluate((e) => e.scrollWidth <= e.clientWidth)).toBe(true);
+  await page.reload();
+  await browse(page);
+  await expect(page.getByRole("button", { name: "Everyday Services", exact: true })).toBeVisible();
+});

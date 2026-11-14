@@ -1,6 +1,8 @@
 import type { Scene, SceneCategory } from "./scenes";
 export const categoryEmoji: Record<SceneCategory, string> = {
   everyday: "🌿",
+  travel: "🧳",
+  services: "🏪",
   workplace: "💼",
   interview: "💻",
 };
@@ -13,6 +15,14 @@ export const groupEmoji: Record<string, string> = {
   culture: "🎬",
   "daily-life": "🏡",
   connections: "🌱",
+  "travel-dining": "🍽️",
+  "travel-problems": "🛎️",
+  "invitations-requests": "📩",
+  "social-repair": "🤝",
+  "retail-support": "🛍️",
+  "housing-community": "🏘️",
+  appointments: "📅",
+  "everyday-services": "📱",
   career: "👋",
   meetings: "🎙️",
   product: "🧩",

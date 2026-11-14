@@ -10,6 +10,7 @@ import type { Prompt, PromptVariant, ReviewSource } from "./types";
 import { readSaved, writeSaved } from "./library";
 import { useNavigation, navigate } from "./navigation";
 import { useAppFrame } from "./useAppFrame";
+import { useRightEdgeBack } from "./useRightEdgeBack";
 import { collections } from "./content/collections";
 import { Icon } from "./Icon";
 import { Settings } from "./Settings";
@@ -169,6 +170,21 @@ export default function App() {
       else navigate(route.base);
     }
   };
+  useRightEdgeBack(
+    modal
+      ? () => {
+          if (
+            history.state?.talksproutSceneBrowser &&
+            history.state?.talksproutSceneCoach === route.promptId
+          )
+            history.back();
+          else closeModal();
+        }
+      : route.collection
+        ? () => navigate("#library")
+        : null,
+    `${route.base}:${route.promptId ?? ""}:${route.infoId ?? ""}`,
+  );
   const save = (key: string, value: string[]) => {
     if (!writeSaved(storage, key, value)) setMessage(t.saveError);
   };
