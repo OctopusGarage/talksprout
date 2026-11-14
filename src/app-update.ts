@@ -75,11 +75,27 @@ export function createAppUpdateManager({
       // A waiting worker disappears during activation; keep progress visible.
       if (requested) return;
     }
-    if (registration.waiting?.state === "installed") {
-      offered = registration.waiting;
+    const waiting = registration.waiting;
+    // The first cache install briefly passes through waiting before activating.
+    // Offer an update only when it actually replaces another active worker.
+    if (
+      waiting?.state === "installed" &&
+      registration.active &&
+      registration.active !== waiting &&
+      container.controller !== waiting
+    ) {
+      offered = waiting;
       if (phase !== "error") publish("available");
-    } else if (phase === "available" && offered?.state === "redundant")
+    } else if (
+      phase === "available" &&
+      (offered?.state === "redundant" ||
+        (offered?.state === "activated" &&
+          knownController === offered &&
+          container.controller === offered))
+    ) {
+      offered = null;
       publish("idle");
+    }
   }
   const controllerChanged = () => {
     if (disposed || refreshing) return;

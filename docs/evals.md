@@ -11,7 +11,7 @@ Release evaluation on 2026-11-14 covers nine coaching modes, four review modes, 
 | Complete composition matrix | 800 coach/scenario/pace combinations, 1,600 payloads |
 | Real GPT-4.1 text API cases | 514 accepted; raw judge 513 pass, 0 fail, 1 uncertain |
 | Independent semantic adjudication | 1 imperative-opening false positive accepted; raw verdict retained |
-| Unit tests | 65 passed |
+| Unit tests | 66 passed |
 | Chromium browser tests | 50 passed |
 | WebKit browser/PWA tests | 30 passed |
 | TypeScript and production build | Passed |
@@ -164,3 +164,7 @@ The optional scenario layer adds 136 named presets (32 everyday, 48 workplace, 5
 ## PWA update verification
 
 The update manager now publishes immediate progress, observes worker and controller state, polls briefly for confirmed activation, and reconciles on foreground/pageshow/focus/reconnect. After 12 seconds it offers retry instead of silently waiting or blindly reloading. Dedicated session storage supports a brief completion acknowledgment; preferences are preserved. Unit lifecycle simulations cover missed events, timeout/retry, stale workers, initial claim and disposal. Deterministic browser simulations cover visible standalone-state feedback; real local HTTP-served service workers verify actual cache installation, two release cycles, exactly-once reload and offline recovery in both Chromium and WebKit. These browser tests do not replace a physical iPhone Home Screen test.
+
+### Initial-cache update race
+
+The first Linux CI run caught a phantom update banner: the initial worker was already activated, with no waiting/installing worker, but the app still offered an update. A repeated local real-worker test reproduced this under concurrency. The manager now offers only an installed waiting worker that replaces a distinct active worker and is not already the page controller; it also clears a stale offer once that version already controls the current page. A regression asserts no update banner during initial cache installation before testing later releases. No prompt payload changed, so the recorded API evidence remains current.

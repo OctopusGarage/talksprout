@@ -66,12 +66,35 @@ test("real worker updates reload once after initial claim and on return visits",
     });
     const loads = () =>
       page.evaluate(() => Number(sessionStorage.getItem("loads")));
+    async function expectNoUpdate() {
+      try {
+        await expect(page.locator("#update")).toHaveCount(0);
+      } catch (error) {
+        console.error(
+          "Worker lifecycle at unexpected banner",
+          await page.evaluate(async () => {
+            const reg = await navigator.serviceWorker.ready;
+            return {
+              controller: navigator.serviceWorker.controller?.state,
+              active: reg.active?.state,
+              waiting: reg.waiting?.state,
+              installing: reg.installing?.state,
+              loads: sessionStorage.getItem("loads"),
+              banner: document.getElementById("update-bar")?.textContent,
+            };
+          }),
+        );
+        throw error;
+      }
+    }
+
     await page.goto(url);
     await page.waitForFunction(() => !!navigator.serviceWorker.controller);
     await expect
       .poll(() => page.evaluate(() => sessionStorage.getItem("changes")))
       .toBe("1");
     expect(await loads()).toBe(1);
+    await expectNoUpdate();
     await page.locator(".language-shortcut").click();
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
     await page.locator('[data-collection="companions"]').click();
@@ -97,7 +120,7 @@ test("real worker updates reload once after initial claim and on return visits",
       await page.waitForLoadState("domcontentloaded");
       await expect(page.locator("#library-heading")).toBeVisible();
       expect(await loads()).toBe(expectedLoads);
-      await expect(page.locator("#update")).toHaveCount(0);
+      await expectNoUpdate();
       await page.evaluate(async () => {
         const registration = await navigator.serviceWorker.ready;
         if (registration.waiting || registration.installing)

@@ -5,7 +5,7 @@ import {
   type AppUpdateSnapshot,
 } from "../src/app-update";
 
-function harness() {
+function harness(initiallyControlled = true) {
   class Worker extends EventTarget {
     state: ServiceWorkerState = "installed";
     messages = 0;
@@ -21,7 +21,7 @@ function harness() {
   const registration = Object.assign(new EventTarget(), {
     waiting: next as Worker | null,
     installing: null as Worker | null,
-    active: old,
+    active: old as Worker | null,
     updates: 0,
     update: async () => {
       registration.updates++;
@@ -29,7 +29,7 @@ function harness() {
     },
   });
   const container = Object.assign(new EventTarget(), {
-    controller: old as Worker | null,
+    controller: initiallyControlled ? old : (null as Worker | null),
     register: async () => registration,
   });
   let snapshot: AppUpdateSnapshot = { phase: "idle" };
@@ -151,4 +151,17 @@ test("the first worker claim never reloads and disposal cancels activation obser
   h.container.controller = h.next;
   h.container.dispatchEvent(new Event("controllerchange"));
   assert.equal(h.reloads, 0);
+});
+
+test("the initial cache installation never advertises an app update", async () => {
+  const h = harness(false);
+  h.registration.active = null;
+  await h.manager.start("sw.js");
+  assert.equal(h.snapshot.phase, "idle");
+  h.activate(false);
+  h.container.controller = h.next;
+  h.container.dispatchEvent(new Event("controllerchange"));
+  assert.equal(h.snapshot.phase, "idle");
+  assert.equal(h.reloads, 0);
+  h.manager.dispose();
 });
