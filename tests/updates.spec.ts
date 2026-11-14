@@ -27,7 +27,7 @@ test("real worker updates reload once after initial claim and on return visits",
         body = Buffer.from(
           body
             .toString()
-            .replace(/talksprout-([a-f0-9]+)/g, `talksprout-$1-test${release}`),
+            .replace(/const CACHE=PREFIX\+'([a-f0-9]+)';/, `const CACHE=PREFIX+'$1-test${release}';`),
         );
       const mime: Record<string, string> = {
         ".html": "text/html",

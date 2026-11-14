@@ -4,7 +4,7 @@
 
 The supplementary directory contains 18 listening, reading and writing prompts. `learning-static.json` retains separate editorial reviews, while `learning-live-api.json` records 108 real GPT-4.1 text target/judge executions. `pnpm eval` checks both, together with the 562 current speaking/review cases. Browser tests independently check bilingual navigation, exact clipboard content, accessible sheets and layouts. No actual audio or learning-outcome tests were performed.
 
-The comprehensive release has **670 accepted exact-input text cases**. Raw judgments are **667 pass, three fail, zero uncertain**. The three failures are confirmed judge errors with bound static semantic adjudications; actual failures were fixed and re-executed. Follow-up assistant histories are authored seeds, not end-to-end model conversations. Unchanged cases from the same full run were reused only during targeted retries. Earlier six- and eighteen-prompt UI checks did not include these real model runs.
+The original comprehensive release had **670 accepted exact-input text cases**, with **667 raw pass, three fail and zero uncertain**. Those three failures are confirmed judge errors with bound static semantic adjudications; actual failures were fixed and re-executed. The optimization refresh below updates affected records and adds separate suites. Follow-up assistant histories are authored seeds, not end-to-end model conversations. Unchanged cases from the same full run were reused only during targeted retries. Earlier six- and eighteen-prompt UI checks did not include these real model runs.
 
 Release evaluation on 2026-11-14 covers nine coaching modes, four review modes, and 160 optional presets (31 everyday, 13 travel, 12 services, 48 workplace, 56 interview). Static composition, authored reference simulations, real text API execution, and browser/PWA tests are separate evidence types.
 
@@ -13,14 +13,14 @@ Release evaluation on 2026-11-14 covers nine coaching modes, four review modes, 
 | Authored opening / teaching / spoken / review references | 9 / 11 / 11 / 15 accepted cases |
 | Authored scene references | 79 accepted cases; 51 added references are authored, not API runs |
 | Complete composition matrix | 936 coach/scenario/pace combinations, 1,872 payloads |
-| Real GPT-4.1 text API cases | 670 accepted (562 speaking/review + 108 supplementary); raw judge 667 pass, 3 fail, 0 uncertain |
-| Static semantic adjudication | 3 confirmed judge false positives accepted; raw verdicts retained |
-| Unit tests | 76 passed |
-| Chromium browser tests | 60 passed |
-| WebKit browser/PWA tests | 40 passed |
+| Real GPT-4.1 text API cases | 712 accepted cases across four archives; 736 final target responses; raw case gates 708 pass, 4 fail, 0 uncertain |
+| Static semantic adjudication | 4 confirmed judge false positives accepted; raw verdicts retained |
+| Unit tests | 97 passed |
+| Chromium browser tests | 66 passed |
+| WebKit browser/PWA tests | 46 passed |
 | TypeScript and production build | Passed |
 
-The latest release checks passed 76 unit tests, 60 Chromium browser tests and 40 WebKit browser tests. The recorded API suites are separate from these application checks.
+The current application checks passed 97 unit tests, 66 Chromium browser tests and 46 WebKit browser tests. The recorded API suites are separate from these application checks.
 
 
 The 46 base references and 79 scene references are authored text simulations, not external-provider API runs. The separate live API corpus below contains real executions. Neither corpus is evidence of learning effectiveness or broad provider reliability. Fixtures contain exact prompt hashes; changed text requires refreshed sessions. See [methodology](../evals/README.md) and [fixtures](../evals/fixtures/).
@@ -31,7 +31,7 @@ The expanded catalog has real text API coverage for all 160 scenes. The fixed li
 
 The [accepted archive](../evals/fixtures/live-api.json) contains 562 current-input text cases against `gpt-4.1-2025-04-14`, covering every scene in both formats with a recommended coach, technical mock interviews, all base coaches, reviews and interaction edge cases. Real API coverage is narrower than the full static matrix of 936 combinations.
 
-The speaking archive's raw results are 560 pass and two fail, with static adjudications accepting the single-question gentle-coach follow-up and a one-card past-tense exercise grounded in actual hiking practice. The supplementary archive's raw results are 107 pass and one fail, with a static adjudication confirming that “make sure” occurs in the source and is a permitted selection. Each adjudication binds the exact input, observed reply, raw judgment and pre-adjudication evidence digest. No actual violation is waived.
+The original speaking archive had 560 raw pass and two fail. Its current targeted refresh has 559 raw pass and three fail, with bound static adjudications accepting the single-question gentle-coach follow-up, a one-card past-tense exercise grounded in actual hiking practice, and the tense-unmarked Chinese cue with a source-grounded past-tense answer. The supplementary archive's raw results are 107 pass and one fail, with a static adjudication confirming that “make sure” occurs in the source and is a permitted selection. Each adjudication binds the exact input, observed reply, raw judgment and pre-adjudication evidence digest. No actual violation is waived.
 
 The comprehensive first run exposed four actual issues: a spoken role-play turn asked two questions; vocabulary review included instruction-only wording; cards repeated the same past-tense target across formats; and an email rewrite claimed meaningful shortening with effectively unchanged length. Updated prompts constrain whole-reply question counts, require source headwords, merge inflections, deduplicate learning targets and check shortening. Further checks exposed compact-card duplication and source/output-branch mistakes. The final compact prompt applies the first matching branch: oral-only recap when writing is unavailable; an exact request when learner practice is absent; otherwise one grounded card. Affected targets and judges were re-executed; unchanged exact-input records from the full run were retained. `results/2026-11-14-comprehensive-findings.json` preserves the flagged original outputs, including both real issues and judge mistakes.
 
@@ -178,3 +178,13 @@ The update manager now publishes immediate progress, observes worker and control
 ### Initial-cache update race
 
 The first Linux CI run caught a phantom update banner: the initial worker was already activated, with no waiting/installing worker, but the app still offered an update. A repeated local real-worker test reproduced this under concurrency. The manager now offers only an installed waiting worker that replaces a distinct active worker and is not already the page controller; it also clears a stale offer once that version already controls the current page. A regression asserts no update banner during initial cache installation before testing later releases. No prompt payload changed, so the recorded API evidence remains current.
+
+## Focused end-to-end and English-locale checks
+
+The optimization workflow adds separate English-locale (34 rendered payloads) and held-out end-to-end (eight four-turn scripts) suites. The latter feeds actual preceding target responses into subsequent requests; its authored learner scripts do not make it an interactive learner-outcome study. The runner pins `gpt-4.1-2025-04-14` by default, supports exact-input affected selection and validates sealed whole-session resume caches. Reports distinguish newly selected cases from retained historical evidence. See [focused suite methodology and commands](../evals/README.md#focused-optimization-suites-snapshot-pinned).
+
+The first new real runs are retained as flagged historical evidence in `evals/results/2026-11-14-optimization-initial.json`. Their raw judge pass rates are not release acceptance: passing-output review exposed missed multiple questions, repeated card targets and an inaccurate shadowing suggestion. Focused results were accepted separately after correction and review; the historical 670-case suite was not freshly re-executed in full by this optimization.
+
+The accepted focused evidence now adds **34 English-locale cases** and **eight sessions with 32 actual target turns**, with raw passing judgments. Ordinary `pnpm eval` validates these committed archives without API calls. These are separate from the original 670 isolated cases; retained exact outputs during targeted retries are not fresh repeated samples. Intermediate judge mistakes and real failures remain available in the optimization result archives.
+
+The accepted legacy refresh replaces 216 speaking/review records (207 full-payload cases and nine compact cases) and 12 supplementary records while preserving 442 original records. The merged archives retain original alias-request metadata for original rows and exact pinned snapshot/policy provenance for refreshed rows. Together with the focused suites, current evidence contains **712 accepted cases and 736 final target responses**; raw case gates are **708 pass, four fail, zero uncertain**, with four bound static semantic adjudications. The additional adjudication independently confirms that a tense-unmarked Chinese cue does not assert present tense when the source-grounded English answer remains past tense. This refresh is targeted, not a new comprehensive run or repeated-trial study.

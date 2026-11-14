@@ -12,6 +12,8 @@ export interface LiveCase {
   promptId: string;
   variant: PromptVariant;
   source: ReviewSource;
+  locale?: "zh" | "en";
+  turns?: { input: string; criterion: string }[];
   selection?: SceneSelection;
   purpose: string;
   criterion: string;
@@ -358,7 +360,7 @@ export function createLiveCases(): LiveCase[] {
         p,
         variant,
         "review-current",
-        `Use only the actual short hiking exchange. Attribute the error and successful retry correctly; distinguish original corrections from generated examples and do not invent pronunciation assessment. Complete the selected review purpose; use counts as maxima.${p.id === "review-cards" ? " Each card must test a distinct target. Correcting Yesterday I go hiking and translating the same sentence both test went and are duplicates even in different formats; mark such duplication fail. New practice sentences are allowed when labeled and tied to a different source learning point." + (variant === "spoken" ? " The actual hiking learner exchange IS present in this case. This compact prompt requires exactly ONE written card from that exchange; more than one card or claiming practice is missing fails." : "") : p.id === "vocabulary-ipa-review" && variant === "full" ? " Every headword must occur in practice, not solely in the review instructions. Merge inflections such as go hiking and went hiking into one entry rather than duplicate vocabulary items." : ""}`,
+        `Use only the actual short hiking exchange. Attribute the error and successful retry correctly; distinguish original corrections from generated examples and do not invent pronunciation assessment. Complete the selected review purpose; use counts as maxima.${p.id === "review-cards" ? " Each card must test a distinct target. Correcting Yesterday I go hiking and translating the same sentence both test went and are duplicates even in different formats; mark such duplication fail. New practice sentences are allowed when labeled and tied to a different source learning point." + (variant === "spoken" ? " The actual hiking learner exchange IS present in this case. This compact prompt requires exactly ONE written card from that exchange; more than one card or claiming practice is missing fails." : "") : p.id === "vocabulary-ipa-review" ? (variant === "full" ? " Every headword must occur in practice, not solely in the review instructions. Merge inflections such as go hiking and went hiking into one entry rather than duplicate vocabulary items." : " The compact vocabulary prompt requires exactly ONE source expression with one meaning, collocation, labeled new example and key-word American IPA when written output is available. More than one headword/item, instruction-only headwords, or an oral-only fallback without a stated limit fails.") : ""}`,
         { before: conversation },
       );
       add(
@@ -372,7 +374,7 @@ export function createLiveCases(): LiveCase[] {
           p,
           variant,
           "voice-only-text-fallback",
-          "This is a text simulation of an oral fallback, not an audio test. Provide a brief grounded oral recap suitable for reading aloud, without IPA symbols, worksheets or claims to hear audio.",
+          `This is a text simulation of an oral fallback, not an audio test. Provide a brief grounded oral recap suitable for reading aloud, without IPA symbols, worksheets or claims to hear audio.${p.id === "vocabulary-ipa-review" ? " The supplied hiking learner exchange AND a prior explicit writing-unavailable declaration are both present. Claiming history is missing, requesting the conversation, or producing vocabulary worksheets fails; the only correct branch is a short grounded oral recap." : ""}`,
           {
             before: [
               ...conversation,

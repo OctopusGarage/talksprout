@@ -121,7 +121,7 @@ test("one clipboard write at a time prevents out-of-order payloads", async ({
   await settle(page, 1, true);
   expect(
     await page.evaluate(() =>
-      JSON.parse(localStorage.getItem("talksprout:recent") || "[]"),
+      JSON.parse(localStorage.getItem("talksprout:recent-items") || "[]").map((item: {promptId:string}) => item.promptId),
     ),
   ).toEqual(["gentle-start", "daily-check-in"]);
 });

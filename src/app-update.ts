@@ -13,6 +13,7 @@ interface UpdateOptions {
   onChange: (snapshot: AppUpdateSnapshot) => void;
   reload: () => void;
   onRegistrationError: () => void;
+  onRegistration?: (registration: ServiceWorkerRegistration) => void;
 }
 
 /** Owns update activation independently of React and the clipboard/toast state. */
@@ -21,6 +22,7 @@ export function createAppUpdateManager({
   onChange,
   reload,
   onRegistrationError,
+  onRegistration,
 }: UpdateOptions) {
   let registration: ServiceWorkerRegistration | undefined;
   let offered: ServiceWorker | null = null;
@@ -130,6 +132,7 @@ export function createAppUpdateManager({
         });
         if (disposed) return;
         registration = reg;
+        onRegistration?.(reg);
         reg.addEventListener("updatefound", sync);
         sync();
       } catch {

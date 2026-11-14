@@ -1,0 +1,10 @@
+.learning-prompt-row { display: flex; align-items: center; }
+.learning-prompt-row + .learning-prompt-row { border-top: 1px solid var(--border); }
+.learning-prompt-row .learning-prompt { flex: 1; min-width: 0; width: auto; }
+.learning-prompt-row .learning-favorite { flex: 0 0 44px; min-height: 44px; margin-right: 8px; }
+.learning-favorite[aria-pressed="true"] { color: var(--accent, #234e41); }
+.learning-favorite[aria-pressed="true"] svg { fill: currentColor; }
+.learning-saved-filter { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 12px; color: inherit; background: transparent; cursor: pointer; }
+.learning-saved-filter svg { width: 18px; height: 18px; }
+.learning-saved-filter[aria-pressed="true"] { background: #e9f0e8; }
+.learning-empty { padding: 20px; color: var(--muted); }

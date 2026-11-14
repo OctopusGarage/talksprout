@@ -1,3 +1,4 @@
+import "./quick-access.css";
 import {
   useEffect,
   useLayoutEffect,
@@ -7,6 +8,11 @@ import {
 } from "react";
 import { allPrompts as sourcePrompts } from "./prompts";
 import type { Prompt, PromptVariant, ReviewSource } from "./types";
+import { FirstPracticeGuide } from "./FirstPracticeGuide";
+import { SavedPracticeList, RecentList } from "./QuickAccess";
+import { useSavedPrompts } from "./useSavedPrompts";
+import { usePromptClipboard } from "./usePromptClipboard";
+import { practiceHref, shortcutKey, type PracticeShortcut, type RecentPrompt } from "./shortcuts";
 import { readSaved, writeSaved } from "./library";
 import { useNavigation, navigate } from "./navigation";
 import { useAppFrame } from "./useAppFrame";
@@ -31,6 +37,8 @@ try {
 export default function App() {
   const route = useNavigation();
   const appUpdate = useAppUpdate();
+  const { copying, writer } = usePromptClipboard();
+  const savedPrompts = useSavedPrompts(storage);
   const [sceneSelection, setSceneSelection] = useState<SceneSelection>();
   const frame = useAppFrame(route.base);
   const lastPractice = useRef("#library");
@@ -40,11 +48,6 @@ export default function App() {
       readSaved(storage, "talksprout:favorites").filter((id) =>
         currentPromptIDs.has(id),
       ),
-    ),
-    [recent, setRecent] = useState<string[]>(() =>
-      readSaved(storage, "talksprout:recent")
-        .filter((id) => currentPromptIDs.has(id))
-        .slice(0, 3),
     );
   const [modal, setModal] = useState<{
       prompt: Prompt | null;
@@ -55,7 +58,6 @@ export default function App() {
     [message, setMessage] = useState(""),
     [manual, setManual] = useState(false),
     [copied, setCopied] = useState(false),
-    [copying, setCopying] = useState(false),
     [online, setOnline] = useState(navigator.onLine),
     [installed, setInstalled] = useState(
       () =>
@@ -65,9 +67,7 @@ export default function App() {
   const install = useRef<(Event & { prompt: () => Promise<void> }) | null>(
     null,
   );
-  const copyGeneration = useRef(0);
-  const clipboardBusy = useRef(false);
-  const recentRef = useRef(recent);
+  const manualHydration = useRef<string | null>(null);
   const active = useRef(modal);
   active.current = modal;
   const t = dictionary[locale],
@@ -103,14 +103,16 @@ export default function App() {
       setMessage(en ? "Offline cache unavailable." : "离线缓存暂不可用。");
   }, [appUpdate.cacheUnavailable, en]);
   useLayoutEffect(() => {
-    copyGeneration.current++;
+    writer.invalidate();
     setCopied(false);
+    const preserveManual = manualHydration.current === location.hash;
+    manualHydration.current = null;
     if (route.promptId) {
       const prompt = prompts.find((p) => p.id === route.promptId);
-      if (prompt && active.current?.prompt?.id !== prompt.id) {
-        setSceneSelection(undefined);
-        setVariant("full");
-        setReviewSource("current");
+      if (prompt && !preserveManual) {
+        setSceneSelection(route.sceneSelection);
+        setVariant(route.format ?? "full");
+        setReviewSource(route.reviewSource ?? "current");
         setManual(false);
         setMessage("");
         setModal({ prompt, content: null });
@@ -122,9 +124,24 @@ export default function App() {
       setMessage("");
       setManual(false);
     }
-  }, [route.promptId, route.infoId, route.base]);
+  }, [route.promptId, route.infoId, route.base, route.sceneSelection?.sceneId, route.sceneSelection?.pace, route.format, route.reviewSource]);
+  const previousBase = useRef(route.base);
   useEffect(() => {
-    document.getElementById("library-heading")?.focus({ preventScroll: true });
+    const previous = previousBase.current;
+    previousBase.current = route.base;
+    if (route.promptId || route.learningPromptId || route.infoId) return;
+    const focusedAtNavigation = document.activeElement;
+    const frame = requestAnimationFrame(() => {
+      if (document.querySelector("dialog[open]")) return;
+      // Do not override focus the user moved after navigation but before this frame.
+      const focused = document.activeElement;
+      if (focused !== focusedAtNavigation && focused !== document.body && focused?.isConnected) return;
+      const opener = previous.startsWith("#collection/") && route.base === "#library"
+        ? document.querySelector<HTMLElement>(`[data-collection="${previous.slice("#collection/".length)}"]`)
+        : null;
+      (opener ?? document.getElementById("library-heading"))?.focus({ preventScroll: true });
+    });
+    return () => cancelAnimationFrame(frame);
   }, [route.base]);
   useEffect(() => {
     if (!message || modal) return;
@@ -136,7 +153,7 @@ export default function App() {
     window.addEventListener("appinstalled", complete);
     return () => window.removeEventListener("appinstalled", complete);
   }, []);
-  const openPrompt = (p: Prompt) => {
+  const openPrompt = (p: Prompt, format: PromptVariant = "full", source: ReviewSource = "current", scene?: SceneSelection, preserveManual = false) => {
     const samePurpose = (p.kind === "review") === (route.page === "review");
     const base =
       samePurpose && route.page !== "settings"
@@ -144,12 +161,19 @@ export default function App() {
         : p.kind === "review"
           ? "#review"
           : "#library";
-    navigate(`${base}?prompt=${encodeURIComponent(p.id)}`, {
-      talksproutPrompt: p.id,
-    });
+    const params = new URLSearchParams({ prompt: p.id });
+    if (format === "spoken") params.set("format", "spoken");
+    if (p.kind === "review" && source === "transcript") params.set("source", "transcript");
+    if (p.kind !== "review" && scene) {
+      params.set("scene", scene.sceneId);
+      if (scene.pace === "mock") params.set("pace", "mock");
+    }
+    const href = `${base}?${params}`;
+    if (preserveManual && location.hash !== href) manualHydration.current = href;
+    navigate(href, { talksproutPrompt: p.id });
   };
   const resetCopyFeedback = () => {
-    copyGeneration.current++;
+    writer.invalidate();
     setCopied(false);
     setManual(false);
     setMessage("");
@@ -207,56 +231,42 @@ export default function App() {
     setModal({ prompt: p, content: null });
     openPrompt(p);
   };
+  const shortcut = (p: Prompt, format: PromptVariant, scene?: SceneSelection): PracticeShortcut => ({
+    promptId: p.id, variant: format, ...(scene ? { sceneId: scene.sceneId } : {}), pace: scene?.pace ?? "coached",
+  });
   const copy = async (
-    p: Prompt,
-    format: PromptVariant = "full",
-    source: ReviewSource = "current",
-    scene?: SceneSelection,
+    p: Prompt, format: PromptVariant = "full", source: ReviewSource = "current", scene?: SceneSelection,
   ) => {
-    // Start the browser API during the click gesture; never queue a later write.
-    if (clipboardBusy.current) return;
-    clipboardBusy.current = true;
-    const generation = ++copyGeneration.current;
-    const origin = location.href;
-    const current = () =>
-      generation === copyGeneration.current && location.href === origin;
-    setCopying(true);
+    if (copying) return;
     setCopied(false);
     setManual(false);
     setMessage("");
-    try {
-      await navigator.clipboard.writeText(
-        promptText(composeScene(p, scene), format, source),
-      );
-      const next = [
-        p.id,
-        ...recentRef.current.filter((id) => id !== p.id),
-      ].slice(0, 3);
-      recentRef.current = next;
-      setRecent(next);
-      const saved = writeSaved(storage, "talksprout:recent", next);
-      if (!current()) return;
-      const success =
-        p.kind === "review"
-          ? s(
-              "已复制！发送到 AI 聊天，整理复习材料。",
-              "Copied! Send in your AI chat to create review material.",
-            )
+    let persisted = true;
+    await writer.write({
+      text: promptText(composeScene(p, scene), format, source, locale),
+      onDelivered: () => {
+        const entry: RecentPrompt = p.kind === "review"
+          ? { kind: "review", promptId: p.id, variant: format, source }
+          : { kind: "practice", ...shortcut(p, format, scene) };
+        persisted = savedPrompts.record(entry);
+      },
+      onSuccess: () => {
+        const success = p.kind === "review"
+          ? s("已复制！发送到 AI 聊天，整理复习材料。", "Copied! Send in your AI chat to create review material.")
           : t.copied;
-      setCopied(true);
-      setMessage(saved ? success : `${success} ${t.saveError}`);
-    } catch {
-      if (!current()) return;
-      setModal({ prompt: p, content: null });
-      setVariant(format);
-      setReviewSource(source);
-      setManual(true);
-      setMessage(t.manual);
-      openPrompt(p);
-    } finally {
-      clipboardBusy.current = false;
-      setCopying(false);
-    }
+        setCopied(true);
+        setMessage(persisted ? success : `${success} ${t.saveError}`);
+      },
+      onFailure: () => {
+        setModal({ prompt: p, content: null });
+        setVariant(format);
+        setReviewSource(source);
+        setSceneSelection(scene);
+        setManual(true);
+        setMessage(t.manual);
+        openPrompt(p, format, source, scene, true);
+      },
+    });
   };
   const info = (kind: "install" | "about") => {
     resetCopyFeedback();
@@ -305,6 +315,10 @@ export default function App() {
                   "Start practice sets up a new conversation. Wrap-up & Review turns an existing chat into notes, sentences, vocabulary, or self-study cards. Both offer short spoken versions.",
                 )}
               </p>
+              <p>{s(
+                "听读写辅助有独立收藏。常用组合保存教练、场景与练习方式；分享链接和最近复制都不包含补充背景。讲解语言跟随界面选择。",
+                "Learning helpers have separate favorites. Saved combinations keep the coach, scenario and format. Links and recent copies exclude extra background. Explanation language follows the interface.",
+              )}</p>
               <p>
                 {s(
                   "无账号、无分析追踪。收藏、最近复制和语言保存在本机，清除浏览器数据会移除记录。本站不保存 AI 聊天。",
@@ -483,6 +497,12 @@ export default function App() {
               copying={copying}
               onDetail={detail}
               onCopy={(p) => void copy(p)}
+              homeExtras={<>
+                <FirstPracticeGuide locale={locale} />
+                <SavedPracticeList items={savedPrompts.shortcuts} locale={locale} onRemove={(item) => { if (!savedPrompts.toggleShortcut(item)) setMessage(t.saveError); }} />
+                <RecentList items={savedPrompts.recent.filter(item => item.kind === "practice")} locale={locale} />
+              </>}
+              reviewExtras={<RecentList items={savedPrompts.recent.filter(item => item.kind === "review")} locale={locale} />}
               onFavorite={(id) => {
                 const next = favorites.includes(id)
                   ? favorites.filter((value) => value !== id)
@@ -498,8 +518,11 @@ export default function App() {
                 locale={locale}
                 promptId={route.learningPromptId}
                 copying={copying}
-                setCopying={setCopying}
-                busy={clipboardBusy}
+                writer={writer}
+                favorites={savedPrompts.learningFavorites}
+                recent={savedPrompts.recent.filter(item => item.kind === "learning")}
+                onFavorite={(id) => { if (!savedPrompts.toggleLearningFavorite(id)) setMessage(t.saveError); }}
+                onDelivered={(id) => savedPrompts.record({ kind: "learning", promptId: id })}
               />
             </div>
           )}
@@ -510,6 +533,7 @@ export default function App() {
                 onLocale={changeLocale}
                 online={online}
                 installed={installed}
+                offlineStatus={appUpdate.offlineStatus}
                 onAbout={() => info("about")}
                 onInstall={() => {
                   if (install.current) {
@@ -538,6 +562,28 @@ export default function App() {
           prompt={
             modal.prompt ? composeScene(modal.prompt, sceneSelection) : null
           }
+          practiceActions={modal.prompt && modal.prompt.kind !== "review" ? (() => {
+            const entry = shortcut(modal.prompt, variant, sceneSelection);
+            const stored = savedPrompts.shortcuts.some(item => shortcutKey(item) === shortcutKey(entry));
+            const url = new URL(location.href);
+            url.search = "";
+            url.hash = practiceHref(entry);
+            return <div className="practice-actions">
+              <button className="save-combination" aria-pressed={stored} onClick={() => { if (!savedPrompts.toggleShortcut(entry)) setMessage(t.saveError); }}>{stored ? s("取消组合收藏", "Remove saved combination") : s("收藏此组合", "Save this combination")}</button>
+              <details><summary>{s("分享练习链接", "Share practice link")}</summary>
+                <label htmlFor="practice-link">{s("教练、场景与练习方式", "Coach, scenario and format")}</label>
+                <input id="practice-link" readOnly value={url.href} />
+                <button disabled={copying} onClick={() => {
+                  setCopied(false); setManual(false); setMessage("");
+                  void writer.write({ text: url.href,
+                    onSuccess: () => setMessage(s("练习链接已复制。", "Practice link copied.")),
+                    onFailure: () => { const field = document.getElementById("practice-link") as HTMLInputElement | null; field?.focus(); field?.select(); setMessage(s("请手动复制上方链接。", "Select and copy the link manually.")); },
+                  });
+                }}>{s("复制练习链接", "Copy practice link")}</button>
+              </details>
+              <small>{s("只保存练习选择，不包含补充背景。", "Only practice choices are saved; extra background is excluded.")}</small>
+            </div>;
+          })() : undefined}
           sceneSelection={sceneSelection}
           onSceneChange={(next) => {
             resetCopyFeedback();

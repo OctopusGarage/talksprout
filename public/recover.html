@@ -74,7 +74,7 @@
                 return Promise.all(
                   keys
                     .filter(function (key) {
-                      return key.indexOf("talksprout-") === 0;
+                      return key.indexOf("talksprout-scope-" + encodeURIComponent(root.href) + "-") === 0;
                     })
                     .map(function (key) {
                       return caches.delete(key);

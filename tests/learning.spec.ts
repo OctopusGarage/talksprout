@@ -9,7 +9,7 @@ test("learning extras stay separate and preserve bilingual deep links and Back",
   await expect(page).toHaveURL(/#learning$/);
   await expect(page.locator(".learning-prompt")).toHaveCount(6);
   await expect(page.getByRole("searchbox")).toHaveCount(0);
-  await page.getByRole("button", { name: /视频与音频辅导/ }).click();
+  await page.locator(".learning-prompt").filter({ hasText: "视频与音频辅导" }).click();
   await expect(page.locator("#prompt-text")).toBeVisible();
   await expect(page.getByRole("tablist")).toHaveCount(0);
   await expect(page.locator(".scenario-settings")).toHaveCount(0);
@@ -44,7 +44,7 @@ test("learning copy failure selects exact prompt and a dismissed pending copy st
   await page.evaluate(() => Object.defineProperty(navigator, "clipboard", {
     configurable: true, value: { writeText: () => new Promise((_resolve, reject) => { (window as any).rejectLearningCopy = reject; }) },
   }));
-  await page.getByRole("button", { name: /场景写作练习/ }).click();
+  await page.locator(".learning-prompt").filter({ hasText: "场景写作练习" }).click();
   await page.getByRole("button", { name: "复制提示词", exact: true }).click();
   await page.keyboard.press("Escape");
   await page.evaluate(() => (window as any).rejectLearningCopy(Error("late")));

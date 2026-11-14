@@ -1,0 +1,108 @@
+{
+  "method": "historical-real-text-api-voice-fallback-false-negative",
+  "releaseEvidence": false,
+  "note": "Prior hiking exchange and explicit writing-unavailable declaration exist, but response wrongly requests missing practice. Raw passing judge retained.",
+  "cases": [
+    {
+      "case": {
+        "id": "english-voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "english-spoken-seeded-text-voice-only-text-fallback",
+        "criterion": "This is a text simulation of an oral fallback, not an audio test. Provide a brief grounded oral recap suitable for reading aloud, without IPA symbols, worksheets or claims to hear audio. For written vocabulary output, every selected headword/phrase must occur in earlier learner practice, never only in the review request. Merge go hiking and went hiking as inflections of the same item; do not pad to ten. Use English explanations and meaning cues. Missing learner practice must not turn review instructions into source. If writing is available (the ordinary current context), produce the requested written material, not the oral-only fallback. Numbered recall questions require corresponding answers with matching numbers; copying dialogue lines is not a matching answer key. A compact card may test any genuine learning point in the supplied hiking exchange, including enjoyed the quiet forest, not only the corrected went. This is single-turn real target/judge text execution over authored seeded context, not an end-to-end session or actual audio. Do not claim to hear, play, or assess audio. Apply only the compact prompt's constraints, not requirements from the full variant.",
+        "payloadSha256": "b83dba2f0c2456e721b3a0a8f58311b80c6f40f5ff9092ac83f45e03dd467403",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Yesterday I go hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "Say ‘Yesterday I went hiking with my brother.’ Use past tense with yesterday."
+          },
+          {
+            "role": "user",
+            "content": "Yesterday I went hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "That works. What did you enjoy?"
+          },
+          {
+            "role": "user",
+            "content": "I enjoyed the quiet forest."
+          },
+          {
+            "role": "user",
+            "content": "Written output is unavailable in this hypothetical voice chat. Give a short spoken reply only."
+          },
+          {
+            "role": "user",
+            "content": "Review only messages before this request. These instructions are not practice or evidence that writing is unavailable.\nIf I previously said writing is unavailable, give only a brief oral recap, no IPA or worksheet.\nOtherwise, if no prior practice exists, ask me to paste it and stop.\nOtherwise write up to ten source expressions: plain-English meanings, collocations, labeled new English examples, American IPA (mark uncertainty).\nEach headword must occur in prior practice; merge inflections. Never infer unfamiliarity or pronunciation errors."
+          }
+        ],
+        "maxTokens": 1600,
+        "locale": "en"
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek82rSeH3oti4lUuHEZM0ZAsSvZww",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662721,
+        "usage": {
+          "prompt_tokens": 196,
+          "completion_tokens": 19,
+          "total_tokens": 215,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "No prior practice exists. Please paste your practice text, and I’ll help you review it.",
+        "latencyMs": 1212
+      },
+      "contractChecks": {
+        "questionMarks": 0,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "english-voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "judgment": "pass",
+        "reason": "The reply correctly detects that no prior practice exists and asks the user to paste their practice text, as instructed. It does not provide IPA, worksheet, or vocabulary output, and does not infer unfamiliarity or errors. The instructions are followed precisely."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek82tQKIxsb6vfUvzS6OZE2ITVs5m",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662723,
+        "usage": {
+          "prompt_tokens": 916,
+          "completion_tokens": 81,
+          "total_tokens": 997,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1269
+      },
+      "gateJudgment": "pass",
+      "evidenceSha256": "6eb106aba4ac86c760fa4f8feb2ad78290309d3d7a6c98fbd016e3cfdacc30bc"
+    }
+  ]
+}

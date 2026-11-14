@@ -1,11 +1,13 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { createLearningLiveCases } from "./learning-live-cases";
 import { createLiveCases } from "./live-cases";
+import { createEnglishCases, createSessionCases } from "./session-cases";
 mkdirSync(".superpowers/model-run", { recursive: true });
 const learning = process.argv.includes("--learning");
-const cases = learning ? createLearningLiveCases() : createLiveCases();
-writeFileSync(
-  learning ? ".superpowers/model-run/learning-cases.json" : ".superpowers/model-run/cases.json",
-  JSON.stringify(cases, null, 2) + "\n",
-);
-console.log(`Exported ${cases.length} isolated live evaluation cases.`);
+const english = process.argv.includes("--english");
+const sessions = process.argv.includes("--sessions");
+if ([learning, english, sessions].filter(Boolean).length > 1) throw new Error('Choose one suite');
+const cases = sessions ? createSessionCases() : english ? createEnglishCases() : learning ? createLearningLiveCases() : createLiveCases();
+const filename = sessions ? 'session-cases' : english ? 'english-cases' : learning ? 'learning-cases' : 'cases';
+writeFileSync(`.superpowers/model-run/${filename}.json`, JSON.stringify(cases, null, 2) + "\n");
+console.log(`Exported ${cases.length} ${sessions ? 'end-to-end session' : 'isolated'} live evaluation cases.`);

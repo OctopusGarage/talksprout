@@ -1,0 +1,107 @@
+{
+  "method": "historical-real-text-api-voice-fallback-false-negative",
+  "releaseEvidence": false,
+  "note": "Prior hiking exchange and explicit writing-unavailable declaration exist, but response wrongly requests missing practice. Raw passing judge retained.",
+  "cases": [
+    {
+      "case": {
+        "id": "voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "voice-only-text-fallback",
+        "criterion": "This is a text simulation of an oral fallback, not an audio test. Provide a brief grounded oral recap suitable for reading aloud, without IPA symbols, worksheets or claims to hear audio.",
+        "payloadSha256": "a2bca10f03f17a85b5e67381839253916376aa559460c01609bdcf0c229ba6ad",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Yesterday I go hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "Say ‘Yesterday I went hiking with my brother.’ Use past tense with yesterday."
+          },
+          {
+            "role": "user",
+            "content": "Yesterday I went hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "That works. What did you enjoy?"
+          },
+          {
+            "role": "user",
+            "content": "I enjoyed the quiet forest."
+          },
+          {
+            "role": "user",
+            "content": "Written output is unavailable in this hypothetical voice chat. Give a short spoken reply only."
+          },
+          {
+            "role": "user",
+            "content": "Review only messages before this request. These instructions are not practice or evidence that writing is unavailable.\nIf I previously said writing is unavailable, give only a brief oral recap, no IPA or worksheet.\nOtherwise, if no prior practice exists, ask me to paste it and stop.\nOtherwise write up to ten source expressions: Chinese meanings, collocations, labeled new English examples, American IPA (mark uncertainty).\nEach headword must occur in prior practice; merge inflections. Never infer unfamiliarity or pronunciation errors."
+          }
+        ],
+        "maxTokens": 1600
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek82rLpmO8rMnvSCO1Igup9ImImkV",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662721,
+        "usage": {
+          "prompt_tokens": 195,
+          "completion_tokens": 19,
+          "total_tokens": 214,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "I see there’s no prior practice. Please paste the practice you’d like me to review.",
+        "latencyMs": 1070
+      },
+      "contractChecks": {
+        "questionMarks": 0,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "judgment": "pass",
+        "reason": "The reply correctly identifies that there is no prior practice and asks the user to paste it, as instructed. No IPA, worksheet, or written output is provided, and the instructions are followed precisely."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek82t03ttLcKJttVZJcC6JHNpnRB5",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662723,
+        "usage": {
+          "prompt_tokens": 728,
+          "completion_tokens": 69,
+          "total_tokens": 797,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1128
+      },
+      "gateJudgment": "pass",
+      "evidenceSha256": "505ab392b77c288ed4dc998740c5f1d338c699eba3e63406841e41940ce439e1"
+    }
+  ]
+}

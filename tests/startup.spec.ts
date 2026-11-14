@@ -24,7 +24,10 @@ test("standalone recovery preserves favorites and unrelated site caches", async 
       JSON.stringify(["gentle-start"]),
     );
     await caches.open("unrelated-project");
+    // The pre-scope cache has ambiguous ownership and must survive migration.
     await caches.open("talksprout-obsolete");
+    await caches.open("talksprout-scope-" + encodeURIComponent(new URL("./", location.href).href) + "-obsolete");
+    await caches.open("talksprout-scope-" + encodeURIComponent(new URL("./other/", location.href).href) + "-obsolete");
   });
   await page.getByRole("button", { name: "重新打开", exact: true }).click();
   await expect(page.locator(".collection-card")).toHaveCount(3);
@@ -35,6 +38,8 @@ test("standalone recovery preserves favorites and unrelated site caches", async 
   ).toContain("gentle-start");
   expect(await page.evaluate(() => caches.has("unrelated-project"))).toBe(true);
   expect(await page.evaluate(() => caches.has("talksprout-obsolete"))).toBe(
-    false,
+    true,
   );
+  expect(await page.evaluate(() => caches.has("talksprout-scope-" + encodeURIComponent(new URL("./", location.href).href) + "-obsolete"))).toBe(false);
+  expect(await page.evaluate(() => caches.has("talksprout-scope-" + encodeURIComponent(new URL("./other/", location.href).href) + "-obsolete"))).toBe(true);
 });

@@ -1,0 +1,556 @@
+{
+  "method": "historical-real-text-api-compact-vocabulary-plain-task-findings",
+  "releaseEvidence": false,
+  "note": "Plain task wording still leaks instruction headwords, duplicates inflections and ignores explicit spoken-only output limits. Raw judgments and false passing outputs retained.",
+  "english": [
+    {
+      "case": {
+        "id": "english-review-current-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "english-spoken-seeded-text-review-current",
+        "criterion": "Use only the actual short hiking exchange. Attribute the error and successful retry correctly; distinguish original corrections from generated examples and do not invent pronunciation assessment. Complete the selected review purpose; use counts as maxima. For written vocabulary output, every selected headword/phrase must occur in earlier learner practice, never only in the review request. Merge go hiking and went hiking as inflections of the same item; do not pad to ten. Use English explanations and meaning cues. Missing learner practice must not turn review instructions into source. If writing is available (the ordinary current context), produce the requested written material, not the oral-only fallback. Numbered recall questions require corresponding answers with matching numbers; copying dialogue lines is not a matching answer key. A compact card may test any genuine learning point in the supplied hiking exchange, including enjoyed the quiet forest, not only the corrected went. This is single-turn real target/judge text execution over authored seeded context, not an end-to-end session or actual audio. Do not claim to hear, play, or assess audio. Apply only the compact prompt's constraints, not requirements from the full variant.",
+        "payloadSha256": "3bcce0f898fc3713fa3c07c936ad49c4bfdc573b7d5cf2a06137ce458792e2aa",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Yesterday I go hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "Say ‘Yesterday I went hiking with my brother.’ Use past tense with yesterday."
+          },
+          {
+            "role": "user",
+            "content": "Yesterday I went hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "That works. What did you enjoy?"
+          },
+          {
+            "role": "user",
+            "content": "I enjoyed the quiet forest."
+          },
+          {
+            "role": "user",
+            "content": "Finish our English practice. Use the conversation above, excluding these instructions.\nFor text output, collect up to ten expressions actually used there, with plain-English meanings, collocations, labeled new English examples, and American IPA for key words; mark uncertainty. Merge inflections. Never infer unfamiliarity or pronunciation errors.\nWhen earlier user messages explicitly request spoken-only output, replace the notes with a brief oral recap, without IPA or worksheets.\nIf the conversation contains no learner practice, ask for it and stop."
+          }
+        ],
+        "maxTokens": 1600,
+        "locale": "en"
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek86fAnbTCDRBBDN0HOjNgGSV8oqY",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662957,
+        "usage": {
+          "prompt_tokens": 173,
+          "completion_tokens": 534,
+          "total_tokens": 707,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "Here’s a collection of up to ten expressions from your conversation, with meanings, collocations, new examples, and American IPA for key words:\n\n---\n\n**1. go hiking**  \n*Meaning:* To walk for pleasure in nature, especially in the countryside or forest.  \n*Collocations:* go hiking, enjoy hiking, hiking trail  \n*New example:* We plan to go hiking next weekend.  \n*IPA:* /ˈhaɪkɪŋ/\n\n**2. with my brother**  \n*Meaning:* Together with my male sibling.  \n*Collocations:* with my brother, with my sister, with my friend  \n*New example:* I watched a movie with my brother.  \n*IPA:* /ˈbrʌðər/\n\n**3. Yesterday**  \n*Meaning:* The day before today.  \n*Collocations:* yesterday morning, yesterday afternoon, yesterday evening  \n*New example:* Yesterday, it rained all day.  \n*IPA:* /ˈjɛstərˌdeɪ/\n\n**4. went**  \n*Meaning:* Past tense of “go”; moved from one place to another.  \n*Collocations:* went home, went shopping, went hiking  \n*New example:* She went to the store after work.  \n*IPA:* /wɛnt/\n\n**5. enjoyed**  \n*Meaning:* Took pleasure in something.  \n*Collocations:* enjoyed the movie, enjoyed the meal, enjoyed the trip  \n*New example:* He enjoyed his vacation in Florida.  \n*IPA:* /ɪnˈdʒɔɪd/\n\n**6. the quiet forest**  \n*Meaning:* A peaceful area with many trees.  \n*Collocations:* quiet forest, deep forest, walk in the forest  \n*New example:* We camped in the quiet forest.  \n*IPA:* /ˈkwaɪət ˈfɔrɪst/\n\n**7. What did you enjoy?**  \n*Meaning:* Asking what someone liked or found pleasurable.  \n*Collocations:* enjoy doing, enjoy eating, enjoy watching  \n*New example:* What did you enjoy about the concert?  \n*IPA:* /ɪnˈdʒɔɪ/\n\n**8. I enjoyed**  \n*Meaning:* I liked or took pleasure in something.  \n*Collocations:* I enjoyed the show, I enjoyed my meal  \n*New example:* I enjoyed meeting your family.  \n*IPA:* /aɪ ɪnˈdʒɔɪd/\n\n---\n\nLet me know if you want to practice more!",
+        "latencyMs": 3494
+      },
+      "contractChecks": {
+        "questionMarks": 2,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "english-review-current-vocabulary-ipa-review-spoken",
+        "judgment": "pass",
+        "reason": "All expressions are drawn from the actual conversation, with inflections merged (go/went hiking). Each entry includes meaning, collocations, a new example, and American IPA for key words. No invented pronunciation assessment or expressions not present in the exchange. Written output is provided as required. No padding to ten items. Instructions are followed precisely."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek86jpacGCUVxvecWxi3hPEdabTRL",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662961,
+        "usage": {
+          "prompt_tokens": 1487,
+          "completion_tokens": 96,
+          "total_tokens": 1583,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1658
+      },
+      "gateJudgment": "pass",
+      "evidenceSha256": "141c514873a39b9ee75425e7b0b09b9fa2e34bed922801c896925d5c21ade087"
+    },
+    {
+      "case": {
+        "id": "english-review-missing-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "english-spoken-seeded-text-review-missing",
+        "criterion": "There is no usable practice history. Ask for the conversation or state that limitation, without inventing personal errors, vocabulary or learning achievements. For written vocabulary output, every selected headword/phrase must occur in earlier learner practice, never only in the review request. Merge go hiking and went hiking as inflections of the same item; do not pad to ten. Use English explanations and meaning cues. Missing learner practice must not turn review instructions into source. If writing is available (the ordinary current context), produce the requested written material, not the oral-only fallback. Numbered recall questions require corresponding answers with matching numbers; copying dialogue lines is not a matching answer key. A compact card may test any genuine learning point in the supplied hiking exchange, including enjoyed the quiet forest, not only the corrected went. This is single-turn real target/judge text execution over authored seeded context, not an end-to-end session or actual audio. Do not claim to hear, play, or assess audio. Apply only the compact prompt's constraints, not requirements from the full variant.",
+        "payloadSha256": "3bcce0f898fc3713fa3c07c936ad49c4bfdc573b7d5cf2a06137ce458792e2aa",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Finish our English practice. Use the conversation above, excluding these instructions.\nFor text output, collect up to ten expressions actually used there, with plain-English meanings, collocations, labeled new English examples, and American IPA for key words; mark uncertainty. Merge inflections. Never infer unfamiliarity or pronunciation errors.\nWhen earlier user messages explicitly request spoken-only output, replace the notes with a brief oral recap, without IPA or worksheets.\nIf the conversation contains no learner practice, ask for it and stop."
+          }
+        ],
+        "maxTokens": 1600,
+        "locale": "en"
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek86f80rAifSpe50dXx7KkJ4svAWK",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662957,
+        "usage": {
+          "prompt_tokens": 107,
+          "completion_tokens": 46,
+          "total_tokens": 153,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "It looks like there hasn't been any learner practice in our conversation yet. Could you please provide some English sentences or a short conversation for us to work with? Then I can help you with expressions, meanings, and examples as requested!",
+        "latencyMs": 1344
+      },
+      "contractChecks": {
+        "questionMarks": 1,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "english-review-missing-vocabulary-ipa-review-spoken",
+        "judgment": "pass",
+        "reason": "The reply correctly identifies that there is no learner practice in the conversation and asks for it, as required by the instructions. No invented errors, vocabulary, or achievements are present."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek86jmEA00cVJppc7aTyi1u4GBOum",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662961,
+        "usage": {
+          "prompt_tokens": 798,
+          "completion_tokens": 64,
+          "total_tokens": 862,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1568
+      },
+      "gateJudgment": "pass",
+      "evidenceSha256": "97b22a1e1ac20d27aee7276842cdc21c7b9512b9b863b98c2a69f668e595eca5"
+    },
+    {
+      "case": {
+        "id": "english-voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "english-spoken-seeded-text-voice-only-text-fallback",
+        "criterion": "This is a text simulation of an oral fallback, not an audio test. Provide a brief grounded oral recap suitable for reading aloud, without IPA symbols, worksheets or claims to hear audio. The supplied hiking learner exchange AND a prior explicit writing-unavailable declaration are both present. Claiming history is missing, requesting the conversation, or producing vocabulary worksheets fails; the only correct branch is a short grounded oral recap. For written vocabulary output, every selected headword/phrase must occur in earlier learner practice, never only in the review request. Merge go hiking and went hiking as inflections of the same item; do not pad to ten. Use English explanations and meaning cues. Missing learner practice must not turn review instructions into source. If writing is available (the ordinary current context), produce the requested written material, not the oral-only fallback. Numbered recall questions require corresponding answers with matching numbers; copying dialogue lines is not a matching answer key. A compact card may test any genuine learning point in the supplied hiking exchange, including enjoyed the quiet forest, not only the corrected went. This is single-turn real target/judge text execution over authored seeded context, not an end-to-end session or actual audio. Do not claim to hear, play, or assess audio. Apply only the compact prompt's constraints, not requirements from the full variant.",
+        "payloadSha256": "3bcce0f898fc3713fa3c07c936ad49c4bfdc573b7d5cf2a06137ce458792e2aa",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Yesterday I go hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "Say ‘Yesterday I went hiking with my brother.’ Use past tense with yesterday."
+          },
+          {
+            "role": "user",
+            "content": "Yesterday I went hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "That works. What did you enjoy?"
+          },
+          {
+            "role": "user",
+            "content": "I enjoyed the quiet forest."
+          },
+          {
+            "role": "user",
+            "content": "Written output is unavailable in this hypothetical voice chat. Give a short spoken reply only."
+          },
+          {
+            "role": "user",
+            "content": "Finish our English practice. Use the conversation above, excluding these instructions.\nFor text output, collect up to ten expressions actually used there, with plain-English meanings, collocations, labeled new English examples, and American IPA for key words; mark uncertainty. Merge inflections. Never infer unfamiliarity or pronunciation errors.\nWhen earlier user messages explicitly request spoken-only output, replace the notes with a brief oral recap, without IPA or worksheets.\nIf the conversation contains no learner practice, ask for it and stop."
+          }
+        ],
+        "maxTokens": 1600,
+        "locale": "en"
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek86fGab2u3n9ijVCgtCq6UjFnbPg",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662957,
+        "usage": {
+          "prompt_tokens": 194,
+          "completion_tokens": 510,
+          "total_tokens": 704,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "Here are some expressions from our conversation:\n\n1. **go hiking**  \n   - Meaning: To walk in nature, usually on trails or in the mountains.  \n   - Collocations: go hiking, enjoy hiking  \n   - Example: We go hiking every weekend.  \n   - IPA: /ˈhaɪkɪŋ/\n\n2. **with my brother**  \n   - Meaning: Together with my male sibling.  \n   - Collocations: with my brother, with my sister  \n   - Example: I played soccer with my brother.  \n   - IPA: /wɪð maɪ ˈbrʌðər/\n\n3. **Yesterday**  \n   - Meaning: The day before today.  \n   - Collocations: yesterday morning, yesterday afternoon  \n   - Example: Yesterday, I saw a movie.  \n   - IPA: /ˈjɛstərˌdeɪ/\n\n4. **went**  \n   - Meaning: Past tense of \"go.\"  \n   - Collocations: went hiking, went home  \n   - Example: She went to the store.  \n   - IPA: /wɛnt/\n\n5. **enjoyed**  \n   - Meaning: Liked or took pleasure in something.  \n   - Collocations: enjoyed the trip, enjoyed the food  \n   - Example: He enjoyed the concert.  \n   - IPA: /ɪnˈdʒɔɪd/\n\n6. **the quiet forest**  \n   - Meaning: A peaceful area with many trees.  \n   - Collocations: quiet forest, dark forest  \n   - Example: We walked through the quiet forest.  \n   - IPA: /ˈkwaɪət ˈfɔrɪst/\n\n7. **What did you enjoy?**  \n   - Meaning: Asking what someone liked.  \n   - Collocations: enjoy doing, enjoy something  \n   - Example: What did you enjoy about the trip?  \n   - IPA: /wʌt dɪd ju ɪnˈdʒɔɪ/\n\n8. **I enjoyed**  \n   - Meaning: I liked or took pleasure in.  \n   - Collocations: I enjoyed the movie, I enjoyed my meal  \n   - Example: I enjoyed our conversation.  \n   - IPA: /aɪ ɪnˈdʒɔɪd/\n\nLet me know if you want to practice more!",
+        "latencyMs": 2944
+      },
+      "contractChecks": {
+        "questionMarks": 2,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "english-voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "judgment": "fail",
+        "reason": "The reply provides a written vocabulary worksheet with IPA, collocations, and examples, violating the explicit instruction to give only a brief oral recap when writing is unavailable. The correct response is a short spoken summary, not written vocabulary notes."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek86jPFPZzYAVd0IondkHPJ9UKC6F",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662961,
+        "usage": {
+          "prompt_tokens": 1530,
+          "completion_tokens": 78,
+          "total_tokens": 1608,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1683
+      },
+      "gateJudgment": "fail",
+      "evidenceSha256": "42169dc650b995cd66c9bb137752e1ecced0511b60a1eb4af25091d7a5d80359"
+    }
+  ],
+  "base": [
+    {
+      "case": {
+        "id": "review-current-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "review-current",
+        "criterion": "Use only the actual short hiking exchange. Attribute the error and successful retry correctly; distinguish original corrections from generated examples and do not invent pronunciation assessment. Complete the selected review purpose; use counts as maxima.",
+        "payloadSha256": "5ae04d082e773f825a6fa532d3770b46db2e4f2a5933b7d4542a4918139d2236",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Yesterday I go hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "Say ‘Yesterday I went hiking with my brother.’ Use past tense with yesterday."
+          },
+          {
+            "role": "user",
+            "content": "Yesterday I went hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "That works. What did you enjoy?"
+          },
+          {
+            "role": "user",
+            "content": "I enjoyed the quiet forest."
+          },
+          {
+            "role": "user",
+            "content": "Finish our English practice. Use the conversation above, excluding these instructions.\nFor text output, collect up to ten expressions actually used there, with Chinese meanings, collocations, labeled new English examples, and American IPA for key words; mark uncertainty. Merge inflections. Never infer unfamiliarity or pronunciation errors.\nWhen earlier user messages explicitly request spoken-only output, replace the notes with a brief oral recap, without IPA or worksheets.\nIf the conversation contains no learner practice, ask for it and stop."
+          }
+        ],
+        "maxTokens": 1600
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek86f0AMHhoVm17eEgBlThdai5odm",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662957,
+        "usage": {
+          "prompt_tokens": 172,
+          "completion_tokens": 568,
+          "total_tokens": 740,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "Here’s a worksheet based on your conversation:\n\n---\n\n**Expressions from the Conversation**\n\n1. **Yesterday**  \n   - Meaning: 昨天  \n   - Collocations: yesterday morning, yesterday afternoon, yesterday evening  \n   - New example: Yesterday we watched a movie.\n\n2. **I go / went**  \n   - Meaning: 我去 / 我去了  \n   - Collocations: go hiking, go shopping, go home; went to school, went outside  \n   - New example: She went to the store after work.\n\n3. **Hiking**  \n   - Meaning: 徒步旅行  \n   - Collocations: go hiking, enjoy hiking, hiking trail  \n   - New example: They love hiking in the mountains.  \n   - IPA: /ˈhaɪkɪŋ/\n\n4. **With my brother**  \n   - Meaning: 和我哥哥  \n   - Collocations: with my friend, with my family, with my sister  \n   - New example: I played chess with my brother.\n\n5. **Enjoyed**  \n   - Meaning: 享受了  \n   - Collocations: enjoyed the view, enjoyed the meal, enjoyed the movie  \n   - New example: We enjoyed the concert last night.  \n   - IPA: /ɪnˈdʒɔɪd/\n\n6. **Quiet**  \n   - Meaning: 安静的  \n   - Collocations: quiet forest, quiet room, quiet place  \n   - New example: She likes to read in a quiet library.  \n   - IPA: /ˈkwaɪət/\n\n7. **Forest**  \n   - Meaning: 森林  \n   - Collocations: dense forest, tropical forest, forest trail  \n   - New example: The forest was full of tall trees.  \n   - IPA: /ˈfɔrɪst/\n\n8. **What did you enjoy?**  \n   - Meaning: 你喜欢什么？  \n   - Collocations: What did you enjoy most? What did you enjoy about it?  \n   - New example: What did you enjoy during your trip?\n\n9. **Practice**  \n   - Meaning: 练习  \n   - Collocations: English practice, practice speaking, practice writing  \n   - New example: Daily practice helps improve your skills.  \n   - IPA: /ˈpræktɪs/\n\n10. **Conversation**  \n    - Meaning: 对话  \n    - Collocations: have a conversation, start a conversation, conversation partner  \n    - New example: We had a long conversation last night.  \n    - IPA: /ˌkɑːnvərˈseɪʃən/\n\n---\n\nLet me know if you want to practice more!",
+        "latencyMs": 3715
+      },
+      "contractChecks": {
+        "questionMarks": 4,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "review-current-vocabulary-ipa-review-spoken",
+        "judgment": "fail",
+        "reason": "The reply invents expressions ('practice', 'conversation') not actually used in the hiking exchange, violating the instruction to use only expressions from the actual conversation. It also provides IPA for words not marked as key in the conversation. The error and successful retry are not explicitly attributed. The review purpose is not fully met due to inclusion of invented content."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek86jGvXswKAEDgAKALGiHpHUqcto",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662961,
+        "usage": {
+          "prompt_tokens": 1349,
+          "completion_tokens": 96,
+          "total_tokens": 1445,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1418
+      },
+      "gateJudgment": "fail",
+      "evidenceSha256": "ebc486f15d303b7cdfc70ca9d0433241305be302ca0f191f7271fa6205076437"
+    },
+    {
+      "case": {
+        "id": "review-missing-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "review-missing",
+        "criterion": "There is no usable practice history. Ask for the conversation or state that limitation, without inventing personal errors, vocabulary or learning achievements.",
+        "payloadSha256": "5ae04d082e773f825a6fa532d3770b46db2e4f2a5933b7d4542a4918139d2236",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Finish our English practice. Use the conversation above, excluding these instructions.\nFor text output, collect up to ten expressions actually used there, with Chinese meanings, collocations, labeled new English examples, and American IPA for key words; mark uncertainty. Merge inflections. Never infer unfamiliarity or pronunciation errors.\nWhen earlier user messages explicitly request spoken-only output, replace the notes with a brief oral recap, without IPA or worksheets.\nIf the conversation contains no learner practice, ask for it and stop."
+          }
+        ],
+        "maxTokens": 1600
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek86frgsZ2wZvqm9VaQbN0N3GM6DQ",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662957,
+        "usage": {
+          "prompt_tokens": 106,
+          "completion_tokens": 643,
+          "total_tokens": 749,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "Here are ten expressions from our conversation, with Chinese meanings, collocations, new English examples, and American IPA for key words:\n\n1. **practice**  \n   - 中文: 练习  \n   - Collocations: English practice, daily practice  \n   - New example: She needs more practice before the test.  \n   - IPA: /ˈpræk.tɪs/\n\n2. **conversation**  \n   - 中文: 对话  \n   - Collocations: have a conversation, start a conversation  \n   - New example: Our conversation was very interesting.  \n   - IPA: /ˌkɑːn.vɚˈseɪ.ʃən/\n\n3. **expressions**  \n   - 中文: 表达，短语  \n   - Collocations: common expressions, useful expressions  \n   - New example: He learned new expressions in class.  \n   - IPA: /ɪkˈsprɛʃ.ənz/\n\n4. **meanings**  \n   - 中文: 意思  \n   - Collocations: word meanings, double meanings  \n   - New example: The meanings of these words are similar.  \n   - IPA: /ˈmiː.nɪŋz/\n\n5. **collocations**  \n   - 中文: 搭配  \n   - Collocations: strong collocations, verb-noun collocations  \n   - New example: \"Make a decision\" is a common collocation.  \n   - IPA: /ˌkɑː.ləˈkeɪ.ʃənz/\n\n6. **examples**  \n   - 中文: 例子  \n   - Collocations: give examples, real-life examples  \n   - New example: Can you show me some examples?  \n   - IPA: /ɪɡˈzæm.pəlz/\n\n7. **pronunciation**  \n   - 中文: 发音  \n   - Collocations: correct pronunciation, practice pronunciation  \n   - New example: Good pronunciation is important for communication.  \n   - IPA: /prəˌnʌn.siˈeɪ.ʃən/\n\n8. **output**  \n   - 中文: 输出  \n   - Collocations: text output, audio output  \n   - New example: The computer's output was not correct.  \n   - IPA: /ˈaʊt.pʊt/\n\n9. **worksheet**  \n   - 中文: 练习册，作业纸  \n   - Collocations: fill out a worksheet, grammar worksheet  \n   - New example: The teacher gave us a worksheet to complete.  \n   - IPA: /ˈwɝːk.ʃiːt/\n\n10. **recap**  \n    - 中文: 总结，回顾  \n    - Collocations: quick recap, brief recap  \n    - New example: Let’s do a quick recap of today’s lesson.  \n    - IPA: /ˈriː.kæp/\n\nIf you’d like to practice more, please provide some sentences or a short conversation!",
+        "latencyMs": 3481
+      },
+      "contractChecks": {
+        "questionMarks": 1,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "review-missing-vocabulary-ipa-review-spoken",
+        "judgment": "fail",
+        "reason": "The reply invents a list of expressions and vocabulary from a conversation that does not exist, violating the instruction to ask for the conversation or state the limitation when there is no usable practice history."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek86jV1tmJNXmyvCmHRErXDpQqzXk",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662961,
+        "usage": {
+          "prompt_tokens": 1310,
+          "completion_tokens": 66,
+          "total_tokens": 1376,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1239
+      },
+      "gateJudgment": "fail",
+      "evidenceSha256": "d834a96297d67148af882a579a447ea7f1aafa91da67c90415bed91af223b52f"
+    },
+    {
+      "case": {
+        "id": "voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "voice-only-text-fallback",
+        "criterion": "This is a text simulation of an oral fallback, not an audio test. Provide a brief grounded oral recap suitable for reading aloud, without IPA symbols, worksheets or claims to hear audio. The supplied hiking learner exchange AND a prior explicit writing-unavailable declaration are both present. Claiming history is missing, requesting the conversation, or producing vocabulary worksheets fails; the only correct branch is a short grounded oral recap.",
+        "payloadSha256": "5ae04d082e773f825a6fa532d3770b46db2e4f2a5933b7d4542a4918139d2236",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Yesterday I go hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "Say ‘Yesterday I went hiking with my brother.’ Use past tense with yesterday."
+          },
+          {
+            "role": "user",
+            "content": "Yesterday I went hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "That works. What did you enjoy?"
+          },
+          {
+            "role": "user",
+            "content": "I enjoyed the quiet forest."
+          },
+          {
+            "role": "user",
+            "content": "Written output is unavailable in this hypothetical voice chat. Give a short spoken reply only."
+          },
+          {
+            "role": "user",
+            "content": "Finish our English practice. Use the conversation above, excluding these instructions.\nFor text output, collect up to ten expressions actually used there, with Chinese meanings, collocations, labeled new English examples, and American IPA for key words; mark uncertainty. Merge inflections. Never infer unfamiliarity or pronunciation errors.\nWhen earlier user messages explicitly request spoken-only output, replace the notes with a brief oral recap, without IPA or worksheets.\nIf the conversation contains no learner practice, ask for it and stop."
+          }
+        ],
+        "maxTokens": 1600
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek86gRqqHNYUqLvOu5zBGWUHDVbyA",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662958,
+        "usage": {
+          "prompt_tokens": 193,
+          "completion_tokens": 434,
+          "total_tokens": 627,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "Here are some expressions from our conversation:\n\n1. **go hiking**  \n   去远足  \n   Collocation: go hiking in the mountains  \n   New example: We often go hiking on weekends.  \n   /ɡoʊ ˈhaɪkɪŋ/\n\n2. **with my brother**  \n   和我哥哥一起  \n   Collocation: travel with my brother  \n   New example: I watched a movie with my brother last night.  \n   /wɪð maɪ ˈbrʌðər/\n\n3. **Yesterday**  \n   昨天  \n   Collocation: yesterday afternoon  \n   New example: Yesterday, it rained all day.  \n   /ˈjɛstərˌdeɪ/\n\n4. **went** (past of go)  \n   去了  \n   Collocation: went shopping  \n   New example: She went to the store after work.  \n   /wɛnt/\n\n5. **enjoyed**  \n   享受了  \n   Collocation: enjoyed the meal  \n   New example: He enjoyed the concert very much.  \n   /ɪnˈdʒɔɪd/\n\n6. **the quiet forest**  \n   安静的森林  \n   Collocation: walk in the quiet forest  \n   New example: We listened to birds in the quiet forest.  \n   /ðə ˈkwaɪət ˈfɔrɪst/\n\n7. **What did you enjoy?**  \n   你喜欢什么？  \n   Collocation: What did you enjoy about the trip?  \n   New example: What did you enjoy most at the party?  \n   /wʌt dɪd ju ɪnˈdʒɔɪ/\n\n8. **I enjoyed**  \n   我喜欢  \n   Collocation: I enjoyed reading  \n   New example: I enjoyed meeting your family.  \n   /aɪ ɪnˈdʒɔɪd/\n\nIf you want to practice more, let me know!",
+        "latencyMs": 2535
+      },
+      "contractChecks": {
+        "questionMarks": 3,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "judgment": "fail",
+        "reason": "The reply provides a vocabulary worksheet with IPA, Chinese meanings, collocations, and examples, despite explicit prior instruction to give only a brief oral recap without IPA or worksheets when written output is unavailable. This violates the fallback instruction."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek86jFXyOhfggX8PYts2y4gkeay0N",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662961,
+        "usage": {
+          "prompt_tokens": 1266,
+          "completion_tokens": 75,
+          "total_tokens": 1341,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1319
+      },
+      "gateJudgment": "fail",
+      "evidenceSha256": "80757d1c42ef2471f40b578566142a54c657db44b88a8d40c7159f6efec64903"
+    }
+  ]
+}

@@ -45,6 +45,7 @@ export function validateLiveArchive(value: unknown, expectedCases: LiveCase[] = 
   const policyHash = evidenceDigest({
     model: text(value.requestedModel) ? value.requestedModel : "",
     ...policy,
+    ...(expectedCases.some(c => c.turns) ? { sessionJudgeMethod: "isolated-turn-prefix-v1" } : {}),
   });
   if (value.judgePolicySha256 !== policyHash)
     issues.push("live: stale judge policy");
@@ -78,6 +79,10 @@ export function validateLiveArchive(value: unknown, expectedCases: LiveCase[] = 
     } catch {
       fail("invalid live evidence");
     }
+    if (item.requestedModel !== undefined) {
+      if (!text(item.requestedModel) || item.judgePolicySha256 !== evidenceDigest({ model: item.requestedModel, ...policy, ...(current?.turns ? { sessionJudgeMethod: "isolated-turn-prefix-v1" } : {}) })) fail("stale per-case judge policy");
+      if (!object(item.target) || item.target.model !== item.requestedModel || !object(item.judgeExecution) || item.judgeExecution.model !== item.requestedModel) fail("per-case execution snapshot mismatch");
+    }
     const target = item.target;
     if (
       !object(target) ||
@@ -89,6 +94,45 @@ export function validateLiveArchive(value: unknown, expectedCases: LiveCase[] = 
     ) {
       fail("missing or incomplete real target execution");
       continue;
+    }
+    if (current?.turns) {
+      if (value.sessionJudgeMethod !== "isolated-turn-prefix-v1") fail("missing isolated session judge policy");
+      const judgments = item.turnJudgments;
+      if (!Array.isArray(judgments) || judgments.length !== current.turns.length) fail("missing per-turn judgments");
+      else for (const assessment of judgments) {
+        if (!object(assessment) || !object(assessment.judge) || assessment.judge.id !== id ||
+            !["pass", "fail", "uncertain"].includes(String(assessment.judge.judgment)) || !text(assessment.judge.reason) ||
+            !object(assessment.execution) || !text(assessment.execution.responseId) ||
+            assessment.execution.model !== (item.requestedModel ?? value.requestedModel) || !object(assessment.execution.usage) ||
+            assessment.execution.finishReason !== "stop") fail("invalid isolated turn judgment");
+        else {
+          const responseId = assessment.execution.responseId;
+          if (judgeResponseIds.has(responseId)) fail("judge executions must be unique across all turns and cases");
+          judgeResponseIds.add(responseId);
+        }
+      }
+      if (Array.isArray(judgments) && judgments.every(a => object(a) && object(a.judge))) {
+        const verdicts = judgments.map(a => a.judge.judgment);
+        const worst = verdicts.includes("fail") ? "fail" : verdicts.includes("uncertain") ? "uncertain" : "pass";
+        if (!object(item.judge) || item.judge.judgment !== worst) fail("session gate does not match worst turn");
+      }
+      const turns = item.turnResults;
+      if (!Array.isArray(turns) || turns.length !== current.turns.length) fail("incomplete end-to-end turns");
+      else {
+        const messages = [...current.messages];
+        for (const [index, turn] of turns.entries()) {
+          const expectedTurn = current.turns[index];
+          if (!object(turn) || turn.input !== expectedTurn.input || turn.criterion !== expectedTurn.criterion ||
+              !object(turn.target) || !text(turn.target.content) || !text(turn.target.responseId) ||
+              turn.target.model !== (item.requestedModel ?? value.requestedModel) || turn.target.finishReason !== "stop" || !object(turn.target.usage)) {
+            fail("invalid end-to-end execution");
+            continue;
+          }
+          messages.push({ role: "user", content: expectedTurn.input }, { role: "assistant", content: turn.target.content });
+        }
+        if (evidenceDigest({ messages }) !== evidenceDigest({ messages: item.executedMessages })) fail("history does not contain actual target replies");
+        if (evidenceDigest({ target: turns.at(-1)?.target }) !== evidenceDigest({ target })) fail("final target differs from final session turn");
+      }
     }
     const checks = item.contractChecks;
     const questionMarks = target.content.split("?").length - 1;
@@ -118,6 +162,11 @@ export function validateLiveArchive(value: unknown, expectedCases: LiveCase[] = 
       execution.finishReason !== "stop"
     )
       fail("missing live judge execution");
+    else if (current?.turns) {
+      const judgments = item.turnJudgments;
+      const final = Array.isArray(judgments) ? judgments.at(-1) : undefined;
+      if (!object(final) || !object(final.execution) || evidenceDigest(final.execution) !== evidenceDigest(execution)) fail("aggregate judge execution must reference final turn only");
+    }
     else if (policy.batch_size === 1) {
       const responseId = String(execution.responseId);
       if (judgeResponseIds.has(responseId))

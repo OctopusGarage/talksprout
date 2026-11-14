@@ -98,7 +98,7 @@
     {
       "id": "opening-roleplay-coach",
       "promptId": "roleplay-coach",
-      "promptSha256": "db1dda5f40d1c15468a0771473764845f47f1bb4c901afa58a0194add549dbd9",
+      "promptSha256": "10298ac150618a25e0e99dfba24d4da6d93264048054016f7a6ace0cc4abbd3c",
       "learnerTurns": [],
       "assistantTurns": [
         "Which situation would you like to practice?"
@@ -111,9 +111,9 @@
       ],
       "judgment": "pass",
       "criterion": "Follow the prompt-specific first action, request at most one input, and wait without invented learner or media context.",
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
-      "evidenceSha256": "9ca9c8e8ea2e5582c1eae5b74b2c8d8b2734abbf30f52a6e1bcdc17be3c7e32d",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
+      "rationale": "Existing authored output retained after independent static semantic review on 2026-11-14. Full-roleplay continuation uses an in-character statement and one question; initial openings and stop/help/review exceptions remain valid. Full reviews distinguish actual English errors from translation support and cards use distinct source sentences. Source/learner inputs and authored outputs are unchanged. This review is not new model/API or audio execution.",
+      "evidenceSha256": "51043318a648a93de218416c9188e5d888507f69b0a7b02c2af85c7931b6434a",
+      "sampleProvenance": "Existing authored output retained after independent static semantic review on 2026-11-14. Full-roleplay continuation uses an in-character statement and one question; initial openings and stop/help/review exceptions remain valid. Full reviews distinguish actual English errors from translation support and cards use distinct source sentences. Source/learner inputs and authored outputs are unchanged. This review is not new model/API or audio execution."
     },
     {
       "id": "opening-friendly-debate",

@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import { collections } from "./content/collections";
 import { allPrompts } from "./prompts";
 import { learningPrompts } from "./content/learning";
+import { compatibleScenes, type SceneSelection } from "./scenes";
+import type { PromptVariant, ReviewSource } from "./types";
 
 export type AppPage = "practice" | "review" | "settings" | "learning";
 export interface AppRoute {
+  sceneSelection?: SceneSelection;
+  format?: PromptVariant;
+  reviewSource?: ReviewSource;
   page: AppPage;
   collection: string | null;
   base: string;
@@ -53,7 +58,24 @@ export function readRoute(hash = location.hash): AppRoute {
     page === "learning"
       ? learningPrompts.find((p) => p.id === requested)?.id ?? null
       : null;
-  return { page, collection, base, promptId, learningPromptId, infoId };
+  const route: AppRoute = { page, collection, base, promptId, learningPromptId, infoId };
+  if (promptId && prompt) {
+    const params = new URLSearchParams(search);
+    const format = params.get("format");
+    if (format === "full" || format === "spoken") route.format = format;
+    if (page === "practice") {
+      const scene = compatibleScenes(prompt).find(s => s.id === params.get("scene"));
+      if (scene) route.sceneSelection = {
+        sceneId: scene.id,
+        pace: params.get("pace") === "mock" && prompt.id === "roleplay-coach" && scene.category === "interview" ? "mock" : "coached",
+        background: "",
+      };
+    } else if (page === "review") {
+      const source = params.get("source");
+      if (source === "current" || source === "transcript") route.reviewSource = source;
+    }
+  }
+  return route;
 }
 export function navigate(hash: string, state: unknown = null) {
   if (location.hash === hash) return;

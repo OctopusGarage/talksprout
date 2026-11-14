@@ -3,38 +3,46 @@ import { learningGroups, learningPrompts, type LearningSkill } from "./content/l
 import { navigate } from "./navigation";
 import { PromptDialog } from "./PromptDialog";
 import { Icon } from "./Icon";
+import { learningPromptText } from "./prompt-text";
+import { RecentList } from "./QuickAccess";
+import type { ClipboardWriter } from "./clipboard-writer";
+import type { RecentPrompt } from "./shortcuts";
+import "./learning-library.css";
 import type { Locale } from "./types";
 
 interface Props {
   locale: Locale;
   promptId: string | null;
   copying: boolean;
-  setCopying: (value: boolean) => void;
-  busy: { current: boolean };
+  writer: ClipboardWriter;
+  favorites: string[];
+  recent: RecentPrompt[];
+  onFavorite: (id: string) => void;
+  onDelivered: (id: string) => boolean;
 }
 
-export function LearningLibrary({ locale, promptId, copying, setCopying, busy }: Props) {
+export function LearningLibrary({ locale, promptId, copying, writer, favorites, recent, onFavorite, onDelivered }: Props) {
   const en = locale === "en";
   const selected = learningPrompts.find((p) => p.id === promptId);
   const [skill, setSkill] = useState<LearningSkill>(selected?.skill ?? "listening");
   const [copied, setCopied] = useState(false);
   const [manual, setManual] = useState(false);
   const [message, setMessage] = useState("");
-  const generation = useRef(0);
+  const [savedOnly, setSavedOnly] = useState(false);
   const text = useRef<HTMLTextAreaElement>(null);
   const group = learningGroups.find((item) => item.id === skill)!;
-  const visiblePrompts = learningPrompts.filter((p) => p.skill === skill);
+  const visiblePrompts = learningPrompts.filter((p) => p.skill === skill && (!savedOnly || favorites.includes(p.id)));
 
   useLayoutEffect(() => {
     if (selected) setSkill(selected.skill);
   }, [selected]);
   useLayoutEffect(() => {
-    generation.current++;
+    writer.invalidate();
     setCopied(false);
     setManual(false);
     setMessage("");
-    return () => { generation.current++; };
-  }, [promptId, locale]);
+    return () => { writer.invalidate(); };
+  }, [promptId, locale, writer]);
   useLayoutEffect(() => {
     if (manual) {
       text.current?.focus();
@@ -43,32 +51,29 @@ export function LearningLibrary({ locale, promptId, copying, setCopying, busy }:
   }, [manual]);
 
   const close = () => {
-    generation.current++;
+    writer.invalidate();
     if (history.state?.talksproutLearningPrompt === promptId) history.back();
     else navigate("#learning");
   };
   const copy = async () => {
-    if (!selected || busy.current) return;
-    busy.current = true;
-    const request = ++generation.current;
-    const origin = location.href;
-    setCopying(true);
+    if (!selected || copying) return;
     setCopied(false);
     setManual(false);
     setMessage("");
-    try {
-      await navigator.clipboard.writeText(selected.prompt);
-      if (request !== generation.current || origin !== location.href) return;
-      setCopied(true);
-      setMessage(en ? "Copied! Paste into your AI with the material." : "已复制！粘贴到常用 AI，并提供相关材料。");
-    } catch {
-      if (request !== generation.current || origin !== location.href) return;
-      setManual(true);
-      setMessage(en ? "Copy unavailable. Select and copy the prompt manually." : "自动复制不可用，请手动复制已选中的提示词。");
-    } finally {
-      busy.current = false;
-      setCopying(false);
-    }
+    let persisted = true;
+    await writer.write({
+      text: learningPromptText(selected, locale),
+      onDelivered: () => { persisted = onDelivered(selected.id); },
+      onSuccess: () => {
+        setCopied(true);
+        setMessage((en ? "Copied! Paste into your AI with the material." : "已复制！粘贴到常用 AI，并提供相关材料。") +
+          (persisted ? "" : en ? " Recent history could not be saved on this device." : " 最近复制记录未能保存在本机。"));
+      },
+      onFailure: () => {
+        setManual(true);
+        setMessage(en ? "Copy unavailable. Select and copy the prompt manually." : "自动复制不可用，请手动复制已选中的提示词。");
+      },
+    });
   };
 
   return (
@@ -88,6 +93,10 @@ export function LearningLibrary({ locale, promptId, copying, setCopying, busy }:
           </button>
         ))}
       </div>
+      <RecentList items={recent} locale={locale} />
+      <button className="learning-saved-filter" aria-label={en ? "Saved only" : "只看收藏"} aria-pressed={savedOnly} onClick={() => setSavedOnly(!savedOnly)}>
+        <Icon name="heart" />{en ? "Saved only" : "只看收藏"}
+      </button>
       <section className={`learning-group learning-${skill}`} aria-labelledby="learning-group-title">
         <div className="learning-group-heading">
           <h2 className="section-label" id="learning-group-title">{group.title[locale]}</h2>
@@ -95,7 +104,9 @@ export function LearningLibrary({ locale, promptId, copying, setCopying, busy }:
         </div>
         <p className="learning-group-description">{group.description[locale]}</p>
         <div className="native-list learning-list">
+          {visiblePrompts.length === 0 && <p className="learning-empty">{en ? "No saved prompts in this direction yet." : "这个方向还没有收藏的提示词。"}</p>}
           {visiblePrompts.map((p) => (
+            <div className="learning-prompt-row" key={p.id}>
             <button
               className="learning-prompt"
               key={p.id}
@@ -110,6 +121,10 @@ export function LearningLibrary({ locale, promptId, copying, setCopying, busy }:
               </span>
               <Icon name="chevron" />
             </button>
+            <button className="learning-favorite icon-button" aria-label={`${favorites.includes(p.id) ? (en ? "Unsave" : "取消收藏") : (en ? "Save" : "收藏")}：${p.title[locale]}`} aria-pressed={favorites.includes(p.id)} onClick={() => onFavorite(p.id)}>
+              <Icon name="heart" />
+            </button>
+            </div>
           ))}
         </div>
       </section>
@@ -134,7 +149,7 @@ export function LearningLibrary({ locale, promptId, copying, setCopying, busy }:
             <p className="requirement"><strong>{en ? "Preparation: " : "准备："}</strong>{selected.preparation[locale]}</p>
             <p>{selected.guide[locale]}</p>
             <label htmlFor="prompt-text">{en ? "English prompt" : "英文提示词"}</label>
-            <textarea id="prompt-text" ref={text} value={selected.prompt} readOnly lang="en" spellCheck={false} />
+            <textarea id="prompt-text" ref={text} value={learningPromptText(selected, locale)} readOnly lang="en" spellCheck={false} />
           </>}
           footer={<footer className="sheet-footer">
             <button className="primary modal-copy learning-copy" disabled={copying} aria-busy={copying} onClick={() => void copy()}>

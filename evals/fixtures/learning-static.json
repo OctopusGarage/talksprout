@@ -9,8 +9,8 @@
     },
     {
       "id": "listening-check",
-      "promptSha256": "0d661cb038bbe4554074cdba2e6c9122910e8b7b467fcca0187738acf3cbb448",
-      "rationale": "Statically reviewed: source gate precedes readiness and one-question attempts; clues and learner-controlled replay precede answer reveal. Separates comprehension from answer grammar and disclaims UI playback control."
+      "promptSha256": "c2a005c2a927bdff32039a9e4f0648b4750ca8706f0dfcb4e498701117ab7f42",
+      "rationale": "Statically reviewed revised readiness gate: a fresh task first asks the learner to listen and indicate readiness, then stops without a comprehension question. Existing pending tasks continue. Source access, help and stopping rules remain distinct. This is not an execution record."
     },
     {
       "id": "reading-guide",
@@ -39,8 +39,8 @@
     },
     {
       "id": "listening-shadowing",
-      "promptSha256": "d338c58905cdf46f1c7c1738b4f00971cb01c6d4ef0d3863c4a80b3411cea61c",
-      "rationale": "Statically reviewed: identifies imitation rather than a listening test, preserves source wording during phrase grouping, and bounds rhythm suggestions, playback and learner pronunciation feedback by actual audio access."
+      "promptSha256": "bedd598343fa23c9ce3662c5652fb42426a16bb3a89909e11127b19a2b6507bc",
+      "rationale": "Statically reviewed revised shadowing guidance: preserve standard source spelling and grammatical tense, never equate wanted to with want to/wanna; common reductions are general possibilities only, never claims about unheard audio. This is not an execution record."
     },
     {
       "id": "listening-notes",

@@ -6,12 +6,13 @@ Reusable prompts for learning English with AI: choose a conversation coach, prac
 
 ## Use the app
 
-- **Start practice:** choose a collection and coaching style. Copy the full prompt into a new AI conversation, or read its short spoken opening aloud.
+- **Start practice:** choose a collection and coaching style. Copy the full prompt into a new AI conversation, or read its short spoken opening aloud. A dismissible first-practice guide helps new users choose a coach.
 - **Wrap-up & Review:** send a review prompt at the end of that same conversation to create notes, sentence practice, vocabulary, or self-test cards.
+- **Quick access:** save a coach, scenario, format and interview pace as one combination, or share a link to that setup. Recently copied prompts appear in their own area; supplementary prompts have independent favorites. Private scenario background is never saved or included in links.
 - **Settings:** choose the interface language, find installation help, and read the instructions.
 - **Listening, reading & writing:** open the secondary entry below the speaking collections for 18 supplementary prompts, with six choices per direction. Tasks include dictation comparison, meeting notes, shadowing preparation, complex sentences, emails and notices, technical documentation, email replies, workplace messages, and summary/paraphrase practice. Each entry includes a decorative emoji and concrete use examples; three direction buttons keep the directory compact. Copy a prompt to your AI and supply material there. These prompts stay separate from coach search and review.
 
-The interface supports Chinese and English. Prompt instructions are in English; review prompts request English learning examples with concise Chinese explanations. TalkSprout provides prompts for your preferred AI app; it does not run an AI chat itself.
+The interface supports Chinese and English. Prompt instructions are in English; explanation defaults follow the selected interface language. English learning examples remain in English. TalkSprout provides prompts for your preferred AI app; it does not run an AI chat itself.
 
 Supplementary links use `#learning` and `#learning?prompt=writing-feedback`. Details show preparation, usage and a single English prompt, without spoken openings or scenario settings. If the external AI cannot access a source, the prompt requests usable excerpts or transcripts. This app does not process links or files; audio/video compatibility depends on the chosen AI and has not been tested here.
 
@@ -60,7 +61,7 @@ Phones use bottom navigation; desktop uses a sidebar. Only the content area scro
 
 On touchscreens, swipe left from the rightmost 32 pixels and release after at least 72 pixels to close a sheet or return from a collection to the library. Top-level views stay in place. Vertical, multi-touch, text-field, and text-selection gestures do not trigger this action. Browser tests cover the application gesture logic; actual iOS Home Screen gesture behavior requires device testing.
 
-Search and saved filters remain separate for practice, each practice collection, and review. The practice-home search covers all coaches; collection searches stay within that collection. Filters and scroll positions last for the current session, while favorites, recent-copy IDs, and language preferences are saved on this device.
+Search and saved filters remain separate for practice, each practice collection, and review. The practice-home search covers all coaches; collection searches stay within that collection. Filters and scroll positions last for the current session, while favorites, saved combinations, bounded recent-copy metadata, guide dismissal and language preferences are saved on this device.
 
 No account, API key, or analytics is required. TalkSprout does not receive or store AI conversations. Clearing browser data removes local preferences and favorites.
 
@@ -68,7 +69,7 @@ No account, API key, or analytics is required. TalkSprout does not receive or st
 
 Open **Settings → Install app** for device-specific instructions. After a complete online visit and successful caching, prompts can be browsed and copied offline. External AI still requires a connection. Available updates wait for **Update now**. The app shows immediate progress, reopens once activation is confirmed, and briefly acknowledges completion. If activation takes over 12 seconds or messaging fails, a retry action appears; on iPhone/iPad you can also close the Home Screen app and reopen it. Favorites and language remain stored locally. A timeout never forces a reload into an unconfirmed version.
 
-If loading fails, open [Reopen TalkSprout](https://octopusgarage.github.io/talksprout/recover.html) and select **Reopen app**. Recovery clears only TalkSprout's service worker and caches, preserving favorites and language preferences.
+If loading fails, open [Reopen TalkSprout](https://octopusgarage.github.io/talksprout/recover.html) and select **Reopen app**. Recovery clears only this deployment path's service worker and scoped caches, preserving local preferences and other deployments. Ambiguous legacy caches are retained. Settings reports offline readiness only after checking the complete precache.
 
 ## Development
 
@@ -90,11 +91,14 @@ pnpm test:e2e
 pnpm test:webkit
 ```
 
-The release evaluation checks 1,872 composed payloads, 79 authored scene references, and 670 recorded real GPT-4.1 text cases: 562 speaking/review cases across all 160 scenes plus 108 cases across all 18 supplementary prompts. Each target reply has an isolated same-model judge call. Three confirmed raw judge false positives are preserved with bound static semantic reviews; no actual instruction violation is waived. Optional fresh execution uses `OPENAI_API_KEY` with `pnpm eval:live` and `pnpm eval:learning:live` (Python 3 and curl required); these can incur API charges. Normal CI validates committed evidence without credentials. See the evaluation methodology for coverage, provenance and limitations.
+The release evaluation validates all 1,872 composed scenario payloads, authored references, and committed real text API evidence. Separate English and four-turn actual-history suites supplement the speaking/review and learning archives. Target replies and isolated same-model judgments remain distinct from static adjudications and authored examples. Affected cases are refreshed with a pinned model; unchanged historical evidence retains its original provenance. See the evaluation report for exact counts and limitations.
+
+Optional execution uses `OPENAI_API_KEY` with `pnpm eval:live`, `pnpm eval:learning:live`, `pnpm eval:english:live`, or `pnpm eval:sessions:live` (Python 3 and curl required); these can incur API charges. Normal CI validates committed evidence without credentials. Text API evidence does not establish audio/provider compatibility or learning outcomes.
 
 Run `pnpm preview` after building to inspect the production app. React and strict TypeScript are used for the application. Content lives in `src/content/`; `src/prompts.ts` exports the conversation starters, reviews, and combined library.
 
 - [Content and interface conventions](docs/content-guide.md)
+- [Usability observation protocol (no participants recorded)](docs/usability-observation.md)
 - [Evaluation results and limits](docs/evals.md)
 - [Evaluation methodology and fixtures](evals/README.md)
 

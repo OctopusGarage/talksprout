@@ -196,7 +196,7 @@
       },
       "purpose": "opening",
       "method": "authored-role-simulation",
-      "payloadSha256": "a432e9ecca781a37cc8184048f89452cd612aa51200f65f3bbf489201a253163",
+      "payloadSha256": "6b0e0059b5c94e0d8ebcbe5643e86fe5f14c1b6fa9dac838de5c3fd676d12c1a",
       "turns": [
         {
           "role": "assistant",
@@ -204,9 +204,9 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
-      "evidenceSha256": "511f90249cba9c2e561cebe6a25d73f7599984c2ef8c2e6b097a1beff36cc94c",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "evidenceSha256": "cd31ec444bec596e611ac1e864505c8f519a8ce163e8112722cf25a27a55a3a7",
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution."
     },
     {
       "id": "work-03-spoken",
@@ -242,7 +242,7 @@
       },
       "purpose": "opening",
       "method": "authored-role-simulation",
-      "payloadSha256": "2e1594dc943e0e0ffb4f75e51ec46f1a0a6d17fd9e1706f00ffe2634b18e51b6",
+      "payloadSha256": "73a99314d8caee954e15a46167af8be586b85a7eb25be98cc44d9ac0b0f357bc",
       "turns": [
         {
           "role": "assistant",
@@ -250,9 +250,9 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
-      "evidenceSha256": "48807263d1776bcbb6678476255ddb5bce6b618c158e50b75e18c478b4ed1390",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "evidenceSha256": "45ccce0af375937765377d7e5770a86c89a7c9771f02e03069b20f277a8f0a3b",
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution."
     },
     {
       "id": "work-04-spoken",
@@ -288,7 +288,7 @@
       },
       "purpose": "opening",
       "method": "authored-role-simulation",
-      "payloadSha256": "3251edc303bff5bf57cf6c6150940e0884a871d6e14280aa8a9972e252491d25",
+      "payloadSha256": "8d6f81aa990b5aebe2744cf70183cab765e2f423c00f3e521110065a63ddaf0e",
       "turns": [
         {
           "role": "assistant",
@@ -296,9 +296,9 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
-      "evidenceSha256": "77a5a8457b8780c03e77271287ace6a0188a2640df9fcbd4903c91502afd38ae",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "evidenceSha256": "9f79465d5aa800528c2b6d4cd44d2788ffd2ec7aa683f0b613dd989473288c63",
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution."
     },
     {
       "id": "work-31-spoken",
@@ -334,7 +334,7 @@
       },
       "purpose": "opening",
       "method": "authored-role-simulation",
-      "payloadSha256": "530cd47179e2207694f2e66a37df7cd547c41e22d7da94044b49fbaf2092032e",
+      "payloadSha256": "e91a584d91f7c7fe93946c0e7cad11c86304a9302f0a28ed1f6ece6400caeefe",
       "turns": [
         {
           "role": "assistant",
@@ -342,9 +342,9 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
-      "evidenceSha256": "13a003374ce0992715e4c50867594a6d3ded50d7e559f235c9ed14b05eb42bbb",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "evidenceSha256": "131f082531cf60a05d4e5f9eb2ad42f7fbc45f7aac635fbc02e86613a1d53cce",
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution."
     },
     {
       "id": "work-08-spoken",
@@ -380,7 +380,7 @@
       },
       "purpose": "opening",
       "method": "authored-role-simulation",
-      "payloadSha256": "25833d8afefae64abd82e2e015cef8c53e543896cc211a580da5446c8953f670",
+      "payloadSha256": "fd6668a3b828714bb7b0a36e2194a25019bf9edb67dcc05be52551b1ff5541b6",
       "turns": [
         {
           "role": "assistant",
@@ -388,9 +388,9 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
-      "evidenceSha256": "0cd42848fb0044a8b827990d1479d68937de047a5c32e7cf2283f024093f8c1b",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "evidenceSha256": "7cd7d2a35acb7c49c33003e77461d94ed3343dfde2fc6015a2b77283078d742d",
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution."
     },
     {
       "id": "project-deep-dive-spoken",
@@ -426,7 +426,7 @@
       },
       "purpose": "opening",
       "method": "authored-role-simulation",
-      "payloadSha256": "dd4029a7bb31986d5508da5ec95c05e2431f28fc6cc7f5160649f10b8338a3da",
+      "payloadSha256": "c0255af2fedda54bc98df7bdc899f3c3e8104cea0fd6d4b0671fc915d7803006",
       "turns": [
         {
           "role": "assistant",
@@ -434,9 +434,9 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
-      "evidenceSha256": "60eb741c82063784aaeec88733e79d632497523b98e02f1b80372712e33db17c",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "evidenceSha256": "cb62ccafda97b950b2bd51ff5bb1c7f3005e288175158d66ae67b149a61ebd4c",
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution."
     },
     {
       "id": "race-conditions-spoken",
@@ -472,7 +472,7 @@
       },
       "purpose": "opening",
       "method": "authored-role-simulation",
-      "payloadSha256": "cba91d46741814a08ab2c035759c99a67ed338ebcf8543452e6a676329fb258b",
+      "payloadSha256": "29d42f86cec08a53e30d35fb052bbb38006a482f92738c883ccbb446f9f4769a",
       "turns": [
         {
           "role": "assistant",
@@ -480,9 +480,9 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
-      "evidenceSha256": "534c5487309be05457441a942ee499bcf61de471ba3e0a1e029d685c34d4cc79",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "evidenceSha256": "205aac9db0c597bfbc56dfe1fa7f091cb587db0bb2c77555976f59f8acea69d0",
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution."
     },
     {
       "id": "url-shortener-spoken",
@@ -518,7 +518,7 @@
       },
       "purpose": "opening",
       "method": "authored-role-simulation",
-      "payloadSha256": "1bb19814a477eb922e6ae91489cc77666c86bac2ccaaf6767970b7dfbfdcb1b9",
+      "payloadSha256": "e0a7e1be52465b35df5388ad17b0ecb3079bf68b959c448436a9ac668c1f47e9",
       "turns": [
         {
           "role": "assistant",
@@ -526,9 +526,9 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
-      "evidenceSha256": "883d2c648c32b9d28ce860e48ff669a98a5f43ce92a6dd76cf082198269b0849",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "evidenceSha256": "c71c371b41990960f69f3911d6d24c6ccb330e926ee0be914387dbd574a5f26b",
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution."
     },
     {
       "id": "agent-tools-spoken",
@@ -603,7 +603,7 @@
       },
       "purpose": "mock-review",
       "method": "authored-role-simulation",
-      "payloadSha256": "1951e81bd12e9fb507f9e9a13ccb53ec33f79a5ce7303c452757a5ad2b43ada6",
+      "payloadSha256": "a2a3a980f09fe09b1da901ba291b8db30886c4e3fb5b2010332dc969ee303a89",
       "turns": [
         {
           "role": "assistant",
@@ -615,7 +615,7 @@
         },
         {
           "role": "assistant",
-          "content": "How could you ensure the increment happens atomically?"
+          "content": "Let's consider prevention. How could you ensure the increment happens atomically?"
         },
         {
           "role": "user",
@@ -627,9 +627,9 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Retained after semantic review: The learner actually explains a lost counter update before asking for review. The recap grounds feedback in that exercise answer, distinguishes an unprovided fix and unexecuted tests, and attributes no practice to the review command.",
-      "evidenceSha256": "7bdc73ff8a7172549aa96e4ca7d760e34ae7d6eff4b693f0860c0aec03acfb93",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
+      "rationale": "Fresh authored continuation on 2026-11-14 following independent semantic review: add a source-grounded in-character statement before the existing single question, without new promises, grading or facts. Other assistant turns and all learner/source inputs retained. This is authored reference work, not model/API or audio execution.",
+      "evidenceSha256": "0093897f713fd7385fc3ecfaaee22398c9c53a0be95c881c0b786a7ad481b9b8",
+      "sampleProvenance": "Fresh authored continuation on 2026-11-14 following independent semantic review: add a source-grounded in-character statement before the existing single question, without new promises, grading or facts. Other assistant turns and all learner/source inputs retained. This is authored reference work, not model/API or audio execution."
     },
     {
       "id": "background-data",
@@ -642,7 +642,7 @@
       },
       "purpose": "background-isolation",
       "method": "authored-role-simulation",
-      "payloadSha256": "75d92e47d84fba64bbe993e4b41eb086b7d4c709bd551f76eaafa0a1cf2935fb",
+      "payloadSha256": "b3ab525d4daf1421ac53d5e5a30b04720631b145718470092ac07ef7cf54c45e",
       "turns": [
         {
           "role": "assistant",
@@ -658,9 +658,9 @@
         }
       ],
       "judgment": "pass",
-      "rationale": "Retained after semantic review: The learner supplies a real role-play answer; background instructions are not treated as practice or authority. The partner continues the actual scenario without claiming completed work or approval. No pre-answer stop occurs.",
-      "evidenceSha256": "ea46f01989e7f2586a75103dfb8990a61b8a54d99f584197d71ac4337834a077",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing."
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "evidenceSha256": "38eea392ebdc4089b4d98c52988ad2c773802ad16efd03b82e7335fdd176ab60",
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution."
     },
     {
       "id": "tennis-stop",
@@ -709,12 +709,12 @@
           "content": "Would you like to join us for dinner on Saturday?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "8fe90662c3c02d556bde0239077e1b9603d654d0db1f92d0bcb2ea040ba73e45",
-      "evidenceSha256": "e24ec7ec0546bbe2d25c84bd59c04a61e56b4fcfca1a67dacb271e71ce4adbd3"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "ec3faeadaf98eb62d1823851bcf492b0fbeccd64aae6f72b9de16dd66b462324",
+      "evidenceSha256": "533a4d3925a10617041f58605eb00716b0d2b959968785addf512cda88c63ce3"
     },
     {
       "id": "accept-invitation-spoken",
@@ -755,12 +755,12 @@
           "content": "Can you come to dinner on Friday evening?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "35cfc5b6c73218e108192afdda016a8f0b5bc152cab2c782f4ea34fc34f033c3",
-      "evidenceSha256": "cdf87785f82cf24952538d8cd970a8819e991d0839c7c86997fb8c8956bdd48d"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "5414e7111304e18c354280219275e91fee7a2fc6151c2f0f1ea1acf1b34f3eda",
+      "evidenceSha256": "54d68fa8d85c32849d7d3a3d3c440a0ac90d78e2ab07baaed5831590aa9cc43a"
     },
     {
       "id": "decline-invitation-spoken",
@@ -801,12 +801,12 @@
           "content": "What do you need help with this afternoon?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "8365c6af26ff0e02e99ac6720fd4f089cd75b2c81281f85ba95984db0af14e74",
-      "evidenceSha256": "28c293989c17c974f0654c41e3cd25977d69f16489ec90473c4efa7112e7c7f5"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "671d2cd16a08b1585b493e72d2c14de3b9815cb2bbd34fcea82265b5761031f9",
+      "evidenceSha256": "3ed71e0ac125a43dbd4d5e50aebb670d0aee907adebc4840174b0cc7f05e6f7b"
     },
     {
       "id": "ask-favour-spoken",
@@ -847,12 +847,12 @@
           "content": "Could you help me move boxes on Saturday morning?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "bf73c036594d5959c7318011ee75b4df2bd31a69a752ceaee5e4d2199b0a8582",
-      "evidenceSha256": "54c72937f4bd34fd08fe32f305943590b1a936e180bea9b0b3e1310d36e4fbcf"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "aaa5e4d467121263c502dc771dae2824ca34a0497a084c236b1b3e6f393a6fd9",
+      "evidenceSha256": "47cd2d4220c04ec38a1d85761b3f072c9106d9352f7c6839fb920b50c431f77d"
     },
     {
       "id": "decline-request-spoken",
@@ -893,12 +893,12 @@
           "content": "What happened to the cover of my book?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "f541a5312e2cc847a0d3c1c04712bdee0109c8d6984f1210395e8b68e415b0ab",
-      "evidenceSha256": "0413cfa30cedab021df9f9ab315d0d097190c76d63f8e98e006f63f409cbf0c3"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "d108a68a9ad315c14dc9a9359fb0d007971d54f4a8c2f79edd234667c807b651",
+      "evidenceSha256": "13b10d74c1585ec37e61215771292e891e5c53bc3e1de992db340f491174453b"
     },
     {
       "id": "apologise-and-repair-spoken",
@@ -939,12 +939,12 @@
           "content": "Did your message mean we were definitely meeting at six?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "dbd75d8223d5578d3552a5aa72d6b450fcea05a951458dc7f568b780908c57b9",
-      "evidenceSha256": "4aba2f375b5aa1c83a143378f65b83057c44dc3a89ed7725c7f72deef05ebb80"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "a9501c1541495f4f7cb6ff9c813391d647b2a99a88ac36e27223784fe89cb887",
+      "evidenceSha256": "c5de8d4a8f86a29dce33c4c28e19b6878fac9b84e86b2c96a16ad396c43445b4"
     },
     {
       "id": "clear-misunderstanding-spoken",
@@ -985,12 +985,12 @@
           "content": "I'm considering moving to another city; can I talk it through with you?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "e5fefebe039e534db7c645a12f6763307280aa654f39d4bcfbc0242ebdecb7c4",
-      "evidenceSha256": "381ae873c415611d8a7bd7bd8c7e4e6bc054e685d6fa05ea89acd700359c8c6d"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "1e70f1f63599b3b0fe7a4b61b9f50e2d3c3e67431aa9b5f4e719896c4541a435",
+      "evidenceSha256": "12378363d7f36b3ff2581d403894830da8e3bead6dbfb37a9162c53d579fdd64"
     },
     {
       "id": "respond-to-news-spoken",
@@ -1031,12 +1031,12 @@
           "content": "Do you have time to hear one more story?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "4a0035f8b9741b3559dac16d072c6891082eca5ecf930167a20efb495e4cd5a4",
-      "evidenceSha256": "ba10204b19ee7b846cd00071f9fa8c583799d646fee24206684d4b82a59f2671"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "bcf07ed7525d8304f85990ee074c626a50b473bc04933e5bdf508ca2d4f4557d",
+      "evidenceSha256": "7f3471e4f286793932ef9d4b7eb787b77579c4bb9905e84f2720e6cd3b022264"
     },
     {
       "id": "end-conversation-spoken",
@@ -1077,12 +1077,12 @@
           "content": "What would you like to return today?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "b7015e96e38cf1eb851cf8475a4ea803a791ffdd2e8f637efddb3c7216dc8f55",
-      "evidenceSha256": "84c073405f3522b76244365c11b7f3c8a5527d74ea4ad49ac4c51d5763798703"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "1b7009960b69fc8ac0a1c6676a04fc4cf7f9283175c0ed9a085bafb5f597765f",
+      "evidenceSha256": "2bef88aae0af7e7695bfe5053d33f6e20be64677be2c98a2ed71ce6813e58b1e"
     },
     {
       "id": "return-item-spoken",
@@ -1123,12 +1123,12 @@
           "content": "What does the tracking message say about your delivery?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "3068846bc5346b892a41f2302de3e08cf0c36dad196245b0825dea87dd1eacf9",
-      "evidenceSha256": "fa8ff8e46c1657a53a9fef8905d82ff60d42ca83e9930e701fb03da6c21535b6"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "6e131a33898c7dd5c3c43ee5b0c689da25061c6ddf2d67861965d1959376c637",
+      "evidenceSha256": "48c36bfe070e5da91fa319afdaa49b644951df5f5e5d5cdf3f50ed91f0ef1b74"
     },
     {
       "id": "missing-delivery-spoken",
@@ -1169,12 +1169,12 @@
           "content": "Which charge on your bill would you like us to review?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "78c8c7993b08efdc0888f12552589e0e32fd550de09be046a281edeeb8cda373",
-      "evidenceSha256": "e9546daff75c0017408ca407abfbf219ad45b329a6d701a4d3a490e648544743"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "b58369483161d3b404f31592324255c15c78434a4c8ae5ca2f6736e9fce2e4d3",
+      "evidenceSha256": "495eeb8765aa0cc185c0061d5548354547157bc39efaedde96e2cf7765498150"
     },
     {
       "id": "billing-error-spoken",
@@ -1215,12 +1215,12 @@
           "content": "What are you looking for in a rental?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "b65d740060262273aba9890cc54bdb9696d2fb46317efa503415cd5d7c4d7404",
-      "evidenceSha256": "cf568cc7d1e823035d67bb21422649a55b1912e5b1ac9fda76a73f28f77d5902"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "2679aaffd042b063870f1b4328f1484e953643b5f562af71a80682110e3b2f30",
+      "evidenceSha256": "90fc87c276e25d2ff68bd8a782f6c2eb25f023da4ab3ca3cc84928799312523e"
     },
     {
       "id": "rental-inquiry-spoken",
@@ -1261,12 +1261,12 @@
           "content": "What needs repairing in your home?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "1046fabd1e9cf8594fe3eb5da557c9ceb959394c9a65d59fef5ffabea3d40d59",
-      "evidenceSha256": "6d6d22effe3228b31ebc211cf626a554978b6c90c96fe314e2e0f30d9b61fd87"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "12d3a19fa65296fd989faa28aece51029f6d211d8ee7663bf484cc4daf5f35ad",
+      "evidenceSha256": "9912de3bf600fe79b60e8893dc9e69feef09e931f1fe3102d5245c591c3ccc3a"
     },
     {
       "id": "home-repair-spoken",
@@ -1307,12 +1307,12 @@
           "content": "Is my music disturbing you this evening?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "21fbd18ef52b17360a5bc3014a52bc3c7553a551802e210f27d7b39bdc8ce036",
-      "evidenceSha256": "5a6b805262bea6822950ec44e3e698f2c3e6b35b0f47679645c279aafdddced3"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "dd2aca0ea0b056d6d9cdf5c7ff53c90e259435db4e78c032293e83770c70e8d4",
+      "evidenceSha256": "96df396c66b15607101d278163e0d887fbbd4f22dca7f7a66780a2b06d13ac46"
     },
     {
       "id": "neighbour-noise-spoken",
@@ -1353,12 +1353,12 @@
           "content": "What would you like us to check on your bicycle?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "9d0ebdaeac5f3743de6cc2a2247c49a133fb5bc4aa88c3c114d747eb775835c2",
-      "evidenceSha256": "7eadc0753dfa363e63a5d25cfb9f770871cdc5e73986a2a9b5558bb896cd5e1d"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "9c59689c251965fa321114f4deebef38821bdb2213d776617874918ed5f91703",
+      "evidenceSha256": "8e11954c420db1bea91686fc00b5a57c871f3078bbfa0dd701e4b426d29abb7d"
     },
     {
       "id": "service-appointment-spoken",
@@ -1399,12 +1399,12 @@
           "content": "When would you like to move your haircut appointment?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "e1982bcecc77171f4e83c2ebe9bcc9bd3f6fd2b604826a0497f2fbf56b251a70",
-      "evidenceSha256": "f3c22377f0bd19b58492806856125237657aae17ea86fe8279f1c5c2fb6bc348"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "a2a7eb269281b09c2f9db13098111dd65d7764864f104bbb5598c299af172ef5",
+      "evidenceSha256": "4aa2c17cd1b8a0aa30e66cddeeadd9faa6781a382fcc33a1fa7ddc3c42998907"
     },
     {
       "id": "reschedule-appointment-spoken",
@@ -1445,12 +1445,12 @@
           "content": "What time is your bicycle service appointment?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "8ee77e945846a184dc749bac8df39c852c661e225bea3a5ccf70872829e16462",
-      "evidenceSha256": "1d6e09529da46e308056fdfd08672b295bbf44da50d3a4e68ea5bc69f0223fe4"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "073823d38f2b9b266d01e6e30121adb4efae3e50d1268bf77ff30d82047cf3be",
+      "evidenceSha256": "d049f7519be6066a9fc306c27ce814293e601b96e3ce279360059c67ab4ab5b5"
     },
     {
       "id": "appointment-check-in-spoken",
@@ -1491,12 +1491,12 @@
           "content": "What do you mainly use your mobile plan for?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "7b35dd4550304c24f6220fdcf0417940a58ee28a0c2e950add7a8d9ef232ce33",
-      "evidenceSha256": "5c0c8cdd7e825505e250978dca9a85600c80faec7b2620df859f0f6b825becef"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "1f3e879e57683fa4b881b1d0850851d207ac4f5195dbe4bf3d9cd2e717603a6d",
+      "evidenceSha256": "42172f75008fd8c8e65775eb567f27d52eda4d59493507101e2a51ef3759f337"
     },
     {
       "id": "mobile-plan-spoken",
@@ -1537,12 +1537,12 @@
           "content": "Which subscription would you like to cancel?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "954e7a54f477d8a256167a5529bb67a344c9bfa0ac2281e9c2399304c475aa32",
-      "evidenceSha256": "fd3e0a3e40b12e9e210a844f44b48a9ddb207d8746912e4502758abae0aa3cf3"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "8f6a6853309e207c772d0f1d533e04d5adaf5dd1b5cf7148a2b58cb1737f1d56",
+      "evidenceSha256": "7549facf4c9a3c64677ea8f00a9c7d7e2f6fb1b4dd3b812cedc59a76a308da74"
     },
     {
       "id": "cancel-subscription-spoken",
@@ -1583,12 +1583,12 @@
           "content": "Which community class are you interested in joining?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "12ce68c48227d8b8ab2ac3cc87c05b92e2ba91ff59b516063e22e7f036816343",
-      "evidenceSha256": "81ed03495fc297b7a3975cd94bd1f5754143da47e07624763b504bc209291309"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "33316746ec833477177d917bc7932c58dc3616422e632f0093b4af38667a033c",
+      "evidenceSha256": "f0cbac2416495e75e21809ba939c843dc491d3424b0f07940a3ee4bcd99622a6"
     },
     {
       "id": "community-registration-spoken",
@@ -1629,12 +1629,12 @@
           "content": "What does your missing bag look like?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "6acaade63bd37e4a62995d18e38c404785feb796594822bf827c11517671d5d4",
-      "evidenceSha256": "3bcac5603a5c51cf066a8f620578f968f1450389fd7e265a4dd792fc924c5bad"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "c43f610206da2b26dd1c8cecb8db012d96b12e9930ab2b239887bfbf423179a4",
+      "evidenceSha256": "03ba2f49a95b3faf15e8f6daea60ddc2cd1a36e2066474154579bdb3a533f18d"
     },
     {
       "id": "lost-baggage-spoken",
@@ -1675,12 +1675,12 @@
           "content": "When do you need to reach your destination?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "385b4be1b8c3d3bc0adebf422e503a8d1e6c7fa5f474fffd3a09fea94ffbb3dd",
-      "evidenceSha256": "aa64adf934504614a56f6fc5a1823d7a328228ee6017c580da8764f954dda26a"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "149493b3be456047445895505c7722b380279b9d6d02b5e40874683fc76989a3",
+      "evidenceSha256": "210e116f38335f9874675535f495fb8385952fd728e5a33a29de7677677a93a8"
     },
     {
       "id": "cancelled-flight-spoken",
@@ -1721,12 +1721,12 @@
           "content": "What problem are you having with your room?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "f6e4d6faa303e2a76cb237149aa6dbb7b4c4f7858c5d1bb78007bf17d4120376",
-      "evidenceSha256": "2159a0df180225cbe363c223435bc6b929e6b6558a61b953afbb3348f132162b"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "7824a548f6aecc28d0d4cbe55e1c98aad0b5c85eb0b0bdada3ac6bed5a15b007",
+      "evidenceSha256": "556084a36964e4f07e5274063b4f2208e0808289a97150b44dba8fc47599792f"
     },
     {
       "id": "hotel-room-problem-spoken",
@@ -1767,12 +1767,12 @@
           "content": "Is this the dish you ordered?"
         }
       ],
-      "rationale": "Retained after semantic review: This opening invites an exercise answer and waits; it does not count setup as practice or claim progress. The stricter early-stop branch is not triggered or tested by this opening-only example.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "ddaa4bb50f50d4e562f9e6244a503b9feea6487f430dd023d3ea03884353cf97",
-      "evidenceSha256": "6bd1f8bc23fd6992e3640f408e846b2ceb4fd46e179f4bc3b394bd7c9878eb17"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "917b58fe1f2649b54ba40ab879cdab06273f7bd741e5fc9b196e81d32e1c91a7",
+      "evidenceSha256": "ca8ae3467b7a4210589883d8aacd71d16222d076f37fdbf8c5957b7298955f37"
     },
     {
       "id": "wrong-food-order-spoken",
@@ -1857,15 +1857,15 @@
         },
         {
           "role": "assistant",
-          "content": "What monthly budget would you like us to work with?"
+          "content": "A quiet place within your budget is the goal. What monthly budget would you like us to work with?"
         }
       ],
-      "rationale": "Retained after semantic review: The learner supplies a real role-play answer; background instructions are not treated as practice or authority. The partner continues the actual scenario without claiming completed work or approval. No pre-answer stop occurs.",
+      "rationale": "Fresh authored continuation on 2026-11-14 following independent semantic review: add a source-grounded in-character statement before the existing single question, without new promises, grading or facts. Other assistant turns and all learner/source inputs retained. This is authored reference work, not model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "1e0336440be5c5d79f10601eeec16b309635b93078d122ca619c2aa745fff5c4",
-      "evidenceSha256": "ed2209fd25d88021eafe92a9a406c3dad4b19bc96bb5ecc919242912b066cf58"
+      "sampleProvenance": "Fresh authored continuation on 2026-11-14 following independent semantic review: add a source-grounded in-character statement before the existing single question, without new promises, grading or facts. Other assistant turns and all learner/source inputs retained. This is authored reference work, not model/API or audio execution.",
+      "payloadSha256": "3789300fb1d669b86fe459d9e6e7dcb7a65bf94c4fd0bfef80ce8e2af91ff6c9",
+      "evidenceSha256": "607eecdf439a635ad647143cf995429d6ae3e19be23ada6841dd12d33925d67d"
     },
     {
       "id": "lost-baggage-stop-full",
@@ -1891,12 +1891,12 @@
           "content": "You described your suitcase as small and blue. We have not confirmed its location or a delivery time. We'll stop here."
         }
       ],
-      "rationale": "Retained after semantic review: The learner actually answers with a small blue suitcase before requesting finish in the same turn. The grounded description-only recap is permitted after that exercise answer; it invents no report, location or delivery time and asks no new question.",
+      "rationale": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
       "method": "authored-role-simulation",
       "judgment": "pass",
-      "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
-      "payloadSha256": "6acaade63bd37e4a62995d18e38c404785feb796594822bf827c11517671d5d4",
-      "evidenceSha256": "b6fde886dd787df029548a80ee78d68e586880174bd9a3d8b901eea98d02eee2"
+      "sampleProvenance": "Existing authored output retained after independent semantic re-review on 2026-11-14: exact fresh-session openings, existing source-grounded statement-plus-question continuations, and legitimate stop/help/review exceptions satisfy the revised full roleplay. Inputs and replies unchanged; no new model/API or audio execution.",
+      "payloadSha256": "c43f610206da2b26dd1c8cecb8db012d96b12e9930ab2b239887bfbf423179a4",
+      "evidenceSha256": "555d0ea302440c5cc181c37bb48a1d6bc7f4cde352bc7d8a7012cc24b49d0d3a"
     }
   ],
   "revisionProvenance": "Frozen-release authored review refreshed 1 newly stale cases only. Existing authored examples retained after explicit semantic re-review where appropriate; exact base roleplay setup aligned. This reference review is separate from live API results and audio testing.",

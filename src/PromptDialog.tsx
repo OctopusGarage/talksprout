@@ -22,8 +22,10 @@ export function PromptDialog({
   sceneSelection,
   onSceneChange,
   footer,
+  practiceActions,
 }: {
   footer?: ReactNode;
+  practiceActions?: ReactNode;
   sceneSelection?: SceneSelection;
   onSceneChange?: (selection?: SceneSelection) => void;
   locale: Locale;
@@ -47,17 +49,18 @@ export function PromptDialog({
   const spokenLabel = reviewing
     ? s("语音结尾提示", "Spoken wrap-up")
     : s("语音开场白", "Spoken opening");
-  const selectedText = p ? promptText(p, variant, reviewSource) : "";
+  const selectedText = p ? promptText(p, variant, reviewSource, locale) : "";
   const ref = useRef<HTMLDialogElement>(null);
   const text = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     const d = ref.current!;
     const previous = document.activeElement as HTMLElement | null;
+    const originBase = location.hash.split("?")[0];
     d.showModal();
     return () => {
       d.close();
       requestAnimationFrame(() => {
-        if (document.querySelector("dialog[open]")) return;
+        if (document.querySelector("dialog[open]") || location.hash.split("?")[0] !== originBase) return;
         if (previous?.isConnected) previous.focus({ preventScroll: true });
         else
           document
@@ -127,6 +130,7 @@ export function PromptDialog({
                 onChange={onSceneChange}
               />
             )}
+            {practiceActions}
             <div
               className="prompt-formats"
               role="tablist"
@@ -216,12 +220,12 @@ export function PromptDialog({
                   <p className="spoken-duration">
                     {s("朗读约 ", "About ")}
                     {Math.ceil(
-                      ((p.spokenPrompt.trim().split(/\s+/).length / 140) * 60) /
+                      ((selectedText.trim().split(/\s+/).length / 140) * 60) /
                         5,
                     ) * 5}
                     –
                     {Math.ceil(
-                      ((p.spokenPrompt.trim().split(/\s+/).length / 100) * 60) /
+                      ((selectedText.trim().split(/\s+/).length / 100) * 60) /
                         5,
                     ) * 5}
                     {s(
@@ -285,7 +289,7 @@ export function PromptDialog({
                   lang="en"
                   aria-label={spokenLabel}
                 >
-                  {p.spokenPrompt.split("\n").map((sentence, i) => (
+                  {selectedText.split("\n").map((sentence, i) => (
                     <p key={i}>{sentence}</p>
                   ))}
                 </div>

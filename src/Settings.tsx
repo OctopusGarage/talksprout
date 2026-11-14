@@ -1,3 +1,4 @@
+import type { OfflineStatus } from "./offline-readiness";
 import { Icon } from "./Icon";
 import type { Locale } from "./types";
 export function Settings({
@@ -7,6 +8,7 @@ export function Settings({
   onAbout,
   online,
   installed,
+  offlineStatus,
 }: {
   locale: Locale;
   onLocale: (locale: Locale) => void;
@@ -14,6 +16,7 @@ export function Settings({
   onAbout: () => void;
   online: boolean;
   installed: boolean;
+  offlineStatus: OfflineStatus;
 }) {
   const en = locale === "en",
     s = (zh: string, english: string) => (en ? english : zh);
@@ -45,6 +48,7 @@ export function Settings({
               </label>
             ))}
           </div>
+          <p>{s("提示词中的解释语言会跟随界面语言，英语练习内容保持英文。", "Prompt explanations follow your interface language; English practice content stays in English.")}</p>
         </fieldset>
       </div>
       <h2 className="section-label">
@@ -109,10 +113,13 @@ export function Settings({
               : s("当前离线", "Currently offline")}
           </strong>
           <p>
-            {s(
-              "完整加载一次后，提示词可离线浏览和复制。外部 AI 仍需网络。",
-              "After a full online visit, prompts can be browsed and copied offline. Your external AI still needs a connection.",
-            )}
+            {offlineStatus === "ready"
+              ? s("离线内容已就绪，提示词可离线浏览和复制。外部 AI 仍需网络。", "Offline content is ready. Browse and copy prompts offline; your external AI still needs a connection.")
+              : offlineStatus === "installing"
+                ? s("正在准备离线内容，请保持页面打开并联网。", "Preparing offline content. Keep this page open and connected.")
+                : offlineStatus === "unavailable"
+                  ? s("此浏览器当前无法保存离线内容，请联网使用。", "This browser cannot currently save offline content. Use the app online.")
+                  : s("尚未确认离线内容已就绪，请联网打开并等待准备完成。", "Offline readiness is not confirmed yet. Open the app online and allow preparation to finish.")}
           </p>
         </div>
         <div>

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useState, type ReactNode } from "react";
 import { collections, reviewCollection } from "./content/collections";
 import { allPrompts } from "./prompts";
 import { filterPrompts } from "./library";
@@ -9,6 +9,8 @@ import type { Prompt, Locale } from "./types";
 
 type Purpose = "practice" | "review";
 type Props = {
+  homeExtras?: ReactNode;
+  reviewExtras?: ReactNode;
   locale: Locale;
   purpose: Purpose;
   collection: string | null;
@@ -27,6 +29,8 @@ export function PromptLibrary({
   onFavorite,
   onDetail,
   onCopy,
+  homeExtras,
+  reviewExtras,
 }: Props) {
   const en = locale === "en";
   const reviewing = purpose === "review";
@@ -47,16 +51,6 @@ export function PromptLibrary({
       },
     }));
   const clear = () => update({ query: "", favoritesOnly: false });
-  const previous = useRef(collection);
-  useLayoutEffect(() => {
-    if (previous.current && !collection && !reviewing)
-      document
-        .querySelector<HTMLButtonElement>(
-          `[data-collection="${previous.current}"]`,
-        )
-        ?.focus({ preventScroll: true });
-    previous.current = collection;
-  }, [collection, reviewing]);
   const current = collections.find((c) => c.id === collection);
   const stagePrompts = allPrompts.filter(
     (p) =>
@@ -136,6 +130,7 @@ export function PromptLibrary({
       )}
       {showCollections ? (
         <>
+          {homeExtras}
           <h2 className="section-label">
             {en ? "Practice collections" : "练习分类"}
           </h2>
@@ -184,6 +179,7 @@ export function PromptLibrary({
         </>
       ) : (
         <>
+          {reviewing && !searching && reviewExtras}
           {reviewing && !searching && (
             <p className="review-recommendation">
               {en

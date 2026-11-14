@@ -44,3 +44,20 @@ test("supplementary links stay separate from coaches and reviews", () => {
   assert.equal(readRoute("#learning?prompt=daily-check-in").promptId, null);
   assert.equal(readRoute("#learning?prompt=missing").learningPromptId, null);
 });
+
+test("practice links restore compatible scenario without personal background", () => {
+  const route = readRoute("#library?prompt=roleplay-coach&scene=technical-intro&pace=mock&format=spoken&background=secret");
+  assert.deepEqual(route.sceneSelection, {sceneId:"technical-intro",pace:"mock",background:""});
+  assert.equal(route.format, "spoken");
+  assert.equal(readRoute("#library?prompt=daily-check-in&scene=technical-intro&pace=mock").sceneSelection?.pace, "coached");
+  assert.equal(readRoute("#library?prompt=roleplay-coach&scene=missing").sceneSelection, undefined);
+  assert.equal(readRoute("#settings?scene=technical-intro&format=spoken").format, undefined);
+});
+test("review options apply only to matching review prompts", () => {
+  const review = allPrompts.find(p => p.kind === "review")!;
+  const route = readRoute(`#review?prompt=${review.id}&source=transcript&format=spoken&scene=technical-intro`);
+  assert.equal(route.reviewSource, "transcript");
+  assert.equal(route.format, "spoken");
+  assert.equal(route.sceneSelection, undefined);
+  assert.equal(readRoute("#library?prompt=daily-check-in&source=transcript").reviewSource, undefined);
+});

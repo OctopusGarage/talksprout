@@ -1,0 +1,556 @@
+{
+  "method": "historical-real-text-api-compact-vocabulary-conditional-findings",
+  "releaseEvidence": false,
+  "note": "Known-card conditional phrasing still triggered phantom writing-unavailable declarations in current/missing contexts. Both raw passes and failures retained.",
+  "english": [
+    {
+      "case": {
+        "id": "english-review-current-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "english-spoken-seeded-text-review-current",
+        "criterion": "Use only the actual short hiking exchange. Attribute the error and successful retry correctly; distinguish original corrections from generated examples and do not invent pronunciation assessment. Complete the selected review purpose; use counts as maxima. For written vocabulary output, every selected headword/phrase must occur in earlier learner practice, never only in the review request. Merge go hiking and went hiking as inflections of the same item; do not pad to ten. Use English explanations and meaning cues. Missing learner practice must not turn review instructions into source. If writing is available (the ordinary current context), produce the requested written material, not the oral-only fallback. Numbered recall questions require corresponding answers with matching numbers; copying dialogue lines is not a matching answer key. A compact card may test any genuine learning point in the supplied hiking exchange, including enjoyed the quiet forest, not only the corrected went. This is single-turn real target/judge text execution over authored seeded context, not an end-to-end session or actual audio. Do not claim to hear, play, or assess audio. Apply only the compact prompt's constraints, not requirements from the full variant.",
+        "payloadSha256": "c521f1682b54498976045c850cb12a281b190ae83e823a0db6cbed41d8e5fe09",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Yesterday I go hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "Say ‘Yesterday I went hiking with my brother.’ Use past tense with yesterday."
+          },
+          {
+            "role": "user",
+            "content": "Yesterday I went hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "That works. What did you enjoy?"
+          },
+          {
+            "role": "user",
+            "content": "I enjoyed the quiet forest."
+          },
+          {
+            "role": "user",
+            "content": "Let's finish. Follow the FIRST matching branch.\nIf I said writing is unavailable, give ONLY a brief oral recap without IPA or worksheets.\nOtherwise, if earlier chat has no learner practice answers, request the practice conversation and stop.\nOtherwise use those earlier answers: up to ten source expressions with plain-English meanings, collocations, labeled new English examples and American IPA (mark uncertainty).\nHeadwords must occur in earlier practice, not this request; merge inflections. Never infer unfamiliarity or pronunciation errors."
+          }
+        ],
+        "maxTokens": 1600,
+        "locale": "en"
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek850w54XQd4fwlZO7iHgAk7BuhzC",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662854,
+        "usage": {
+          "prompt_tokens": 172,
+          "completion_tokens": 36,
+          "total_tokens": 208,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "Here’s a brief oral recap of our conversation:\n\nYou talked about going hiking with your brother yesterday and enjoying the quiet forest. We also corrected your sentence to use the past tense.",
+        "latencyMs": 1200
+      },
+      "contractChecks": {
+        "questionMarks": 0,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "english-review-current-vocabulary-ipa-review-spoken",
+        "judgment": "fail",
+        "reason": "The reply gives an oral recap, but writing is available (the ordinary current context), so it should have produced written vocabulary review with headwords from earlier learner practice, meanings, collocations, new examples, and IPA. The oral-only fallback is only for when writing is unavailable, which was not stated."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek851Ky8cZfaTSC7QvOCIDLlDTJ4G",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662855,
+        "usage": {
+          "prompt_tokens": 903,
+          "completion_tokens": 89,
+          "total_tokens": 992,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1311
+      },
+      "gateJudgment": "fail",
+      "evidenceSha256": "877a4b37c42378371e3bbd3c821eecc6f6b68aff11d28baac2721ac8b051d5c2"
+    },
+    {
+      "case": {
+        "id": "english-review-missing-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "english-spoken-seeded-text-review-missing",
+        "criterion": "There is no usable practice history. Ask for the conversation or state that limitation, without inventing personal errors, vocabulary or learning achievements. For written vocabulary output, every selected headword/phrase must occur in earlier learner practice, never only in the review request. Merge go hiking and went hiking as inflections of the same item; do not pad to ten. Use English explanations and meaning cues. Missing learner practice must not turn review instructions into source. If writing is available (the ordinary current context), produce the requested written material, not the oral-only fallback. Numbered recall questions require corresponding answers with matching numbers; copying dialogue lines is not a matching answer key. A compact card may test any genuine learning point in the supplied hiking exchange, including enjoyed the quiet forest, not only the corrected went. This is single-turn real target/judge text execution over authored seeded context, not an end-to-end session or actual audio. Do not claim to hear, play, or assess audio. Apply only the compact prompt's constraints, not requirements from the full variant.",
+        "payloadSha256": "c521f1682b54498976045c850cb12a281b190ae83e823a0db6cbed41d8e5fe09",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Let's finish. Follow the FIRST matching branch.\nIf I said writing is unavailable, give ONLY a brief oral recap without IPA or worksheets.\nOtherwise, if earlier chat has no learner practice answers, request the practice conversation and stop.\nOtherwise use those earlier answers: up to ten source expressions with plain-English meanings, collocations, labeled new English examples and American IPA (mark uncertainty).\nHeadwords must occur in earlier practice, not this request; merge inflections. Never infer unfamiliarity or pronunciation errors."
+          }
+        ],
+        "maxTokens": 1600,
+        "locale": "en"
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek850moaUSEUrvNOUWSZuiRHJkNwK",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662854,
+        "usage": {
+          "prompt_tokens": 106,
+          "completion_tokens": 59,
+          "total_tokens": 165,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "Sure! Since you said \"writing is unavailable,\" here’s a brief oral recap:\n\nWe talked about some useful expressions from your earlier practice. I’ll quickly remind you what they mean and how you might use them in conversation. If you want to review or practice more, just let me know!",
+        "latencyMs": 1192
+      },
+      "contractChecks": {
+        "questionMarks": 0,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "english-review-missing-vocabulary-ipa-review-spoken",
+        "judgment": "pass",
+        "reason": "The reply correctly follows the instruction for the 'writing is unavailable' branch by providing only a brief oral recap without IPA or worksheets, and does not invent errors or vocabulary. No practice history is present, so the response does not attempt to generate vocabulary cards or explanations."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek852ULjowU3OempQsCJxuSYDAMOW",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662856,
+        "usage": {
+          "prompt_tokens": 813,
+          "completion_tokens": 82,
+          "total_tokens": 895,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1442
+      },
+      "gateJudgment": "pass",
+      "evidenceSha256": "882b8de687249eb6975419b850b3e47782ce71f41f78cc75632d227da42e5527"
+    },
+    {
+      "case": {
+        "id": "english-voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "english-spoken-seeded-text-voice-only-text-fallback",
+        "criterion": "This is a text simulation of an oral fallback, not an audio test. Provide a brief grounded oral recap suitable for reading aloud, without IPA symbols, worksheets or claims to hear audio. The supplied hiking learner exchange AND a prior explicit writing-unavailable declaration are both present. Claiming history is missing, requesting the conversation, or producing vocabulary worksheets fails; the only correct branch is a short grounded oral recap. For written vocabulary output, every selected headword/phrase must occur in earlier learner practice, never only in the review request. Merge go hiking and went hiking as inflections of the same item; do not pad to ten. Use English explanations and meaning cues. Missing learner practice must not turn review instructions into source. If writing is available (the ordinary current context), produce the requested written material, not the oral-only fallback. Numbered recall questions require corresponding answers with matching numbers; copying dialogue lines is not a matching answer key. A compact card may test any genuine learning point in the supplied hiking exchange, including enjoyed the quiet forest, not only the corrected went. This is single-turn real target/judge text execution over authored seeded context, not an end-to-end session or actual audio. Do not claim to hear, play, or assess audio. Apply only the compact prompt's constraints, not requirements from the full variant.",
+        "payloadSha256": "c521f1682b54498976045c850cb12a281b190ae83e823a0db6cbed41d8e5fe09",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Yesterday I go hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "Say ‘Yesterday I went hiking with my brother.’ Use past tense with yesterday."
+          },
+          {
+            "role": "user",
+            "content": "Yesterday I went hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "That works. What did you enjoy?"
+          },
+          {
+            "role": "user",
+            "content": "I enjoyed the quiet forest."
+          },
+          {
+            "role": "user",
+            "content": "Written output is unavailable in this hypothetical voice chat. Give a short spoken reply only."
+          },
+          {
+            "role": "user",
+            "content": "Let's finish. Follow the FIRST matching branch.\nIf I said writing is unavailable, give ONLY a brief oral recap without IPA or worksheets.\nOtherwise, if earlier chat has no learner practice answers, request the practice conversation and stop.\nOtherwise use those earlier answers: up to ten source expressions with plain-English meanings, collocations, labeled new English examples and American IPA (mark uncertainty).\nHeadwords must occur in earlier practice, not this request; merge inflections. Never infer unfamiliarity or pronunciation errors."
+          }
+        ],
+        "maxTokens": 1600,
+        "locale": "en"
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek850pCGMuIPI77Jl3Fcq57sWATIx",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662854,
+        "usage": {
+          "prompt_tokens": 193,
+          "completion_tokens": 15,
+          "total_tokens": 208,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "You told me you went hiking with your brother and enjoyed the quiet forest.",
+        "latencyMs": 942
+      },
+      "contractChecks": {
+        "questionMarks": 0,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "english-voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "judgment": "pass",
+        "reason": "The reply gives a brief, grounded oral recap of the learner's hiking exchange, as required when writing is unavailable. It does not include IPA, worksheets, or vocabulary lists, and does not claim to hear or assess audio. The response follows the correct branch per instructions."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek852U9AZlDBvYVE83OH2DJHrmxmG",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662856,
+        "usage": {
+          "prompt_tokens": 953,
+          "completion_tokens": 86,
+          "total_tokens": 1039,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1424
+      },
+      "gateJudgment": "pass",
+      "evidenceSha256": "7b5f4345a1faad4b1758a3a3c28122f6b4e117057b59e18efa9ed799a2bcc579"
+    }
+  ],
+  "base": [
+    {
+      "case": {
+        "id": "review-current-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "review-current",
+        "criterion": "Use only the actual short hiking exchange. Attribute the error and successful retry correctly; distinguish original corrections from generated examples and do not invent pronunciation assessment. Complete the selected review purpose; use counts as maxima.",
+        "payloadSha256": "32bfb7a082d2effb741a871240d19cc91446c19fcbd4a063000dcc83f7a11dd0",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Yesterday I go hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "Say ‘Yesterday I went hiking with my brother.’ Use past tense with yesterday."
+          },
+          {
+            "role": "user",
+            "content": "Yesterday I went hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "That works. What did you enjoy?"
+          },
+          {
+            "role": "user",
+            "content": "I enjoyed the quiet forest."
+          },
+          {
+            "role": "user",
+            "content": "Let's finish. Follow the FIRST matching branch.\nIf I said writing is unavailable, give ONLY a brief oral recap without IPA or worksheets.\nOtherwise, if earlier chat has no learner practice answers, request the practice conversation and stop.\nOtherwise use those earlier answers: up to ten source expressions with Chinese meanings, collocations, labeled new English examples and American IPA (mark uncertainty).\nHeadwords must occur in earlier practice, not this request; merge inflections. Never infer unfamiliarity or pronunciation errors."
+          }
+        ],
+        "maxTokens": 1600
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek850JBuRUrZWlYozipRlTry9tBER",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662854,
+        "usage": {
+          "prompt_tokens": 171,
+          "completion_tokens": 22,
+          "total_tokens": 193,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "Here’s a brief oral recap:\n\nYou talked about going hiking with your brother yesterday and enjoying the quiet forest.",
+        "latencyMs": 1122
+      },
+      "contractChecks": {
+        "questionMarks": 0,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "review-current-vocabulary-ipa-review-spoken",
+        "judgment": "pass",
+        "reason": "The assistant correctly followed the instruction for the 'writing is unavailable' branch by providing only a brief oral recap without IPA or worksheets, summarizing the actual short hiking exchange. No vocabulary list, IPA, or invented pronunciation assessment was included, and the error and retry were not misattributed."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek852u80ShjfEHqgL82YOrcF8cSKX",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662856,
+        "usage": {
+          "prompt_tokens": 702,
+          "completion_tokens": 85,
+          "total_tokens": 787,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1234
+      },
+      "gateJudgment": "pass",
+      "evidenceSha256": "2290831d729e8c53595c48539f62d9a188f06457bdb45678b494a7e469291144"
+    },
+    {
+      "case": {
+        "id": "review-missing-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "review-missing",
+        "criterion": "There is no usable practice history. Ask for the conversation or state that limitation, without inventing personal errors, vocabulary or learning achievements.",
+        "payloadSha256": "32bfb7a082d2effb741a871240d19cc91446c19fcbd4a063000dcc83f7a11dd0",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Let's finish. Follow the FIRST matching branch.\nIf I said writing is unavailable, give ONLY a brief oral recap without IPA or worksheets.\nOtherwise, if earlier chat has no learner practice answers, request the practice conversation and stop.\nOtherwise use those earlier answers: up to ten source expressions with Chinese meanings, collocations, labeled new English examples and American IPA (mark uncertainty).\nHeadwords must occur in earlier practice, not this request; merge inflections. Never infer unfamiliarity or pronunciation errors."
+          }
+        ],
+        "maxTokens": 1600
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek850VffRObKvrA2YA8Ie4efQwo80",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662854,
+        "usage": {
+          "prompt_tokens": 105,
+          "completion_tokens": 61,
+          "total_tokens": 166,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "Sure! Since you said \"writing is unavailable,\" here’s a brief oral recap:\n\nWe practiced a conversation using some key expressions. You used several important phrases, and we talked about their meanings and how to use them in different situations. Keep practicing these expressions in daily conversations to get more comfortable with them!",
+        "latencyMs": 1439
+      },
+      "contractChecks": {
+        "questionMarks": 0,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "review-missing-vocabulary-ipa-review-spoken",
+        "judgment": "pass",
+        "reason": "The reply correctly follows the instruction for the 'writing is unavailable' branch by providing only a brief oral recap without IPA or worksheets, and does not invent errors, vocabulary, or achievements."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek852WI0ndmxpU9dqiVbJHAxZNdxD",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662856,
+        "usage": {
+          "prompt_tokens": 628,
+          "completion_tokens": 65,
+          "total_tokens": 693,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1327
+      },
+      "gateJudgment": "pass",
+      "evidenceSha256": "f30abc0c24d67f71fca08ebd3713a7b419d4ff8de251dff19ce0d9e810ff0d38"
+    },
+    {
+      "case": {
+        "id": "voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "promptId": "vocabulary-ipa-review",
+        "variant": "spoken",
+        "source": "current",
+        "purpose": "voice-only-text-fallback",
+        "criterion": "This is a text simulation of an oral fallback, not an audio test. Provide a brief grounded oral recap suitable for reading aloud, without IPA symbols, worksheets or claims to hear audio. The supplied hiking learner exchange AND a prior explicit writing-unavailable declaration are both present. Claiming history is missing, requesting the conversation, or producing vocabulary worksheets fails; the only correct branch is a short grounded oral recap.",
+        "payloadSha256": "32bfb7a082d2effb741a871240d19cc91446c19fcbd4a063000dcc83f7a11dd0",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Yesterday I go hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "Say ‘Yesterday I went hiking with my brother.’ Use past tense with yesterday."
+          },
+          {
+            "role": "user",
+            "content": "Yesterday I went hiking with my brother."
+          },
+          {
+            "role": "assistant",
+            "content": "That works. What did you enjoy?"
+          },
+          {
+            "role": "user",
+            "content": "I enjoyed the quiet forest."
+          },
+          {
+            "role": "user",
+            "content": "Written output is unavailable in this hypothetical voice chat. Give a short spoken reply only."
+          },
+          {
+            "role": "user",
+            "content": "Let's finish. Follow the FIRST matching branch.\nIf I said writing is unavailable, give ONLY a brief oral recap without IPA or worksheets.\nOtherwise, if earlier chat has no learner practice answers, request the practice conversation and stop.\nOtherwise use those earlier answers: up to ten source expressions with Chinese meanings, collocations, labeled new English examples and American IPA (mark uncertainty).\nHeadwords must occur in earlier practice, not this request; merge inflections. Never infer unfamiliarity or pronunciation errors."
+          }
+        ],
+        "maxTokens": 1600
+      },
+      "requestedModel": "gpt-4.1-2025-04-14",
+      "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+      "target": {
+        "responseId": "chatcmpl-Ek850vzBB7Q6OAfGw6mWKmQHHws94",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662854,
+        "usage": {
+          "prompt_tokens": 192,
+          "completion_tokens": 17,
+          "total_tokens": 209,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "You told me about your hike with your brother and that you enjoyed the quiet forest.",
+        "latencyMs": 1089
+      },
+      "contractChecks": {
+        "questionMarks": 0,
+        "oneQuestionOpening": true
+      },
+      "judge": {
+        "id": "voice-only-text-fallback-vocabulary-ipa-review-spoken",
+        "judgment": "pass",
+        "reason": "The reply gives a brief, grounded oral recap of the hiking conversation, as required when writing is unavailable. No IPA, worksheets, or requests for conversation are present."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-Ek852PH75M9TR5Psvxv8EkQuFvaxA",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794662856,
+        "usage": {
+          "prompt_tokens": 767,
+          "completion_tokens": 63,
+          "total_tokens": 830,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "latencyMs": 1117
+      },
+      "gateJudgment": "pass",
+      "evidenceSha256": "016e5af2b7d1ec419f7de198d51506886799e966ddd19185212888dd018acc67"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { createEnglishCases, createSessionCases } from "./session-cases";
 import { createLearningLiveCases } from "./learning-live-cases";
 import { learningPrompts } from "../src/content/learning";
 import { validateLearningArchive } from "./learning-validate";
@@ -17,7 +18,11 @@ const learningLive = validateLiveArchive(
   JSON.parse(readFileSync("evals/fixtures/learning-live-api.json", "utf8")),
   createLearningLiveCases(),
 );
+const englishLive = validateLiveArchive(JSON.parse(readFileSync("evals/fixtures/english-live-api.json", "utf8")), createEnglishCases());
+const sessionLive = validateLiveArchive(JSON.parse(readFileSync("evals/fixtures/session-live-api.json", "utf8")), createSessionCases());
 const issues: string[] = [
+  ...englishLive.issues,
+  ...sessionLive.issues,
   ...validateLearningArchive(JSON.parse(readFileSync("evals/fixtures/learning-static.json", "utf8"))),
   ...matrix.issues,
   ...live.issues,
@@ -62,6 +67,7 @@ console.log(
         readFileSync("evals/fixtures/scene-presets.json", "utf8"),
       ).cases.length,
       compositionMatrix: matrix,
+      focusedTextApi: { englishCases: englishLive.cases, sessions: sessionLive.cases, sessionTargetTurns: 32, method: "Recorded real text API evidence; sessions use actual preceding replies and isolated turn-prefix same-model judges; no new requests in this command" },
       liveApi: {
         cases: live.cases,
         adjudications: live.adjudications,

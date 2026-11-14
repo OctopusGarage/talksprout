@@ -1,0 +1,18 @@
+{
+  "method": "static-semantic-review-of-recorded-real-text-outputs",
+  "releaseEvidence": false,
+  "reviewer": "codex-eval-agent",
+  "scope": "Passing and failing outputs from the initial, second, and rubric-only rejudge optimization archives; no new model execution in this review file.",
+  "observations": [
+    { "caseId": "session-heldout-roleplay-coach", "classification": "actual-failure", "reason": "A single reply asks both to show the teapot and whether the learner has a receipt; the one-question constraint was not followed." },
+    { "caseId": "english-review-review-cards", "classification": "actual-failure-missed-by-judge", "reason": "Two different card cues have identical suggested answer sentences and semantic targets." },
+    { "caseId": "english-review-complete-study-notes", "classification": "actual-failure-missed-by-judge", "reason": "The genuine-errors section labels a Chinese intention needing English translation as an English error." },
+    { "caseId": "english-learning-material-listening-shadowing", "classification": "initial-actual-failure-missed-by-judge", "reason": "The initial output equates wanted to with wanna, dropping past-tense information. Conventional general reductions such as outta are a separate issue and do not alone establish an error." },
+    { "caseId": "english-learning-material-listening-check", "classification": "initial-actual-failure-with-wrong-judge-rationale", "reason": "The first output asks a comprehension question before waiting for readiness. It does not actually reveal the museum opening time, contrary to the judge rationale." },
+    { "caseId": "english-learning-material-listening-expressions", "classification": "judge-false-positive", "reason": "Make sure is a reusable phrase literally in the supplied source. The task does not restrict selections to idioms." },
+    { "caseId": "session-heldout-gentle-start", "classification": "judge-false-positive", "reason": "Two declarative example answers followed by one question are not multiple questions." },
+    { "caseId": "session-heldout-reading-technical", "classification": "judge-false-positive", "reason": "A restriction on duplicate review-card targets does not prohibit follow-up comprehension checks in a technical reading exercise." },
+    { "caseId": "session-heldout-sentence-correction-review", "classification": "judge-false-positive", "reason": "The first heading explicitly labels the incorrect form as a tutor example. It is not attributed to the learner. This observation does not automatically waive any release gate." }
+  ],
+  "calibrationPlan": "Use isolated turn-prefix judgments for sessions; inspect all flagged outputs and passing examples across families. Keep answer leakage distinct from readiness sequencing, optional tutor examples distinct from attributed learner errors, duplicate targets within one review distinct from later requested repetition, and grammatical tense preservation distinct from conventional reductions. Do not convert these observations into model judge results."
+}
