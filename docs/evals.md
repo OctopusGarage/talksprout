@@ -16,11 +16,11 @@ Release evaluation on 2026-11-14 covers nine coaching modes, four review modes, 
 | Real GPT-4.1 text API cases | 719 accepted cases across five target archives; 764 final target responses; raw case gates 715 pass, 4 fail, 0 uncertain; eight calibration examples counted separately |
 | Static semantic adjudication | 4 confirmed judge false positives accepted; raw verdicts retained |
 | Unit tests | 113 passed |
-| Chromium browser tests | 81 passed |
-| WebKit browser/PWA tests | 61 passed |
+| Chromium browser tests | 85 passed |
+| WebKit browser/PWA tests | 65 passed |
 | TypeScript and production build | Passed |
 
-The current application checks passed 113 unit tests, 81 Chromium browser tests and 61 WebKit browser tests. The recorded API suites are separate from these application checks.
+The current application checks passed 113 unit tests, 85 Chromium browser tests and 65 WebKit browser tests. The recorded API suites are separate from these application checks.
 
 
 The 46 base references and 79 scene references are authored text simulations, not external-provider API runs. The separate live API corpus below contains real executions. Neither corpus is evidence of learning effectiveness or broad provider reliability. Fixtures contain exact prompt hashes; changed text requires refreshed sessions. See [methodology](../evals/README.md) and [fixtures](../evals/fixtures/).
@@ -235,3 +235,11 @@ The favorite filter shows only its heart icon. Its accessible name remains Saved
 Browser regressions cover dismissing the guide, deleting focused rows, external removal of an expansion control, returning to the collection after deleting the last combination even when recent copies exist, and preserving a new focus target during deferred dialog cleanup. Deterministic scheduler tests cover finite 2/4/8/16/30-second backoff, hidden suspension, lifecycle/resume, serialized reads, rejection and disposal. These timer tests are authored simulations, separate from real worker browser checks and physical-device observations.
 
 The physical-device handoff checklist is unexecuted. No new participant sessions, model/API calls, battery measurements or audio/provider compatibility results are claimed.
+
+## WebKit concurrent metadata correction
+
+Linux release CI reproduced a real concurrent-save failure in WebKit. Local repetition also failed: nonintrusive write/event traces showed two windows writing separate one-item arrays, with one item missing from the final persisted array despite the Web Lock boundary. Added diagnostic reads changed the timing and hid the failure, so those instrumented passing runs were not accepted as proof.
+
+Saved metadata now uses a native IndexedDB readwrite transaction as its authoritative boundary. Legacy localStorage arrays remain compatibility mirrors; after-commit notifications and foreground reconciliation update other windows. A separate regression reproduces a transaction failure after mirror writes, followed by retrying identical mirror bytes; the other window must update only after successful native commit. Explicit checks cover migration, denied native storage, absent-native legacy fallback, clearing preferences, pending-intent recovery and exclusion of private background from native metadata.
+
+Twenty local WebKit repetitions of concurrent saving passed after the transaction correction. A subsequent eight repetitions each of concurrent saving and identical-mirror recovery also passed. These are repeated browser regressions, not model calls, participant outcomes or evidence of universal reliability. No prompt payload or accepted model archive changed.
