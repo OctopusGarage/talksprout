@@ -142,7 +142,7 @@ Add up to three numbered Chinese meaning cues, then matching numbered English an
     ],
     mode: "both",
     needsMaterial: true,
-    version: 5,
+    version: 6,
     prompt: `Our practice is finished. Build a compact vocabulary review list.
 Select up to ten useful words, phrases, or collocations. Prioritize items I asked about, misused, or needed help expressing. Do not assume every word in the conversation is unfamiliar to me. If there is no evidence of difficulty, label an item as a useful expression rather than an unknown word.
 For each item, include:
@@ -158,10 +158,10 @@ Merge different inflections of the same word or phrase into one item: go hiking 
 Merge duplicates. Prefer useful chunks over isolated words where appropriate. Avoid long synonym lists, unsupported difficulty labels, or claims about my pronunciation. IPA describes a reference pronunciation, not how I actually sounded.
 
 ${grounding}`,
-    spokenPrompt: `Finish with ONE vocabulary item from our earlier practice.
-SOURCE: Use only earlier learner answers, never this request. If none exist, reply exactly: Please paste the practice conversation.
-NORMAL OUTPUT: Quote one useful expression, add its Chinese meaning, a collocation, one labeled new English example and American IPA for key words; mark uncertainty. Do not infer unfamiliarity or pronunciation errors.
-OUTPUT OVERRIDE: If an earlier user message requests spoken-only output, give ONLY a brief oral recap, without IPA, worksheets or questions.`,
+    spokenPrompt: `Finish with ONE vocabulary item from earlier learner answers, never this request.
+If none exist, reply exactly: Please paste the practice conversation.
+WRITTEN: Quote one expression; add its Chinese meaning, collocation, labeled new English example and key-word American IPA. Mark uncertainty; never infer unfamiliarity or pronunciation errors.
+OVERRIDE: If an earlier message requests spoken-only output, give ONLY a brief recap of actual practice: no vocabulary breakdown, new examples, IPA, worksheets or questions.`,
   },
   {
     id: "review-cards",
@@ -179,9 +179,9 @@ OUTPUT OVERRIDE: If an earlier user message requests spoken-only output, give ON
     requiresEn:
       "Uses learning points from this chat; it does not start another interactive quiz.",
     guide:
-      "生成最多 8 张卡片，混合中文情境转英文、填空及真实错句纠正。保存后分次自测。",
+      "默认生成一张最有用的卡片；可在 AI 中明确要求多张（最多八张）、填空或真实错句纠正。",
     guideEn:
-      "Save up to eight cards: English production from meaning cues, contextual gaps, and genuine error corrections. Revisit them in later sessions.",
+      "Start with one useful card. Ask your AI for multiple cards (up to eight), contextual gaps or genuine-error corrections when needed.",
     tags: [
       "卡片",
       "自测",
@@ -195,13 +195,13 @@ OUTPUT OVERRIDE: If an earlier user message requests spoken-only output, give ON
     ],
     mode: "both",
     needsMaterial: true,
-    version: 5,
-    prompt: `Our practice is finished. Create self-study cards from the available practice, with a maximum of eight.
-First select useful English source sentences. Use an isolated phrase only if no complete sentence is available. Make at most ONE card per source sentence: once that sentence is used, none of its words or clauses may become another card, even for a different language point. A coach's model and my repetition are the SAME sentence. If only one useful sentence is selected, create ONE card.
-For each selected source item choose exactly ONE format: a Chinese meaning cue, a contextual gap, or correction of a genuine learner error. Never give multiple formats for one source item, and never invent an error to create a correction card.
-List all questions first. Then provide a separate numbered answer key with suggested English answers, brief Chinese explanations and natural alternatives. Questions must be understandable on their own and must not reveal their answers.
-Before sending, compare suggested answers: if two cards can be answered by the same sentence or equivalent meaning, DELETE one. Two differently worded questions about the same uncertainty phrase still count as one card. Fewer good cards are better than padding to eight.
-Preserve source meaning, speaker attribution and time reference. Newly written practice sentences must be labeled and practice an existing source item. Do not claim cards were saved, scheduled or imported. Produce saved study material, not an interactive quiz.
+    version: 9,
+    prompt: `Our practice is finished. Create self-study material from this conversation.
+DEFAULT SIZE: Output exactly ONE card about the most useful learner expression. Only produce more if I separately requested a specific number greater than one or explicitly asked for multiple cards; then use that requested count up to eight, limited by distinct source items. This template is not itself a request for multiple cards.
+Use ONE question format for this entire set. By default, use Chinese meaning cues that ask me to produce English. If I explicitly request contextual gaps or genuine-error corrections, use that requested format instead for the whole set. Do not mix formats in one set.
+Choose useful, distinct complete source sentences. Make at most one card per sentence or equivalent meaning. A learner error, its corrected model and the learner's repetition are one item. Do not turn different words or clauses of that same sentence into extra cards. If only one useful sentence is available, make one card; do not fill the maximum.
+Write all numbered questions first, then a separate numbered answer key. Questions must not reveal their answers. In the key, give a complete English answer sentence, a brief Chinese explanation and a natural alternative when useful. A gap answer must restore the entire sentence, not just the missing word. An already natural learner sentence needs no correction.
+Before sending, compare complete answer sentences. If two express the same source meaning, remove one card and renumber. Preserve the original time, uncertainty, speaker and intended meaning. Never diagnose Chinese translation requests as English grammar errors. New examples must be labeled and tied to actual practice. Do not save or schedule anything, start another quiz, or ask a follow-up question.
 
 ${grounding}`,
     spokenPrompt: `Let's finish. Follow the FIRST matching branch.

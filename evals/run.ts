@@ -1,3 +1,5 @@
+import { createGuideInteractionCases, createGuideReviewCases, createGuideRegressionCases } from "./guide-cases";
+import { validateGuideObservations } from "./guide-evidence";
 import { validateFrozenArchive, validateOriginalFinding, validateHelpFinding, validateSessionReviews } from './frozen-validate';
 import { validateCalibration } from './calibration-validate';
 import { createEnglishCases, createSessionCases } from "./session-cases";
@@ -24,13 +26,17 @@ const englishLive = validateLiveArchive(JSON.parse(readFileSync("evals/fixtures/
 const sessionLive = validateLiveArchive(JSON.parse(readFileSync("evals/fixtures/session-live-api.json", "utf8")), createSessionCases());
 const calibration = validateCalibration(JSON.parse(readFileSync('evals/fixtures/judge-calibration.json', 'utf8')));
 const frozen = validateFrozenArchive(JSON.parse(readFileSync('evals/fixtures/frozen-live-api.json', 'utf8')));
+const guideSessions = validateLiveArchive(JSON.parse(readFileSync("evals/fixtures/guide-sessions-live-api.json", "utf8")), createGuideInteractionCases());
+const guideReviews = validateLiveArchive(JSON.parse(readFileSync("evals/fixtures/guide-review-live-api.json", "utf8")), createGuideReviewCases());
+const guideObservations = validateGuideObservations(JSON.parse(readFileSync("evals/results/2026-11-15-guide-regression-rejudged.json", "utf8")), createGuideRegressionCases());
 const issues: string[] = [
+  ...guideSessions.issues, ...guideReviews.issues, ...guideObservations.issues,
   ...validateOriginalFinding(JSON.parse(readFileSync('evals/results/2026-11-14-frozen-verification-initial.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-frozen-verification-static-finding.json', 'utf8'))),
   ...validateHelpFinding(JSON.parse(readFileSync('evals/results/2026-11-14-listening-followup-first.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-listening-help-static-finding.json', 'utf8'))),
   ...validateHelpFinding(JSON.parse(readFileSync('evals/results/2026-11-14-listening-followup-second.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-listening-help-second-static-finding.json', 'utf8'))),
   ...validateSessionReviews(JSON.parse(readFileSync('evals/results/2026-11-14-listening-followup-third-sessions.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-first-question-static-findings.json', 'utf8')).findings),
   ...validateSessionReviews(JSON.parse(readFileSync('evals/results/2026-11-14-listening-followup-second-sessions.json', 'utf8')), [JSON.parse(readFileSync('evals/results/2026-11-14-volunteer-judge-static-review.json', 'utf8'))]),
-  ...validateSessionReviews(JSON.parse(readFileSync('evals/fixtures/frozen-live-api.json', 'utf8')), [JSON.parse(readFileSync('evals/results/2026-11-14-station-semantic-review.json', 'utf8'))]),
+  ...validateSessionReviews(JSON.parse(readFileSync('evals/results/2026-11-15-prior-frozen-evidence.json', 'utf8')), [JSON.parse(readFileSync('evals/results/2026-11-14-station-semantic-review.json', 'utf8'))]),
   ...calibration.issues,
   ...frozen.issues,
   ...englishLive.issues,
@@ -74,6 +80,7 @@ console.log(
       method:
         "Static contracts, sealed authored archives, and recorded live API evidence; this invocation makes no new API calls",
       results: validated.results,
+      guideEvaluations: { acceptedSessions: guideSessions.cases, acceptedReviews: guideReviews.cases, observedRegressions: guideObservations, method: "Recorded real text API evidence; no fresh requests, audio, other-provider or learning-outcome tests" },
       supplementaryPrompts: { count: learningPrompts.length, method: "Static editorial review and recorded real text API execution; no audio tests", liveCases: learningLive.cases, adjudications: learningLive.adjudications },
       scenePresetCases: JSON.parse(
         readFileSync("evals/fixtures/scene-presets.json", "utf8"),

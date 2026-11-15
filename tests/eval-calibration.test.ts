@@ -108,7 +108,7 @@ test('hint leakage false-pass finding stays bound to original evidence and exact
 
 
 test('session semantic reviews preserve original outcomes and cannot drift from the observed turn', () => {
-  const archive = JSON.parse(readFileSync('evals/fixtures/frozen-live-api.json', 'utf8'));
+  const archive = JSON.parse(readFileSync('evals/results/2026-11-15-prior-frozen-evidence.json', 'utf8'));
   const review = JSON.parse(readFileSync('evals/results/2026-11-14-station-semantic-review.json', 'utf8'));
   assert.deepEqual(validateSessionReviews(archive, [review]), []);
   review.turnIndex = 0;

@@ -1,0 +1,47 @@
+{
+  "method": "real-local-chromium-browser-probes",
+  "routes": [
+    {
+      "route": "#library",
+      "visibleHeadings": 1,
+      "title": "开始练习",
+      "skipFocused": true
+    },
+    {
+      "route": "#review",
+      "visibleHeadings": 1,
+      "title": "结束与复习",
+      "skipFocused": true
+    },
+    {
+      "route": "#guides",
+      "visibleHeadings": 1,
+      "title": "学习指南",
+      "skipFocused": true
+    },
+    {
+      "route": "#settings",
+      "visibleHeadings": 1,
+      "title": "设置",
+      "skipFocused": true
+    },
+    {
+      "route": "#learning",
+      "visibleHeadings": 1,
+      "title": "听读写辅助",
+      "skipFocused": true
+    },
+    {
+      "route": "#guides/ai-global-instructions",
+      "visibleHeadings": 1,
+      "title": "全局指令：让日常 AI 使用也成为英语接触",
+      "skipFocused": true
+    }
+  ],
+  "learningCustomFooter": {
+    "copiedExactText": true,
+    "length": 1444
+  },
+  "removedListenerCalls": 0,
+  "limitations": "Clipboard API is stubbed for delivery observation; these are browser/UI checks, not AI or audio execution."
+}

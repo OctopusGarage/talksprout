@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
+import { canonicalGuideId } from "./content/guide-titles";
 import { collections } from "./content/collections";
 import { allPrompts } from "./prompts";
 import { learningPrompts } from "./content/learning";
 import { compatibleScenes, type SceneSelection } from "./scenes";
 import type { PromptVariant, ReviewSource } from "./types";
 
-export type AppPage = "practice" | "review" | "settings" | "learning";
+export type AppPage = "practice" | "review" | "settings" | "learning" | "guides";
 export interface AppRoute {
+  guideId?: string;
+  guideShelf?: "reading";
   sceneSelection?: SceneSelection;
   format?: PromptVariant;
   reviewSource?: ReviewSource;
@@ -22,7 +25,9 @@ export function readRoute(hash = location.hash): AppRoute {
   const collection =
     collections.find((c) => path === `collection/${c.id}`)?.id ?? null;
   const page: AppPage =
-    path === "learning"
+    path === "guides" || path.startsWith("guides/")
+      ? "guides"
+      : path === "learning"
       ? "learning"
       : path === "settings"
         ? "settings"
@@ -30,7 +35,9 @@ export function readRoute(hash = location.hash): AppRoute {
           ? "review"
           : "practice";
   const base =
-    page === "learning"
+    page === "guides"
+      ? path.startsWith("guides/") ? `#guides/${canonicalGuideId(path.slice("guides/".length))}` : new URLSearchParams(search).get("section") === "reading" ? "#guides?section=reading" : "#guides"
+      : page === "learning"
       ? "#learning"
       : page === "settings"
         ? "#settings"
@@ -43,6 +50,7 @@ export function readRoute(hash = location.hash): AppRoute {
   const prompt = allPrompts.find((p) => p.id === requested);
   const promptId =
     prompt &&
+    page !== "guides" &&
     page !== "settings" &&
     page !== "learning" &&
     (prompt.kind === "review") === (page === "review")
@@ -59,6 +67,8 @@ export function readRoute(hash = location.hash): AppRoute {
       ? learningPrompts.find((p) => p.id === requested)?.id ?? null
       : null;
   const route: AppRoute = { page, collection, base, promptId, learningPromptId, infoId };
+  if (base === "#guides?section=reading") route.guideShelf = "reading";
+  if (page === "guides" && path.startsWith("guides/")) route.guideId = canonicalGuideId(path.slice("guides/".length));
   if (promptId && prompt) {
     const params = new URLSearchParams(search);
     const format = params.get("format");

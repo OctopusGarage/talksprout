@@ -9,6 +9,7 @@ Reusable prompts for learning English with AI: choose a conversation coach, prac
 - **Start practice:** choose a collection and coaching style. Copy the full prompt into a new AI conversation, or read its short spoken opening aloud. A dismissible first-practice guide helps new users choose a coach.
 - **Wrap-up & Review:** send a review prompt at the end of that same conversation to create notes, sentence practice, vocabulary, or self-test cards.
 - **Quick access:** save a coach, scenario, format and interview pace as one combination, or share a link to that setup. The home page shows three saved combinations with an option to expand. Recently copied prompts appear in their own area; supplementary prompts have independent favorites. Private scenario background is never saved or included in links. Safe selections update the current URL without adding history entries. Local favorites, combinations and recent copies synchronize across windows.
+- **Learning guides:** browse two separate shelves: ten companion guides organized into preparation, practice and review, and seven further readings: four complete methodology articles and three AI usage articles covering live voice, dedicated chats or bots, and global instructions. Five bot configurations and two global instruction blocks have individual copy buttons with manual fallback. Each shelf has bilingual search and topic filters. Articles focus on practical explanations and examples without source footers or external-link collections; companion guides include relevant prompt shortcuts. Cached articles work offline.
 - **Settings:** choose the interface language, find installation help, and read the instructions.
 - **Listening, reading & writing:** open the secondary entry below the speaking collections for 18 supplementary prompts, with six choices per direction. Tasks include dictation comparison, meeting notes, shadowing preparation, complex sentences, emails and notices, technical documentation, email replies, workplace messages, and summary/paraphrase practice. Each entry includes a decorative emoji and concrete use examples; three direction buttons keep the directory compact. Copy a prompt to your AI and supply material there. These prompts stay separate from coach search and review.
 
@@ -49,7 +50,7 @@ Every coach has a full prompt and a short spoken opening, with sentence-by-sente
 | Complete Study Notes (recommended) | Cover the main topics, genuine corrections, useful sentences, vocabulary, and recall tasks.          |
 | Sentences and Corrections          | Keep original wording, distinguish errors from optional improvements, and collect reusable patterns. |
 | Vocabulary and Pronunciation Notes | Record contextual meanings, collocations, examples, and American IPA for selected key words.         |
-| Review Cards and Self-Test         | Generate questions first and a separate answer key, without starting another quiz.                   |
+| Review Cards and Self-Test         | Start with one useful card; request multiple cards when needed, with a separate answer key.                   |
 
 Use **Current AI chat** in the original conversation. For another conversation, choose **Another transcript**, copy the template, and replace its placeholder with a speaker-labeled transcript before sending it to your AI. Do not paste your transcript into TalkSprout.
 

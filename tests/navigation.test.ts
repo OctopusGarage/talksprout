@@ -61,3 +61,31 @@ test("review options apply only to matching review prompts", () => {
   assert.equal(route.sceneSelection, undefined);
   assert.equal(readRoute("#library?prompt=daily-check-in&source=transcript").reviewSource, undefined);
 });
+
+test("guide routes preserve article identity without opening prompt sheets", () => {
+  const route = readRoute("#guides/ten-minute-ai-conversation?prompt=daily-check-in&scene=technical-intro");
+  assert.equal(route.page, "guides");
+  assert.equal(route.base, "#guides/ten-minute-ai-conversation");
+  assert.equal((route as typeof route & { guideId?: string }).guideId, "ten-minute-ai-conversation");
+  assert.equal(route.promptId, null);
+  assert.equal(route.learningPromptId, null);
+  assert.equal(route.sceneSelection, undefined);
+  assert.equal(readRoute("#guides").page, "guides");
+  assert.equal(readRoute("#guides/not-a-guide").page, "guides");
+  assert.equal(readRoute("#guides-extra").page, "practice");
+});
+
+test("further resources retain a separate directory route without prompt parameters", () => {
+  const route = readRoute("#guides?section=reading&prompt=daily-check-in");
+  assert.equal(route.page, "guides");
+  assert.equal(route.base, "#guides?section=reading");
+  assert.equal(route.promptId, null);
+  assert.equal(route.guideId, undefined);
+  assert.equal(readRoute("#guides?section=unknown").base, "#guides");
+});
+
+
+test("companion and resource article identities remain distinct", () => {
+  for (const id of ["four-strands-of-language-learning", "build-a-learning-routine", "self-talk-to-real-conversation", "ten-minute-ai-conversation", "english-resource-directory", "choose-learning-materials"])
+    assert.equal(readRoute(`#guides/${id}`).guideId, id);
+});

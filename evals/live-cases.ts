@@ -4,7 +4,7 @@ import { composeScene, scenes, type SceneSelection } from "../src/scenes";
 import { promptText } from "../src/prompt-text";
 import type { Prompt, PromptVariant, ReviewSource } from "../src/types";
 export interface LiveMessage {
-  role: "user" | "assistant";
+  role: "user" | "assistant" | "system";
   content: string;
 }
 export interface LiveCase {

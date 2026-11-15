@@ -30,7 +30,7 @@
       "extra": "Full transcript-source isolation with real multiline speaker labels and embedded instructions; full missing-transcript placeholder; missing-context cases for all four spoken reviews.",
       "oralFallback": "Dedicated heldout-notes-voice-only case represents a brief complete-notes oral fallback without IPA or worksheets as authored text. Other spoken review samples request written output; no audio execution."
     },
-    "revisionProvenance": "Frozen-release authored review refreshed 2 newly stale cases only. Existing authored examples retained after explicit semantic re-review where appropriate; exact base roleplay setup aligned. This reference review is separate from live API results and audio testing.",
+    "revisionProvenance": "The cards-full authored example was rewritten for complete restored gap answers and distinct source sentences. Other authored examples retain their prior provenance; this edit is not an API execution.",
     "evidenceIntegrity": "Canonical case SHA-256 covers instructions hash, inputs, responses, and judgments; it is an integrity check, not independent semantic validation. Added digests do not count as fresh model samples."
   },
   "scenarios": [
@@ -162,7 +162,7 @@
       "promptId": "review-cards",
       "variant": "full",
       "source": "current",
-      "promptSha256": "71b1feac859af603f626e8e5e956983a7c32ec53339d4560a80dba9deffef3fa",
+      "promptSha256": "bb825bf84a312a6ebf8bc01f836c30fcfe5768fec921bf54d37d0e4731328e28",
       "turns": [
         {
           "role": "user",
@@ -190,14 +190,14 @@
         },
         {
           "role": "assistant",
-          "content": "## 自学问题\n三张卡片分别练习过去时、表达目的和词义。第 1 题引用真实错句；第 2、3 题根据聊天新编。\n1. 改正学习者原句 “Yesterday I go to Kyoto.”，保留原意。\n2. 用英语说明你在家做饭的目的是省钱。\n3. 填入聊天中问过的、表示“开支计划”的名词：I need a ___ to plan my spending.\n## 答案与说明\n1. Yesterday I went to Kyoto. / I went to Kyoto yesterday. 昨天发生的动作使用过去式 went。\n2. I cook at home to save money. / I save money by cooking at home. 学习者原句本来就自然，替代表达不是纠错。\n3. budget。这里需要名词，budget 在对话中的含义是开支计划；新编例句用于回忆这个已出现的学习点，不代表你曾说过它。\n这些卡片没有测试复习指令中的词语，也不表示你已经掌握内容。"
+          "content": "## 自学问题\n1. 用英语说明你在家做饭的目的是省钱。\n## 答案与说明\n1. I cook at home to save money. / I save money by cooking at home. 学习者原句本来就自然，替代表达不是纠错。默认只选一个有用的来源句生成一张卡片，不为填满数量增加重复题目。"
         }
       ],
       "judgment": "pass",
-      "rationale": "Existing authored output retained after independent static semantic review on 2026-11-14. Full-roleplay continuation uses an in-character statement and one question; initial openings and stop/help/review exceptions remain valid. Full reviews distinguish actual English errors from translation support and cards use distinct source sentences. Source/learner inputs and authored outputs are unchanged. This review is not new model/API or audio execution.",
-      "provenance": "Authored reference evidence: the release-review agent reviewed this complete example against the final revised runtime instructions, including single-question timing, current-task help, natural-answer acceptance, source boundaries and exclusive oral/written review branches. No external API, audio execution or independent model judging is represented by this authored review.",
-      "evidenceSha256": "eb30d38a1d852f62dbc4cfcaf40abda5a100fe7e08eb9ab51c4234404edf3225",
-      "sampleProvenance": "Existing authored output retained after independent static semantic review on 2026-11-14. Full-roleplay continuation uses an in-character statement and one question; initial openings and stop/help/review exceptions remain valid. Full reviews distinguish actual English errors from translation support and cards use distinct source sentences. Source/learner inputs and authored outputs are unchanged. This review is not new model/API or audio execution."
+      "rationale": "Authored reference rewritten on 2026-11-15 for the revised full-card rule. The default request produces one useful meaning-cue card with a complete-sentence answer. Multiple cards remain available only on a separate explicit request. This is an agent-authored static example, not real model execution.",
+      "provenance": "Authored reference rewritten on 2026-11-15 for the revised full-card rule. The default request produces one useful meaning-cue card with a complete-sentence answer. Multiple cards remain available only on a separate explicit request. This is an agent-authored static example, not real model execution.",
+      "evidenceSha256": "3ae8d44bd7c2ff10c44ec51c98504369ff6cd146dec16b91c53ad170c441bf73",
+      "sampleProvenance": "Authored reference rewritten on 2026-11-15 for the revised full-card rule. The default request produces one useful meaning-cue card with a complete-sentence answer. Multiple cards remain available only on a separate explicit request. This is an agent-authored static example, not real model execution."
     },
     {
       "id": "notes-spoken",
@@ -270,7 +270,7 @@
       "promptId": "vocabulary-ipa-review",
       "variant": "spoken",
       "source": "current",
-      "promptSha256": "8e8e37cd77b7d70ee587ab70393b85e9107a54c14264de1e72887721e0de418b",
+      "promptSha256": "b501767d0b870213d85f4c21529213d978bc03f4d5c8f6616950db1fe1fdc119",
       "learnerTurns": [
         "I enjoy cycling.",
         "Please finish and make the requested written review."
@@ -294,9 +294,10 @@
       ],
       "judgment": "pass",
       "criterion": "Sparse available practice yields one grounded learning point, no invented errors or padding, and a complete written response.",
-      "rationale": "Authored text semantically re-reviewed on 2026-11-14 against source and missing-context gates, grounded practice only, and output constraints; compact vocabulary selects one source expression. Existing outputs retained except sentences-spoken cue and answer are explicitly numbered. Missing-context and notes oral-only references retained; no authored sentence/vocabulary oral-only coverage is implied. This is static authored-reference review, not new model/API or audio execution.",
-      "sampleProvenance": "Authored text semantically re-reviewed on 2026-11-14 against source and missing-context gates, grounded practice only, and output constraints; compact vocabulary selects one source expression. Existing outputs retained except sentences-spoken cue and answer are explicitly numbered. Missing-context and notes oral-only references retained; no authored sentence/vocabulary oral-only coverage is implied. This is static authored-reference review, not new model/API or audio execution.",
-      "evidenceSha256": "ab4636526c008b29a5422fdb78a6522c18e477d334e0495c458838e27a97f22f"
+      "rationale": "Agent static re-review on 2026-11-15: the written example retains exactly one grounded vocabulary entry and the missing-source case now uses the exact required request. The clarified oral-only override excludes new examples. This authored reference is not an API execution.",
+      "sampleProvenance": "Agent static re-review on 2026-11-15: the written example retains exactly one grounded vocabulary entry and the missing-source case now uses the exact required request. The clarified oral-only override excludes new examples. This authored reference is not an API execution.",
+      "evidenceSha256": "210135a2193b7b58f5d29e5dcf86d26fa94406b5a17028db64ce394b4ba0e160",
+      "provenance": "Agent static re-review on 2026-11-15: the written example retains exactly one grounded vocabulary entry and the missing-source case now uses the exact required request. The clarified oral-only override excludes new examples. This authored reference is not an API execution."
     },
     {
       "id": "cards-spoken",
@@ -445,12 +446,12 @@
       "promptId": "vocabulary-ipa-review",
       "variant": "spoken",
       "source": "current",
-      "promptSha256": "8e8e37cd77b7d70ee587ab70393b85e9107a54c14264de1e72887721e0de418b",
+      "promptSha256": "b501767d0b870213d85f4c21529213d978bc03f4d5c8f6616950db1fe1fdc119",
       "learnerTurns": [
         "Please review our practice. No earlier conversation is available here."
       ],
       "assistantTurns": [
-        "I need the practice conversation before I can choose vocabulary grounded in it. Please provide the exchange."
+        "Please paste the practice conversation."
       ],
       "turns": [
         {
@@ -459,14 +460,15 @@
         },
         {
           "role": "assistant",
-          "content": "I need the practice conversation before I can choose vocabulary grounded in it. Please provide the exchange."
+          "content": "Please paste the practice conversation."
         }
       ],
       "judgment": "pass",
       "criterion": "Absent usable context requests the conversation before generating any learning claims.",
-      "rationale": "Authored text semantically re-reviewed on 2026-11-14 against source and missing-context gates, grounded practice only, and output constraints; compact vocabulary selects one source expression. Existing outputs retained except sentences-spoken cue and answer are explicitly numbered. Missing-context and notes oral-only references retained; no authored sentence/vocabulary oral-only coverage is implied. This is static authored-reference review, not new model/API or audio execution.",
-      "sampleProvenance": "Authored text semantically re-reviewed on 2026-11-14 against source and missing-context gates, grounded practice only, and output constraints; compact vocabulary selects one source expression. Existing outputs retained except sentences-spoken cue and answer are explicitly numbered. Missing-context and notes oral-only references retained; no authored sentence/vocabulary oral-only coverage is implied. This is static authored-reference review, not new model/API or audio execution.",
-      "evidenceSha256": "b21a628e73167a89b818031350fdaecf15fc41d99285f7e968015823b16ba242"
+      "rationale": "Agent static re-review on 2026-11-15: the written example retains exactly one grounded vocabulary entry and the missing-source case now uses the exact required request. The clarified oral-only override excludes new examples. This authored reference is not an API execution.",
+      "sampleProvenance": "Agent static re-review on 2026-11-15: the written example retains exactly one grounded vocabulary entry and the missing-source case now uses the exact required request. The clarified oral-only override excludes new examples. This authored reference is not an API execution.",
+      "evidenceSha256": "d265ee9547715ce79e2a8e1e2d736518bec57eccc736f5fd38b08aca8096c276",
+      "provenance": "Agent static re-review on 2026-11-15: the written example retains exactly one grounded vocabulary entry and the missing-source case now uses the exact required request. The clarified oral-only override excludes new examples. This authored reference is not an API execution."
     },
     {
       "id": "heldout-missing-context-review-cards",

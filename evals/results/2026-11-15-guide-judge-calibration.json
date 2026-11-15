@@ -1,0 +1,215 @@
+{
+  "method": "selected-model-replies-real-openai-judge",
+  "labelProvenance": "agent-labeled-prior-model-replies",
+  "requestedModel": "gpt-4.1-2025-04-14",
+  "endpoint": "https://api.openai.com/v1/chat/completions",
+  "judgePolicySha256": "412c798e984b11ce858664369f3f04a0c5e6b8efddc2b97f007f52dd6d6a7e92",
+  "startedAt": "2026-11-15T02:57:57.406696+00:00",
+  "cases": [
+    {
+      "example": {
+        "id": "guide-calibration-fail-1",
+        "expectedJudgment": "fail",
+        "labelRationale": "Agent review distinguishes actual stacked inquiries from a single invitation after a correction.",
+        "criterion": "After a correction, invite a retry OR ask a follow-up, not both. A correction or translation is not itself an inquiry. A hint is not itself a follow-up question. One invitation to try after a correction or hint is allowed. Count actual directed inquiries, not questions quoted as language examples. Fail on two independent requested learner responses; pass with at most one.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "I go supermarket yesterday."
+          }
+        ],
+        "reply": "Do you mean \"I went to the supermarket yesterday\"? \n\nWould you like to try saying it? What did you buy there?",
+        "replyProvenance": {
+          "responseId": "chatcmpl-EkKeaofdKkC2RLAOncAfAGAlktEMa",
+          "caseId": "guide-session-lobster-baby",
+          "turnIndex": 1
+        }
+      },
+      "judge": {
+        "id": "guide-calibration-fail-1",
+        "judgment": "fail",
+        "reason": "The reply invites a retry ('Would you like to try saying it?') and also asks a follow-up question ('What did you buy there?'), resulting in two independent requested learner responses, which violates the one-question limit."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-EkKjGKcuiQ5JwZrqCkXEFHtGf1sUB",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794711478,
+        "usage": {
+          "prompt_tokens": 517,
+          "completion_tokens": 70,
+          "total_tokens": 587,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"guide-calibration-fail-1\",\"judgment\":\"fail\",\"reason\":\"The reply invites a retry ('Would you like to try saying it?') and also asks a follow-up question ('What did you buy there?'), resulting in two independent requested learner responses, which violates the one-question limit.\"}]}",
+        "latencyMs": 1579
+      },
+      "agrees": true,
+      "evidenceSha256": "fd00cd83e8f521c497c9a809506b72d07b9c5e7cdcfcb14bb46ae97dff7d6fa9"
+    },
+    {
+      "example": {
+        "id": "guide-calibration-fail-2",
+        "expectedJudgment": "fail",
+        "labelRationale": "Agent review distinguishes actual stacked inquiries from a single invitation after a correction.",
+        "criterion": "After a correction, invite a retry OR ask a follow-up, not both. A correction or translation is not itself an inquiry. A hint is not itself a follow-up question. One invitation to try after a correction or hint is allowed. Count actual directed inquiries, not questions quoted as language examples. Fail on two independent requested learner responses; pass with at most one.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "我今天在家工作。"
+          }
+        ],
+        "reply": "Do you mean \"I worked at home today\"? \n\nWould you like to try saying it in English? What kind of work did you do?",
+        "replyProvenance": {
+          "responseId": "chatcmpl-EkKebQWLnKe69TSsARi2kON56pjoV",
+          "caseId": "guide-session-lobster-baby",
+          "turnIndex": 2
+        }
+      },
+      "judge": {
+        "id": "guide-calibration-fail-2",
+        "judgment": "fail",
+        "reason": "The reply asks two independent questions after the correction: inviting the learner to try saying it in English and asking what kind of work they did. This violates the one-question limit."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-EkKjHc1VScSiyylfS3pY0NrkuxJdY",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794711479,
+        "usage": {
+          "prompt_tokens": 522,
+          "completion_tokens": 60,
+          "total_tokens": 582,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"guide-calibration-fail-2\",\"judgment\":\"fail\",\"reason\":\"The reply asks two independent questions after the correction: inviting the learner to try saying it in English and asking what kind of work they did. This violates the one-question limit.\"}]}",
+        "latencyMs": 1454
+      },
+      "agrees": true,
+      "evidenceSha256": "fd7defc6c9b800bc56208c2993a4ffc545a9de51b9f1ca067647a6dcc1e03332"
+    },
+    {
+      "example": {
+        "id": "guide-calibration-pass-1",
+        "expectedJudgment": "pass",
+        "labelRationale": "Agent review distinguishes actual stacked inquiries from a single invitation after a correction.",
+        "criterion": "After a correction, invite a retry OR ask a follow-up, not both. A correction or translation is not itself an inquiry. A hint is not itself a follow-up question. One invitation to try after a correction or hint is allowed. Count actual directed inquiries, not questions quoted as language examples. Fail on two independent requested learner responses; pass with at most one.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "I go supermarket yesterday."
+          }
+        ],
+        "reply": "You can say: \"I went to the supermarket yesterday.\"  \nWould you like to try saying it?",
+        "replyProvenance": {
+          "responseId": "chatcmpl-EkKgMN9OSQfvyFb8KJpvmIESulEq4",
+          "caseId": "guide-session-lobster-baby",
+          "turnIndex": 1
+        }
+      },
+      "judge": {
+        "id": "guide-calibration-pass-1",
+        "judgment": "pass",
+        "reason": "After the correction, only one invitation to try is given. No follow-up question is present. This matches the criterion of at most one directed inquiry after a correction."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-EkKjJOTvbB5DGUx0TapFirCPTeFzf",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794711481,
+        "usage": {
+          "prompt_tokens": 510,
+          "completion_tokens": 57,
+          "total_tokens": 567,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"guide-calibration-pass-1\",\"judgment\":\"pass\",\"reason\":\"After the correction, only one invitation to try is given. No follow-up question is present. This matches the criterion of at most one directed inquiry after a correction.\"}]}",
+        "latencyMs": 1319
+      },
+      "agrees": true,
+      "evidenceSha256": "33357f5048e90c1c489f75c6ee197e974c8ccf13382895e68167254059a6bd04"
+    },
+    {
+      "example": {
+        "id": "guide-calibration-pass-2",
+        "expectedJudgment": "pass",
+        "labelRationale": "Agent review distinguishes actual stacked inquiries from a single invitation after a correction.",
+        "criterion": "After a correction, invite a retry OR ask a follow-up, not both. A correction or translation is not itself an inquiry. A hint is not itself a follow-up question. One invitation to try after a correction or hint is allowed. Count actual directed inquiries, not questions quoted as language examples. Fail on two independent requested learner responses; pass with at most one.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "我今天在家工作。"
+          }
+        ],
+        "reply": "You can say: \"I worked at home today.\"  \nWould you like to try saying it?",
+        "replyProvenance": {
+          "responseId": "chatcmpl-EkKgN2RIvNYrDikdDTPjwIUKxSwjB",
+          "caseId": "guide-session-lobster-baby",
+          "turnIndex": 2
+        }
+      },
+      "judge": {
+        "id": "guide-calibration-pass-2",
+        "judgment": "pass",
+        "reason": "After the correction, only one invitation to try is given. No follow-up question is present. This meets the criterion of at most one directed inquiry after a correction."
+      },
+      "judgeExecution": {
+        "responseId": "chatcmpl-EkKjKSHrzR9rjdrgvk5DsaSMAh25p",
+        "model": "gpt-4.1-2025-04-14",
+        "created": 1794711482,
+        "usage": {
+          "prompt_tokens": 511,
+          "completion_tokens": 57,
+          "total_tokens": 568,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "finishReason": "stop",
+        "content": "{\"verdicts\":[{\"id\":\"guide-calibration-pass-2\",\"judgment\":\"pass\",\"reason\":\"After the correction, only one invitation to try is given. No follow-up question is present. This meets the criterion of at most one directed inquiry after a correction.\"}]}",
+        "latencyMs": 1356
+      },
+      "agrees": true,
+      "evidenceSha256": "a972b23d47a460d29590b8e5d1250749bf171920fdba79973db724c103db9a24"
+    }
+  ],
+  "completedAt": "2026-11-15T02:58:03.125635+00:00",
+  "summary": {
+    "agree": 4,
+    "disagree": 0
+  }
+}

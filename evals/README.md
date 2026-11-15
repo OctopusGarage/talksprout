@@ -145,3 +145,24 @@ The calibration runner refuses to overwrite its output. Preserve unsuccessful ra
 The final station help reply says, “Focus on the change in departure location for a specific train. Replay or reread and try again.” Static semantic review accepts this as the explicitly permitted topic cue: it withholds the train/time/platform numbers and bicycle/rear-carriage instruction, rather than giving the complete main idea covering changes and boarding rules. Topic cues necessarily overlap with the source; this does not permit the specific required fact, answer-bearing quotation or a complete answer paraphrase. This is an agent static interpretation of a boundary case, not a human label, independent judge, or waiver. The unchanged raw pass and evidence-bound rationale are retained in `evals/results/2026-11-14-station-semantic-review.json`.
 
 Final accepted evidence adds **seven actual-history chains / 28 target turns**: three retained untuned original chains, three tuned listening regressions, and one first-run reviewer-authored post-remediation station script. The last script has four raw passing turn judgments; no prompt, source, rubric or expected label was changed to fit it. Across all five target archives, the total is **719 accepted cases / 764 target responses**, with raw case gates **715 pass / four fail / zero uncertain** and the existing four bound static judge-error adjudications. The eight calibration examples are separate from target totals. This follow-up produced **100 distinct real target responses and 108 distinct real judge responses**, including calibration, remediation attempts and preserved failures; these are not 100 independent validation trials.
+
+## Guide configurations and whole-change review
+
+The guide suite covers seven exact copyable configurations, all 17 whole bilingual articles and five source/documentation bundles. Generate requests directly from current content:
+
+```sh
+pnpm exec tsx evals/export-live.ts --guides
+python3 evals/live.py --cases .superpowers/model-run/guide-session-cases.json --output .superpowers/model-run/guides-new-sessions.json
+pnpm exec tsx evals/export-live.ts --guide-review
+python3 evals/live.py --cases .superpowers/model-run/guide-review-cases.json --output .superpowers/model-run/guides-new-review.json
+pnpm exec tsx evals/export-live.ts --guide-regression
+python3 evals/live.py --cases .superpowers/model-run/guide-regression-cases.json --output .superpowers/model-run/guides-new-regression.json
+```
+
+These commands make paid real API calls using the existing environment key and default pinned model. The global configuration is supplied as a system message; companion configurations are supplied as first user messages. This tests textual instruction scopes, not actual provider settings screens. Whole-article and source-review responses are model reviews; they are not UI execution. Reports and archived evidence distinguish fresh targets from exact-history reuse.
+
+Ordinary `pnpm eval` validates accepted guide sessions/reviews against current content, while separately reporting the supplementary regression archive as non-accepted observed failures. Integrity checks on a non-accepted observation do not make its behavior pass. See the [guide evaluation report](../docs/guide-evaluation-report.md) for the production correction, raw missed/false judgments and limitations. Do not relabel disputed failures to claim an all-green result.
+
+## Complete repository source review
+
+`pnpm exec tsx evals/export-live.ts --repository` generates 26 size-bounded source-review cases from current Git-listed source, tests and deployment configuration. `tests/eval-repository.test.ts` checks exact-once file coverage and payload digests. Run them with the existing live runner using `.superpowers/model-run/repository-review-cases.json` as `--cases` and a fresh output path. Model review is static code analysis; browser behavior requires separate runtime checks. See the [release evaluation](../docs/repository-release-evaluation.md) for raw findings, counterevidence, prompt refinements, static review decisions and reuse accounting.

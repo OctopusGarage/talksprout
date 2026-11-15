@@ -1,5 +1,7 @@
 import "./quick-access.css";
 import {
+  lazy,
+  Suspense,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -20,6 +22,8 @@ import { collections } from "./content/collections";
 import { Icon } from "./Icon";
 import { Settings } from "./Settings";
 import { LearningLibrary } from "./LearningLibrary";
+import { guideTitles, canonicalGuideId, readingArticleIds } from "./content/guide-titles";
+import { guideEntryId } from "./guides";
 import { PromptLibrary } from "./PromptLibrary";
 import { composeScene, type SceneSelection } from "./scenes";
 import { promptText } from "./prompt-text";
@@ -27,6 +31,7 @@ import { useAppUpdate } from "./useAppUpdate";
 import { UpdateBanner } from "./UpdateBanner";
 import { PromptDialog } from "./PromptDialog";
 import { dictionary, initialLocale, type Locale } from "./i18n";
+const GuideLibrary = lazy(() => import("./GuideLibrary").then(module => ({ default: module.GuideLibrary })));
 const prompts: Prompt[] = sourcePrompts;
 let storage: Storage | null = null;
 try {
@@ -34,6 +39,8 @@ try {
 } catch {}
 export default function App() {
   const route = useNavigation();
+  const guidesVisited = useRef(false);
+  if (route.page === "guides") guidesVisited.current = true;
   const appUpdate = useAppUpdate();
   const { copying, writer } = usePromptClipboard();
   const savedPrompts = useSavedPrompts(storage);
@@ -133,7 +140,10 @@ export default function App() {
       const opener = previous.startsWith("#collection/") && route.base === "#library"
         ? document.querySelector<HTMLElement>(`[data-collection="${previous.slice("#collection/".length)}"]`)
         : null;
-      (opener ?? document.getElementById("library-heading"))?.focus({ preventScroll: true });
+      const guideOpener = previous.startsWith("#guides/") && (route.base === "#guides" || route.base === "#guides?section=reading")
+        ? document.getElementById(guideEntryId(canonicalGuideId(previous.slice("#guides/".length))))
+        : null;
+      (guideOpener ?? opener ?? document.getElementById("library-heading"))?.focus({ preventScroll: true });
     });
     return () => cancelAnimationFrame(frame);
   }, [route.base]);
@@ -203,6 +213,11 @@ export default function App() {
             history.back();
           else closeModal();
         }
+      : route.page === "guides" && route.guideId !== undefined
+        ? () => {
+            if (history.state?.talksproutGuide === route.guideId) history.back();
+            else navigate(readingArticleIds.has(route.guideId ?? "") ? "#guides?section=reading" : "#guides");
+          }
       : route.learningPromptId
         ? () => {
             if (history.state?.talksproutLearningPrompt === route.learningPromptId)
@@ -334,8 +349,11 @@ export default function App() {
     navigate(`${route.base}?info=${kind}`, { talksproutInfo: kind });
   };
   const currentCollection = collections.find((c) => c.id === route.collection);
+  const currentGuideTitle = route.guideId ? guideTitles[route.guideId] : undefined;
   const title =
-    route.page === "learning"
+    route.page === "guides"
+      ? currentGuideTitle?.[locale] ?? s("学习指南", "Learning guides")
+      : route.page === "learning"
       ? s("听读写辅助", "Listening, reading & writing")
       : route.page === "settings"
         ? s("设置", "Settings")
@@ -347,7 +365,7 @@ export default function App() {
               : currentCollection.category
             : s("开始练习", "Start practice");
   return (
-    <div className={`app-shell${frame.keyboardOpen ? " keyboard-open" : ""}`}>
+    <div className={`app-shell${frame.keyboardOpen ? " keyboard-open" : ""}${route.page === "guides" && route.guideId !== undefined ? " guide-reading" : ""}`}>
       <a
         className="skip"
         href="#library"
@@ -381,7 +399,7 @@ export default function App() {
           </span>
         </a>
         <nav className="app-nav" aria-label={s("主导航", "Primary navigation")}>
-          {(["practice", "review", "settings"] as const).map((page) => {
+          {(["practice", "review", "guides", "settings"] as const).map((page) => {
             const href =
               page === "practice"
                 ? route.page === "practice"
@@ -389,7 +407,9 @@ export default function App() {
                   : lastPractice.current
                 : page === "review"
                   ? "#review"
-                  : "#settings";
+                  : page === "guides"
+                    ? "#guides"
+                    : "#settings";
             return (
               <a
                 key={page}
@@ -413,13 +433,15 @@ export default function App() {
                   else navigate(href);
                 }}
               >
-                <Icon name={page} />
+                <Icon name={page === "guides" ? "book" : page} />
                 <span>
                   {page === "practice"
                     ? s("开始练习", "Start practice")
                     : page === "review"
                       ? s("结束与复习", "Wrap-up & Review")
-                      : s("设置", "Settings")}
+                      : page === "guides"
+                        ? s("学习指南", "Learning guides")
+                        : s("设置", "Settings")}
                 </span>
               </a>
             );
@@ -482,7 +504,7 @@ export default function App() {
         >
           <div
             className="workspace"
-            hidden={route.page === "settings" || route.page === "learning"}
+            hidden={route.page === "settings" || route.page === "learning" || route.page === "guides"}
           >
             <PromptLibrary
               locale={locale}
@@ -517,6 +539,11 @@ export default function App() {
               />
             </div>
           )}
+          {guidesVisited.current && <div className="workspace" hidden={route.page !== "guides"}>
+            <Suspense fallback={<p role="status">{s("正在打开学习指南…", "Opening learning guides…")}</p>}>
+              <GuideLibrary locale={locale} writer={writer} copying={copying} shelf={route.guideShelf} guideId={route.page === "guides" ? route.guideId : undefined} />
+            </Suspense>
+          </div>}
           {route.page === "settings" && (
             <div className="workspace">
               <Settings

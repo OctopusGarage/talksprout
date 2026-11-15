@@ -1,0 +1,103 @@
+{
+  "method": "evidence-bound-agent-static-review",
+  "independentHumanOrModelValidation": false,
+  "rawVerdictsRetained": true,
+  "findings": [
+    {
+      "suite": "main",
+      "reviewer": "codex-semantic-review",
+      "id": "help-before-attempt-word-riddle-full",
+      "judgment": "pass",
+      "reason": "The question Can I have a hint? is explicitly a quoted English example, not an inquiry to the learner. The reply then gives a clue and asks only What do you think it is? as its single directed inquiry. The judge policy explicitly distinguishes quoted examples from actual additional questions. No target text is changed.",
+      "releaseBlocking": false,
+      "payloadSha256": "36e7dd01d20b0bd6690ff981de1f8a0cc2c78d4c252d4dfb33f85930c80d7934",
+      "observedReply": "You can say, “I’m stuck. Can I have a hint?”  \nHere’s a hint: This animal is a common pet and likes to chase mice.  \nWhat do you think it is?",
+      "rawEvidenceSha256": "8e73c2b3029ab0f6573bd134a908b9472912ac8b0970eaa7cfc526465d590b38",
+      "rawJudge": {
+        "id": "help-before-attempt-word-riddle-full",
+        "judgment": "fail",
+        "reason": "The reply contains two question sentences: 'Can I have a hint?' (as a sample phrase) and 'What do you think it is?' (the exercise question). The instructions require only one question sentence per turn."
+      }
+    },
+    {
+      "suite": "main",
+      "reviewer": "codex-semantic-review",
+      "id": "natural-answer-gentle-start-full",
+      "judgment": "pass",
+      "reason": "The learner has already answered I like music. A warm acknowledgement and one relevant next question is the prescribed continuation. The reply asks only What kind of music do you like? and does not invent an error. Waiting means wait after that question, not terminate after every learner answer.",
+      "releaseBlocking": false,
+      "payloadSha256": "8a81edfb259d52983c951d1bc689820674b4acd15352108c5d66d78716865aea",
+      "observedReply": "That’s great! I like music too.\n\nWhat kind of music do you like?",
+      "rawEvidenceSha256": "c50952e0cba8f7c3cf7eac0852b3283f70096404f6452b295048994dc270857e",
+      "rawJudge": {
+        "id": "natural-answer-gentle-start-full",
+        "judgment": "fail",
+        "reason": "The reply asks 'What kind of music do you like?' which is a new question, but the instructions require the coach to wait for the learner's answer and only ask one question per turn. The coach should have responded warmly and modeled a corrected sentence if needed, but not asked a follow-up question immediately after the learner's first answer."
+      }
+    },
+    {
+      "suite": "main",
+      "reviewer": "codex-semantic-review",
+      "id": "review-current-complete-study-notes-spoken",
+      "judgment": "pass",
+      "reason": "The source permits up to three recall questions followed by matching answers. This reply has exactly three questions and three corresponding numbered answers. Answers are not three additional questions. Source attribution and the real past-tense correction remain grounded; no pronunciation assessment is invented.",
+      "releaseBlocking": false,
+      "payloadSha256": "eefb14732397aa82296c985007cb5adaab4fafac367fd312cd5b1c729daace64",
+      "observedReply": "**Notes**\n\n**Topics:**  \n- Hiking  \n- Enjoying nature (the quiet forest)  \n\n**Genuine English Corrections:**  \n- \"Yesterday I go hiking with my brother.\" → \"Yesterday I went hiking with my brother.\"\n\n**Speaker-labeled Sentences:**  \n- User: Yesterday I went hiking with my brother.  \n- Assistant: That works. What did you enjoy?  \n- User: I enjoyed the quiet forest.\n\n**Vocabulary with American IPA:**  \n- hiking [ˈhaɪkɪŋ] 徒步旅行  \n- forest [ˈfɔrɪst] 森林  \n- quiet [ˈkwaɪət] 安静的  \n- enjoy [ɪnˈdʒɔɪ] 享受  \n\n**Recall Questions:**  \n1. What did you do yesterday?  \n2. Who did you go hiking with?  \n3. What did you enjoy during your hike?  \n\n**Answers:**  \n1. I went hiking.  \n2. My brother.  \n3. The quiet forest.",
+      "rawEvidenceSha256": "bdda817a91a601d89611b680ca867eb7340f802392b034aeb38571a8eb8ac8d2",
+      "rawJudge": {
+        "id": "review-current-complete-study-notes-spoken",
+        "judgment": "fail",
+        "reason": "The reply includes three recall questions, which matches the maximum, but also provides three answers, exceeding the maximum of three total (questions before matching answers). The instructions specify 'up to three recall questions before matching answers,' so only the questions should be listed before the answers, not both together as a set. Otherwise, the notes correctly attribute the error and successful retry, and do not invent pronunciation assessment."
+      }
+    },
+    {
+      "suite": "main",
+      "reviewer": "codex-semantic-review",
+      "id": "review-current-review-cards-spoken",
+      "judgment": "pass",
+      "reason": "The compact instruction requests one self-study card from earlier learner answers, not exclusively a verbatim error-correction cue. This single past-activity card answers with the actual hiking sentence and supplies the requested explanation and alternatives. A broad cue is a pedagogical limitation, not a violation of the stated compact contract.",
+      "releaseBlocking": false,
+      "payloadSha256": "38b067c71ce3b944ea09260b52b5eba5b3755606b750e3053e831e354a9566ec",
+      "observedReply": "Self-study card:  \nQ: How do you talk about a past activity with someone?  \nA: Use the past tense. For example: \"Yesterday I went hiking with my brother.\"  \n\nChinese explanation and natural alternatives:  \n中文解释：  \n谈论过去发生的事情时，要用过去式。例如，“Yesterday I went hiking with my brother.”（昨天我和我哥哥去徒步了。）\n\n更自然的表达方式：  \n- I went hiking with my brother yesterday.  \n- My brother and I went hiking yesterday.  \n- Yesterday, my brother and I went for a hike.",
+      "rawEvidenceSha256": "728ea255ccb2aecb1416b355d7d1b31ddc39bcb429ec9818058555d8d801558b",
+      "rawJudge": {
+        "id": "review-current-review-cards-spoken",
+        "judgment": "fail",
+        "reason": "The card tests the general use of past tense for past activities, not the specific correction of 'Yesterday I go hiking' to 'Yesterday I went hiking.' The prompt requires the card to be based on the actual short hiking exchange and to test a distinct target from that exchange. The card's focus is too broad and does not attribute the error and correction specifically, violating the requirement."
+      }
+    },
+    {
+      "suite": "learning",
+      "reviewer": "codex-semantic-review",
+      "id": "learning-material-listening-expressions",
+      "judgment": "pass",
+      "reason": "The supplied source sentence contains touch base, make sure and on the same page verbatim. All three entries are grounded and include labeled new examples. The criterion asks for touch base and/or on the same page and prohibits invented padding to five, not every additional genuine expression. No audio access is claimed; the raw judge incorrectly treats make sure as excluded.",
+      "releaseBlocking": false,
+      "payloadSha256": "f69c44cce14cb10224a175389a09730dad0296ef3b6228bc7f4b456c2875be1d",
+      "observedReply": "好的，这里是你提供的句子：  \n\"Let's touch base tomorrow to make sure we're on the same page.\"\n\n从这句话中可以学到以下常用表达：\n\n1. **touch base**  \n   - 意思：简短地联系一下，通常是为了更新进展或确认信息。  \n   - 语境：常用于工作或合作场合，语气比较随和但专业。  \n   - 新例句：Let’s touch base next week about the project.\n\n2. **make sure**  \n   - 意思：确保某事发生或某事属实。  \n   - 语境：非常常用，适合正式和非正式场合。  \n   - 新例句：Please double-check to make sure the door is locked.\n\n3. **on the same page**  \n   - 意思：大家理解一致，没有误会。  \n   - 语境：多用于团队合作或讨论，语气友好、合作。  \n   - 新例句：Before we start, let’s make sure we’re all on the same page.\n\n这些表达都很实用，尤其适合工作和团队沟通。\n\n请你用“on the same page”造一个句子，我会帮你简要点评用法和意思。",
+      "rawEvidenceSha256": "cfe2b9b5f952dfd70c2932619667a5e922778b541449482a6a018e97a0adb5cd",
+      "rawJudge": {
+        "id": "learning-material-listening-expressions",
+        "judgment": "fail",
+        "reason": "The reply explains 'touch base' and 'on the same page' with new examples and an invitation, but also includes 'make sure' as a third phrase, violating the instruction to focus only on 'touch base' and/or 'on the same page' and not pad to five phrases. This is a concrete instruction violation."
+      }
+    },
+    {
+      "suite": "frozen",
+      "reviewer": "codex-semantic-review",
+      "id": "frozen-verification-review-cards",
+      "judgment": "pass",
+      "reason": "The first reply supplies one valid card under the new default-one rule. The criterion demands distinct targets within a set, not compulsory coverage of every available source sentence or a minimum of two. The later explicit request produces two distinct cards with separate answers. The original judge's extra minimum-coverage requirement is not in the supplied criterion. This is a static interpretation, not independent validation.",
+      "releaseBlocking": false,
+      "payloadSha256": "d6c5f97f94592f189e19a73f10207c2aced53aba181ad7227b5daf4f135d7a25",
+      "observedReply": "Understood. No new exercise will be provided.",
+      "rawEvidenceSha256": "e1f60bb86ebf8a7ec1db783d09c15d0052a889c97a744919001ad1eff5bc47cf",
+      "rawJudge": {
+        "id": "frozen-verification-review-cards",
+        "judgment": "fail",
+        "reason": "Per-turn isolated judgments: The reply only provides one card, but the user practiced two distinct sentences with different meanings ('I used to collect stamps.' and 'I have already mailed the parcel.'). The instructions require a separate card for each distinct semantic target when multiple are available, as in this case. The reply should have included two cards, each focusing on a different sentence and meaning. | The reply clearly explains the time meanings of both sentences without labeling either as incorrect, as instructed. It distinguishes between a past habit and a completed action, fulfilling the request and respecting the instruction not to call either sentence wrong. | The reply provides two cards with distinct semantic targets, matching the two different learner sentences from the supplied conversation. Each question and answer are kept separate, as requested. The questions do not reveal their answers, and the answer key provides full sentences, explanations, and alternatives. No instruction violations or content padding are present. | The assistant acknowledges the stop request and does not provide a new exercise, question, or fabricated progress, as required by the criterion."
+      }
+    }
+  ]
+}
