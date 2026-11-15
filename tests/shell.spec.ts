@@ -590,7 +590,11 @@ test("right-edge back ignores scrolling, short, reversed, cancelled, multi-touch
   }
   await page.evaluate(() => {
     const range = document.createRange();
-    range.selectNodeContents(document.getElementById("dialog-title")!);
+    // Explicitly opt this fixture into selection; app titles are non-selectable.
+    const title = document.getElementById("dialog-title")!;
+    title.style.setProperty("-webkit-user-select", "text");
+    title.style.userSelect = "text";
+    range.selectNodeContents(title);
     window.getSelection()!.removeAllRanges();
     window.getSelection()!.addRange(range);
   });

@@ -27,6 +27,9 @@ body,
 }
 body {
   margin: 0;
+  /* App chrome should not highlight during taps, holds, or swipes. */
+  -webkit-user-select: none;
+  user-select: none;
 }
 button,
 input,
@@ -71,7 +74,10 @@ summary,
   -webkit-user-select: none;
   user-select: none;
 }
+/* Keep native editing and intentional copying available. */
+input,
 textarea,
+[contenteditable]:not([contenteditable="false"]),
 .spoken-script,
 .settings-notes,
 .fineprint,
