@@ -1,7 +1,7 @@
 import QRCode from "qrcode";
 import type { Locale } from "./types";
 
-interface OpeningInstruction { title: string; body: string }
+interface OpeningInstruction { title: string; body: string; alternative?: string }
 export interface ShareCardCopy {
   brand: string;
   headline: string[];
@@ -20,7 +20,7 @@ export const shareCardCopy: Record<Locale, ShareCardCopy> = {
     description: "选好提示词，去常用 AI 开口练英语。",
     scanLabel: "扫码打开 TalkSprout",
     instructionsTitle: "iPhone 怎么打开",
-    otherScreen: { title: "二维码在另一块屏幕上", body: "打开「相机」对准二维码，轻点出现的链接。" },
+    otherScreen: { title: "二维码在另一块屏幕上", body: "打开「相机」对准二维码，轻点出现的链接。", alternative: "也可用控制中心的「扫码器」。" },
     samePhone: { title: "图片就在这台 iPhone 上", body: "存到「照片」后打开，尝试长按二维码或网址，再打开链接。" },
     fallback: "没有识别出来？在 Safari 输入下方网址。",
     footer: "无需账号 · 搭配你常用的 AI 应用练习",
@@ -31,7 +31,7 @@ export const shareCardCopy: Record<Locale, ShareCardCopy> = {
     description: "Choose a prompt. Start speaking with your AI.",
     scanLabel: "Scan to open TalkSprout",
     instructionsTitle: "Opening on iPhone",
-    otherScreen: { title: "On another screen", body: "Point the Camera app at the QR code, then tap the link that appears." },
+    otherScreen: { title: "On another screen", body: "Open Camera, point it at the QR code, then tap the link.", alternative: "Or use Code Scanner in Control Center." },
     samePhone: { title: "Saved on this iPhone", body: "Save to Photos and open it. Try touching and holding the QR code or the address below, then choose an available open-link action." },
     fallback: "No link detected? Type the address below in Safari.",
     footer: "No account · Practise with the AI app you use",
@@ -111,7 +111,9 @@ export async function renderShareCard(url: string, locale: Locale): Promise<Blob
   y += 60;
   for (const instruction of [copy.otherScreen, copy.samePhone]) {
     y = wrapped(instruction.title, y, 29, 40, colors.green, 650) + 10;
-    y = wrapped(instruction.body, y, 28, 40, colors.ink) + 24;
+    y = wrapped(instruction.body, y, 28, 40, colors.ink);
+    if (instruction.alternative) y = wrapped(instruction.alternative, y + 6, 26, 38, colors.muted);
+    y += 24;
   }
   y = wrapped(copy.fallback, y, 28, 40, colors.muted) + 18;
   // Render every URL character, even at a narrow deployment path or with a long host.

@@ -108,7 +108,7 @@ export function AppShareDialog({ locale, writer, copying, onClose }: {
         <p className="app-share-save-hint">{s("iPhone：也可长按预览图，查看可用的存储选项。下载 PNG 不会自动加入「照片」。", "On iPhone, you can also touch and hold the preview for available save options. A PNG download is not automatically added to Photos.")}</p>
         <img className="app-share-preview" src={card.src} width="1080" height="1800" alt={s("TalkSprout 二维码分享卡片，包含应用首页网址和 iPhone 打开指引", "TalkSprout QR sharing card with the app home address and iPhone opening instructions")} />
         <details className="app-share-opening" open><summary>{card.copy.instructionsTitle}</summary>
-          <dl><dt>{card.copy.otherScreen.title}</dt><dd>{card.copy.otherScreen.body}</dd><dt>{card.copy.samePhone.title}</dt><dd>{card.copy.samePhone.body}</dd></dl>
+          <dl><dt>{card.copy.otherScreen.title}</dt><dd>{card.copy.otherScreen.body}{card.copy.otherScreen.alternative && <span className="app-share-alternative">{card.copy.otherScreen.alternative}</span>}</dd><dt>{card.copy.samePhone.title}</dt><dd>{card.copy.samePhone.body}</dd></dl>
           <p>{card.copy.fallback}</p><a href={url}>{url}</a>
         </details>
       </>}

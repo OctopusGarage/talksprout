@@ -37,5 +37,6 @@
 .app-share-opening dl { margin: 12px 0; }
 .app-share-opening dt { font-weight: 650; margin-top: 12px; }
 .app-share-opening dd { margin: 4px 0 0; color: var(--muted); }
+.app-share-alternative { display: block; margin-top: 4px; }
 .app-share-opening a { overflow-wrap: anywhere; color: var(--green); }
 @media (max-width: 360px) { .app-share-dialog { --share-padding: 18px; } }

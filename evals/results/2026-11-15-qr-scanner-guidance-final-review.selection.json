@@ -1,0 +1,33 @@
+{
+  "totalGenerated": 22,
+  "selected": 1,
+  "selectedIds": [
+    "guide-code-app-routing"
+  ],
+  "unchangedIds": [
+    "guide-content-build-a-learning-routine",
+    "guide-content-use-ai-and-check-feedback",
+    "guide-content-choose-feedback-style",
+    "guide-content-ten-minute-ai-conversation",
+    "guide-content-self-talk-to-real-conversation",
+    "guide-content-listen-check-listen",
+    "guide-content-read-and-check-understanding",
+    "guide-content-write-revise-and-reuse",
+    "guide-content-technical-english-in-context",
+    "guide-content-review-and-reuse-expressions",
+    "guide-content-four-strands-of-language-learning",
+    "guide-content-english-in-everyday-life",
+    "guide-content-spacing-retrieval-and-repetition",
+    "guide-content-choose-learning-materials",
+    "guide-content-ai-tool-capabilities",
+    "guide-content-ai-dedicated-companions",
+    "guide-content-ai-global-instructions",
+    "guide-code-reader-copy",
+    "guide-code-content-assembly",
+    "guide-code-tests-scripts",
+    "guide-code-documentation"
+  ],
+  "baseline": "evals/fixtures/guide-review-live-api.json",
+  "model": "gpt-4.1-2025-04-14",
+  "note": "Selection report only; retained historical evidence is not a new execution."
+}
