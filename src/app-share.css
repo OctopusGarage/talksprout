@@ -1,0 +1,21 @@
+.app-share-button { flex-shrink: 0; }
+.app-share-dialog {
+  width: min(420px, calc(100vw - 32px));
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  color: var(--ink);
+  background: var(--canvas);
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+}
+.app-share-dialog::backdrop { background: rgb(20 35 28 / 40%); }
+.app-share-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.app-share-heading h2 { flex: 1; margin: 0; font-size: 21px; }
+.app-share-dialog p { color: var(--muted); line-height: 1.6; }
+.app-share-dialog label { display: block; margin-bottom: 8px; }
+.app-share-dialog input { width: 100%; box-sizing: border-box; padding: 12px; font: inherit; border: 1px solid var(--border); border-radius: 8px; }
+.app-share-copy { width: 100%; margin-top: 16px; padding: 12px; border: 0; border-radius: 10px; background: var(--green); color: white; font: inherit; cursor: pointer; }
+.app-share-dialog [role="status"] { margin: 12px 0 0; }
+.app-share-dialog [role="status"]:empty { display: none; }

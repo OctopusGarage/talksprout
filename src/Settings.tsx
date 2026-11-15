@@ -1,8 +1,10 @@
+import type { ReactNode } from "react";
 import type { OfflineStatus } from "./offline-readiness";
 import { Icon } from "./Icon";
 import type { Locale } from "./types";
 export function Settings({
   locale,
+  shareAction,
   onLocale,
   onInstall,
   onAbout,
@@ -11,6 +13,7 @@ export function Settings({
   offlineStatus,
 }: {
   locale: Locale;
+  shareAction?: ReactNode;
   onLocale: (locale: Locale) => void;
   onInstall: () => void;
   onAbout: () => void;
@@ -81,6 +84,7 @@ export function Settings({
           </span>
           <Icon name="chevron" />
         </button>
+        {shareAction}
         <button
           id="about"
           className="settings-row"

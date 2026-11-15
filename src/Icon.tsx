@@ -1,4 +1,5 @@
 export type IconName =
+  | "share"
   | "practice"
   | "review"
   | "settings"
@@ -18,6 +19,7 @@ export type IconName =
   | "help"
   | "offline";
 const paths: Record<IconName, string[]> = {
+  share: ["M12 16V3m-4 4 4-4 4 4", "M5 11v10h14V11"],
   practice: [
     "M5 4h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 3v-3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z",
     "M7 9h10M7 13h6",

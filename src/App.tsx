@@ -20,6 +20,7 @@ import { useAppFrame } from "./useAppFrame";
 import { useRightEdgeBack } from "./useRightEdgeBack";
 import { collections } from "./content/collections";
 import { Icon } from "./Icon";
+import { AppShare } from "./AppShare";
 import { Settings } from "./Settings";
 import { LearningLibrary } from "./LearningLibrary";
 import { guideTitles, canonicalGuideId, readingArticleIds } from "./content/guide-titles";
@@ -478,6 +479,7 @@ export default function App() {
               ? s("随时，开口练习", "Practice anytime")
               : s("离线模式 · 练习依然在", "Offline · keep practicing")}
           </span>
+          <AppShare locale={locale} writer={writer} copying={copying} onMessage={setMessage} />
           <button
             className="icon-button language-shortcut"
             aria-label={en ? "中文" : "English"}
@@ -552,6 +554,7 @@ export default function App() {
                 online={online}
                 installed={installed}
                 offlineStatus={appUpdate.offlineStatus}
+                shareAction={<AppShare locale={locale} writer={writer} copying={copying} onMessage={setMessage} placement="settings" />}
                 onAbout={() => info("about")}
                 onInstall={() => {
                   if (install.current) {
