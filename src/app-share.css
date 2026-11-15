@@ -1,21 +1,41 @@
 .app-share-button { flex-shrink: 0; }
 .app-share-dialog {
-  width: min(420px, calc(100vw - 32px));
+  width: min(480px, calc(100vw - 24px));
   box-sizing: border-box;
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 24px;
+  --share-padding: 24px;
+  padding: var(--share-padding);
   color: var(--ink);
   background: var(--canvas);
-  max-height: calc(100dvh - 32px);
+  max-height: calc(100dvh - 24px);
   overflow: auto;
+  overscroll-behavior: contain;
 }
 .app-share-dialog::backdrop { background: rgb(20 35 28 / 40%); }
-.app-share-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-.app-share-heading h2 { flex: 1; margin: 0; font-size: 21px; }
+.app-share-heading { display: flex; align-items: center; gap: 12px; position: sticky; top: calc(-1 * var(--share-padding)); margin: calc(-1 * var(--share-padding)) calc(-1 * var(--share-padding)) 16px; padding: var(--share-padding); padding-bottom: 14px; background: var(--canvas); border-bottom: 1px solid var(--border); z-index: 1; }
+.app-share-heading > div { flex: 1; min-width: 0; }
+.app-share-heading h2 { margin: 4px 0 0; font-size: 21px; overflow-wrap: anywhere; }
+.app-share-eyebrow { color: var(--green); font-size: 12px; font-weight: 650; }
 .app-share-dialog p { color: var(--muted); line-height: 1.6; }
-.app-share-dialog label { display: block; margin-bottom: 8px; }
-.app-share-dialog input { width: 100%; box-sizing: border-box; padding: 12px; font: inherit; border: 1px solid var(--border); border-radius: 8px; }
-.app-share-copy { width: 100%; margin-top: 16px; padding: 12px; border: 0; border-radius: 10px; background: var(--green); color: white; font: inherit; cursor: pointer; }
-.app-share-dialog [role="status"] { margin: 12px 0 0; }
-.app-share-dialog [role="status"]:empty { display: none; }
+.app-share-intro { margin-bottom: 16px; }
+.app-share-link-label { display: block; margin: 16px 0 8px; font-size: 13px; color: var(--muted); }
+.app-share-dialog input { width: 100%; box-sizing: border-box; padding: 12px; font: inherit; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.app-share-link-actions, .app-share-card-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.app-share-primary, .app-share-secondary { flex: 1 1 140px; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 44px; padding: 11px 12px; border-radius: 10px; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; }
+.app-share-primary { background: var(--green); color: #fff; border: 1px solid var(--green); }
+.app-share-secondary { background: var(--surface); color: var(--green); border: 1px solid var(--border); }
+.app-share-dialog button:disabled { opacity: .55; cursor: wait; }
+.app-share-feedback { margin: 12px 0 0; }
+.app-share-feedback:empty { display: none; }
+.app-share-card-section { border-top: 1px solid var(--border); margin-top: 24px; padding-top: 20px; }
+.app-share-card-section h3 { margin: 0 0 14px; font-size: 17px; }
+.app-share-save-hint { font-size: 12px; margin: 12px 0; }
+.app-share-preview { display: block; width: 100%; height: auto; background: var(--canvas); border: 1px solid var(--border); border-radius: 12px; }
+.app-share-opening { font-size: 13px; line-height: 1.6; margin-top: 16px; }
+.app-share-opening summary { cursor: pointer; font-weight: 650; }
+.app-share-opening dl { margin: 12px 0; }
+.app-share-opening dt { font-weight: 650; margin-top: 12px; }
+.app-share-opening dd { margin: 4px 0 0; color: var(--muted); }
+.app-share-opening a { overflow-wrap: anywhere; color: var(--green); }
+@media (max-width: 360px) { .app-share-dialog { --share-padding: 18px; } }
