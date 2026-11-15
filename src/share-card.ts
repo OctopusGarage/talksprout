@@ -21,7 +21,7 @@ export const shareCardCopy: Record<Locale, ShareCardCopy> = {
     scanLabel: "扫码打开 TalkSprout",
     instructionsTitle: "iPhone 怎么打开",
     otherScreen: { title: "二维码在另一块屏幕上", body: "打开「相机」对准二维码，轻点出现的链接。" },
-    samePhone: { title: "图片就在这台 iPhone 上", body: "存入「照片」并打开，尝试长按二维码或下方网址，再轻点出现的链接。" },
+    samePhone: { title: "图片就在这台 iPhone 上", body: "存到「照片」后打开，尝试长按二维码或网址，再打开链接。" },
     fallback: "没有识别出来？在 Safari 输入下方网址。",
     footer: "无需账号 · 搭配你常用的 AI 应用练习",
   },
