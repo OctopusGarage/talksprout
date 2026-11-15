@@ -163,3 +163,31 @@ test("real worker updates reload once after initial claim and on return visits",
     );
   }
 });
+
+test("production offline retries can cancel browser timers and recover without page errors", async ({ page, context }) => {
+  const errors: string[] = [];
+  page.on("pageerror", error => errors.push(error.message));
+  await page.addInitScript(() => {
+    const probe = { reads: 0, hideCaches: true };
+    (window as unknown as { offlineTimerProbe: typeof probe }).offlineTimerProbe = probe;
+    const original = caches.keys.bind(caches);
+    Object.defineProperty(caches, "keys", { configurable: true, value: async () => {
+      probe.reads++;
+      return probe.hideCaches ? [] : original();
+    } });
+  });
+  await page.goto("/#settings");
+  await page.evaluate(() => navigator.serviceWorker.ready.then(() => true));
+  await expect.poll(() => page.evaluate(() => (window as unknown as { offlineTimerProbe: { reads: number } }).offlineTimerProbe.reads)).toBeGreaterThan(0);
+  await page.evaluate(() => window.dispatchEvent(new Event("online")));
+  expect(errors).toEqual([]);
+  await page.evaluate(() => {
+    (window as unknown as { offlineTimerProbe: { hideCaches: boolean } }).offlineTimerProbe.hideCaches = false;
+    window.dispatchEvent(new Event("online"));
+  });
+  await expect(page.getByText("离线内容已就绪，提示词可离线浏览和复制。外部 AI 仍需网络。", { exact: true })).toBeVisible();
+  await context.setOffline(true);
+  await page.reload();
+  await expect(page.locator("#library-heading")).toHaveText("设置");
+  expect(errors).toEqual([]);
+});

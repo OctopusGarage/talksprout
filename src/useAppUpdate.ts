@@ -35,7 +35,7 @@ export function useAppUpdate() {
       publish: setOfflineStatus,
       visible: () => !!registration && document.visibilityState === "visible",
       schedule: (callback, delay) => setTimeout(callback, delay),
-      cancel: clearTimeout,
+      cancel: (handle) => clearTimeout(handle),
     });
     const watched = new Set<ServiceWorker>();
     const observeWorker = () => {

@@ -1,8 +1,8 @@
 # Repository-wide release evaluation
 
-The release review refreshed real text API execution across the application’s current prompt corpus and reviewed 140 source/configuration/test files in 26 AI-review batches. One functional issue was reproduced: full review cards could duplicate a source sentence across questions. The revised full prompt defaults to one useful card, retains explicitly requested batches up to eight, uses one question format per set, and requires complete restored sentences for gap answers. A spoken vocabulary fallback was clarified to exclude new examples and vocabulary breakdowns.
+The release review refreshed real text API execution across the application’s current prompt corpus and reviewed 140 source/configuration/test files in 26 AI-review batches. The initial pre-deployment review reproduced one functional issue: full review cards could duplicate a source sentence across questions. The revised full prompt defaults to one useful card, retains explicitly requested batches up to eight, uses one question format per set, and requires complete restored sentences for gap answers. A spoken vocabulary fallback was clarified to exclude new examples and vocabulary breakdowns.
 
-No unresolved release-blocking product defect was confirmed after source inspection, targeted browser probes and the complete local release checks. This is an evidence-based release decision, **not a claim that every raw AI verdict passed**. All target and judge executions use the same pinned `gpt-4.1-2025-04-14` snapshot. Text-only execution does not validate real microphones, other AI products or learner outcomes.
+A subsequent live-site smoke test exposed an additional native timer-receiver defect missed by those earlier checks. The follow-up below records its reproduction, fix and expanded release gate. This is an evidence-based release decision, **not a claim that every raw AI verdict passed**. All target and judge executions use the same pinned `gpt-4.1-2025-04-14` snapshot. Text-only execution does not validate real microphones, other AI products or learner outcomes.
 
 ## Functional execution coverage
 
@@ -36,7 +36,7 @@ These are implementing-agent static interpretations, not human labels or indepen
 
 All application, scenario/content, persistence, clipboard, offline/update, deployment, evaluation-tool and test sources were assigned exactly once to source-review batches. Binary icons, the lockfile, private notes and large generated evidence archives were excluded from the model source-review input. Existing documentation received the separate focused documentation review.
 
-The raw source-review gate was **24 pass / 1 fail / 1 uncertain**. Some target reviewers also emitted alleged major defects that their judge incorrectly passed. Each alleged material defect was inspected rather than relying on the aggregate score:
+The initial raw source-review gate was **24 pass / 1 fail / 1 uncertain**. Some target reviewers also emitted alleged major defects that their judge incorrectly passed. Each alleged material defect was inspected rather than relying on the aggregate score:
 
 | Allegation | Verification and release assessment |
 | --- | --- |
@@ -64,3 +64,11 @@ Reproduce source review or existing functional suites using `evals/export-live.t
 Run `pnpm test`, `pnpm eval`, `pnpm build`, `pnpm test:e2e` and `pnpm test:webkit`. Local browser suites separately verify routing, exact copy payloads, ordering, manual fallback, focus, scrolling, bilingual persistence, cross-window state, offline readiness and real service-worker updates. No physical installed-iPhone test or real audio test was performed.
 
 Deployment follows the existing GitHub Actions workflow: main push, full checks, Pages artifact upload, then GitHub Pages deployment. A successful local run does not establish a successful remote deployment; confirm the Actions run and served artifact separately.
+
+## Post-deployment smoke follow-up: native timer cancellation
+
+The first Pages deployment completed successfully, but the final hosted-browser smoke test captured `Illegal invocation` errors. The defect already existed in `useAppUpdate`: passing `clearTimeout` directly as `options.cancel` causes `createOfflineCheck` to invoke a native browser API with the options object as its receiver. Node-based callback tests did not expose that native receiver constraint. The previous browser suites also did not fail on these page-error events. AI source review missed the defect, illustrating why its positive scores do not replace runtime verification.
+
+The correction wraps cancellation in `(handle) => clearTimeout(handle)`. A new production-build browser regression deliberately keeps offline readiness unknown, triggers retry cancellation through an online event, captures page errors, then verifies readiness recovery and offline reload. It fails with five invocation errors before the fix and passes with zero errors in both Chromium and WebKit after the fix.
+
+Affected source-review batches were freshly executed again, retaining all unchanged batches rather than claiming a full repeat. A focused real GPT-4.1 target/judge review of the binding mechanism also passed. Evidence is in `2026-11-15-offline-timer-source-review.json`, `2026-11-15-offline-timer-focused-ai.json` and `2026-11-15-offline-timer-browser-regression.json`. This patch changes runtime callback binding only; prompt bodies and their accepted text-execution evidence remain unchanged. The final release gate now includes 94 Chromium tests and 74 WebKit tests, and requires repeating the hosted smoke test after the follow-up deployment.

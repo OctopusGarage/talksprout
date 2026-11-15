@@ -1,0 +1,25 @@
+{
+  "method": "actual-browser-regression-red-green",
+  "initialPublishedCommit": "19789e67c4ec641124f566b23bf9004426fa3bed",
+  "before": {
+    "pageErrors": [
+      "Illegal invocation",
+      "Illegal invocation",
+      "Illegal invocation",
+      "Illegal invocation",
+      "Illegal invocation"
+    ],
+    "result": "failed",
+    "trigger": "Restart an offline-readiness timer while cache enumeration is forced unknown, then dispatch online."
+  },
+  "rootCause": "createOfflineCheck calls options.cancel(timer). Passing a native clearTimeout as this property invokes it with the options object as the receiver.",
+  "fix": "Wrap clearTimeout in a callback so native timer cancellation is called without the options receiver.",
+  "after": {
+    "chromium": "pass",
+    "webkit": "pass",
+    "pageErrors": [],
+    "readinessRecovers": true,
+    "offlineReload": "pass"
+  },
+  "limit": "Cache enumeration is instrumented to exercise pending retries. Real browser timer APIs and real service-worker caching are used. This is not an AI or audio test."
+}
