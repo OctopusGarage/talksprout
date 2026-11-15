@@ -625,3 +625,44 @@ test("right-edge back dismisses the scenario browser before its parent prompt", 
   await expect(page.locator("#detail")).toBeHidden();
   await expect(page).toHaveURL(/#collection\/companions$/);
 });
+
+test("all pages reserve text selection for editable and copyable content", async ({ page }) => {
+  const { handbookArticles } = await import("../src/content/guides");
+  const { learningPrompts } = await import("../src/content/learning");
+  const { collections } = await import("../src/content/collections");
+  const routes = [
+    "", "review", "learning", "guides", "guides?section=reading", "settings",
+    ...["about", "install"].map(info => `settings?info=${info}`),
+    ...collections.map(collection => `collection/${collection.id}`),
+    ...handbookArticles.map(article => `guides/${article.id}`),
+    ...learningPrompts.map(prompt => `learning?prompt=${prompt.id}`),
+    ...prompts.map(prompt => {
+      const collection = collections.find(item => item.category === prompt.category);
+      return `${collection ? `collection/${collection.id}` : "review"}?prompt=${prompt.id}`;
+    }),
+  ];
+  for (const route of routes) {
+    await page.goto(`/#${route}`);
+    await expect(page.locator(".app-header")).toBeVisible();
+    if (route.startsWith("guides/")) await expect(page.locator(".guide-reader")).toBeVisible();
+    const selectableChrome = await page.evaluate(() => {
+      const allowed = 'input, textarea, [contenteditable]:not([contenteditable="false"]), .spoken-script';
+      return [...document.querySelectorAll<HTMLElement>("#app *")].filter(element => {
+        if (!element.getClientRects().length || element.closest(allowed)) return false;
+        if (![...element.childNodes].some(node => node.nodeType === Node.TEXT_NODE && node.textContent?.trim())) return false;
+        const selection = window.getSelection()!;
+        const range = document.createRange();
+        range.selectNodeContents(element);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        const selected = selection.toString();
+        selection.removeAllRanges();
+        return selected.length > 0 && !element.querySelector(allowed);
+      }).map(element => element.textContent?.trim().slice(0, 100));
+    });
+    expect(selectableChrome, route).toEqual([]);
+    for (const field of await page.locator('input:not([type="radio"]):not([type="checkbox"]), textarea').all()) {
+      await expect(field).toHaveCSS("user-select", "text");
+    }
+  }
+});

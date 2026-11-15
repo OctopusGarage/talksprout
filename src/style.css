@@ -67,6 +67,7 @@ summary {
 button,
 a,
 summary,
+dialog,
 .app-header,
 .section-label,
 .view-caption,
@@ -78,10 +79,7 @@ summary,
 input,
 textarea,
 [contenteditable]:not([contenteditable="false"]),
-.spoken-script,
-.settings-notes,
-.fineprint,
-.manual-note {
+.spoken-script {
   -webkit-user-select: text;
   user-select: text;
 }
