@@ -251,3 +251,7 @@ The [guide evaluation report](guide-evaluation-report.md) records seven five-tur
 ## Repository-wide refresh before Pages deployment
 
 The [repository release evaluation](repository-release-evaluation.md) records fresh 562-case speaking/review, 108-case supplementary, 34-case English, eight-session and seven-session verification runs, plus seven guide sessions, card follow-up probes and 26 source-review batches. Card duplication was reproduced and mitigated with a default single-card flow and explicit batch requests; the spoken vocabulary override was clarified. Six evidence-bound static interpretations remain separate from raw failed model judgments. Source-review false alarms and invalid judge responses are retained with actual browser probes rather than relabeled as all-green AI results.
+
+### Live Camera English Coach
+
+The opening, scenario, and spoken archives include three authored text-only samples for the camera coach. They cover a missing feed at startup, coach-led practice with a stipulated visible mug, and recovery from unclear or missing video before an early stop. The text API runner can select this coach by ID. Its cases remain pending in the recorded API archive after the provider returned HTTP 429 due to exhausted credits. These samples do not establish live-camera behavior or voice compatibility.

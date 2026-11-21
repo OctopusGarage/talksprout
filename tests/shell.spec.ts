@@ -76,7 +76,7 @@ test("tabs preserve independent search filters and scroll positions", async ({
     .click();
   await expect(page).toHaveURL(/#library$/);
   await page.getByRole("searchbox").fill("coach");
-  await expect(page.locator(".card")).toHaveCount(9);
+  await expect(page.locator(".card")).toHaveCount(10);
   const libraryScroll = await scrollToEnd(page);
   await navigation(page)
     .getByRole("link", { name: "结束与复习", exact: true })

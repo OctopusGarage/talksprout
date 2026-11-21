@@ -125,6 +125,11 @@ export function createLiveCases(): LiveCase[] {
       question: "What does the mug look like?",
       answer: "It is a blue ceramic mug.",
     },
+    "live-camera-coach": {
+      material: "There is no video input. I have a mug on my desk.",
+      question: "Try saying: I have a mug on my desk.",
+      answer: "I have a mug on my desk.",
+    },
     "story-summary": {
       material:
         "Here is my story: Yesterday I missed the bus and walked to work.",
@@ -140,7 +145,9 @@ export function createLiveCases(): LiveCase[] {
         "base-opening",
         p.id === "visual-vocabulary"
           ? "Request a photo or object description and wait. A concise imperative request without a question mark is valid startup behavior. Do not claim access to missing media, invent details or give a worksheet."
-          : "Follow this exact coach's opening and mechanism. Ask one question or give one clue as instructed, never a worksheet or full answer. Do not claim access to missing media.",
+          : p.id === "live-camera-coach"
+            ? "Without video, ask for one nearby object or action to begin guided practice. Do not invent a visible object."
+            : "Follow this exact coach's opening and mechanism. Ask one question or give one clue as instructed, never a worksheet or full answer. Do not claim access to missing media.",
       );
       const ctx = contexts[p.id];
       const before: LiveMessage[] = ctx.material

@@ -110,7 +110,7 @@ test("English and Chinese directory and folder layouts fit narrow phones and des
         ["#library", 0],
         ["#collection/companions", 4],
         ["#collection/interaction", 3],
-        ["#collection/materials", 2],
+        ["#collection/materials", 3],
       ] as const) {
         await page.goto(`/${hash}`);
         await expect(page.locator(".card")).toHaveCount(count);

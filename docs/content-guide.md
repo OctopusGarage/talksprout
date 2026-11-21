@@ -16,7 +16,7 @@ Each supplementary prompt has a decorative emoji, bilingual title, purpose, use 
 - `src/content/review.ts`: four post-conversation reviews, including shared grounding rules and compact spoken wrap-ups.
 - `src/prompt-text.ts`: exact payload selection and the separate transcript-source template.
 - `src/content/collections.ts`: bilingual directory names and descriptions.
-- `src/prompts.ts`: exports `prompts` (nine conversation starters), `reviewPrompts` (four reviews), and `allPrompts` for shared storage and rendering.
+- `src/prompts.ts`: exports `prompts` (ten conversation starters), `reviewPrompts` (four reviews), and `allPrompts` for shared storage and rendering.
 
 Start practice shows three directories. Wrap-up & Review is a separate navigation tab with four choices and one recommendation. The practice-home search covers all coaches; collection searches and saved filters stay within their collection. Review search and favorites stay within review; opening prompts never appear in review results. Existing collection links remain valid. Favorites use only a heart icon, with the accessible name Saved / 收藏 and pressed state; do not add visible category labels or a count.
 

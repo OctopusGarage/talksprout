@@ -50,3 +50,15 @@ test("all coaches are ongoing coaching rather than batch tools", () => {
       .prompt.includes("Only then offer the next round"),
   );
 });
+
+test("live camera coach offers proactive practice in both copy formats", () => {
+  const coach = prompts.find(({ id }) => id === "live-camera-coach");
+  assert.ok(coach);
+  for (const instructions of [coach.prompt, coach.spokenPrompt]) {
+    assert.ok(instructions);
+    assert.match(instructions, /choose one clearly visible/);
+    assert.match(instructions, /model one short phrase/);
+    assert.match(instructions, /wait for my response/);
+    assert.match(instructions, /ask me to describe one nearby object/);
+  }
+});

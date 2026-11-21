@@ -70,7 +70,7 @@ function sha256(value: string): string {
 
 test("shared coach-rule extraction preserves bytes apart from the separately evaluated roleplay guard", () => {
   const coaches = [...companions, ...interaction, ...materials];
-  assert.deepEqual(coaches.map((original) => {
+  assert.deepEqual(coaches.filter(coach => coach.id !== "live-camera-coach").map((original) => {
     const coach = original.id === "roleplay-coach" ? { ...original, version: 7, prompt: original.prompt.replace("\nAfter practice begins, use this reply order: one in-character STATEMENT, an optional correction STATEMENT, then ONE focused in-character question. Neither statement may contain a question or a separate request for an answer. Before sending, count question marks across the entire reply and remove all but one.", "") } : original;
     return ({
     id: coach.id,

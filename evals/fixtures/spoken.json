@@ -2,7 +2,7 @@
   "methodology": {
     "method": "Same-model authored text-only role simulations",
     "samplesPerScenario": 1,
-    "promptCount": 9,
+    "promptCount": 10,
     "targetInstructions": "Only each exported spokenPrompt was used as target instructions. Full prompts were consulted only to describe compression, not as simulation instructions.",
     "externalAIUsed": false,
     "providerAPIUsed": false,
@@ -703,6 +703,39 @@
       "rationale": "Fresh authored text role simulation, authored and reviewed against the revised instructions by the release-review agent; self-judged reference evidence, not external API execution, audio testing, or an independent model judge. Correct the real tense error even when an answer includes a social question; answer pure English clarification outside grading, preserve the pending retry, and advance after success. Every assistant turn was newly authored; learner/source inputs were retained.",
       "sampleProvenance": "Fresh authored text role simulation, authored and reviewed against the revised instructions by the release-review agent; self-judged reference evidence, not external API execution, audio testing, or an independent model judge.",
       "evidenceSha256": "b1af8172bae075a09dd869733cf7d5912bac2ec2c70ccbbacac9c075d1d13a89"
+    },
+    {
+      "id": "live-camera-recovery",
+      "promptId": "live-camera-coach",
+      "variant": "spoken",
+      "promptSha256": "c65bfe3c151b0cb29ce75ba72ceef327385c6182cdf88a8a8001a96688585744",
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "I can't make out the object. Hold it a little closer."
+        },
+        {
+          "role": "user",
+          "content": "The camera is off now. It's a lamp."
+        },
+        {
+          "role": "assistant",
+          "content": "Let's use the lamp. Try: ‘I turned on the lamp.’"
+        },
+        {
+          "role": "user",
+          "content": "Finish."
+        },
+        {
+          "role": "assistant",
+          "content": "Practice finished."
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Recover from an unclear view and then missing video, and end before any practice answer.",
+      "rationale": "The coach uses the supplied lamp without claiming camera access and stops without reviewing setup.",
+      "sampleProvenance": "Authored text-only illustration. Any visual state is stipulated for the exercise; no actual video or audio was sent.",
+      "evidenceSha256": "30c3a9675f3dce18fdfca62b554725371eeeaccc5a9ba4b2f8251e27bf834233"
     }
   ]
 }

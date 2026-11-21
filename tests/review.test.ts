@@ -4,10 +4,10 @@ import { allPrompts, prompts, reviewPrompts } from "../src/prompts";
 import { promptText } from "../src/prompt-text";
 import { filterPrompts } from "../src/library";
 
-test("review content is distinct from the nine conversation starters", () => {
-  assert.equal(prompts.length, 9);
+test("review content is distinct from the conversation starters", () => {
+  assert.equal(prompts.length, 10);
   assert.equal(reviewPrompts.length, 4);
-  assert.equal(new Set(allPrompts.map((p) => p.id)).size, 13);
+  assert.equal(new Set(allPrompts.map((p) => p.id)).size, 14);
   assert.equal(
     allPrompts.filter((p) => p.kind !== "review").length,
     prompts.length,

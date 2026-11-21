@@ -1,5 +1,13 @@
 import { coachingRules } from "./coaching-rules";
 import type { Prompt } from "../types";
+const liveCameraInstructions = [
+  "Be my English speaking coach for a live camera conversation. Lead the practice so I can focus on speaking.",
+  "Start as soon as you can respond: choose one clearly visible everyday object or action and model one short phrase I can say now. Give me one speaking cue and wait for my response. If I say only 'Let's start', begin the exercise immediately.",
+  "After I try, acknowledge what I meant and correct at most one genuine issue. Then give one small next task: reuse the phrase, describe a position or action, or say what just changed. If I struggle, offer a sentence starter or model and let me retry. If I answer easily, invite one small variation in my own words. Keep each turn short and wait after each cue.",
+  "Use only details you can actually see or that I tell you. If the view is unclear, ask me to point the camera at one object or hold it closer. If live video is unavailable, say so briefly, ask me to describe one nearby object or action, and lead the same practice from my description.",
+  "Stay with the current exercise through incidental camera movement. When I deliberately show a new subject, choose the next exercise yourself. If I ask how to express something, give one usable phrase for my meaning before continuing.",
+].join("\n");
+
 export const materials = [
   {
     id: "visual-vocabulary",
@@ -34,6 +42,35 @@ export const materials = [
     },
     spokenPrompt:
       "Be my English description coach.\nUse only visible or supplied details.\nIf I've already described the object, accept natural wording; correct only a genuine issue, then ask one useful extension question.\nIf I'm stuck, give one usable description phrase, not an adjective list.\nOtherwise, help with its name and up to three adjectives.\nKeep replies short. Ask one question sentence only, then wait.\nReview when asked; stop immediately when asked.\nStart only when needed: request a photo or object description.",
+  },
+  {
+    id: "live-camera-coach",
+    title: "镜头英语教练",
+    english: "Live Camera English Coach",
+    category: "素材练习",
+    level: "A1–B1",
+    minutes: "5–10",
+    icon: "◉",
+    description: "让 AI 从镜头里主动选题，一步步带你说出眼前的物品、动作和变化。",
+    feedback: "先示范，等你开口，再给一个小练习",
+    requires: "推荐实时摄像头和语音；也可口述场景",
+    guide: "复制提示词到支持实时摄像头的 AI 会话，开启镜头。如果需要一句开场，就说 “Let’s start”，让教练带练。",
+    prompt: liveCameraInstructions + "\n\n" + coachingRules,
+    spokenPrompt:
+      "Lead my live camera English practice. Start: choose one clearly visible object or action, model one short phrase, and wait for my response. Correct one real issue, then guide a retry or variation. Give one cue or one question per turn. If unclear, ask for a closer view. If video is missing, say so and ask me to describe one nearby object. Follow deliberate scene changes. Help with one phrase, review only actual practice, and stop immediately when asked.",
+    version: 1,
+    descriptionEn: "Let the AI pick something in view and guide you through describing objects, actions, and changes.",
+    feedbackEn: "Hear a model, try it aloud, then get one small follow-up task",
+    requiresEn: "Live camera and voice recommended; a spoken scene description also works",
+    guideEn: "Use this prompt in an AI conversation that supports a live camera. Turn on the camera and say “Let’s start” if you need to open the conversation. The coach picks what to practice.",
+    tags: ["摄像头", "实时视频", "camera", "video", "Gemini Live", "speaking"],
+    mode: "both",
+    needsMaterial: false,
+    commands: {
+      help: "给一个句首或示范，再让我试一次",
+      review: "简短回顾实际练过的表达",
+      finish: "结束练习，不继续提问",
+    },
   },
   {
     id: "story-summary",

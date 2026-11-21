@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { prompts } from "../src/prompts";
 test("library is a small set of distinct conversation starters", () => {
-  assert.equal(prompts.length, 9);
+  assert.equal(prompts.length, 10);
   const kept = [
     "daily-check-in",
     "gentle-start",
@@ -12,6 +12,7 @@ test("library is a small set of distinct conversation starters", () => {
     "friendly-debate",
     "story-summary",
     "visual-vocabulary",
+    "live-camera-coach",
     "word-riddle",
   ];
   assert.deepEqual(new Set(prompts.map((p) => p.id)), new Set(kept));

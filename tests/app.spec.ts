@@ -16,7 +16,7 @@ test("directory first: three folders and no flat wall of prompts", async ({
   await expect(page.locator(".collection-card")).toHaveCount(3);
   await expect(page.locator(".card")).toHaveCount(0);
   await openFolder(page, "materials");
-  await expect(page.locator(".card")).toHaveCount(2);
+  await expect(page.locator(".card")).toHaveCount(3);
 });
 test("each retained coach is reachable in exactly one collection", async ({
   page,
@@ -25,7 +25,7 @@ test("each retained coach is reachable in exactly one collection", async ({
   for (const [id, count] of [
     ["companions", 4],
     ["interaction", 3],
-    ["materials", 2],
+    ["materials", 3],
   ] as const) {
     await page.goto("/#library");
     await openFolder(page, id);
@@ -43,7 +43,7 @@ test("each retained coach is reachable in exactly one collection", async ({
     }
   }
   expect(new Set(seen)).toEqual(new Set(prompts.map((p) => p.id)));
-  expect(seen.length).toBe(9);
+  expect(seen.length).toBe(10);
 });
 test("copy, favorites, global search and exact dialog payload", async ({
   page,

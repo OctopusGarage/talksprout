@@ -107,7 +107,7 @@ test("live coverage keeps the recorded scope fixed and reports new scenes as pen
     scenes.filter((scene) => !recordedSceneIds.includes(scene.id)).map((scene) => scene.id),
   );
   const currentCases = createLiveCases();
-  assert.equal(currentCases.length, 562);
+  assert.equal(currentCases.length, 570);
   assert.equal(
     currentCases.filter((item) => item.selection && live.pendingSceneIds.includes(item.selection.sceneId)).length,
     0,

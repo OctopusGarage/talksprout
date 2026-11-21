@@ -12,6 +12,7 @@ import { suiteNames, validateArchive, type SuiteName } from "./validate";
 import { validateSceneArchive } from "./scene-validate";
 import {
   validateLiveArchive,
+  pendingLivePromptIds,
   validateCompositionMatrix,
 } from "./live-validate";
 const matrix = validateCompositionMatrix();
@@ -95,6 +96,7 @@ console.log(
         recordedScenes: live.recordedScenes,
         pendingScenes: live.pendingScenes,
         pendingSceneIds: live.pendingSceneIds,
+        pendingPromptIds: pendingLivePromptIds,
         pendingStatus: live.pendingScenes
           ? "Pending scenes have no recorded API executions; this invocation makes no new API calls"
           : "All current scenes have recorded API executions; this invocation makes no new API calls",

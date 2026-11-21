@@ -4,7 +4,7 @@
     "samplesPerScenario": 1,
     "externalAIUsed": false,
     "audioUsed": false,
-    "promptCount": 9,
+    "promptCount": 10,
     "limitations": "Fresh illustrative transcripts authored and self-judged by the same model. No external API execution, independent judge, image input, or audio input. Pass judgments apply only to each sampled criterion, not reliability or every prompt branch.",
     "teacherFeedbackReview": "Static review confirms every exported prompt explicitly requires teacher feedback during chat: correction, modeling, retry, usage feedback, or feedback after a completed section. These samples illustrate those mechanisms rather than proving provider behavior.",
     "revisionProvenance": "Frozen-release authored review refreshed 3 newly stale cases only. Existing authored examples retained after explicit semantic re-review where appropriate; exact base roleplay setup aligned. This reference review is separate from live API results and audio testing.",
@@ -559,6 +559,46 @@
       "rationale": "Retained after semantic review: A real learner exercise answer precedes correction. Pure clarification and skip requests are handled as support for the pending retry, with no additional completed exercise or invented progress attributed to them. No pre-answer stop occurs.",
       "sampleProvenance": "Existing authored text semantically re-reviewed against the strengthened shared full-coach guard: setup, supplied source material and help/stop commands are not exercise answers; stopping before an exercise answer requires only Practice finished. Assistant turns and learner/source inputs retained. This is authored simulation and self-review, not fresh API execution, independent judgment or audio testing.",
       "evidenceSha256": "1059d4af36846840f1c0b0e7fa94290a613ae7c531a0d6c22cd4168edcd2f5ee"
+    },
+    {
+      "id": "live-camera-guided-practice",
+      "promptId": "live-camera-coach",
+      "promptSha256": "93ebf3260dc8db649dcd062891a32a82e8918bfa0be471232b354defcdc416ec",
+      "turns": [
+        {
+          "role": "assistant",
+          "content": "Let's start with the mug. Say: ‘This is a mug.’"
+        },
+        {
+          "role": "user",
+          "content": "This is a mug."
+        },
+        {
+          "role": "assistant",
+          "content": "Pick it up and say: ‘I'm picking up the mug.’"
+        },
+        {
+          "role": "user",
+          "content": "I'm picking up the mug."
+        },
+        {
+          "role": "assistant",
+          "content": "Put it back down. How would you say what you just did?"
+        },
+        {
+          "role": "user",
+          "content": "I putted it down."
+        },
+        {
+          "role": "assistant",
+          "content": "Say ‘I put it down.’ Try that once."
+        }
+      ],
+      "judgment": "pass",
+      "criterion": "Given a visible mug, lead naming, action and independent recall one cue at a time.",
+      "rationale": "The coach chooses the topic, leaves time to speak and corrects one genuine issue.",
+      "sampleProvenance": "Authored text-only illustration. Any visual state is stipulated for the exercise; no actual video or audio was sent.",
+      "evidenceSha256": "b69342c5f2d979a2dcfec164e373ccd71266d8eda5295ac58d0a15ac187546d3"
     }
   ]
 }
