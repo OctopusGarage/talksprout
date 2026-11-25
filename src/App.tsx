@@ -549,6 +549,8 @@ export default function App() {
           {route.page === "settings" && (
             <div className="workspace">
               <Settings
+                writer={writer}
+                copying={copying}
                 locale={locale}
                 onLocale={changeLocale}
                 online={online}

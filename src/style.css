@@ -1683,3 +1683,15 @@ summary {
   .learning-list .learning-prompt { padding: 17px 12px; gap: 10px; }
   .learning-list .learning-prompt-emoji { flex-basis: 34px; height: 34px; font-size: 20px; }
 }
+
+/* Keep installed-app gestures at a stable scale while preserving scrolling. */
+html[data-installed-app],
+html[data-installed-app] body,
+html[data-installed-app] #app {
+  touch-action: pan-x pan-y;
+}
+html[data-installed-app] input,
+html[data-installed-app] textarea,
+html[data-installed-app] select {
+  font-size: max(1rem, 16px);
+}

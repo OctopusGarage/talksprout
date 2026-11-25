@@ -1,8 +1,10 @@
+import { installPwaZoomGuard } from "./pwa-zoom";
 import { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./style.css";
 function ReadyApp() {
+  useEffect(installPwaZoomGuard, []);
   useEffect(() => {
     const root = document.documentElement;
     const pointer = () => {

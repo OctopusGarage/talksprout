@@ -2,7 +2,7 @@
 
 Reusable prompts for learning English with AI: choose a conversation coach, practice speaking, and turn completed chats into study material.
 
-[Open TalkSprout](https://octopusgarage.github.io/talksprout/)
+[Open TalkSprout](https://octopusgarage.github.io/talksprout/) · [AI installation](docs/ai-installation.md) · [Infrastructure coverage](docs/ai-infrastructure-parity.md)
 
 ## Use the app
 
@@ -109,3 +109,11 @@ Run `pnpm preview` after building to inspect the production app. React and stric
 GitHub Actions runs the release checks before deploying main to GitHub Pages. The generated `dist/` directory also works on a static HTTPS host. Relative assets and hash navigation support subdirectory hosting and offline collection links.
 
 Project code and documentation use the [MIT License](LICENSE).
+
+## AI integrations
+
+Open Settings → Use TalkSprout in your AI for Skill installation instructions, standalone Skill and host-specific ChatGPT/Claude plugin downloads. These channels read the same public learning documents generated from the app's canonical content. They require URL reading or an already connected MCP; no consumer runtime or TalkSprout API key is needed. Installation availability depends on the host and account controls.
+
+The repository includes a self-hostable read-only Streamable HTTP MCP server. The public endpoint is `https://talksprout-mcp.octopusgarage.workers.dev/mcp` (authentication: none). Remote health, protocol and icon identity have been verified. See [MCP setup](docs/mcp-server.md), [distribution maintenance](docs/distribution-maintenance.md), [contribution guidance](CONTRIBUTING.md) and [security](SECURITY.md). Local protocol/package tests do not certify installed client accounts, audio behavior or learning outcomes.
+
+Source review can also run through the authenticated Codex CLI with `pnpm eval:codex`. This executes isolated Codex target and judge calls, records their native session/turn provenance, and accepts only passing evidence bound to the exact reviewed sources. Historical text API archives remain separately labeled. Codex source review does not establish browser, audio or learner-outcome behavior.

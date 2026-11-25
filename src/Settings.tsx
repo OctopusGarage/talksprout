@@ -1,9 +1,13 @@
+import type { ClipboardWriter } from "./clipboard-writer";
+import { AISetup } from "./AISetup";
 import type { ReactNode } from "react";
 import type { OfflineStatus } from "./offline-readiness";
 import { Icon } from "./Icon";
 import type { Locale } from "./types";
 export function Settings({
   locale,
+  writer,
+  copying,
   shareAction,
   onLocale,
   onInstall,
@@ -13,6 +17,8 @@ export function Settings({
   offlineStatus,
 }: {
   locale: Locale;
+  writer: ClipboardWriter;
+  copying: boolean;
   shareAction?: ReactNode;
   onLocale: (locale: Locale) => void;
   onInstall: () => void;
@@ -108,6 +114,7 @@ export function Settings({
           <Icon name="chevron" />
         </button>
       </div>
+      <AISetup key={locale} locale={locale} writer={writer} copying={copying} />
       <h2 className="section-label">{s("本机与离线", "On this device")}</h2>
       <div className="settings-group settings-notes">
         <div>

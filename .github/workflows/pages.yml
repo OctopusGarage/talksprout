@@ -3,11 +3,12 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: pages-${{ github.ref }}
-  cancel-in-progress: true
+  group: talksprout-production-${{ github.event_name == 'pull_request' && github.ref || 'main' }}
+  cancel-in-progress: false
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -19,18 +20,51 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm --dir mcp install --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm sync
+      - run: git diff --exit-code -- content distribution skills
+      - run: pnpm distribution:check
+      - run: pnpm docs:check
+      - run: pnpm mcp:typecheck
+      - run: pnpm mcp:test
+      - run: pnpm mcp:build
+      - run: pnpm --dir mcp exec cf deploy --prebuilt --dry-run
+      - run: pnpm release:test
       - run: pnpm test
       - run: pnpm eval
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium webkit
       - run: pnpm test:e2e
       - run: pnpm test:webkit
+      - run: pnpm release:preflight
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-test-results
+          path: test-results/
+      - uses: actions/upload-artifact@v4
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        with:
+          name: mcp-build
+          path: mcp/.cloudflare/output/
+          include-hidden-files: true
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        with:
+          name: ai-release
+          path: public/downloads/
+          if-no-files-found: error
       - uses: actions/upload-pages-artifact@v3
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
           path: dist
   deploy:
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: check
     runs-on: ubuntu-latest
     permissions:
@@ -43,3 +77,46 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+  deploy-mcp:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: check
+    runs-on: ubuntu-latest
+    environment: mcp-production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --dir mcp install --frozen-lockfile
+      - uses: actions/download-artifact@v4
+        with:
+          name: mcp-build
+          path: mcp/.cloudflare/output/
+      - uses: actions/download-artifact@v4
+        with:
+          name: ai-release
+          path: public/downloads/
+      - run: pnpm --dir mcp run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - run: pnpm mcp:smoke "$MCP_ENDPOINT" public/downloads/release-manifest.json
+        env:
+          MCP_ENDPOINT: ${{ vars.MCP_ENDPOINT }}
+  release:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: [deploy, deploy-mcp]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: ai-release
+          path: public/downloads/
+      - run: python3 scripts/publish-ai.py publish
+        env:
+          GH_TOKEN: ${{ github.token }}

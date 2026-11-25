@@ -1,0 +1,18 @@
+{
+  "name": "talksprout",
+  "displayName": "TalkSprout",
+  "version": "0.1.0",
+  "publisher": "OctopusGarage",
+  "repository": "https://github.com/OctopusGarage/talksprout",
+  "contentBase": "https://raw.githubusercontent.com/OctopusGarage/talksprout/main/content/",
+  "mcpEndpoint": "https://talksprout-mcp.octopusgarage.workers.dev/mcp",
+  "workerName": "talksprout-mcp",
+  "icon": "public/icons/icon-512.png",
+  "description": "Practice English with conversation coaches, scenarios, reviews and reading, writing and listening guidance.",
+  "packages": {
+    "skill": "talksprout-skill.zip",
+    "plugin": "talksprout-plugin-chatgpt.zip",
+    "claudePlugin": "talksprout-plugin-claude.zip"
+  },
+  "cloudflareAccountId": "057df7c08e1457f236e308a5d14c9934"
+}

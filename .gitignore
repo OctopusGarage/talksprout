@@ -7,3 +7,12 @@ playwright-report/
 # Agent workflow scratch files
 **/superpowers/
 .superpowers/
+
+# Generated AI build artifacts
+public/downloads/
+mcp/generated/
+mcp/.wrangler/
+mcp/dist/
+mcp/.cloudflare/
+__pycache__/
+*.pyc

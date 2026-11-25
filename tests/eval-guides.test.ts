@@ -1,3 +1,4 @@
+import { validateGuideReviewsWithCodex } from "../evals/codex-validate";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -42,7 +43,8 @@ test("accepted guide evidence is bound to current prompts, whole articles and re
   const sessions = JSON.parse(readFileSync("evals/fixtures/guide-sessions-live-api.json", "utf8"));
   const reviews = JSON.parse(readFileSync("evals/fixtures/guide-review-live-api.json", "utf8"));
   assert.deepEqual(validateLiveArchive(sessions, createGuideInteractionCases()).issues, []);
-  assert.deepEqual(validateLiveArchive(reviews, createGuideReviewCases()).issues, []);
+  const codex = JSON.parse(readFileSync("evals/fixtures/codex-source-reviews.json", "utf8"));
+  assert.deepEqual(validateGuideReviewsWithCodex(reviews, codex, createGuideReviewCases(), JSON.parse(readFileSync("evals/fixtures/codex-review-status.json", "utf8"))).issues, []);
   const stale = structuredClone(sessions);
   stale.cases[0].turnResults[0].target.content = "Changed reply";
   assert.ok(validateLiveArchive(stale, createGuideInteractionCases()).issues.length > 0);

@@ -85,11 +85,14 @@ test("both directories preserve reading position and cached resources work offli
     if (!navigator.serviceWorker.controller) await new Promise<void>(resolve => navigator.serviceWorker.addEventListener("controllerchange", () => resolve(), { once: true }));
   });
   const region = page.getByTestId("page-scroll");
-  await region.evaluate(el => { el.scrollTop = el.scrollHeight; });
-  const position = await region.evaluate(el => el.scrollTop);
-  await page.locator(".guide-entry").last().click();
-  await page.getByRole("button", { name: "返回扩展资料", exact: true }).click();
-  await expect.poll(async () => Math.abs(await region.evaluate(el => el.scrollTop) - position)).toBeLessThanOrEqual(2);
+  for (const shelf of [{url:"/#guides?section=reading",back:"返回扩展资料"},{url:"/#guides",back:"返回配套指南"}]) {
+    await page.goto(shelf.url);
+    await region.evaluate(el => { el.scrollTop = el.scrollHeight; });
+    const position = await region.evaluate(el => el.scrollTop);
+    await page.locator(".guide-entry").last().click();
+    await page.getByRole("button", { name: shelf.back, exact: true }).click();
+    await expect.poll(async () => Math.abs(await region.evaluate(el => el.scrollTop) - position)).toBeLessThanOrEqual(2);
+  }
   await context.setOffline(true);
   await page.goto("/#guides/doubao-learning");
   await page.reload();

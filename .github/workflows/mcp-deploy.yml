@@ -1,0 +1,38 @@
+name: Deploy and verify MCP
+on:
+  workflow_dispatch:
+    inputs:
+      endpoint:
+        description: Deployed HTTPS URL ending in /mcp
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: talksprout-production-main
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: mcp-production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --dir mcp install --frozen-lockfile
+      - run: pnpm sync
+      - run: git diff --exit-code -- content distribution skills
+      - run: pnpm mcp:typecheck
+      - run: pnpm mcp:test
+      - run: pnpm mcp:build
+      - run: pnpm --dir mcp run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - run: pnpm exec tsx scripts/verify-mcp.ts "$MCP_ENDPOINT"
+        env:
+          MCP_ENDPOINT: ${{ inputs.endpoint }}

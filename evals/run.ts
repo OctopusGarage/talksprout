@@ -1,3 +1,6 @@
+import { validateCodexStatus } from "./codex-status";
+import { createCodexReviewCases } from "./codex-cases";
+import { validateCodexArchive, validateGuideReviewsWithCodex } from "./codex-validate";
 import { createGuideInteractionCases, createGuideReviewCases, createGuideRegressionCases } from "./guide-cases";
 import { validateGuideObservations } from "./guide-evidence";
 import { validateFrozenArchive, validateOriginalFinding, validateHelpFinding, validateSessionReviews } from './frozen-validate';
@@ -28,10 +31,14 @@ const sessionLive = validateLiveArchive(JSON.parse(readFileSync("evals/fixtures/
 const calibration = validateCalibration(JSON.parse(readFileSync('evals/fixtures/judge-calibration.json', 'utf8')));
 const frozen = validateFrozenArchive(JSON.parse(readFileSync('evals/fixtures/frozen-live-api.json', 'utf8')));
 const guideSessions = validateLiveArchive(JSON.parse(readFileSync("evals/fixtures/guide-sessions-live-api.json", "utf8")), createGuideInteractionCases());
-const guideReviews = validateLiveArchive(JSON.parse(readFileSync("evals/fixtures/guide-review-live-api.json", "utf8")), createGuideReviewCases());
+const codexArchive = JSON.parse(readFileSync("evals/fixtures/codex-source-reviews.json", "utf8"));
+const codexReviews = validateCodexArchive(codexArchive, createCodexReviewCases());
+const codexStatus = JSON.parse(readFileSync("evals/fixtures/codex-review-status.json", "utf8"));
+const codexStatusIssues=validateCodexStatus(codexStatus,codexArchive,createCodexReviewCases());
+const guideReviews = validateGuideReviewsWithCodex(JSON.parse(readFileSync("evals/fixtures/guide-review-live-api.json", "utf8")), codexArchive, createGuideReviewCases(), codexStatus);
 const guideObservations = validateGuideObservations(JSON.parse(readFileSync("evals/results/2026-11-15-guide-regression-rejudged.json", "utf8")), createGuideRegressionCases());
 const issues: string[] = [
-  ...guideSessions.issues, ...guideReviews.issues, ...guideObservations.issues,
+  ...guideSessions.issues, ...guideReviews.issues, ...codexReviews.issues, ...codexStatusIssues, ...guideObservations.issues,
   ...validateOriginalFinding(JSON.parse(readFileSync('evals/results/2026-11-14-frozen-verification-initial.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-frozen-verification-static-finding.json', 'utf8'))),
   ...validateHelpFinding(JSON.parse(readFileSync('evals/results/2026-11-14-listening-followup-first.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-listening-help-static-finding.json', 'utf8'))),
   ...validateHelpFinding(JSON.parse(readFileSync('evals/results/2026-11-14-listening-followup-second.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-listening-help-second-static-finding.json', 'utf8'))),
@@ -79,9 +86,9 @@ console.log(
   JSON.stringify(
     {
       method:
-        "Static contracts, sealed authored archives, and recorded live API evidence; this invocation makes no new API calls",
+        "Static contracts, sealed authored archives, recorded live API evidence and separately recorded Codex CLI source reviews; this invocation makes no new model calls",
       results: validated.results,
-      guideEvaluations: { acceptedSessions: guideSessions.cases, acceptedReviews: guideReviews.cases, observedRegressions: guideObservations, method: "Recorded real text API evidence; no fresh requests, audio, other-provider or learning-outcome tests" },
+      guideEvaluations: { acceptedSessions: guideSessions.cases, acceptedReviews: guideReviews.cases, observedRegressions: guideObservations, codexSourceReviews: codexReviews.cases, method: "Historical real text API evidence plus isolated same-model Codex CLI source target/judge executions; no fresh calls, account installation, audio or learning-outcome tests" },
       supplementaryPrompts: { count: learningPrompts.length, method: "Static editorial review and recorded real text API execution; no audio tests", liveCases: learningLive.cases, adjudications: learningLive.adjudications },
       scenePresetCases: JSON.parse(
         readFileSync("evals/fixtures/scene-presets.json", "utf8"),

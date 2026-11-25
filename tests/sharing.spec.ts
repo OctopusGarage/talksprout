@@ -45,7 +45,7 @@ test("denied clipboard selects the clean link and dismissal restores focus", asy
   await expect(page.getByRole("button", { name: "分享 TalkSprout", exact: true })).toBeFocused();
 });
 
-test("downloaded PNG decodes to the app home and contains iPhone opening instructions", async ({ page }) => {
+test("downloaded PNG decodes to the app home and share dialog provides iPhone opening instructions", async ({ page }) => {
   await page.goto("/?private=PRIVATE_468#settings");
   const dialog = await openShare(page, true);
   const preview = dialog.getByRole("img", { name: /二维码分享卡片/ });

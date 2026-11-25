@@ -1,0 +1,39 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "talksprout",
+  "version": "0.1.0",
+  "description": "Practice English with conversation coaches, scenarios, reviews and reading, writing and listening guidance.",
+  "author": {
+    "name": "OctopusGarage",
+    "url": "https://github.com/OctopusGarage"
+  },
+  "homepage": "https://github.com/OctopusGarage/talksprout",
+  "repository": "https://github.com/OctopusGarage/talksprout",
+  "license": "MIT",
+  "keywords": [
+    "english",
+    "learning",
+    "coaching",
+    "talksprout"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "TalkSprout",
+        "shortDescription": "English practice and review",
+        "longDescription": "Practice English with conversation coaches, scenarios, reviews and reading, writing and listening guidance.",
+        "developerName": "OctopusGarage",
+        "category": "Productivity",
+        "capabilities": [
+          "Read"
+        ],
+        "websiteURL": "https://github.com/OctopusGarage/talksprout",
+        "defaultPrompt": [
+          "Use TalkSprout to practice a workplace conversation."
+        ],
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png"
+      }
+    }
+  }
+}
