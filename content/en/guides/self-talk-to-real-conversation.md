@@ -1,34 +1,15 @@
 # Turn daily self-talk into a conversation
 
-Describe something from your day, then extend it through follow-up or retelling.
+Describe a small event, then practise responding to someone.
 
-## Start with a short description
+## Start with a few sentences
 
-Describe an event in a few sentences, then continue with Natural Conversation Coach. Short sentences and pauses are fine. Describe a missing word by its purpose or ask for support.
+Describe something that happened today or a decision ahead. Explain a missing word by its purpose or ask for a hint.
 
+## Add a partner
 
+Choose Friendly Free Chat to discuss it, or Retelling Coach to finish your account before feedback. Use your description as the opening.
 
-I cooked noodles because I got home late.
-Next question: What would you cook if a friend came over?
+## Try an unplanned response
 
-
-
-## Choose a variation for your goal
-
-Retelling Coach waits for a short section before feedback. Visual Description Coach accepts a photo or an object description. Debate supports reasons and responses; guessing followed by sentence-making supports vocabulary retrieval.
-
-
-
-
-
-
-
-## Check your response to something new
-
-Go beyond memorising a monologue. Answer an unprepared follow-up or rephrase when misunderstood to check how the practice supports an exchange.
-
-
-
-
-
-
+Invite a detail question or a different view. Clarify, rephrase or respond to disagreement rather than relying only on a prepared monologue.

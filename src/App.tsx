@@ -1,3 +1,4 @@
+import { AISetup } from "./AISetup";
 import "./quick-access.css";
 import {
   lazy,
@@ -144,7 +145,7 @@ export default function App() {
       const guideOpener = previous.startsWith("#guides/") && (route.base === "#guides" || route.base === "#guides?section=reading")
         ? document.getElementById(guideEntryId(canonicalGuideId(previous.slice("#guides/".length))))
         : null;
-      (guideOpener ?? opener ?? document.getElementById("library-heading"))?.focus({ preventScroll: true });
+      ((previous === "#ai" && route.base === "#settings" ? document.getElementById("ai-entry") : null) ?? guideOpener ?? opener ?? document.getElementById("library-heading"))?.focus({ preventScroll: true });
     });
     return () => cancelAnimationFrame(frame);
   }, [route.base]);
@@ -286,62 +287,19 @@ export default function App() {
       prompt: null,
       content: (
         <>
-          <h2 id="dialog-title">
-            {kind === "install"
-              ? s("把开口芽放进口袋", "Take TalkSprout with you")
-              : s("使用说明", "About TalkSprout")}
-          </h2>
+          <h2 id="dialog-title">{kind === "install" ? s("把开口芽放进口袋", "Take TalkSprout with you") : s("使用说明", "Instructions")}</h2>
           {kind === "install" ? (
             <>
-              <p>
-                {s(
-                  "iPhone 和 iPad：在 Safari 点“分享”，选择“添加到主屏幕”。",
-                  "iPhone and iPad: in Safari, choose Share → Add to Home Screen.",
-                )}
-              </p>
-              <p>
-                {s(
-                  "Android：浏览器菜单选择“安装应用”或“添加到主屏幕”。桌面：点击地址栏安装图标。",
-                  "Android: choose Install app or Add to Home Screen in the browser menu. Desktop: use the install icon in the address bar.",
-                )}
-              </p>
-              <p>
-                {s(
-                  "首次完整加载后可离线浏览缓存内容。外部 AI 需要网络。",
-                  "After a full online visit, cached content works offline. External AI requires internet access.",
-                )}
-              </p>
+              <p>{s("iPhone 和 iPad：在 Safari 点“分享”，选择“添加到主屏幕”。", "iPhone and iPad: in Safari, choose Share → Add to Home Screen.")}</p>
+              <p>{s("Android：浏览器菜单选择“安装应用”或“添加到主屏幕”。桌面：点击地址栏安装图标。", "Android: choose Install app or Add to Home Screen in the browser menu. Desktop: use the install icon in the address bar.")}</p>
+              <p>{s("首次完整加载后可离线浏览缓存内容。外部 AI 需要网络。", "After a full online visit, cached content works offline. External AI requires internet access.")}</p>
             </>
           ) : (
             <>
-              <p>
-                {s(
-                  "选择练习 → 复制提示词 → 粘贴到外部 AI → 选择语音或文字练习。",
-                  "Choose practice → copy the prompt → paste into an external AI → practice by voice or text.",
-                )}
-              </p>
-              <p>
-                {s(
-                  "开始练习用于对话开头；结束与复习用于原来的对话结束后，整理笔记、句子、词汇或自测卡片。两类各有简短语音版本。",
-                  "Start practice sets up a new conversation. Wrap-up & Review turns an existing chat into notes, sentences, vocabulary, or self-study cards. Both offer short spoken versions.",
-                )}
-              </p>
-              <p>{s(
-                "听读写辅助有独立收藏。常用组合保存教练、场景与练习方式；分享链接和最近复制都不包含补充背景。复习和听读写辅助的讲解语言跟随界面选择；陪练以英语练习为主，可向 AI 请求中文帮助。",
-                "Learning helpers have separate favorites. Saved combinations keep the coach, scenario and format. Links and recent copies exclude extra background. Review and learning-helper explanations follow the interface language. Conversation coaches focus on English practice; ask your AI for Chinese help when needed.",
-              )}</p>
-              <p>
-                {s(
-                  "无账号、无分析追踪。收藏、最近复制和语言保存在本机，清除浏览器数据会移除记录。本站不保存 AI 聊天。",
-                  "No accounts or analytics. Favorites, recent copies and language are stored locally; clearing browser data removes them. AI conversations are not stored here.",
-                )}
-              </p>
-              <p>
-                {s(
-                  "等级与时长为练习建议。",
-                  "Levels and durations are practice suggestions.",
-                )}
-              </p>
+              <p>{s("在网页选择提示词，复制到自己的 AI 开始练习；也可接入 Skill、插件或 MCP，直接在 AI 中选择和练习。", "Choose and copy a prompt into your AI, or set up a Skill, plugin or MCP to choose and practise directly there.")}</p>
+              <p>{s("练习结束后，在同一段 AI 对话中选择总结方式，生成学习资料，再按需复制或保存。语音和云端保存由所用 AI 平台提供。", "After practice, choose a review in the same AI chat, then copy or save the study material. Voice and cloud saving depend on your AI platform.")}</p>
+              <p><a href="#guides/complete-workflow">{s("完整使用流程：从练习到保存笔记", "Full workflow: from practice to saved notes")}</a></p>
+              <p>{s("无账号、无分析追踪。收藏和偏好保存在本机；本站不保存 AI 聊天。", "No accounts or analytics. Favorites and preferences stay on this device; TalkSprout does not store AI conversations.")}</p>
             </>
           )}
         </>
@@ -352,7 +310,7 @@ export default function App() {
   const currentCollection = collections.find((c) => c.id === route.collection);
   const currentGuideTitle = route.guideId ? guideTitles[route.guideId] : undefined;
   const title =
-    route.page === "guides"
+    route.page === "ai" ? s("在 AI 中使用","Use in your AI") : route.page === "guides"
       ? currentGuideTitle?.[locale] ?? s("学习指南", "Learning guides")
       : route.page === "learning"
       ? s("听读写辅助", "Listening, reading & writing")
@@ -417,7 +375,7 @@ export default function App() {
                 href={href}
                 aria-current={
                   route.page === page ||
-                  (page === "practice" && route.page === "learning")
+                  (page === "practice" && route.page === "learning") || (page === "settings" && route.page === "ai")
                     ? "page"
                     : undefined
                 }
@@ -455,15 +413,15 @@ export default function App() {
       <main className="app-main">
         <header className="app-header">
           {((route.page === "practice" && route.collection) ||
-            route.page === "learning") && (
+            route.page === "learning" || route.page === "ai") && (
             <button
               className="back-button icon-button"
               aria-label={
-                route.page === "learning"
+                route.page === "ai" ? s("返回设置", "Back to settings") : route.page === "learning"
                   ? s("← 返回练习", "← Back to practice")
                   : s("← 返回分类", "← Back to collections")
               }
-              onClick={() => navigate("#library")}
+              onClick={() => { if (route.page === "ai" && history.state?.talksproutAiOrigin) history.back(); else navigate(route.page === "ai" ? "#settings" : "#library"); }}
             >
               <Icon name="back" />
             </button>
@@ -506,7 +464,7 @@ export default function App() {
         >
           <div
             className="workspace"
-            hidden={route.page === "settings" || route.page === "learning" || route.page === "guides"}
+            hidden={route.page === "ai" || route.page === "settings" || route.page === "learning" || route.page === "guides"}
           >
             <PromptLibrary
               locale={locale}
@@ -546,11 +504,10 @@ export default function App() {
               <GuideLibrary locale={locale} writer={writer} copying={copying} shelf={route.guideShelf} guideId={route.page === "guides" ? route.guideId : undefined} />
             </Suspense>
           </div>}
+          {route.page === "ai" && <div className="workspace"><AISetup key={locale} locale={locale} writer={writer} copying={copying} online={online} /></div>}
           {route.page === "settings" && (
             <div className="workspace">
               <Settings
-                writer={writer}
-                copying={copying}
                 locale={locale}
                 onLocale={changeLocale}
                 online={online}

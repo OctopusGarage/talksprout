@@ -1,3 +1,8 @@
-TalkSprout English learning Skill and host-specific ChatGPT/Claude plugin packages.
+# TalkSprout 0.1.1
 
-Archives pin public learning documents to the release source revision. Verify SHA256SUMS before importing. Skill/plugin installation does not connect MCP automatically. Host installation availability and permissions vary. These packages do not access local favorites or private scenario background. See the repository AI installation guide and infrastructure coverage ledger for verification limits.
+- Shorter practice examples and a simpler note-saving section on AI setup.
+- Concise user guides, with long AI configurations available on demand.
+- One English library for Skills and MCP, with explanations in the learner’s language. The app remains bilingual.
+- Clean up obsolete documentation and tooling.
+
+The lightweight Skill follows remote updates. Replace the full Skill snapshot for embedded content updates.

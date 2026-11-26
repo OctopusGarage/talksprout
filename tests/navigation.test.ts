@@ -89,3 +89,7 @@ test("companion and resource article identities remain distinct", () => {
   for (const id of ["four-strands-of-language-learning", "build-a-learning-routine", "self-talk-to-real-conversation", "ten-minute-ai-conversation", "english-resource-directory", "choose-learning-materials"])
     assert.equal(readRoute(`#guides/${id}`).guideId, id);
 });
+test('AI installation has an independent route and cannot open practice prompts',()=>{
+ const route=readRoute('#ai?prompt=roleplay-coach');
+ assert.equal(route.page,'ai');assert.equal(route.base,'#ai');assert.equal(route.promptId,null);
+});

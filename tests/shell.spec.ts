@@ -159,7 +159,7 @@ test("Back closes a routed sheet, restores focus and scroll, and footer copies e
   await page.keyboard.press("Escape");
   await expect(page.locator("#detail")).toBeHidden();
   await expect(page).toHaveURL(/#collection\/companions$/);
-  await expect(page.locator(".card")).toHaveCount(4);
+  await expect(page.locator(".card")).toHaveCount(6);
 });
 
 test("settings language radios and header toggle stay bilingual without an external footer", async ({
@@ -353,7 +353,7 @@ test("collection search stays scoped and native history preserves each base filt
   await expect(page.locator(".card")).toHaveCount(0);
   await page.getByRole("button", { name: "清除筛选", exact: true }).click();
   await expect(page.getByRole("searchbox")).toHaveValue("");
-  await expect(page.locator(".card")).toHaveCount(4);
+  await expect(page.locator(".card")).toHaveCount(6);
   await page.goBack();
   await expect(page).toHaveURL(/#library$/);
   await page.getByRole("searchbox").fill("coffee");

@@ -16,3 +16,14 @@ mcp/dist/
 mcp/.cloudflare/
 __pycache__/
 *.pyc
+
+# Temporary diagnostics and editor leftovers
+*.log
+*.tmp
+*.bak
+*.orig
+*.rej
+*~
+
+# Retired model-evaluation tooling
+evals/

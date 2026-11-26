@@ -6,9 +6,9 @@ import { filterGuides, guidePracticeHref } from "../src/guides";
 import { readRoute } from "../src/navigation";
 
 test("the original companion and reading classifications stay separate", () => {
-  assert.equal(practiceArticles.length, 10);
+  assert.equal(practiceArticles.length, 11);
   assert.equal(readingArticles.length, 7);
-  assert.equal(new Set(handbookArticles.map(article => article.id)).size, 17);
+  assert.equal(new Set(handbookArticles.map(article => article.id)).size, 18);
   assert.deepEqual(guideGroups.filter(group => group.shelf === "practice").map(group => group.id), ["prepare", "practise", "review"]);
   assert.deepEqual(guideGroups.filter(group => group.shelf === "reading").map(group => group.id), ["methods", "ai"]);
   assert.deepEqual(guideTopics.reading.map(topic => topic.id), ["methods", "ai"]);
@@ -62,4 +62,14 @@ test("AI reference has three distinct articles with copyable configurations", ()
   const global = readingArticles.find(article => article.id === "ai-global-instructions")!;
   assert.ok(bots.sections.filter(section => "prompt" in section).length >= 5);
   assert.ok(JSON.stringify(global).includes("at least ~70% English words"));
+});
+
+test("complete workflow leads the practice shelf and preserves both routes", () => {
+  const article = practiceArticles[0];
+  assert.equal(article.id, "complete-workflow");
+  for (const id of ["manual", "setup", "voice", "review", "save", "return"]) {
+    assert.ok(article.sections.some(section => section.id === id));
+  }
+  assert.ok(article.practice?.some(practice => practice.promptId === "friend-chat"));
+  assert.ok(article.practice?.some(practice => practice.promptId === "complete-study-notes"));
 });

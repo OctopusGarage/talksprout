@@ -10,7 +10,7 @@ test("directory first: three folders and no flat wall of prompts", async ({
   await expect(page.locator(".collection-card")).toHaveCount(3);
   await expect(page.locator(".card")).toHaveCount(0);
   await openFolder(page, "companions");
-  await expect(page.locator(".card")).toHaveCount(4);
+  await expect(page.locator(".card")).toHaveCount(6);
   await expect(page).toHaveURL(/#collection\/companions$/);
   await page.goBack();
   await expect(page.locator(".collection-card")).toHaveCount(3);
@@ -23,7 +23,7 @@ test("each retained coach is reachable in exactly one collection", async ({
 }) => {
   const seen: string[] = [];
   for (const [id, count] of [
-    ["companions", 4],
+    ["companions", 6],
     ["interaction", 3],
     ["materials", 3],
   ] as const) {
@@ -43,7 +43,7 @@ test("each retained coach is reachable in exactly one collection", async ({
     }
   }
   expect(new Set(seen)).toEqual(new Set(prompts.map((p) => p.id)));
-  expect(seen.length).toBe(10);
+  expect(seen.length).toBe(prompts.length);
 });
 test("copy, favorites, global search and exact dialog payload", async ({
   page,
@@ -103,7 +103,7 @@ test("offline reload supports folder deep links and favorites", async ({
   await expect(page.locator('[data-favorite="gentle-start"]')).toHaveAttribute("aria-pressed", "true");
   await context.setOffline(true);
   await page.reload();
-  await expect(page.locator(".card")).toHaveCount(4);
+  await expect(page.locator(".card")).toHaveCount(6);
   await expect(page.locator("#connection")).toHaveText("离线模式 · 练习依然在");
   await page.locator("#favorites").click();
   await expect(page.locator(".card")).toHaveCount(1);

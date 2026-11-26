@@ -1,35 +1,15 @@
 # Build a routine you can keep
 
-Choose a suitable practice tool, make an attempt and keep something useful for next time.
+Choose a small task, finish a practice and leave one target for next time.
 
-## Choose one task for today
+## Choose a concrete goal
 
-Start with Natural Conversation Coach for conversation or Gentle Conversation Coach for easier questions and models. For a passage, recording or draft, choose the relevant listening, reading or writing helper. One tool is enough for a session.
+Decide what you want to discuss, understand or write. Try Friendly Free Chat for conversation, Gentle Conversation Coach for support, or a learning helper for supplied material.
 
+## Keep the session manageable
 
+Start with a few minutes, one topic or a short passage. Try first, then use feedback. Reduce the task on busy days.
 
+## Leave one target
 
-
-
-
-## Send the prompt to your own AI
-
-
-
-1. Open the tool, choose a scenario if useful and copy the full prompt, or read its short spoken opening when pasting is inconvenient.
-2. Start in your external AI, answer yourself and then work with the feedback. Ask for a hint or a sample phrase when needed.
-3. After practice, choose one Wrap-up & Review tool and send its prompt back in the conversation where you practised.
-
-
-
-
-
-## Continue with one priority next time
-
-Keep one target and try using it next time. A saved practice combination reopens your setup; it does not save the external conversation or schedule reviews.
-
-
-
-
-
-
+Keep one useful expression or unresolved question. Try it at the start of your next session; a complete transcript is not always needed.

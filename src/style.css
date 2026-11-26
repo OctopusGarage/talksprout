@@ -965,7 +965,8 @@ summary {
   line-height: 1.8;
   margin: 16px 0;
 }
-.chat-tips {
+.chat-tips,
+.archive-tips {
   border-top: 1px solid var(--border);
   margin-top: 16px;
   font-size: 13px;

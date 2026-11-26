@@ -54,3 +54,9 @@
 .guide-copy { min-height: 44px; padding: 10px 18px; margin-top: 14px; border: 0; border-radius: 10px; background: var(--green); color: #fff; font-weight: 600; cursor: pointer; }
 .guide-copy:disabled { opacity: .65; cursor: wait; }
 .guide-prompt .guide-copy-status { min-height: 24px; margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+.guide-prompt-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.guide-prompt-heading h3 { margin: 0; }
+.guide-prompt-heading .guide-copy { flex-shrink: 0; margin: 0; }
+.guide-prompt-preview { margin-top: 10px; }
+.guide-prompt-preview summary { min-height: 44px; padding: 10px 0; color: var(--muted); font-size: 13px; cursor: pointer; }

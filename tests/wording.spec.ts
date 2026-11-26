@@ -11,7 +11,7 @@ test("navigation has one action per label and English chat examples explain wher
   ).toHaveCount(0);
   await page.getByRole("searchbox").fill("no-such-coach");
   await page.getByRole("button", { name: "清除筛选", exact: true }).click();
-  await expect(page.locator(".card")).toHaveCount(4);
+  await expect(page.locator(".card")).toHaveCount(6);
   await expect(page).toHaveURL(/#collection\/companions$/);
   await page.locator('.detail-link[data-detail="daily-check-in"]').click();
   await page.getByText("和 AI 聊天时，可以这样说", { exact: true }).click();

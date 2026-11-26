@@ -3,8 +3,22 @@ import json
 import subprocess
 import tempfile
 import sys
+import time
 from pathlib import Path
 from release_policy import release_decision, verify_assets, verify_checksums, assert_tag_revision
+
+def require_visible_tag(check_tag, pause=None):
+    """GitHub ref creation can succeed before a subsequent GET sees the ref.
+
+    Retry only absence. A conflicting revision or API/authentication error fails
+    immediately in check_tag; it must never be treated as propagation delay.
+    """
+    for delay in (0, 1, 2, 4):
+        if delay:
+            (pause or time.sleep)(delay)
+        if check_tag():
+            return
+    raise SystemExit('Release tag is not visible after bounded verification; retry publication with the same source revision')
 
 def main():
     operation = sys.argv[1] if len(sys.argv)>1 else 'publish'
@@ -20,7 +34,7 @@ def main():
     if set(current['assets']) != set(config['packages'].values()):
         raise SystemExit('Release assets differ from configured packages')
     repository=config['repository'].removeprefix('https://github.com/')
-    tag='ai-v'+config['version']
+    tag='v'+config['version']
     def gh(*args): return subprocess.check_output(['gh',*args],text=True,stderr=subprocess.PIPE)
     def check_tag():
         try:
@@ -37,7 +51,7 @@ def main():
         if 'HTTP 404' not in error.stderr: raise
         release=None
     if release and not release['draft'] and not tag_exists:
-        raise SystemExit('Published release tag is missing; restore the verified tag before reusing it')
+        require_visible_tag(check_tag)
     with tempfile.TemporaryDirectory() as directory:
         previous=None
         if release:
@@ -59,7 +73,7 @@ def main():
             gh('release','download',tag,'--repo',repository,'--dir',directory,'--clobber',*patterns)
             verify_assets(previous,directory)
             verify_checksums(directory,[*config['packages'].values(),'release-manifest.json'])
-            if not check_tag(): raise SystemExit('Published release tag disappeared during verification')
+            require_visible_tag(check_tag)
             return
         if operation=='preflight': return
         revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
@@ -70,10 +84,10 @@ def main():
                 gh('api','--method','POST',f'repos/{repository}/git/refs','-f','ref=refs/tags/'+tag,'-f','sha='+revision)
             except subprocess.CalledProcessError as error:
                 if 'HTTP 422' not in error.stderr: raise
-            if not check_tag(): raise SystemExit('Release tag was not created')
+            require_visible_tag(check_tag)
         if decision=='create':
-            gh('release','create',tag,'--draft','--repo',repository,'--target',revision,'--title','TalkSprout AI '+config['version'],'--notes-file','distribution/release-notes.md')
+            gh('release','create',tag,'--draft','--repo',repository,'--target',revision,'--title','TalkSprout '+config['version'],'--notes-file','distribution/release-notes.md')
         gh('release','upload',tag,*assets,'--clobber','--repo',repository)
-        if not check_tag(): raise SystemExit('Release tag disappeared before publication')
+        require_visible_tag(check_tag)
         gh('release','edit',tag,'--draft=false','--repo',repository)
 if __name__=='__main__': main()

@@ -108,7 +108,7 @@ test("English and Chinese directory and folder layouts fit narrow phones and des
           .click();
       for (const [hash, count] of [
         ["#library", 0],
-        ["#collection/companions", 4],
+        ["#collection/companions", 6],
         ["#collection/interaction", 3],
         ["#collection/materials", 3],
       ] as const) {

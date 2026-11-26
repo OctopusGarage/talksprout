@@ -1,4 +1,7 @@
-import { assertCompleteDocument } from "./mcp-verification";
+import {
+  assertCompleteDocument,
+  waitForDeploymentIdentity,
+} from "./mcp-verification";
 import { readFile } from "node:fs/promises";
 const endpoint = process.argv[2];
 if (!endpoint || !endpoint.startsWith("https://") || !endpoint.endsWith("/mcp"))
@@ -6,25 +9,32 @@ if (!endpoint || !endpoint.startsWith("https://") || !endpoint.endsWith("/mcp"))
 const identity = JSON.parse(
   await readFile(process.argv[3] || "distribution/identity.json", "utf8"),
 );
-const response = await fetch(new URL("/health", endpoint));
-if (!response.ok) throw Error("Health failed: " + response.status);
-const health = await response.json();
-for (const key of [
+const identityKeys = [
   "name",
   "version",
   "contentVersion",
   "guidanceVersion",
   "fingerprint",
   "iconSha256",
-])
-  if (health[key] !== identity[key]) throw Error("Identity mismatch: " + key);
+];
 const revision =
   identity.sourceRevision ||
   process.env.AI_SOURCE_REVISION ||
   process.env.GITHUB_SHA;
-if (revision && health.sourceRevision !== revision)
-  throw Error("Deployed source revision mismatch");
-for (const [id, method, params] of [
+await waitForDeploymentIdentity(
+  async () => {
+    const response = await fetch(new URL("/health", endpoint), {
+      cache: "no-store",
+    });
+    if (!response.ok) throw Error("Health failed: " + response.status);
+    return response.json();
+  },
+  {
+    ...Object.fromEntries(identityKeys.map((key) => [key, identity[key]])),
+    ...(revision ? { sourceRevision: revision } : {}),
+  },
+);
+for (const { id, method, params } of [
   {
     id: 1,
     method: "initialize",
@@ -43,7 +53,15 @@ for (const [id, method, params] of [
       arguments: { path: "en/prompts/roleplay-coach.md" },
     },
   },
-].map((p) => [p.id, p.method, p.params] as const)) {
+  {
+    id: 4,
+    method: "tools/call",
+    params: {
+      name: "search_documents",
+      arguments: { query: "vocabulary" },
+    },
+  },
+]) {
   const res = await fetch(endpoint, {
     method: "POST",
     headers: {
@@ -71,11 +89,20 @@ for (const [id, method, params] of [
     )
   )
     throw Error("Missing tools");
-  if (method === "tools/call")
+  if (id === 3)
     assertCompleteDocument(
       result.result,
       await readFile("content/en/prompts/roleplay-coach.md", "utf8"),
     );
+  if (id === 4) {
+    const matches = JSON.parse(result.result.content?.[0]?.text ?? "null");
+    if (
+      !Array.isArray(matches) ||
+      matches.length > 20 ||
+      matches[0]?.path !== "en/prompts/vocabulary-ipa-review.md"
+    )
+      throw Error("Deployed search does not prioritize the requested task");
+  }
 }
 const iconResponse = await fetch(
   new URL(`/icons/${identity.iconSha256}.png`, endpoint),
@@ -88,4 +115,6 @@ if (
     .digest("hex") !== identity.iconSha256
 )
   throw Error("Deployed icon mismatch");
-console.log("Deployed health identity and MCP protocol verified");
+console.log(
+  "Deployed health identity, MCP protocol and search ranking verified",
+);

@@ -3,6 +3,7 @@ import { ScenarioPicker } from "./ScenarioPicker";
 import type { SceneSelection } from "./scenes";
 import { Icon } from "./Icon";
 import { promptText } from "./prompt-text";
+import { studyMaterialArchiveExample } from "./content/study-note-archive";
 import { dictionary, metadata, categoryEnglish, type Locale } from "./i18n";
 import type { Prompt, PromptVariant, ReviewSource } from "./types";
 export function PromptDialog({
@@ -60,9 +61,18 @@ export function PromptDialog({
     return () => {
       d.close();
       requestAnimationFrame(() => {
-        if (document.querySelector("dialog[open]") || location.hash.split("?")[0] !== originBase) return;
+        if (
+          document.querySelector("dialog[open]") ||
+          location.hash.split("?")[0] !== originBase
+        )
+          return;
         const focused = document.activeElement;
-        if (focused !== document.body && focused?.isConnected && focused !== previous) return;
+        if (
+          focused !== document.body &&
+          focused?.isConnected &&
+          focused !== previous
+        )
+          return;
         if (previous?.isConnected) previous.focus({ preventScroll: true });
         else
           document
@@ -313,6 +323,26 @@ export function PromptDialog({
                       "Paste into your AI and start by voice or text. This site does not store AI conversations.",
                     )}
             </p>
+            {reviewing && (
+              <details className="archive-tips">
+                <summary>{s("保存学习资料", "Saving study materials")}</summary>
+                <p>
+                  {s(
+                    "建议归档到 TalkSprout，按「日期 - 主题 - 资料类型」命名，或沿用你指定的位置。",
+                    "Use a TalkSprout container and Date - Topic - Material Type titles, or your preferred location.",
+                  )}
+                </p>
+                <p>
+                  <code>{studyMaterialArchiveExample(locale, p.id)}</code>
+                </p>
+                <a href="#ai">
+                  {s(
+                    "到 AI 接入页复制归档规范",
+                    "Copy archiving guidance from AI setup",
+                  )}
+                </a>
+              </details>
+            )}
             {!reviewing && (
               <details className="chat-tips">
                 <summary>

@@ -1,35 +1,17 @@
-# Learn technical English in a useful context
+# Practise technical English
 
-Understand a short passage, then explain the cause, behaviour and impact to a colleague.
+Understand a passage, then explain it to a colleague.
 
-## Understand the passage first
+## Understand it
 
-Use Read technical documentation with a short public passage and identify the difficulty. Separate language, prerequisites, limitations and versions; fluent explanation does not establish technical correctness.
+Use Read technical documentation with a short public passage. Focus on prerequisites, behavior and limitations.
 
+## Explain it yourself
 
+Close the text and explain the problem and behavior, then discuss it in a workplace scenario. Use shareable examples rather than confidential details.
 
+Retries add load during an outage. We use a backoff delay to spread them out.
 
+## Check important facts
 
-
-
-## Explain it in your own words
-
-Close the passage and state the problem it addresses. Use a workplace scenario in Role-play Coach to discuss it, replacing confidential details with a shareable example.
-
-
-
-The service retries failed requests.
-Without a limit, retries can add load during an outage.
-We use a backoff delay to spread them out.
-
-
-
-## Separate language feedback from technical judgment
-
-Invite a follow-up about a condition or limitation. Practise clarity while checking technical claims against the source; a mock interview is not a real hiring assessment.
-
-
-
-
-
-
+Respond to a question about a condition or limitation. Use AI for language feedback and the source for technical verification.

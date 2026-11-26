@@ -6,7 +6,7 @@ import { learningPrompts } from "./content/learning";
 import { compatibleScenes, type SceneSelection } from "./scenes";
 import type { PromptVariant, ReviewSource } from "./types";
 
-export type AppPage = "practice" | "review" | "settings" | "learning" | "guides";
+export type AppPage = "ai" | "practice" | "review" | "settings" | "learning" | "guides";
 export interface AppRoute {
   guideId?: string;
   guideShelf?: "reading";
@@ -25,7 +25,7 @@ export function readRoute(hash = location.hash): AppRoute {
   const collection =
     collections.find((c) => path === `collection/${c.id}`)?.id ?? null;
   const page: AppPage =
-    path === "guides" || path.startsWith("guides/")
+    path === "ai" ? "ai" : path === "guides" || path.startsWith("guides/")
       ? "guides"
       : path === "learning"
       ? "learning"
@@ -35,7 +35,7 @@ export function readRoute(hash = location.hash): AppRoute {
           ? "review"
           : "practice";
   const base =
-    page === "guides"
+    page === "ai" ? "#ai" : page === "guides"
       ? path.startsWith("guides/") ? `#guides/${canonicalGuideId(path.slice("guides/".length))}` : new URLSearchParams(search).get("section") === "reading" ? "#guides?section=reading" : "#guides"
       : page === "learning"
       ? "#learning"
@@ -50,6 +50,7 @@ export function readRoute(hash = location.hash): AppRoute {
   const prompt = allPrompts.find((p) => p.id === requested);
   const promptId =
     prompt &&
+    page !== "ai" &&
     page !== "guides" &&
     page !== "settings" &&
     page !== "learning" &&

@@ -1,135 +1,655 @@
-import type { HandbookArticle, GuideSection } from "./guide-types";
+import { workflowGuide } from "./workflow-guide";
+import type { HandbookArticle } from "./guide-types";
 import { guideTitles } from "./guide-titles";
-import { skillArticles } from "./handbook-skills";
 import { practiceLinks } from "./guide-practice";
 
-const startingGuides: HandbookArticle[] = [
-  {
-    id: "build-a-learning-routine", shelf: "practice", group: "prepare", topic: "methods", title: guideTitles["build-a-learning-routine"],
-    summary: { zh: "从本站选一种合适的练习，完成一次尝试，再留下下次能用的表达。", en: "Choose a suitable practice tool, make an attempt and keep something useful for next time." },
-    tags: [{ zh: "开始练习 日常安排", en: "start practice routine" }],
-    sections: [
-      { id: "choose", title: { zh: "先选今天的一件事", en: "Choose one task for today" }, paragraphs: [
-        { zh: "想开口交流，从「自然聊天纠正」开始；需要容易的问题和示范，选「温柔引导纠正」。带着文章、音频或草稿时，到「听读写辅助」选择对应工具。一次选一种，不需要把目录全部做完。", en: "Start with Natural Conversation Coach for conversation or Gentle Conversation Coach for easier questions and models. For a passage, recording or draft, choose the relevant listening, reading or writing helper. One tool is enough for a session." },
-      ] },
-      { id: "use", title: { zh: "复制后，到自己的 AI 中练", en: "Send the prompt to your own AI" }, steps: [
-        { zh: "打开练习详情，按需选场景，复制完整提示词；不方便粘贴时用简短语音开场白。", en: "Open the tool, choose a scenario if useful and copy the full prompt, or read its short spoken opening when pasting is inconvenient." },
-        { zh: "在外部 AI 中开始，先自己回答，再处理反馈。需要帮助可以要提示或一句示范。", en: "Start in your external AI, answer yourself and then work with the feedback. Ask for a hint or a sample phrase when needed." },
-        { zh: "结束后回到「结束与复习」选一种整理方式，再把提示词发回刚才的 AI 对话。", en: "After practice, choose one Wrap-up & Review tool and send its prompt back in the conversation where you practised." },
-      ] },
-      { id: "continue", title: { zh: "下次从一个重点继续", en: "Continue with one priority next time" }, paragraphs: [
-        { zh: "记录一个想继续练的问题，下次先尝试用出来。本站保存的常用组合用于重新打开练习设置，不会替你保存外部聊天内容，也不会自动安排复习日程。", en: "Keep one target and try using it next time. A saved practice combination reopens your setup; it does not save the external conversation or schedule reviews." },
-      ] },
-    ],
-    practice: practiceLinks(["daily-check-in", "gentle-start", "complete-study-notes"]),
+const practiceCompanions: HandbookArticle[] = [
+{
+  "id": "build-a-learning-routine",
+  "shelf": "practice",
+  "group": "prepare",
+  "topic": "methods",
+  "title": guideTitles["build-a-learning-routine"],
+  "summary": {
+    "zh": "每天选一件小事，完成一次练习，再留一个下次重点。",
+    "en": "Choose a small task, finish a practice and leave one target for next time."
   },
-  {
-    id: "use-ai-and-check-feedback", shelf: "practice", group: "prepare", topic: "ai", title: guideTitles["use-ai-and-check-feedback"],
-    summary: { zh: "分清提示词形式、材料准备和帮助命令，把练习顺利带到外部 AI。", en: "Choose a prompt format, prepare usable material and ask for the right help in your AI chat." },
-    tags: [{ zh: "完整提示词 语音开场白 帮助", en: "full prompt spoken opening help finish" }],
-    sections: [
-      { id: "format", title: { zh: "完整提示词与语音开场白", en: "Full prompt or spoken opening" }, paragraphs: [
-        { zh: "方便粘贴时用「完整提示词」，规则较详细；不方便粘贴时照着「语音开场白」念，再等 AI 提问。简短版本保留主要练法，不能保证与完整版本处理所有情况完全一样。", en: "Use Full prompt for detailed instructions when pasting is convenient. Otherwise read the Spoken opening and wait for the AI. The shorter form keeps the core method, without guaranteeing identical handling of every situation." },
-        { zh: "本站的选择不会直接改变外部 AI。切换教练或任务时，要把新的提示词重新发送；开始另一种练习时，新开对话通常更容易避免旧任务混入。", en: "Selections here do not directly change the external AI. Send the new prompt when changing the tool or task; a new conversation can help separate unrelated exercises." },
-      ] },
-      { id: "commands", title: { zh: "卡住、复盘和结束时", en: "When you need help, review or an ending" }, paragraphs: [
-        { zh: "对话教练中，help / 帮我一下用于当前任务的帮助；review / 复盘用于简短回顾；finish / 结束练习会停止提问。可以自然表达相同意思，不必逐字输入命令。", en: "With conversation coaches, help supports the current task, review asks for a brief recap, and finish stops further questions. Natural requests with the same intent also work." },
-        { zh: "理解自测通常先给线索，猜词先给提示，对话可以给可用示范。想直接看答案时明确说；完整笔记和卡片则使用「结束与复习」中的对应工具。", en: "Comprehension checks usually offer a cue, word games a clue, and conversations may offer a sample. Explicitly ask when you want the answer; use Wrap-up & Review for fuller written notes or cards." },
-      ], example: "Give me a hint first.\nI'd like to skip this retry.\nLet's review what we practised.\nLet's finish for today." },
-      { id: "material", title: { zh: "材料与反馈要核对", en: "Check the material and feedback" }, paragraphs: [
-        { zh: "材料直接提供给外部 AI，不上传到本站。打不开链接时给相关摘录或转写；只有文本时不让 AI 诊断具体发音。对改写先检查意思、时间和语气，不能只看是否更流畅。", en: "Provide material to your external AI, not this site. Supply an excerpt or transcript if a link is inaccessible. Do not request acoustic diagnoses from text alone, and check meaning, time and tone in a revision before judging its fluency." },
-      ] },
-    ],
-    practice: practiceLinks(["writing-feedback", "listening-guide"]),
+  "tags": [
+    {
+      "zh": "开始练习 日常安排",
+      "en": "start practice routine"
+    }
+  ],
+  "sections": [
+    {
+      "id": "choose",
+      "title": {
+        "zh": "选一个具体目标",
+        "en": "Choose a concrete goal"
+      },
+      "paragraphs": [
+        {
+          "zh": "先决定今天想聊什么、听懂什么或写出什么。轻松交流可选「朋友闲聊」，需要提示可选「温柔引导纠正」；有材料时使用听读写工具。",
+          "en": "Decide what you want to discuss, understand or write. Try Friendly Free Chat for conversation, Gentle Conversation Coach for support, or a learning helper for supplied material."
+        }
+      ]
+    },
+    {
+      "id": "use",
+      "title": {
+        "zh": "做一次能完成的练习",
+        "en": "Keep the session manageable"
+      },
+      "paragraphs": [
+        {
+          "zh": "从几分钟、一个话题或一小段材料开始。先自己尝试，再看反馈；忙的时候缩小任务，也能继续。",
+          "en": "Start with a few minutes, one topic or a short passage. Try first, then use feedback. Reduce the task on busy days."
+        }
+      ]
+    },
+    {
+      "id": "continue",
+      "title": {
+        "zh": "留下一个下次重点",
+        "en": "Leave one target"
+      },
+      "paragraphs": [
+        {
+          "zh": "结束时保留一个有用表达或待解决的问题。下次先试着用一次，不必每次整理整段聊天。",
+          "en": "Keep one useful expression or unresolved question. Try it at the start of your next session; a complete transcript is not always needed."
+        }
+      ]
+    }
+  ],
+  "practice": practiceLinks(["daily-check-in", "gentle-start", "complete-study-notes"])
+},
+{
+  "id": "use-ai-and-check-feedback",
+  "shelf": "practice",
+  "group": "prepare",
+  "topic": "ai",
+  "title": guideTitles["use-ai-and-check-feedback"],
+  "summary": {
+    "zh": "选合适的指令，提供材料，再核对 AI 的修改。",
+    "en": "Choose instructions, supply the material and check the feedback."
   },
-  {
-    id: "choose-feedback-style", shelf: "practice", group: "prepare", topic: "ai", title: guideTitles["choose-feedback-style"],
-    summary: { zh: "按今天的目标选择自然聊天、温柔示范、重练或表达改写。", en: "Choose natural conversation, gentle models, focused retries or wording feedback for today's goal." },
-    tags: [{ zh: "纠错 重说 评分", en: "feedback retry correction score" }],
-    sections: [
-      { id: "choose", title: { zh: "四种模式各适合什么", en: "What the four modes are for" }, paragraphs: [
-        { zh: "「自然聊天纠正」每轮最多处理一处有用问题，适合来回交流。「温柔引导纠正」接纳短答案，用自然示范带你继续，不要求每句重说。", en: "Natural Conversation Coach handles at most one useful issue per turn. Gentle Conversation Coach accepts short answers and models wording without requiring every sentence to be repeated." },
-        { zh: "「严格纠错重练」改一处后等你重说或明确跳过。「表达评分与改写」关注清晰度和自然度，需要时给改写并等你再试；数字评分按需提供，只是非正式反馈。", en: "Focused Correction Coach waits for a retry or explicit skip after a correction. Score and Rewrite Coach addresses clarity and naturalness and waits for a useful revision attempt. Numerical scores are optional informal feedback." },
-      ] },
-      { id: "retry", title: { zh: "重说时只处理当前重点", en: "Keep a retry focused" }, steps: [
-        { zh: "先确认修改有没有保留原意，再试说修正后的表达。", en: "Check that the revision preserves your meaning, then try it." },
-        { zh: "不理解时求助或提问；帮助不是已经完成重说。想继续聊天时可明确跳过。", en: "Ask for help or clarification if needed; that is not the retry itself. Explicitly skip when you want to continue." },
-        { zh: "原句已经自然就直接继续，不需要制造错误或每句换成高级表达。", en: "Continue when the original works rather than inventing an error or upgrading every sentence." },
-      ], example: "Original: I work on it yesterday.\nCorrection: I worked on it yesterday.\n\nAlready natural: I finished the task.\nOptional alternative: I completed the task." },
-      { id: "adjust", title: { zh: "根据练习效果调整", en: "Adjust using your experience" }, paragraphs: [
-        { zh: "如果纠错让你无法组织内容，换成较温和方式；如果总跳过同一个错误，下次留一个短时段专练。不要把分数当正式等级，也不要根据文字评分推断口音或说话速度。", en: "If feedback prevents you from developing an idea, choose gentler support. If you keep skipping the same issue, practise it briefly later. Do not treat scores as formal proficiency or infer accent and speed from text." },
-      ] },
-    ],
-    practice: practiceLinks(["daily-check-in", "gentle-start", "focused-correction", "expression-upgrade"]),
+  "tags": [
+    {
+      "zh": "完整提示词 语音开场白 帮助",
+      "en": "full prompt spoken opening help finish"
+    }
+  ],
+  "sections": [
+    {
+      "id": "format",
+      "title": {
+        "zh": "发送练习指令",
+        "en": "Send the practice instructions"
+      },
+      "paragraphs": [
+        {
+          "zh": "能粘贴时用完整提示词；不方便时用简短语音开场白。已接入 Skill 或 MCP 的用户可直接在 AI 中选任务。",
+          "en": "Use the full prompt when pasting is convenient, or the short spoken opening otherwise. With a Skill or MCP connection, choose the task directly in your AI."
+        }
+      ]
+    },
+    {
+      "id": "commands",
+      "title": {
+        "zh": "随时请求帮助",
+        "en": "Ask for help as needed"
+      },
+      "paragraphs": [
+        {
+          "zh": "可以说「给我一个提示」「换个话题」「复盘一下」或「结束练习」。需要完整笔记或卡片时，再选择对应复习工具。",
+          "en": "Ask for a hint, another topic, a recap or an end to practice. Choose a review tool when you want full notes or cards."
+        }
+      ]
+    },
+    {
+      "id": "material",
+      "title": {
+        "zh": "核对内容和反馈",
+        "en": "Check the source and feedback"
+      },
+      "paragraphs": [
+        {
+          "zh": "把材料直接提供给 AI。检查修改是否保留原意、时间和语气；有疑问时请它指出依据。仅凭文字不能判断真实发音。",
+          "en": "Supply material directly to your AI. Check that revisions preserve meaning, time and tone, and ask for the basis of a correction. Text alone cannot establish actual pronunciation."
+        }
+      ]
+    }
+  ],
+  "practice": practiceLinks(["writing-feedback", "listening-guide"])
+},
+{
+  "id": "choose-feedback-style",
+  "shelf": "practice",
+  "group": "prepare",
+  "topic": "ai",
+  "title": guideTitles["choose-feedback-style"],
+  "summary": {
+    "zh": "先决定想轻松交流，还是集中改好一个问题。",
+    "en": "Decide whether you want conversational flow or focused correction."
   },
+  "tags": [
+    {
+      "zh": "纠错 重说 评分",
+      "en": "feedback retry correction score"
+    }
+  ],
+  "sections": [
+    {
+      "id": "choose",
+      "title": {
+        "zh": "按目标选择",
+        "en": "Choose for your goal"
+      },
+      "paragraphs": [
+        {
+          "zh": "想轻松交流，选「朋友闲聊」或「观点交流」；希望有人温和带着说，选「温柔引导纠正」。想改一处后重说，选「严格纠错重练」；关注表达清晰度，可选「表达评分与改写」。",
+          "en": "Choose Friendly Free Chat or Exchange Views for discussion, Gentle Conversation Coach for support, Focused Correction Coach for retries, or Score and Rewrite Coach for clearer expression."
+        }
+      ]
+    },
+    {
+      "id": "retry",
+      "title": {
+        "zh": "一次处理一个重点",
+        "en": "Work on one issue"
+      },
+      "paragraphs": [
+        {
+          "zh": "确认修改保留原意，再试着重说。不理解就提问，想继续就明确跳过。原句自然时，不必为了“升级”而改。",
+          "en": "Check that the correction preserves your meaning, then retry. Ask when unclear or explicitly skip. Natural wording does not need an upgrade."
+        }
+      ],
+      "example": "I work on it yesterday. → I worked on it yesterday."
+    },
+    {
+      "id": "adjust",
+      "title": {
+        "zh": "用起来再调整",
+        "en": "Adjust after trying it"
+      },
+      "paragraphs": [
+        {
+          "zh": "纠错打断思路就换温和方式；总在同一处出错，就留一小段时间专练。评分仅作参考。",
+          "en": "Choose gentler feedback if correction breaks your flow. Set aside a short focused practice for a recurring issue. Treat scores as informal feedback."
+        }
+      ]
+    }
+  ],
+  "practice": practiceLinks(["daily-check-in", "gentle-start", "focused-correction", "expression-upgrade"])
+},
+{
+  "id": "ten-minute-ai-conversation",
+  "shelf": "practice",
+  "group": "practise",
+  "topic": "ai",
+  "title": guideTitles["ten-minute-ai-conversation"],
+  "summary": {
+    "zh": "用一个情境练交流，最后留下少量有用表达。",
+    "en": "Practise one situation and keep a few useful expressions."
+  },
+  "tags": [
+    {
+      "zh": "口语 自言自语 情境对话 纠错 辩论",
+      "en": "speaking conversation self-talk role-play feedback"
+    }
+  ],
+  "sections": [
+    {
+      "id": "site-use",
+      "title": {
+        "zh": "选一个情境",
+        "en": "Choose a situation"
+      },
+      "paragraphs": [
+        {
+          "zh": "从一次工作沟通、旅行经历或日常话题开始。可以直接聊，也可在「情境扮演教练」中选择场景。",
+          "en": "Start with a work conversation, travel experience or everyday topic. Chat freely or choose a scenario in Role-play Coach."
+        }
+      ]
+    },
+    {
+      "id": "situation",
+      "title": {
+        "zh": "说清这次的目标",
+        "en": "Set the goal"
+      },
+      "paragraphs": [
+        {
+          "zh": "告诉 AI 你想完成什么，例如说明延期或处理预订问题。十分钟只是参考，按自己的时间调整。",
+          "en": "Tell the AI what you want to achieve, such as explaining a delay or resolving a booking problem. Treat ten minutes as a flexible guide."
+        }
+      ],
+      "example": "I need to explain a project delay. Help me make the next step clear."
+    },
+    {
+      "id": "feedback",
+      "title": {
+        "zh": "选择反馈节奏",
+        "en": "Choose the feedback rhythm"
+      },
+      "paragraphs": [
+        {
+          "zh": "练流畅度时先讲完再反馈；练准确性时停下来改一个问题。卡住就要提示，再用自己的话继续。",
+          "en": "For flow, speak before receiving feedback. For accuracy, pause to fix one issue. Ask for a hint and continue in your own words."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "zh": "简短收尾",
+        "en": "Finish with a small review"
+      },
+      "paragraphs": [
+        {
+          "zh": "选一到三个有用表达，换个情况再用一次。下次从其中一个继续。",
+          "en": "Choose one to three useful expressions and use them in another situation. Revisit one at your next session."
+        }
+      ]
+    }
+  ],
+  "practice": practiceLinks(["roleplay-coach", "complete-study-notes"])
+},
+{
+  "id": "self-talk-to-real-conversation",
+  "shelf": "practice",
+  "group": "practise",
+  "topic": "methods",
+  "title": guideTitles["self-talk-to-real-conversation"],
+  "summary": {
+    "zh": "先讲一件小事，再练习回应对方。",
+    "en": "Describe a small event, then practise responding to someone."
+  },
+  "tags": [
+    {
+      "zh": "自言自语 看图 复述",
+      "en": "self-talk description retelling"
+    }
+  ],
+  "sections": [
+    {
+      "id": "start",
+      "title": {
+        "zh": "先说几句",
+        "en": "Start with a few sentences"
+      },
+      "paragraphs": [
+        {
+          "zh": "讲今天发生的一件事或接下来要做的决定。不知道某个词时，先解释用途或请求提示。",
+          "en": "Describe something that happened today or a decision ahead. Explain a missing word by its purpose or ask for a hint."
+        }
+      ]
+    },
+    {
+      "id": "choose",
+      "title": {
+        "zh": "找一个交流伙伴",
+        "en": "Add a partner"
+      },
+      "paragraphs": [
+        {
+          "zh": "想继续聊可选「朋友闲聊」；想先讲完再纠错可选「复述纠错教练」。把刚才的内容作为开场。",
+          "en": "Choose Friendly Free Chat to discuss it, or Retelling Coach to finish your account before feedback. Use your description as the opening."
+        }
+      ]
+    },
+    {
+      "id": "transfer",
+      "title": {
+        "zh": "回应没准备的问题",
+        "en": "Try an unplanned response"
+      },
+      "paragraphs": [
+        {
+          "zh": "请对方追问一个细节，或提出不同看法。尝试澄清、换个说法或回应反驳，逐渐离开预先写好的独白。",
+          "en": "Invite a detail question or a different view. Clarify, rephrase or respond to disagreement rather than relying only on a prepared monologue."
+        }
+      ]
+    }
+  ],
+  "practice": practiceLinks(["daily-check-in", "story-summary", "visual-vocabulary"])
+},
+{
+  "id": "listen-check-listen",
+  "shelf": "practice",
+  "group": "practise",
+  "topic": "methods",
+  "title": guideTitles["listen-check-listen"],
+  "summary": {
+    "zh": "先听大意，再核对难点，最后回到原声。",
+    "en": "Listen for meaning, check a difficulty and return to the recording."
+  },
+  "tags": [
+    {
+      "zh": "听力 精听 泛听 跟读 听写",
+      "en": "listening audio dictation shadowing"
+    }
+  ],
+  "sections": [
+    {
+      "id": "site-use",
+      "title": {
+        "zh": "选择对应的听力工具",
+        "en": "Choose the listening task"
+      },
+      "paragraphs": [
+        {
+          "zh": "听写用「听写对照与查漏」，检查主旨和细节用「听力理解自测」，模仿节奏用「短句跟读准备」。",
+          "en": "Use Dictation comparison for transcription, Listening comprehension check for meaning, and Prepare a shadowing segment for imitation."
+        }
+      ]
+    },
+    {
+      "id": "workflow",
+      "title": {
+        "zh": "处理一小段",
+        "en": "Work through a short segment"
+      },
+      "paragraphs": [
+        {
+          "zh": "先不看文本听一遍，说明大意；再核对一处没听清的地方。弄懂后暂停模仿，最后隐藏文本再听一次。",
+          "en": "Listen without text and state the meaning. Check one unclear moment, imitate it after understanding, then listen again without text."
+        }
+      ],
+      "example": "I heard: We need ship it Friday.\nReference: We need to ship it by Friday."
+    },
+    {
+      "id": "ai-help",
+      "title": {
+        "zh": "把自己的尝试交给 AI",
+        "en": "Share your attempt"
+      },
+      "paragraphs": [
+        {
+          "zh": "提供听写或要点及对应原文，让 AI 帮你找差异。只有文字时，它能解释语言，不能确认声音问题。熟悉后换一段相近材料再试。",
+          "en": "Supply your attempt and the reference for comparison. With text alone, the AI can explain language but not establish an acoustic cause. Try related new material afterward."
+        }
+      ]
+    }
+  ],
+  "practice": practiceLinks(["listening-dictation", "listening-shadowing", "listening-check"])
+},
+{
+  "id": "read-and-check-understanding",
+  "shelf": "practice",
+  "group": "practise",
+  "topic": "methods",
+  "title": guideTitles["read-and-check-understanding"],
+  "summary": {
+    "zh": "先自己读，再针对难点提问，最后检查理解。",
+    "en": "Read first, ask about a difficulty and check your understanding."
+  },
+  "tags": [
+    {
+      "zh": "阅读 长难句 技术英语 理解自测",
+      "en": "reading complex sentences technical English comprehension"
+    }
+  ],
+  "sections": [
+    {
+      "id": "site-use",
+      "title": {
+        "zh": "选择阅读工具",
+        "en": "Choose a reading tool"
+      },
+      "paragraphs": [
+        {
+          "zh": "段落疑问用「文章阅读辅导」，句子结构用「长难句拆解」，独立自测用「阅读理解自测」。",
+          "en": "Use Reading guide for a passage, Unpack a complex sentence for structure, and Reading comprehension check for self-testing."
+        }
+      ]
+    },
+    {
+      "id": "read-first",
+      "title": {
+        "zh": "先概括大意",
+        "en": "State the main idea"
+      },
+      "paragraphs": [
+        {
+          "zh": "读完一小段，用一句话概括，标出影响理解的地方。邮件关注行动与时间，技术文档关注前提与限制。",
+          "en": "Summarise a short passage in one sentence and mark what blocks understanding. Look for actions and dates in emails, and prerequisites and limits in technical documents."
+        }
+      ]
+    },
+    {
+      "id": "unpack",
+      "title": {
+        "zh": "只问当前难点",
+        "en": "Ask a focused question"
+      },
+      "paragraphs": [
+        {
+          "zh": "给出原句和自己的理解，让 AI 解释具体分歧。长句先找主干，再看从句、指代和连接词。",
+          "en": "Share the sentence and your interpretation. Ask about the specific difference; for long sentences, find the main clause before modifiers and references."
+        }
+      ]
+    },
+    {
+      "id": "self-test",
+      "title": {
+        "zh": "合上解释再回答",
+        "en": "Answer without the explanation"
+      },
+      "paragraphs": [
+        {
+          "zh": "先读再答题，卡住时要线索。已经看过答案，就换一段相近难度的材料检查独立理解。",
+          "en": "Read before answering and ask for a hint when stuck. If you have already seen the answers, try another passage to check independent understanding."
+        }
+      ]
+    }
+  ],
+  "practice": practiceLinks(["reading-guide", "reading-check", "reading-sentences"])
+},
+{
+  "id": "write-revise-and-reuse",
+  "shelf": "practice",
+  "group": "practise",
+  "topic": "methods",
+  "title": guideTitles["write-revise-and-reuse"],
+  "summary": {
+    "zh": "先写自己的版本，再理解修改并尝试复用。",
+    "en": "Write your version, understand revisions and reuse the language."
+  },
+  "tags": [
+    {
+      "zh": "写作 邮件 工作消息 摘要 改述",
+      "en": "writing email messages summary paraphrase revision"
+    }
+  ],
+  "sections": [
+    {
+      "id": "site-use",
+      "title": {
+        "zh": "起草还是修改",
+        "en": "Start or revise"
+      },
+      "paragraphs": [
+        {
+          "zh": "没有草稿时选「场景写作练习」，已有草稿时选「写作纠错与解释」。邮件、工作消息和摘要也有对应工具。",
+          "en": "Choose Scenario writing practice for a new piece or Writing feedback for a draft. Dedicated helpers cover email, workplace messages and summaries."
+        }
+      ]
+    },
+    {
+      "id": "intent",
+      "title": {
+        "zh": "明确读者与目的",
+        "en": "Define the reader and purpose"
+      },
+      "paragraphs": [
+        {
+          "zh": "先写清希望对方知道什么或做什么，再写一个短初稿。区分事实、估计和请求。",
+          "en": "Decide what the reader should know or do, then write a short draft. Keep facts, estimates and requests distinct."
+        }
+      ]
+    },
+    {
+      "id": "revise",
+      "title": {
+        "zh": "看懂改动，再改一版",
+        "en": "Understand and revise"
+      },
+      "paragraphs": [
+        {
+          "zh": "先处理最影响理解的一到三个问题，核对时间、语气和原意。自己改一版，再请 AI 检查。",
+          "en": "Focus on one to three important issues. Check time, tone and meaning, revise yourself and ask for another check."
+        }
+      ]
+    },
+    {
+      "id": "tasks",
+      "title": {
+        "zh": "换个情况再写",
+        "en": "Try another situation"
+      },
+      "paragraphs": [
+        {
+          "zh": "隐藏范文，换一个收件人或场景再写几句。摘要回到原文核对，避免加入原文没有的观点。",
+          "en": "Hide the model and write for another reader or situation. Check summaries against the original rather than adding unsupported ideas."
+        }
+      ]
+    }
+  ],
+  "practice": practiceLinks(["writing-practice", "writing-feedback", "writing-email"])
+},
+{
+  "id": "technical-english-in-context",
+  "shelf": "practice",
+  "group": "practise",
+  "topic": "methods",
+  "title": guideTitles["technical-english-in-context"],
+  "summary": {
+    "zh": "读懂一段文档，再练习向同事说明。",
+    "en": "Understand a passage, then explain it to a colleague."
+  },
+  "tags": [
+    {
+      "zh": "技术英语 文档 职场",
+      "en": "technical English documentation workplace"
+    }
+  ],
+  "sections": [
+    {
+      "id": "read",
+      "title": {
+        "zh": "先读懂",
+        "en": "Understand it"
+      },
+      "paragraphs": [
+        {
+          "zh": "用「读懂技术文档」处理一小段公开材料，指出不懂的句子。重点看前提、行为和限制。",
+          "en": "Use Read technical documentation with a short public passage. Focus on prerequisites, behavior and limitations."
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "title": {
+        "zh": "用自己的话解释",
+        "en": "Explain it yourself"
+      },
+      "paragraphs": [
+        {
+          "zh": "合上原文，说清解决什么问题、怎样工作，再用职场场景练讨论。项目细节换成可分享的示例。",
+          "en": "Close the text and explain the problem and behavior, then discuss it in a workplace scenario. Use shareable examples rather than confidential details."
+        }
+      ],
+      "example": "Retries add load during an outage. We use a backoff delay to spread them out."
+    },
+    {
+      "id": "check",
+      "title": {
+        "zh": "核对重要事实",
+        "en": "Check important facts"
+      },
+      "paragraphs": [
+        {
+          "zh": "练习回应一个条件或限制。语言反馈可以参考 AI，技术结论仍回到原文确认。",
+          "en": "Respond to a question about a condition or limitation. Use AI for language feedback and the source for technical verification."
+        }
+      ]
+    }
+  ],
+  "practice": practiceLinks(["reading-technical", "roleplay-coach"])
+},
+{
+  "id": "review-and-reuse-expressions",
+  "shelf": "practice",
+  "group": "review",
+  "topic": "methods",
+  "title": guideTitles["review-and-reuse-expressions"],
+  "summary": {
+    "zh": "留少量有用表达，隔一阵再试着用出来。",
+    "en": "Keep a few useful expressions and retrieve them later."
+  },
+  "tags": [
+    {
+      "zh": "主动回忆 间隔 重复 词块 笔记",
+      "en": "retrieval spacing repetition chunks vocabulary notes"
+    }
+  ],
+  "sections": [
+    {
+      "id": "site-use",
+      "title": {
+        "zh": "选一种复习方式",
+        "en": "Choose one review"
+      },
+      "paragraphs": [
+        {
+          "zh": "在原来的 AI 对话中生成笔记、句子纠错、词汇或卡片。换了对话，就先提供真实记录。",
+          "en": "Create notes, corrections, vocabulary or cards in the original AI chat. Supply the actual record in a different conversation."
+        }
+      ]
+    },
+    {
+      "id": "select",
+      "title": {
+        "zh": "保留有用的内容",
+        "en": "Keep what matters"
+      },
+      "paragraphs": [
+        {
+          "zh": "优先选自己说不出、经常出错或近期会用到的表达，记下场景和一个例句。",
+          "en": "Choose expressions you needed, often miss or expect to use soon. Keep their context and an example."
+        }
+      ]
+    },
+    {
+      "id": "retrieve",
+      "title": {
+        "zh": "先回忆，再看答案",
+        "en": "Recall before checking"
+      },
+      "paragraphs": [
+        {
+          "zh": "只看场景，尝试自己说一句，再核对答案。不要求逐字一致，先看意思和用法是否合适。",
+          "en": "Look at the situation, try a sentence and then check. Reasonable alternatives can work; meaning and usage matter more than identical wording."
+        }
+      ]
+    },
+    {
+      "id": "transfer",
+      "title": {
+        "zh": "隔一阵，换个场景",
+        "en": "Space it and vary it"
+      },
+      "paragraphs": [
+        {
+          "zh": "下次练习先复习几个旧表达，再换一个相近情境使用。能轻松用出的内容可以拉长复习间隔。",
+          "en": "Revisit a few expressions next time and use them in a related situation. Increase the interval when retrieval becomes easy."
+        }
+      ]
+    }
+  ],
+  "practice": practiceLinks(["complete-study-notes", "sentence-correction-review", "vocabulary-ipa-review", "review-cards"])
+}
 ];
 
-const skillSetup: Record<string, { promptIds: string[]; section: GuideSection }> = {
-  "ten-minute-ai-conversation": {
-    promptIds: ["roleplay-coach", "complete-study-notes"],
-    section: { id: "site-use", title: { zh: "在本站怎样开始", en: "Start with the matching tool" }, paragraphs: [
-      { zh: "打开「情境扮演教练」，选一个相近场景并复制给外部 AI。十分钟是可调整的预算；计时、表达数量和下次目标要自己选择或主动提出，复制提示词不会自动完成整套流程。", en: "Open Role-play Coach, choose a scenario and send the prompt to your AI. Ten minutes is an adjustable budget. Timing, expression selection and next targets need your own choice or request, rather than happening automatically." },
-      { zh: "软件工程面试场景可选择「逐题辅导」或「模拟面试」；后者把反馈延后到复盘或结束，适合连续应答。", en: "Software engineering interview scenarios offer Coached or Mock interview pacing; mock pacing defers feedback until review or finish." },
-    ] },
-  },
-  "listen-check-listen": {
-    promptIds: ["listening-dictation", "listening-shadowing", "listening-check"],
-    section: { id: "site-use", title: { zh: "选择对应的听力工具", en: "Choose the listening task" }, paragraphs: [
-      { zh: "先自行听一小段并写下内容，再用「听写对照与查漏」比较原文；理解后用「短句跟读准备」划分意群，再到自己的播放器练。想检查主旨和细节时，用「听力理解自测」，先听并表示准备好了再答题。", en: "Listen and write first, then use Dictation comparison. After understanding, use Prepare a shadowing segment and practise in your own player. For comprehension, listen and indicate readiness before answering questions in Listening comprehension check." },
-    ] },
-  },
-  "read-and-check-understanding": {
-    promptIds: ["reading-guide", "reading-check", "reading-sentences"],
-    section: { id: "site-use", title: { zh: "把阅读需求和工具对上", en: "Match the tool to your reading need" }, paragraphs: [
-      { zh: "想理解段落时用「文章阅读辅导」并指出卡住的地方；想拆句时用「长难句拆解」；想检验独立理解时用「阅读理解自测」，先自己读，不先索取整段总结。", en: "Use Reading guide for a confusing passage, Unpack a complex sentence for structure, and Reading comprehension check for independent understanding. Read before requesting a full summary when testing yourself." },
-    ] },
-  },
-  "write-revise-and-reuse": {
-    promptIds: ["writing-practice", "writing-feedback", "writing-email"],
-    section: { id: "site-use", title: { zh: "先区分起草与修改", en: "Distinguish starting from revising" }, paragraphs: [
-      { zh: "没有草稿时用「场景写作练习」；已有草稿时用「写作纠错与解释」。邮件、工作消息、中文想法和摘要各有专门工具，按当前任务选择，不需要全部使用。", en: "Use Scenario writing practice when starting and Writing feedback for a draft. Email, workplace messages, expressing a Chinese idea and summarising have their own helpers; choose for the task rather than using everything." },
-    ] },
-  },
-  "review-and-reuse-expressions": {
-    promptIds: ["complete-study-notes", "sentence-correction-review", "vocabulary-ipa-review", "review-cards"],
-    section: { id: "site-use", title: { zh: "在有练习记录的对话中使用", en: "Review where the practice is available" }, paragraphs: [
-      { zh: "复制复习提示词后，回到刚才练习的外部 AI 对话发送。换对话时，在完整提示词中选择「其他聊天记录」，替换末尾占位内容并注明说话人。本站不会自动传递聊天记录。", en: "Send the review prompt in the external conversation where you practised. In another chat, choose Another transcript under Full prompt, replace the placeholder and retain speaker labels. This site does not transfer the conversation." },
-      { zh: "「完整学习笔记」适合整体回顾；「句子与纠错整理」关注说法；「单词与短语复习」关注搭配和语境；「复习卡片与自测」用于自己保存后再回忆。生成结果不会自动安排复习。", en: "Complete Study Notes reviews broadly; Sentences and Corrections focuses on wording; Vocabulary and Pronunciation Notes covers contextual use; Review Cards and Self-Test creates material to save and revisit. Generation does not schedule later review." },
-    ] },
-  },
-};
-
-const skillCompanions = skillArticles.map(article => ({
-  ...article,
-  group: article.id === "review-and-reuse-expressions" ? "review" as const : "practise" as const,
-  topic: article.id === "ten-minute-ai-conversation" ? "ai" as const : "methods" as const,
-  sections: [skillSetup[article.id].section, ...article.sections],
-  practice: practiceLinks(skillSetup[article.id].promptIds),
-}));
-
-const materialCompanions: HandbookArticle[] = [
-  {
-    id: "self-talk-to-real-conversation", shelf: "practice", group: "practise", topic: "methods", title: guideTitles["self-talk-to-real-conversation"],
-    summary: { zh: "先讲一件自己的小事，再用追问或复述练习把话题继续下去。", en: "Describe something from your day, then extend it through follow-up or retelling." },
-    tags: [{ zh: "自言自语 看图 复述", en: "self-talk description retelling" }],
-    sections: [
-      { id: "start", title: { zh: "先说一小段", en: "Start with a short description" }, paragraphs: [{ zh: "选一件今天发生的事，先自己说几句，再用「自然聊天纠正」继续交流。短句和停顿都可以；不知道词时先描述用途，必要时用中文求助。", en: "Describe an event in a few sentences, then continue with Natural Conversation Coach. Short sentences and pauses are fine. Describe a missing word by its purpose or ask for support." }], example: "I cooked noodles because I got home late.\nNext question: What would you cook if a friend came over?" },
-      { id: "choose", title: { zh: "按需要换一种练法", en: "Choose a variation for your goal" }, paragraphs: [{ zh: "「复述纠错教练」让你先讲完一小段再反馈；「看图表达教练」可使用图片，也可直接描述身边物品。想练理由和回应可用辩论；想练词汇提取可用猜词后造句。", en: "Retelling Coach waits for a short section before feedback. Visual Description Coach accepts a photo or an object description. Debate supports reasons and responses; guessing followed by sentence-making supports vocabulary retrieval." }] },
-      { id: "transfer", title: { zh: "检查能否回应新问题", en: "Check your response to something new" }, paragraphs: [{ zh: "不要只把一段独白背熟。试着回应一个没准备的追问，或在对方不理解时换个说法；这些变化能帮助你判断是否更接近真实交流。", en: "Go beyond memorising a monologue. Answer an unprepared follow-up or rephrase when misunderstood to check how the practice supports an exchange." }] },
-    ],
-    practice: practiceLinks(["daily-check-in", "story-summary", "visual-vocabulary"]),
-  },
-  {
-    id: "technical-english-in-context", shelf: "practice", group: "practise", topic: "methods", title: guideTitles["technical-english-in-context"],
-    summary: { zh: "先读懂一段文档，再练向同事解释原因、行为与影响。", en: "Understand a short passage, then explain the cause, behaviour and impact to a colleague." },
-    tags: [{ zh: "技术英语 文档 职场", en: "technical English documentation workplace" }],
-    sections: [
-      { id: "read", title: { zh: "先理解文本", en: "Understand the passage first" }, paragraphs: [{ zh: "选一小段公开文档，在「读懂技术文档」中指出不懂的句子。区分语言、前提、限制和版本信息；AI 的流畅解释不代表技术事实已经得到验证。", en: "Use Read technical documentation with a short public passage and identify the difficulty. Separate language, prerequisites, limitations and versions; fluent explanation does not establish technical correctness." }] },
-      { id: "explain", title: { zh: "用自己的话讲清楚", en: "Explain it in your own words" }, paragraphs: [{ zh: "合上原文，尝试说明它解决什么问题，再到「情境扮演教练」选择职场讨论场景。把真实项目细节换成可分享的示例，不需要向外部 AI 提供敏感代码。", en: "Close the passage and state the problem it addresses. Use a workplace scenario in Role-play Coach to discuss it, replacing confidential details with a shareable example." }], example: "The service retries failed requests.\nWithout a limit, retries can add load during an outage.\nWe use a backoff delay to spread them out." },
-      { id: "check", title: { zh: "语言反馈与技术判断分开", en: "Separate language feedback from technical judgment" }, paragraphs: [{ zh: "让对方追问一个条件或限制。表达是否清楚可以练，技术结论仍回原文核对；面试练习也不等于真实招聘表现评分。", en: "Invite a follow-up about a condition or limitation. Practise clarity while checking technical claims against the source; a mock interview is not a real hiring assessment." }] },
-    ],
-    practice: practiceLinks(["reading-technical", "roleplay-coach"]),
-  },
-];
-
-export const companionArticles: HandbookArticle[] = [...startingGuides, ...skillCompanions, ...materialCompanions];
+export const companionArticles: HandbookArticle[] = [workflowGuide, ...practiceCompanions];

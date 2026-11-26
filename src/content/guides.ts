@@ -19,7 +19,7 @@ export const guideTopics: Record<GuideShelf, { id: GuideTopic; title: GuideText 
     { id: "ai", title: { zh: "AI 使用参考", en: "AI reference" } },
   ],
 };
-const companionOrder = ["build-a-learning-routine", "use-ai-and-check-feedback", "choose-feedback-style", "ten-minute-ai-conversation", "self-talk-to-real-conversation", "listen-check-listen", "read-and-check-understanding", "write-revise-and-reuse", "technical-english-in-context", "review-and-reuse-expressions"];
+const companionOrder = ["complete-workflow", "build-a-learning-routine", "use-ai-and-check-feedback", "choose-feedback-style", "ten-minute-ai-conversation", "self-talk-to-real-conversation", "listen-check-listen", "read-and-check-understanding", "write-revise-and-reuse", "technical-english-in-context", "review-and-reuse-expressions"];
 export const practiceArticles = companionOrder.map(id => {
   const article = companionArticles.find(article => article.id === id);
   if (!article) throw new Error(`Missing companion guide: ${id}`);

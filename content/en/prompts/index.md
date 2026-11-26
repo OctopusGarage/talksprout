@@ -4,6 +4,8 @@
 - [Gentle Conversation Coach](gentle-start.md)
 - [Focused Correction Coach](focused-correction.md)
 - [Score and Rewrite Coach](expression-upgrade.md)
+- [Friendly Free Chat](friend-chat.md)
+- [Exchange Views](opinion-exchange.md)
 - [Role-play Coach](roleplay-coach.md)
 - [Debate Coach](friendly-debate.md)
 - [Vocabulary Game Coach](word-riddle.md)

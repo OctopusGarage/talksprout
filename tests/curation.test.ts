@@ -2,8 +2,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { prompts } from "../src/prompts";
 test("library is a small set of distinct conversation starters", () => {
-  assert.equal(prompts.length, 10);
+  assert.equal(prompts.length, 12);
   const kept = [
+    "friend-chat",
+    "opinion-exchange",
     "daily-check-in",
     "gentle-start",
     "focused-correction",

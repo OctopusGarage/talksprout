@@ -1,20 +1,15 @@
 # Documentation
 
-Start with [AI installation](ai-installation.md), [MCP setup](mcp-server.md) and [distribution maintenance](distribution-maintenance.md). The [infrastructure ledger](ai-infrastructure-parity.md) records implemented responsibilities and actual verification limits.
+## Use TalkSprout
 
-## Guides and evidence
+- [AI installation](ai-installation.md): Skills, plugins and MCP.
+- [Complete workflow](../content/en/guides/complete-workflow.md): choose a practice, start, review and save.
 
-- [Ai infrastructure parity](ai-infrastructure-parity.md)
-- [Ai installation](ai-installation.md)
-- [Content guide](content-guide.md)
-- [Distribution maintenance](distribution-maintenance.md)
-- [Evals](evals.md)
-- [Guide evaluation report](guide-evaluation-report.md)
-- [Learning scenario research](learning-scenario-research.md)
-- [Listening reading writing evidence](listening-reading-writing-evidence.md)
-- [Mcp server](mcp-server.md)
-- [Repository release evaluation](repository-release-evaluation.md)
-- [Skill expansion feasibility](skill-expansion-feasibility.md)
-- [Usability observation](usability-observation.md)
+## Maintain TalkSprout
 
-Repository entry points: [Contributing](../CONTRIBUTING.md), [Security](../SECURITY.md) and [Project conventions](../AGENTS.md).
+- [Architecture](architecture.md): content sources, distribution and data boundaries.
+- [Content conventions](content-guide.md): writing, translation and interaction rules.
+- [Distribution maintenance](distribution-maintenance.md): generation, checks and releases.
+- [MCP server](mcp-server.md): configuration, development and deployment.
+
+[Contributing](../CONTRIBUTING.md) · [Security](../SECURITY.md) · [Project conventions](../AGENTS.md)

@@ -90,6 +90,7 @@ function GuideReader({ article, locale, writer, copying }: { article: HandbookAr
 function GuidePromptBlock({ prompt, locale, writer, copying }: { prompt: GuidePrompt; locale: Locale; writer: ClipboardWriter; copying: boolean }) {
   const en = locale === "en";
   const text = useRef<HTMLTextAreaElement>(null);
+  const preview = useRef<HTMLDetailsElement>(null);
   const [status, setStatus] = useState<"idle" | "copied" | "manual">("idle");
   useLayoutEffect(() => () => { writer.invalidate(); }, [writer]);
   const copy = () => {
@@ -100,15 +101,21 @@ function GuidePromptBlock({ prompt, locale, writer, copying }: { prompt: GuidePr
       onSuccess: () => setStatus("copied"),
       onFailure: () => {
         setStatus("manual");
+        if (preview.current) preview.current.open = true;
         text.current?.focus();
         text.current?.select();
       },
     });
   };
   return <div className="guide-prompt" role="group" aria-labelledby={`guide-prompt-${prompt.id}`}>
-    <h3 id={`guide-prompt-${prompt.id}`}>{prompt.title[locale]}</h3>
-    <textarea ref={text} readOnly lang="en" aria-label={en ? `${prompt.title.en} prompt` : `${prompt.title.zh}提示词`} rows={Math.min(18, prompt.body.split("\n").length + 2)} value={prompt.body} spellCheck={false} />
-    <button className="guide-copy" disabled={copying} onClick={copy}>{en ? "Copy prompt" : "复制提示词"}</button>
+    <div className="guide-prompt-heading">
+      <h3 id={`guide-prompt-${prompt.id}`}>{prompt.title[locale]}</h3>
+      <button className="guide-copy" disabled={copying} onClick={copy}>{en ? "Copy prompt" : "复制提示词"}</button>
+    </div>
+    <details ref={preview} className="guide-prompt-preview">
+      <summary>{en ? "View instructions" : "查看指令"}</summary>
+      <textarea ref={text} readOnly lang="en" aria-label={en ? `${prompt.title.en} prompt` : `${prompt.title.zh}提示词`} rows={Math.min(18, prompt.body.split("\n").length + 2)} value={prompt.body} spellCheck={false} />
+    </details>
     <p className="guide-copy-status" role="status">{status === "copied" ? (en ? "Copied. Paste into your AI." : "已复制，粘贴到常用 AI 即可。") : status === "manual" ? (en ? "Copy unavailable. Select and copy the prompt manually." : "自动复制不可用，请手动复制已选中的提示词。") : ""}</p>
   </div>;
 }

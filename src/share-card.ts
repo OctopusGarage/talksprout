@@ -1,4 +1,5 @@
 import QRCode from "qrcode";
+import appIcon from "../public/icons/icon-192.png";
 import type { Locale } from "./types";
 
 interface OpeningInstruction { title: string; body: string; alternative?: string }
@@ -88,7 +89,7 @@ export async function renderShareCard(url: string, locale: Locale): Promise<Blob
   for (const line of copy.headline) { text(line, margin, y, locale === "en" ? 72 : 80, 750); y += 96; }
   y = wrapped(copy.description, y + 12, 32, 44, colors.muted) + 28;
 
-  const matrix = QRCode.create(url, { errorCorrectionLevel: "M" }).modules;
+  const matrix = QRCode.create(url, { errorCorrectionLevel: "H" }).modules;
   const moduleSize = Math.floor(560 / (matrix.size + 8));
   if (moduleSize < 2) throw new Error("App URL is too long for a readable card");
   const qrSize = (matrix.size + 8) * moduleSize;
@@ -100,6 +101,16 @@ export async function renderShareCard(url: string, locale: Locale): Promise<Blob
   for (let row = 0; row < matrix.size; row++) for (let column = 0; column < matrix.size; column++) {
     if (matrix.get(row, column)) ctx.fillRect(qrX + (column + 4) * moduleSize, qrY + (row + 4) * moduleSize, moduleSize, moduleSize);
   }
+  // Reserve a small central badge; high error correction protects the covered modules.
+  const icon = new Image();
+  icon.src = appIcon;
+  await icon.decode();
+  const badgeSize = Math.floor(matrix.size * moduleSize * 0.18);
+  const badgeX = Math.round(qrX + (qrSize - badgeSize) / 2);
+  const badgeY = Math.round(qrY + (qrSize - badgeSize) / 2);
+  ctx.fillStyle = colors.white;
+  ctx.fillRect(badgeX - 6, badgeY - 6, badgeSize + 12, badgeSize + 12);
+  ctx.drawImage(icon, badgeX, badgeY, badgeSize, badgeSize);
   y = qrY + qrSize + 28;
   ctx.font = `650 34px ${font}`;
   text(copy.scanLabel, (canvas.width - ctx.measureText(copy.scanLabel).width) / 2, y, 34, 650, colors.green);

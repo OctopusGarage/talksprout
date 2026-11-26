@@ -1,6 +1,6 @@
 interface:
   display_name: "TalkSprout"
   short_description: "English practice and review"
-  default_prompt: "Use $talksprout to help me practice English."
+  default_prompt: "Use $talksprout."
   icon_small: "./assets/icon.png"
   icon_large: "./assets/icon.png"

@@ -3,6 +3,7 @@ import tempfile
 import hashlib
 from pathlib import Path
 from release_policy import release_decision, verify_assets, verify_checksums, assert_tag_revision
+from test_publish_ai import PublishFlowTests
 class ReleaseTests(unittest.TestCase):
     def test_retries_and_changed_versions(self):
         current=dict(name='talksprout',version='0.1.0',fingerprint='abc',mcpEndpoint=None)

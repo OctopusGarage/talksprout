@@ -17,29 +17,38 @@ export const metadata = {
   documentCount: Object.keys(documents).length,
 };
 export function readDocument(path: string): string {
-  if (!Object.hasOwn(documents, path))
+  const canonical = path.startsWith("zh/") ? "en/" + path.slice(3) : path;
+  if (!Object.hasOwn(documents, canonical))
     throw new Error(
       "Unknown document. Use an exact index path; URLs and traversal are not accepted.",
     );
-  return documents[path];
+  return documents[canonical];
 }
-export function getGuide(language: "zh" | "en") {
-  return `# TalkSprout\n\nRead ${language}/index.md with read_document. Resolve relative links against the document directory. Search with search_documents for a focused request. Read only the selected document.\n\n${library.guidance}`;
+export function getGuide() {
+  return `# TalkSprout\n\nRead en/start.md with read_document before handling this learning request. It contains the current guided entry and learning rules. Resolve relative links against that document directory and keep this returned content identity during the task. Read only the selected catalogs and material; do not retrieve the entire library.`;
 }
-export function searchDocuments(query: string, language: "zh" | "en") {
+export function searchDocuments(query: string) {
   const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
   if (!terms.length) return [];
   return Object.entries(documents)
-    .filter(
-      ([p, text]) =>
-        p.startsWith(language + "/") &&
-        terms.every((t) => (p + " " + text).toLowerCase().includes(t)),
+    .filter(([p, text]) =>
+      terms.every((t) => (p + " " + text).toLowerCase().includes(t)),
     )
+    .map(([path, text]) => {
+      const title = text.split("\n")[0].replace(/^# /, "");
+      const lowerTitle = title.toLowerCase();
+      const score = terms.reduce(
+        (total, term) =>
+          total +
+          (lowerTitle.includes(term) ? 20 : 0) +
+          (path.toLowerCase().includes(term) ? 5 : 0),
+        path.includes("/prompts/") && !path.endsWith("/index.md") ? 2 : 0,
+      );
+      return { path, title, score };
+    })
+    .sort((a, b) => b.score - a.score)
     .slice(0, 20)
-    .map(([path, text]) => ({
-      path,
-      title: text.split("\n")[0].replace(/^# /, ""),
-    }));
+    .map(({ path, title }) => ({ path, title }));
 }
 export function createServer() {
   const server = new McpServer(
@@ -71,11 +80,11 @@ export function createServer() {
     {
       description:
         "Get the English learning library guide and content identity.",
-      inputSchema: z.object({ language: z.enum(["zh", "en"]).default("en") }),
+      inputSchema: z.object({}),
       annotations,
     },
-    async ({ language }) => ({
-      content: [{ type: "text", text: getGuide(language) }],
+    async () => ({
+      content: [{ type: "text", text: getGuide() }],
       structuredContent: metadata,
     }),
   );
@@ -110,18 +119,17 @@ export function createServer() {
     "search_documents",
     {
       description:
-        "Search public English learning documents. Returns at most 20 paths; read the selected document before coaching.",
+        "Search public learning documents using short English keywords. Returns at most 20 paths; read the selected document before coaching.",
       inputSchema: z.object({
         query: z.string().min(1).max(160),
-        language: z.enum(["zh", "en"]).default("en"),
       }),
       annotations,
     },
-    async ({ query, language }) => ({
+    async ({ query }) => ({
       content: [
         {
           type: "text",
-          text: JSON.stringify(searchDocuments(query, language)),
+          text: JSON.stringify(searchDocuments(query)),
         },
       ],
     }),

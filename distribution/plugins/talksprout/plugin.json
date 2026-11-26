@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "talksprout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Practice English with conversation coaches, scenarios, reviews and reading, writing and listening guidance.",
   "author": {
     "name": "OctopusGarage",
@@ -29,7 +29,7 @@
         ],
         "websiteURL": "https://github.com/OctopusGarage/talksprout",
         "defaultPrompt": [
-          "Use TalkSprout to practice a workplace conversation."
+          "Use TalkSprout."
         ],
         "composerIcon": "./assets/icon.png",
         "logo": "./assets/icon.png"

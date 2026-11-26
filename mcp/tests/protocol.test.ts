@@ -114,8 +114,15 @@ test("modern stateless protocol reads guide without initialization", async () =>
   const guide = await rpc(
     10,
     "tools/call",
+    { name: "get_guide", arguments: {} },
+    "2026-07-28",
+  );
+  assert.match(guide.content?.[0].text ?? "", /en\/start.md/);
+  const legacy = await rpc(
+    11,
+    "tools/call",
     { name: "get_guide", arguments: { language: "zh" } },
     "2026-07-28",
   );
-  assert.match(guide.content?.[0].text ?? "", /zh\/index.md/);
+  assert.match(legacy.content?.[0].text ?? "", /en\/start.md/);
 });

@@ -5,7 +5,7 @@ import { handbookArticles } from "../src/content/guides";
 test("companion guides retain the original stages and contextual practice links", async ({ page }) => {
   await page.goto("/#guides");
   await expect(page.getByRole("button", { name: "配套指南", exact: true })).toHaveAttribute("aria-pressed", "true");
-  await expect(page.locator(".guide-entry")).toHaveCount(10);
+  await expect(page.locator(".guide-entry")).toHaveCount(11);
   for (const name of ["开始前", "听说读写练习", "结束后复习"]) await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
   await page.getByRole("searchbox").fill("听写");
   await expect(page.locator(".guide-entry")).toHaveCount(1);
@@ -41,7 +41,7 @@ test("further resources retain categories, independent filters and three AI usag
   await expect(page.locator(".guide-entry")).toBeFocused();
   await page.getByRole("button", { name: "配套指南", exact: true }).click();
   await expect(page.getByRole("searchbox")).toHaveValue("");
-  await expect(page.locator(".guide-entry")).toHaveCount(10);
+  await expect(page.locator(".guide-entry")).toHaveCount(11);
   await page.getByRole("button", { name: "扩展资料", exact: true }).click();
   await expect(page.getByRole("searchbox")).toHaveValue("实时语音");
 });
@@ -127,7 +127,7 @@ test("dedicated configurations and global rules copy exactly with manual fallbac
   await page.goto("/#guides/ai-global-instructions");
   const strict = page.locator(".guide-prompt").filter({ hasText: "严格英语门槛" });
   await strict.getByRole("button", { name: "复制提示词", exact: true }).click();
-  expect(await page.evaluate(() => (window as unknown as { capturedPrompt: string }).capturedPrompt)).toContain("Mock or scold the user in English in a sarcastic or teasing way.");
+  expect(await page.evaluate(() => (window as unknown as { capturedPrompt: string }).capturedPrompt)).toBe(await strict.locator("textarea").inputValue());
   await page.evaluate(() => { Object.defineProperty(navigator, "clipboard", { value: { writeText: async () => { throw new Error("denied"); } }, configurable: true }); });
   await strict.getByRole("button", { name: "复制提示词", exact: true }).click();
   await expect(strict.getByRole("status")).toContainText("手动复制");
@@ -147,4 +147,27 @@ test("pending guide copies cannot show stale feedback after leaving the article"
   await page.evaluate(() => (window as unknown as { failGuideCopy: () => void }).failGuideCopy());
   await expect(page.getByRole("searchbox")).toBeVisible();
   await expect(page.getByText("自动复制不可用，请手动复制已选中的提示词。", { exact: true })).toHaveCount(0);
+});
+
+
+test("complete workflow is first, bilingual and reachable from AI setup", async ({ page }) => {
+  await page.goto("/#guides");
+  await expect(page.locator(".guide-entry").first()).toContainText("从开始练习到保存笔记");
+  await page.goto("/#ai");
+  await page.getByRole("link", { name: "完整使用流程：从练习到保存笔记" }).click();
+  await expect(page).toHaveURL(/#guides\/complete-workflow$/);
+  for (const title of ["复制提示词开始", "直接在 AI 中选择", "开启语音", "保存需要的内容"]) {
+    await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+  }
+  await page.getByRole("button", { name: "English", exact: true }).click();
+  await expect(page.locator("#library-heading")).toHaveText("From first practice to saved study notes");
+  await expect(page.getByRole("heading", { name: "Start by copying a prompt", exact: true })).toBeVisible();
+});
+
+test("settings instructions lead to the complete workflow without leaving a dialog open", async ({ page }) => {
+  await page.goto("/#settings?info=about");
+  await page.getByRole("dialog").getByRole("link", { name: "完整使用流程：从练习到保存笔记" }).click();
+  await expect(page).toHaveURL(/#guides\/complete-workflow$/);
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect(page.locator("#library-heading")).toHaveText("从开始练习到保存笔记");
 });

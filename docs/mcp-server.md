@@ -1,6 +1,6 @@
 # TalkSprout MCP
 
-A public-content-only, stateless server supplies `get_guide`, `search_documents` and `read_document`. It uses the MCP SDK and Cloudflare Agents handler with Streamable HTTP, JSON responses and stateless legacy client support. Authentication: none; never add private content to this public service.
+A public-content-only, stateless server serves one English instruction library through `get_guide`, `search_documents` and `read_document`. It uses the MCP SDK and Cloudflare Agents handler with Streamable HTTP, JSON responses and stateless legacy client support. Authentication: none; never add private content to this public service.
 
 ## Local development
 
@@ -22,8 +22,8 @@ The configuration above uses the verified public service; replace it with your o
 
 ## Deploy and verify
 
-The configured target is the dedicated OctopusGarage account, explicitly selected by the user to match Panfolio. Supply an account-scoped deployment token through the operator credential store or GitHub Actions secret; do not change the personal account or unrelated services. Run `pnpm mcp:build`, then `pnpm --dir mcp run deploy` using authorized credentials. The worker name is `talksprout-mcp`. Query `/health` and compare every identity field to `distribution/identity.json`, then perform initialize, tools/list and tools/call against `/mcp`. Only after successful remote verification set `distribution/config.json`'s `mcpEndpoint`, regenerate, and publish the corresponding app and packages. A successful local build is not a deployment claim.
+Deploy to the configured OctopusGarage account using an account-scoped token from the operator credential store or GitHub Actions secret. Run `pnpm mcp:build`, then `pnpm --dir mcp run deploy` using authorized credentials. The worker name is `talksprout-mcp`. Query `/health` and compare every identity field to `distribution/identity.json`, then perform initialize, tools/list and tools/call against `/mcp`. Only after successful remote verification set `distribution/config.json`'s `mcpEndpoint`, regenerate, and publish the corresponding app and packages. A successful local build is not a deployment claim.
 
-POST bodies are bounded to 16 KiB even without Content-Length. Document access uses an exact bundled key, never filesystem reads or outbound fetches. Search returns at most 20 paths. No personal state, AI API keys, model execution or request-body logs are added. Configure operational rate limits at the hosting boundary if needed. Host origin validation is provided by the SDK handler.
+POST bodies are bounded to 16 KiB even without Content-Length. Document access uses exact bundled keys and defined legacy aliases, never filesystem reads or outbound fetches. Search requires all query terms and returns at most 20 paths, ranking title and path matches above incidental body mentions before truncation. Use short English keywords or follow the English catalogs; search is lexical, not semantic. The document language does not determine the learner’s response language. No personal state, AI API keys, model execution or request-body logs are added. Configure operational rate limits at the hosting boundary if needed. Host origin validation is provided by the SDK handler.
 
 Run `pnpm exec tsx scripts/verify-mcp.ts https://talksprout-mcp.octopusgarage.workers.dev/mcp` to verify deployed identity and real wire calls after deployment. This requires an actual reachable endpoint and fails on stale content identity.

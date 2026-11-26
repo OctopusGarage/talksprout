@@ -1,4 +1,4 @@
-# Choose a conversation coach, then a scenario
+# Choose a coach, then a scenario
 
 - [Natural Conversation Coach](daily-check-in/index.md)
 - [Gentle Conversation Coach](gentle-start/index.md)

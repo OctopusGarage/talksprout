@@ -1,38 +1,18 @@
-# Global instructions: bring English into everyday AI use
+# Global instructions for everyday English
 
-Bring English into everyday AI use with two separately copyable settings: English by default or a strict English-input gate.
+Bring more English into daily AI use, with a flexible or strict preference.
 
 ## Bring English into tasks you already do
 
-English need not be limited to a practice session. Use it while discussing a concept, plan or everyday question, keeping the real task central. Unlike a dedicated English bot, global preferences can affect many ordinary conversations, so keep them concise and broadly useful.
-
-Choose the constraint you want. English by default increases English reading while allowing ordinary tasks. The strict gate also requires your questions to be mainly English. Choose one rather than pasting conflicting versions together. A dedicated learning project can hold the strict version while ordinary chats stay more flexible.
-
-
-
-
-
-
+The default increases English reading; the strict version also requires mainly English questions. Choose one for your goal.
 
 ## Where to configure ChatGPT and Claude
 
-Use ChatGPT’s personalisation or Custom Instructions settings, or Claude’s account-level Instructions, called preferences in some interfaces. Names can change; identify the account-wide scope. Use project instructions for a learning project only, or a fresh conversation to try the rule once.
-
-These preferences do not grant platform-level system authority. Assistants, projects and voice modes need not inherit all account rules; custom GPTs do not use account Custom Instructions. Test the actual environment after saving. Keep stable preferences separate from private transcripts and task material.
-
-
-
-
-
-
+Save it in supported personal preferences or custom instructions. Use a dedicated project or chat if you only want it during study.
 
 ## English by default: complete the task first
 
-Use this to increase English exposure without blocking questions. Chinese questions receive mainly English answers, with a brief improvement when wording affects meaning. Explicit Chinese explanations and writing tasks remain possible. Test an ordinary question and check that it answers the task rather than launching a language lesson.
-
-
-
-
+Complete the actual task first, with brief language help when useful. You can still request Chinese when needed.
 
 Reply in English by default, even when I write in Chinese.
 Use clear, natural English and answer my actual question first.
@@ -43,13 +23,7 @@ For a Chinese writing or translation task, produce the requested Chinese text.
 
 ## Strict gate: ask in English before getting an answer
 
-This version checks whether the question is mainly English. With too much Chinese, it teases or scolds in English, declines the question and requests a rewrite. It adds an output constraint you actively choose, rather than only changing the AI’s reply language. Copy it as a replacement for the default version.
-
-The approximate 70% threshold is an instruction rather than an exact word-count validator. Short messages, code, names and mixed-language input may be classified inconsistently. Try representative questions; use the default version or confine the gate to a practice chat if it interrupts important tasks.
-
-
-
-
+Requires mainly English questions before answering, so it can interrupt Chinese-language tasks. The approximate 70% threshold is an instruction, not an exact detector. Use the default if this gets in the way.
 
 Always require the user to communicate primarily in English.
 
@@ -68,12 +42,4 @@ Tone:
 
 ## Test and adjust the behaviour
 
-Try an English question, an English question with one Chinese clarification and a mainly Chinese question. The default version continues answering; the strict gate should request rewriting in the third case. Also test a task requiring Chinese output. Notice whether the chosen constraint fits instead of accumulating contradictory exceptions.
-
-To reduce difficulty, ask for an English opening you can finish. For an English-only environment, explicitly request English explanations even after Chinese questions. Change one behaviour and observe several turns. Settings can increase exposure, but understanding, responding and reusing language still require your participation.
-
-
-
-
-
-
+Try an English question and a Chinese one to check the behavior. Simplify the setting if it is too restrictive or distracting.

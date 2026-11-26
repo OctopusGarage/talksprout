@@ -1,41 +1,17 @@
 # Choose feedback that fits today's goal
 
-Choose natural conversation, gentle models, focused retries or wording feedback for today's goal.
+Decide whether you want conversational flow or focused correction.
 
-## What the four modes are for
+## Choose for your goal
 
-Natural Conversation Coach handles at most one useful issue per turn. Gentle Conversation Coach accepts short answers and models wording without requiring every sentence to be repeated.
+Choose Friendly Free Chat or Exchange Views for discussion, Gentle Conversation Coach for support, Focused Correction Coach for retries, or Score and Rewrite Coach for clearer expression.
 
-Focused Correction Coach waits for a retry or explicit skip after a correction. Score and Rewrite Coach addresses clarity and naturalness and waits for a useful revision attempt. Numerical scores are optional informal feedback.
+## Work on one issue
 
+Check that the correction preserves your meaning, then retry. Ask when unclear or explicitly skip. Natural wording does not need an upgrade.
 
+I work on it yesterday. → I worked on it yesterday.
 
+## Adjust after trying it
 
-
-
-
-## Keep a retry focused
-
-
-
-1. Check that the revision preserves your meaning, then try it.
-2. Ask for help or clarification if needed; that is not the retry itself. Explicitly skip when you want to continue.
-3. Continue when the original works rather than inventing an error or upgrading every sentence.
-
-Original: I work on it yesterday.
-Correction: I worked on it yesterday.
-
-Already natural: I finished the task.
-Optional alternative: I completed the task.
-
-
-
-## Adjust using your experience
-
-If feedback prevents you from developing an idea, choose gentler support. If you keep skipping the same issue, practise it briefly later. Do not treat scores as formal proficiency or infer accent and speed from text.
-
-
-
-
-
-
+Choose gentler feedback if correction breaks your flow. Set aside a short focused practice for a recurring issue. Treat scores as informal feedback.
