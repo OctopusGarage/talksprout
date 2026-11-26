@@ -117,7 +117,7 @@ test("dedicated configurations and global rules copy exactly with manual fallbac
   await page.addInitScript(() => { Object.defineProperty(navigator, "clipboard", { value: { writeText: async (value: string) => { (window as unknown as { capturedPrompt: string }).capturedPrompt = value; } }, configurable: true }); });
   await page.goto("/#guides/ai-dedicated-companions");
   const blocks = page.locator(".guide-prompt");
-  await expect(blocks).toHaveCount(5);
+  await expect(blocks).toHaveCount(6);
   for (const block of await blocks.all()) {
     const expected = await block.locator("textarea").inputValue();
     await block.getByRole("button", { name: "复制提示词", exact: true }).click();
