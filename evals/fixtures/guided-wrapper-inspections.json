@@ -1,0 +1,22 @@
+[
+  {
+    "sha256": "1b806c92be465dd02f3e333bf98180f5ede23d8dca047ffd2b89ee3a4386b9a0",
+    "source": "const r = await tools.mcp__talksprout__get_guide({language:\"zh\"}); for (const c of r.content??[]) if(c.type===\"text\") text(c.text);\n",
+    "inspection": "Agent-inspected exact native wrapper: only named static TalkSprout MCP calls and unchanged text-content or indexed result forwarding. Conservative generic wrapper checker unsupported; not an automatic source/isolation proof or model-judge pass."
+  },
+  {
+    "sha256": "974914b2a35999cd2866bef9572d781127ab0f9a96c2286f8825055d43fae9c0",
+    "source": "const r = await tools.mcp__talksprout__read_document({path:\"zh/start.md\"}); for (const c of r.content??[]) if(c.type===\"text\") text(c.text);\n",
+    "inspection": "Agent-inspected exact native wrapper: only named static TalkSprout MCP calls and unchanged text-content or indexed result forwarding. Conservative generic wrapper checker unsupported; not an automatic source/isolation proof or model-judge pass."
+  },
+  {
+    "sha256": "385cd628ae0422b26c6a2f37eb03fcb47ed2c635a8f63747fd2eb62581d75f5a",
+    "source": "const rs = await Promise.allSettled([tools.mcp__talksprout__read_document({path:\"zh/prompts/index.md\"}),tools.mcp__talksprout__read_document({path:\"zh/scenarios/index.md\"})]); for(let i=0;i<rs.length;i++) {text({path:i===0?\"zh/prompts/index.md\":\"zh/scenarios/index.md\",result:rs[i]});}\n",
+    "inspection": "Agent-inspected exact native wrapper: only named static TalkSprout MCP calls and unchanged text-content or indexed result forwarding. Conservative generic wrapper checker unsupported; not an automatic source/isolation proof or model-judge pass."
+  },
+  {
+    "sha256": "61bccac301bdfb35c5b2c09f5b9630e46c0af5adb82951848c88006aa09f2db6",
+    "source": "const r = await tools.mcp__talksprout__read_document({path:\"zh/prompts/reading-check.md\"}); for(const c of r.content??[]) if(c.type===\"text\") text(c.text);\n",
+    "inspection": "Agent-inspected exact native wrapper: only named static TalkSprout MCP calls and unchanged text-content or indexed result forwarding. Conservative generic wrapper checker unsupported; not an automatic source/isolation proof or model-judge pass."
+  }
+]

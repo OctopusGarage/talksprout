@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "scope": "Historical ai-v0.1.3 guided-selection development observations before thin remote-entry bootstrap; no current thin-bootstrap acceptance",
+  "identicalByteAliases": {
+    "before-boundary-mcp.json": "behavior-probe-20261126T021111Z-23e5695c.json",
+    "before-boundary-skill.json": "behavior-probe-20261126T021041Z-67653161.json",
+    "before-methods-mcp.json": "behavior-probe-20261126T021517Z-2c29d03a.json",
+    "before-methods-skill-web.json": "behavior-probe-20261126T021459Z-50875a8f.json",
+    "guidance-before-review-boundary.json": "before-boundary-guidance.json",
+    "mcp-judge.json": "before-methods-mcp-judge.json",
+    "mcp.json": "behavior-probe-20261126T021517Z-2c29d03a.json",
+    "skill-before-review-boundary.md": "before-boundary-skill.md",
+    "skill-web-judge.json": "before-methods-skill-web-judge.json",
+    "skill-web.json": "behavior-probe-20261126T021459Z-50875a8f.json"
+  },
+  "files": [
+    {
+      "file": "before-boundary-guidance.json",
+      "bytes": 3325,
+      "sha256": "418a468843142ec3c2a34e005fa7f6eb10f2e6fe2a7094c414e992f6b59fda00"
+    },
+    {
+      "file": "before-boundary-skill.md",
+      "bytes": 5807,
+      "sha256": "84bf92a9fae7d410b76ba406c52e2a384b46bbb05bf0f85add0d6cfd3548ff2e"
+    },
+    {
+      "file": "before-methods-guidance.json",
+      "bytes": 3821,
+      "sha256": "08494ec2969a3fcff7c10609067291279947b7af6e154c78a4193f4dfd4389c9"
+    },
+    {
+      "file": "before-methods-mcp-judge.json",
+      "bytes": 39726,
+      "sha256": "1d9f8b1f3498adcc26a1052936625a49b5256c96d279626c969d9730491979cf"
+    },
+    {
+      "file": "before-methods-skill-web-judge.json",
+      "bytes": 42634,
+      "sha256": "38eba06d69590192bcda1816dc9f7d5dce8e93be1a0538e212958457c703400e"
+    },
+    {
+      "file": "before-methods-skill.md",
+      "bytes": 6303,
+      "sha256": "c6e75d6f1bfabb64699bd2644c7160e5ab0df04c9128f16329df01882f163f27"
+    },
+    {
+      "file": "behavior-probe-20261126T021041Z-67653161.json",
+      "bytes": 91089,
+      "sha256": "3d09a7ca16cc84795951193647a9ae195d312083e22ab5e799fb6b7462740b36",
+      "route": "skill-web",
+      "targetTurns": 5,
+      "scope": "historical embedded-guidance Skill or local-MCP, BEFORE thin bootstrap; no current thin behavior claim"
+    },
+    {
+      "file": "behavior-probe-20261126T021111Z-23e5695c.json",
+      "bytes": 198676,
+      "sha256": "e2ff7466eab431a44518284870a8cfe2964d3ad4dd76555a94067ce4d4f3b78a",
+      "route": "mcp",
+      "targetTurns": 5,
+      "scope": "historical embedded-guidance Skill or local-MCP, BEFORE thin bootstrap; no current thin behavior claim"
+    },
+    {
+      "file": "behavior-probe-20261126T021459Z-50875a8f.json",
+      "bytes": 80031,
+      "sha256": "7b1e17e961012ca7d695cf3c5a5975a7fd4cf4716dca1801569f980d5b72e070",
+      "route": "skill-web",
+      "targetTurns": 6,
+      "scope": "historical embedded-guidance Skill or local-MCP, BEFORE thin bootstrap; no current thin behavior claim"
+    },
+    {
+      "file": "behavior-probe-20261126T021517Z-2c29d03a.json",
+      "bytes": 110709,
+      "sha256": "c80151c7dbb192cc5857e864b6b4e53192a5011eb1b841fdd3db0df29f079637",
+      "route": "mcp",
+      "targetTurns": 6,
+      "scope": "historical embedded-guidance Skill or local-MCP, BEFORE thin bootstrap; no current thin behavior claim"
+    },
+    {
+      "file": "behavior-probe-20261126T022317Z-13119430.json",
+      "bytes": 44915,
+      "sha256": "4cd5977b28347be861dca0e4a38b19c4eb4c52d5e08465140a089db46ac7c50f",
+      "route": "skill-web",
+      "targetTurns": 3,
+      "scope": "historical embedded-guidance Skill or local-MCP, BEFORE thin bootstrap; no current thin behavior claim"
+    },
+    {
+      "file": "behavior-probe-20261126T022335Z-b3861cbb.json",
+      "bytes": 56087,
+      "sha256": "1910a499463f3991359e2546afda7863d7fa06c176a6a1471a5ecae5bed543e9",
+      "route": "mcp",
+      "targetTurns": 3,
+      "scope": "historical embedded-guidance Skill or local-MCP, BEFORE thin bootstrap; no current thin behavior claim"
+    },
+    {
+      "file": "behavior-probe-20261126T023020Z-0e628033.json",
+      "bytes": 128529,
+      "sha256": "42968025768166f3f5f3b8e3504a0f6977931c44908a10abf4ee1c89e6dfea54",
+      "route": "skill-web",
+      "targetTurns": 8,
+      "scope": "historical embedded-guidance Skill or local-MCP, BEFORE thin bootstrap; no current thin behavior claim"
+    },
+    {
+      "file": "behavior-probe-20261126T023020Z-298227bd.json",
+      "bytes": 145122,
+      "sha256": "078560d0c0693f55835126d13f961a726ceadb804d144ff4cf74705b047ef8bd",
+      "route": "mcp",
+      "targetTurns": 8,
+      "scope": "historical embedded-guidance Skill or local-MCP, BEFORE thin bootstrap; no current thin behavior claim"
+    },
+    {
+      "file": "behavior-probe-20261126T023057Z-5a86526d.json",
+      "bytes": 45586,
+      "sha256": "65c842d233a2bd66c9c7bf624ec29bea84e71cd2cd6c590a398c6794d4276736",
+      "route": "skill-web",
+      "targetTurns": 3,
+      "scope": "historical embedded-guidance Skill or local-MCP, BEFORE thin bootstrap; no current thin behavior claim"
+    },
+    {
+      "file": "behavior-probe-20261126T023331Z-676c1d9e.json",
+      "bytes": 52934,
+      "sha256": "ff245deaffc3472b27d7d00efd4697f208afb9abc774e393c35e80fd2b1ae249",
+      "route": "mcp",
+      "targetTurns": 3,
+      "scope": "historical embedded-guidance Skill or local-MCP, BEFORE thin bootstrap; no current thin behavior claim"
+    },
+    {
+      "file": "operational-guidance-before-thin.json",
+      "bytes": 4254,
+      "sha256": "ac3d085b69db6bfe94fae67cea3e0f458f87ace2df87303c78fdb4051429c4bf"
+    }
+  ]
+}

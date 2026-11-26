@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create deterministic, content-free skill and host-specific plugin archives."""
+"""Create deterministic lightweight/full skills and host-specific plugin archives."""
 from pathlib import Path
 from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 import argparse
@@ -14,7 +14,7 @@ TARGET = ROOT / "public" / "downloads" / PACKAGE_NAMES["skill"]
 PLUGIN_TARGET = ROOT / "public" / "downloads" / PACKAGE_NAMES["plugin"]
 CLAUDE_TARGET = ROOT / "public" / "downloads" / PACKAGE_NAMES["claudePlugin"]
 
-def package(target=TARGET, plugin=False, claude=False):
+def package(target=TARGET, plugin=False, claude=False, full=False):
     target = Path(target)
     target.parent.mkdir(parents=True, exist_ok=True)
     config = json.loads((ROOT / "distribution" / "config.json").read_text())
@@ -40,7 +40,7 @@ def package(target=TARGET, plugin=False, claude=False):
             if relative not in {"SKILL.md", "LICENSE", "agents/openai.yaml", "assets/icon.png"}:
                 raise ValueError(f"Unexpected consumer package file: {relative}")
             prefix = "skills/talksprout/" if plugin else "talksprout/"
-            files.append((prefix + path.relative_to(SOURCE).as_posix(), path))
+            files.append((prefix + path.relative_to(SOURCE).as_posix(), ROOT / "distribution/full/talksprout/SKILL.md" if full and relative == "SKILL.md" else path))
     with ZipFile(target, "w", compression=ZIP_DEFLATED, compresslevel=9) as archive:
         for name, path in sorted(files):
             if path.is_symlink():
@@ -51,23 +51,20 @@ def package(target=TARGET, plugin=False, claude=False):
             entry.compress_type = ZIP_DEFLATED
             entry.external_attr = 0o100644 << 16
             data = path.read_bytes()
-            if path.name == "SKILL.md" and revision != "local":
-                data = data.replace(b"/talksprout/main/content/", f"/talksprout/{revision}/content/".encode())
-                data = data.replace(b"/talksprout/main/", f"/talksprout/{revision}/".encode())
-                data = data.replace(b"/talksprout/blob/main/", f"/talksprout/blob/{revision}/".encode())
             archive.writestr(entry, data)
         release_path = ("skills/talksprout/" if plugin else "talksprout/") + "references/release.md"
         entry = ZipInfo(release_path, (1980, 1, 1, 0, 0, 0))
         entry.compress_type = ZIP_DEFLATED
         entry.external_attr = 0o100644 << 16
-        release = f"# TalkSprout release\n\nVersion: {config['version']}\n\nContent version: {identity['contentVersion']}\n\nGuidance version: {identity['guidanceVersion']}\n\nSource revision: {revision}\n\nCI release archives pin learning content links to this source revision. Repository installations follow the current main branch. Keep retrieved text during an active learning conversation.\n"
+        mode = "This full edition contains its learning content in SKILL.md. No remote retrieval is required. Replace the package to update content." if full else "This revision identifies the installed bootstrap artifact, not a pinned learning-content version. This lightweight package reads the latest remote entry and learning documents. Keep selected instructions during an active learning conversation; fetch the remote entry again for a new session."
+        release = f"# TalkSprout release\n\nVersion: {config['version']}\n\nContent version: {identity['contentVersion']}\n\nGuidance version: {identity['guidanceVersion']}\n\nSource revision: {revision}\n\n{mode}\n"
         archive.writestr(entry, release.encode())
-    print(f"Packaged {target.name} ({target.stat().st_size} bytes); learning documents remain on the public feed.")
+    print(f"Packaged {target.name} ({target.stat().st_size} bytes); {'self-contained content' if full else 'remote content bootstrap'}.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path)
-    parser.add_argument("--format", choices=["skill", "plugin", "claude", "all"])
+    parser.add_argument("--format", choices=["skill", "plugin", "claude", "full", "all"])
     args = parser.parse_args()
     kind = args.format or ("skill" if args.output else "all")
     if kind == "all" and args.output:
@@ -81,3 +78,7 @@ if __name__ == "__main__":
         package(args.output or PLUGIN_TARGET, plugin=True)
     if kind in ("claude", "all"):
         package(args.output or CLAUDE_TARGET, plugin=True, claude=True)
+    if kind in ("full", "all"):
+        package(args.output or ROOT / "public/downloads" / PACKAGE_NAMES["fullSkill"], full=True)
+        if not args.output:
+            (ROOT / "public/downloads" / PACKAGE_NAMES["fullSkillText"]).write_bytes((ROOT / "distribution/full/talksprout/SKILL.md").read_bytes())

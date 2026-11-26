@@ -1,3 +1,6 @@
+import {validateContextualArchive} from "./contextual-evidence";
+import {validateGuidedSelectionArchive} from "./guided-selection";
+import { validateBehaviorArchive } from "./behavior-archive";
 import { validateCodexStatus } from "./codex-status";
 import { createCodexReviewCases } from "./codex-cases";
 import { validateCodexArchive, validateGuideReviewsWithCodex } from "./codex-validate";
@@ -18,6 +21,9 @@ import {
   pendingLivePromptIds,
   validateCompositionMatrix,
 } from "./live-validate";
+const contextualNavigation = validateContextualArchive();
+const guidedSelection = validateGuidedSelectionArchive();
+const behavior = validateBehaviorArchive();
 const matrix = validateCompositionMatrix();
 const live = validateLiveArchive(
   JSON.parse(readFileSync("evals/fixtures/live-api.json", "utf8")),
@@ -38,6 +44,9 @@ const codexStatusIssues=validateCodexStatus(codexStatus,codexArchive,createCodex
 const guideReviews = validateGuideReviewsWithCodex(JSON.parse(readFileSync("evals/fixtures/guide-review-live-api.json", "utf8")), codexArchive, createGuideReviewCases(), codexStatus);
 const guideObservations = validateGuideObservations(JSON.parse(readFileSync("evals/results/2026-11-15-guide-regression-rejudged.json", "utf8")), createGuideRegressionCases());
 const issues: string[] = [
+  ...contextualNavigation.issues,
+  ...guidedSelection.issues,
+  ...behavior.issues,
   ...guideSessions.issues, ...guideReviews.issues, ...codexReviews.issues, ...codexStatusIssues, ...guideObservations.issues,
   ...validateOriginalFinding(JSON.parse(readFileSync('evals/results/2026-11-14-frozen-verification-initial.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-frozen-verification-static-finding.json', 'utf8'))),
   ...validateHelpFinding(JSON.parse(readFileSync('evals/results/2026-11-14-listening-followup-first.json', 'utf8')), JSON.parse(readFileSync('evals/results/2026-11-14-listening-help-static-finding.json', 'utf8'))),
@@ -95,6 +104,9 @@ console.log(
       ).cases.length,
       compositionMatrix: matrix,
       judgeCalibration: { cases: calibration.cases, method: 'Recorded real pinned same-model judge calls on agent-authored labeled replies; no target calls, no independent judge' },
+      actualContextualNavigation: contextualNavigation,
+      actualGuidedSelection: guidedSelection,
+      actualCodexLearningBehavior: behavior,
       frozenVerification: { cases: frozen.cases, targetTurns: 28, untunedRetainedSessions: 3, tunedRegressionSessions: 3, freshAfterRemediationSessions: 1, method: 'Recorded agent-authored actual-history scripts; original raw false pass preserved separately; not blind independent validation' },
       focusedTextApi: { englishCases: englishLive.cases, sessions: sessionLive.cases, sessionTargetTurns: 32, method: "Recorded real text API evidence; sessions use actual preceding replies and isolated turn-prefix same-model judges; no new requests in this command" },
       liveApi: {

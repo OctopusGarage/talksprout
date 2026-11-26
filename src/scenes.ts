@@ -61,7 +61,9 @@ export function compatibleScenes(prompt: Prompt): Scene[] {
   if (prompt.id === "friendly-debate")
     return scenes.filter((scene) => scene.topicActivities.includes("debate"));
   if (prompt.id === "word-riddle")
-    return scenes.filter((scene) => scene.topicActivities.includes("word-game"));
+    return scenes.filter((scene) =>
+      scene.topicActivities.includes("word-game"),
+    );
   return [];
 }
 const spokenLoops: Record<string, string> = {
@@ -90,6 +92,15 @@ export function composeScene(
     selection &&
     compatibleScenes(prompt).find((s) => s.id === selection.sceneId);
   if (!scene || !selection) return prompt;
+  return composeSceneContent(prompt, scene, selection);
+}
+
+/** Shared composition for the app and self-contained distribution templates. */
+export function composeSceneContent(
+  prompt: Prompt,
+  scene: Scene,
+  selection: SceneSelection,
+): Prompt {
   const roleplay = prompt.id === "roleplay-coach";
   const mock =
     roleplay && scene.category === "interview" && selection.pace === "mock";

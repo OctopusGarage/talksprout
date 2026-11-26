@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "scope": "pre-release actual local-MCP and standalone-Skill guided selection; not production deployment",
+  "files": [
+    {
+      "file": "mcp-judge.json",
+      "sha256": "eea960f6a5cb1e75249959536ea5efda4c364f6de39e5b87653dcff1355c444e",
+      "bytes": 62594
+    },
+    {
+      "file": "mcp.json",
+      "sha256": "ccf82913c12c88af822dcfb1a3dc130299d7c99a97d4c21179273942345c7e6c",
+      "bytes": 143354
+    },
+    {
+      "file": "numbered-mcp.json",
+      "sha256": "7fe20741b61cb8561356182b4cad3ca432290f9ccf2b8015d922bb31013ab5b0",
+      "bytes": 42114
+    },
+    {
+      "file": "numbered-skill-web.json",
+      "sha256": "c193d370faca6a93e5ea12dd55b05505f3dd919675cf4b3d17fc7dc76bca0938",
+      "bytes": 34682
+    },
+    {
+      "file": "skill-web-judge.json",
+      "sha256": "dfe4e591e13ab64a9e4fcfa9f7592e9a264cba7a1224f6615026f20f59ed126e",
+      "bytes": 68572
+    },
+    {
+      "file": "skill-web.json",
+      "sha256": "4f6c4e7d5c3a91ab83a44549aa94ac412b7b308a37d4dc66af308fb2d0a1d1b7",
+      "bytes": 91279
+    }
+  ]
+}

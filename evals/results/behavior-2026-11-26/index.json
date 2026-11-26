@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "method": "actual-codex-native-history-learning-behavior",
+  "records": [
+    {
+      "file": "behavior-20261125T170435Z-356ce5ed.json",
+      "sha256": "a8552d7b98a50b2fb3f336a58e3359be2fd9ad64819753fbef24d618143e8b76",
+      "bytes": 213633,
+      "kind": "run",
+      "skillSnapshot": "before-routing-fix"
+    },
+    {
+      "file": "behavior-20261125T171159Z-c2518cb9.json",
+      "sha256": "1277cbbd8c0a3cecd359be00b6583b54bd79476c5f3306cf5935390a909e7de0",
+      "bytes": 545942,
+      "kind": "run",
+      "skillSnapshot": "before-routing-fix"
+    },
+    {
+      "file": "behavior-20261125T172449Z-80469d87.json",
+      "sha256": "493d57e91a4e600bb4d7dceb1e65429f34414c8a0e29563bcde98b58c78f509f",
+      "bytes": 370961,
+      "kind": "run",
+      "skillSnapshot": "before-routing-fix"
+    },
+    {
+      "file": "behavior-20261125T173019Z-30b375f6.json",
+      "sha256": "a2ba8fe21e52acbde1f4fefa25ea0ef8ee883e5244f6769a96a4d3f5726f415a",
+      "bytes": 911855,
+      "kind": "run",
+      "skillSnapshot": "before-routing-fix"
+    },
+    {
+      "file": "behavior-20261125T174143Z-8b24d31f.json",
+      "sha256": "e15e21acea4d70db32d99dfa42bcf69e91678d9f4799e1c274f77eb6d968f9b0",
+      "bytes": 1933707,
+      "kind": "run",
+      "skillSnapshot": "before-routing-fix"
+    },
+    {
+      "file": "behavior-20261125T180116Z-0c4aae83.json",
+      "sha256": "61fffd062cf7e3ea2243f51e21e029d0ee2f3ddff8278e777e1e374e8e36d621",
+      "bytes": 252409,
+      "kind": "run",
+      "skillSnapshot": "before-routing-fix"
+    },
+    {
+      "file": "behavior-20261125T180949Z-60691a9f.json",
+      "sha256": "48b50a2b3606bd546f697c824723da8b08febdccd06e4b3ba22c47c6bd06539f",
+      "bytes": 1489663,
+      "kind": "run",
+      "skillSnapshot": "current"
+    },
+    {
+      "file": "behavior-judgments-20261125T175344Z-2c6c1bd3.json",
+      "sha256": "2b02d62b739f22d72cf23c9b0afdf13292d90ae355a0351e1072091514dd93f5",
+      "bytes": 1091514,
+      "kind": "judgments",
+      "skillSnapshot": "before-routing-fix"
+    },
+    {
+      "file": "behavior-judgments-20261125T182455Z-5cfdd316.json",
+      "sha256": "d1b7b894fb9a510ef3be8825b4d103d1cb971fe196e3c1ba66f9a4e08765c221",
+      "bytes": 1086122,
+      "kind": "judgments",
+      "skillSnapshot": "before-routing-fix"
+    },
+    {
+      "file": "behavior-probe-20261125T182949Z-e1bc53de.json",
+      "sha256": "9af9bc116765b9df882b5733c76ddaad9ae743e19c5de57ef997ac633a2e8b41",
+      "bytes": 28993,
+      "kind": "probe",
+      "skillSnapshot": "current"
+    },
+    {
+      "file": "behavior-20261125T183811Z-f6d27487.json",
+      "sha256": "5591d37daf1550b400740ddae50cb848046155d992a2bf7412305121cb480b2b",
+      "bytes": 363449,
+      "kind": "replication",
+      "skillSnapshot": "current"
+    },
+    {
+      "file": "behavior-judgments-20261125T184117Z-f2962f7b.json",
+      "sha256": "21c18e2e828f5d0082eddf8a30f9cf1eaa6dd9b4111d6acca59d1055137bafd7",
+      "bytes": 117203,
+      "kind": "judgments",
+      "skillSnapshot": "current"
+    }
+  ]
+}

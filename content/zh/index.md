@@ -2,6 +2,8 @@
 
 Prompt bodies are English learning instructions. Read the selected document before starting; preserve its coaching loop.
 
+- [会话指南与导航](start.md)
+
 - [教练、复习与听读写练习](prompts/index.md)
 
 - [兼容场景与面试节奏](scenarios/index.md)

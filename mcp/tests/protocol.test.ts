@@ -117,5 +117,5 @@ test("modern stateless protocol reads guide without initialization", async () =>
     { name: "get_guide", arguments: { language: "zh" } },
     "2026-07-28",
   );
-  assert.match(guide.content?.[0].text ?? "", /zh\/index.md/);
+  assert.match(guide.content?.[0].text ?? "", /zh\/start.md/);
 });

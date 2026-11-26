@@ -58,6 +58,14 @@ test("downloaded PNG decodes to the app home and share dialog provides iPhone op
   expect(download.suggestedFilename()).toBe("talksprout-share-zh.png");
   const png = PNG.sync.read(await readFile((await download.path())!));
   expect(png.width).toBe(1080);
+  // The central app badge must be present, not merely a decodable plain QR.
+  let greenPixels = 0;
+  for (let y = 450; y < 850; y++) for (let x = 490; x < 590; x++) {
+    const i = (y * png.width + x) * 4;
+    if (png.data[i + 1] > png.data[i] * 1.3 && png.data[i + 1] > png.data[i + 2]) greenPixels++;
+  }
+  expect(greenPixels).toBeGreaterThan(500);
+
   expect(png.height).toBeGreaterThan(1500);
   expect(jsQR(new Uint8ClampedArray(png.data), png.width, png.height)?.data).toBe("http://127.0.0.1:4173/");
   const reduced = await preview.evaluate(async (img: HTMLImageElement) => {

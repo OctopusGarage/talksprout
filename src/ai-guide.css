@@ -1,0 +1,358 @@
+.ai-guide {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 8px 0 24px;
+}
+.ai-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+.ai-intro img {
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.ai-intro h2 {
+  font-size: clamp(23px, 2.6vw, 28px);
+  line-height: 1.35;
+  margin: 0 0 10px;
+}
+.ai-intro p {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+}
+.ai-methods {
+  display: flex;
+  gap: 28px;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.ai-methods button {
+  flex: 0 1 auto;
+  min-width: 0;
+  min-height: 48px;
+  padding: 10px 4px 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.ai-methods button[aria-selected="true"] {
+  border-bottom-color: var(--green);
+  color: var(--green);
+  font-weight: 650;
+}
+.ai-setup {
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+}
+.ai-setup h3,
+.ai-examples h3 {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+.ai-description {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+.ai-actions {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-top: 20px;
+}
+.ai-primary,
+.ai-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 11px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.5;
+  text-decoration: none;
+  font-weight: 600;
+}
+.ai-primary {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+.ai-primary:hover {
+  background: #294f42;
+}
+.ai-secondary {
+  background: var(--surface);
+  color: var(--ink);
+}
+.ai-primary svg,
+.ai-secondary svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+.ai-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 12px 0 0;
+  overflow-wrap: anywhere;
+}
+.ai-host {
+  border: 0;
+  padding: 0;
+  margin: 20px 0;
+  min-width: 0;
+}
+.ai-host legend {
+  padding: 0;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 550;
+}
+.ai-host-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  max-width: 340px;
+}
+.ai-host-options label {
+  position: relative;
+  cursor: pointer;
+  min-width: 0;
+}
+.ai-host-options input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.ai-host-options span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 550;
+}
+.ai-host-options svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0;
+  flex-shrink: 0;
+}
+.ai-host-options input:checked + span {
+  background: var(--tint);
+  border-color: var(--green);
+  color: var(--green);
+}
+.ai-host-options input:checked + span svg {
+  opacity: 1;
+}
+.ai-host-options input:focus-visible + span {
+  outline: 2px solid var(--green);
+  outline-offset: -4px;
+}
+@media (hover: hover) {
+  .ai-host-options label:hover span {
+    border-color: var(--green);
+  }
+}
+.ai-instructions {
+  font-size: 14px;
+  padding-left: 22px;
+  margin: 16px 0;
+}
+.ai-instructions li + li {
+  margin-top: 8px;
+}
+.ai-endpoint {
+  display: block;
+  font:
+    12px/1.8 ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  padding: 13px;
+  border: 1px solid var(--border);
+  background: var(--canvas);
+  border-radius: 9px;
+  user-select: all;
+}
+.ai-guide details {
+  margin-top: 16px;
+}
+.ai-guide summary {
+  min-height: 44px;
+  padding: 10px 0;
+  font-size: 13px;
+  cursor: pointer;
+}
+.ai-guide details > p {
+  color: var(--muted);
+  font-size: 13px;
+}
+.ai-guide textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 12px;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.8;
+  resize: vertical;
+}
+.ai-command {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+.ai-copy {
+  min-width: 0;
+  max-width: 100%;
+}
+.ai-copy button {
+  max-width: 100%;
+}
+.ai-copy-feedback {
+  font-size: 12px;
+  margin: 4px 0 0;
+  color: var(--green);
+}
+.ai-copy-feedback:empty {
+  display: none;
+}
+.ai-copy textarea {
+  display: block;
+  margin-top: 8px;
+}
+.ai-examples {
+  margin-top: 32px;
+}
+.ai-examples h3 {
+  font-size: 15px;
+}
+.ai-examples ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ai-copy-compact button {
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  width: 100%;
+  text-align: left;
+  justify-content: space-between;
+  padding: 14px 0;
+  font-size: 13px;
+  font-weight: 400;
+}
+.ai-copy-compact button span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.ai-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  border-top: 1px solid var(--border);
+  margin-top: 28px;
+  padding-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.ai-footer p {
+  margin: 0;
+}
+.ai-footer a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.ai-offline {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+@media (max-width: 760px) {
+  .ai-guide textarea {
+    font-size: 16px;
+  }
+  .ai-setup {
+    padding: 20px;
+  }
+  .ai-intro {
+    gap: 12px;
+  }
+  .ai-intro img {
+    width: 36px;
+    height: 36px;
+  }
+  .ai-intro h2 {
+    font-size: 24px;
+  }
+  .ai-methods button {
+    font-size: 13px;
+    padding-inline: 4px;
+  }
+}
+
+.ai-guide .ai-primary:focus-visible,
+.ai-guide .ai-secondary:focus-visible,
+.ai-methods button:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .ai-methods {
+    gap: 16px;
+  }
+  .ai-methods button {
+    flex: 1;
+    padding-inline: 2px;
+  }
+}

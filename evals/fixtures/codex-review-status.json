@@ -9,7 +9,7 @@
     },
     "ai-mcp:bb8cfee80e9e59b024232e6e70cae3966ca711ae10ab23b7a25c033d50247d53": {
       "status": "accepted",
-      "observedAt": "2026-11-25T14:58:16.857Z",
+      "observedAt": "2026-11-25T16:09:30.109Z",
       "evidenceSha256": "bc7cf8d110ca2424db18059ffadf4eabab5bbe4e9ad2e9cc7010f81096bd3a19"
     },
     "ai-eval-harness:0c9c0a38dfb014dd8e1ba06cf784fb2a253911bfb8868564b473b71eceea7241": {
@@ -18,7 +18,7 @@
     },
     "ai-release:bb46ac3d09020b2c90096aaf95fdb2b35561795259774c4c7368c0298d8937c2": {
       "status": "accepted",
-      "observedAt": "2026-11-25T14:58:16.857Z",
+      "observedAt": "2026-11-25T16:09:30.110Z",
       "evidenceSha256": "2085c3a6e73cc0c48f03281e717c45509b09efb974a223f5d924c8dac0ac9353"
     },
     "ai-installation:a22344e158c8587d05c5d0167a742e7c496a2d80372e7c06d49fd7d9096d740d": {
@@ -33,7 +33,7 @@
     },
     "guide-code-reader-copy:e007072e4c61387ed13604b355f3b6baeb9c395a57d465f8c0f1a906a441cef1": {
       "status": "accepted",
-      "observedAt": "2026-11-25T14:58:16.855Z",
+      "observedAt": "2026-11-26T10:40:22.673Z",
       "evidenceSha256": "d17d025da801096bea272adfaa09c7a560d18837fa2216d56a1208d46244c310"
     },
     "guide-code-app-routing:08d8a9d07b195e52da97988babbf7b3db2e031ce4efce2b686ab10ef65fa10d7": {
@@ -43,18 +43,392 @@
     },
     "guide-code-content-assembly:631319fe783f5b8c8098fd0cf8c4d61506caaf8b9c890d61329409bc3c74abb4": {
       "status": "accepted",
-      "observedAt": "2026-11-25T14:58:16.856Z",
+      "observedAt": "2026-11-26T10:40:22.674Z",
       "evidenceSha256": "2327702ba28b2ee730823c0841c84e5f8f77784182ba779949ac869ac0007ff8"
     },
     "guide-code-documentation:e9290e949aedefc20f2682bf40a3a25af74ce9656783c58d53c4e39d16081cef": {
       "status": "accepted",
-      "observedAt": "2026-11-25T14:58:16.856Z",
+      "observedAt": "2026-11-25T15:52:00.227Z",
       "evidenceSha256": "6ca361425b54536927772284cbbfeca957059e7cb2e5882bd6755e80b0d07380"
     },
     "ai-content-distribution:a411cfa43877116dd763f38fdc22792cb7f044be0fe4abb398484e9a869ad853": {
       "status": "accepted",
       "observedAt": "2026-11-25T14:58:16.857Z",
       "evidenceSha256": "b28b8a2617ef565d1c90b7dc6891579f0ca62b09343455a1837a98af9ecfbc3f"
+    },
+    "guide-code-app-routing:01c5d48d1324f8e6f76e0131273258dddbb6e6c89bf1c4f9405ba61bfa449421": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T15:52:00.227Z",
+      "evidenceSha256": "42e25769bfb3dae464becaa330deffab2859d913e4b2688f734b219bc688ac34"
+    },
+    "guide-code-tests-scripts:b7ef65aeddfae68a7ce38ca3ceeaaafc4bd588a31904424c99da7c899a8c22d8": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T16:09:30.109Z",
+      "evidenceSha256": "28acf7a3dee14c509802f2ae4ddcdff85b1de8fee13d50d3e5c286c71ccc5afb"
+    },
+    "ai-content-distribution:14454e16254c38dc2c2dc48cba1260d80862ad7ed2c07f8e750ec299b271d660": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T15:52:00.228Z",
+      "evidenceSha256": "2c0346414fa21c852d7a3c5ea10afb155da7aed820a4cdd04df4734ccb8a4cd0"
+    },
+    "ai-installation:ea1e0380bc171e8fbe2a256f97ea03386207bbe27975795caee85a2ab7522282": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T15:52:00.228Z",
+      "evidenceSha256": "b8894fe7737dffdfcd9fcc532d9f6b3eb6ead66dfcc78457880b6eb97de1e1e7"
+    },
+    "ai-eval-harness:c2f07e3b7796053c001bab3dd94263a8fa087fc13c41593f030cc66dd24a80cc": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T15:52:00.228Z",
+      "evidenceSha256": "55048ce2a4ef18d394d2cdf573e01dc1a58e9e20b766c312ac2ebe7e1f7eb8dc"
+    },
+    "guide-code-app-routing:304b99eeac0485990b8f25cd474eeba054aa04725cc5865fa0e555dd9a4dedaf": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T16:09:30.111Z",
+      "evidenceSha256": "ecc3e96c09747422c05706a9ec5e00f64b2449d2490db67163c3c4591ef35171"
+    },
+    "guide-code-documentation:57ddea806ffc4544d9b185640ea5459bff657afaebc722f06764222d27f102ea": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T19:47:39.072Z",
+      "evidenceSha256": "c33f8a156651efcbcb058e250e231b2d9554aeacc6e98180c5878f0190787dee"
+    },
+    "ai-content-distribution:692acbad6903a0466cd3f3b64b5b2323a0b03b4c581115a4616db80d13ebe26d": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T16:09:30.109Z",
+      "evidenceSha256": "0397ed5173b32501de08127f4590acafc1f31737e1a24e2930cff84d239dd365"
+    },
+    "ai-installation:fe36464139518977f0f7832fd2ba549ecf6c8ef2cf4f9263e2f1197fe80bd420": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T16:09:30.110Z",
+      "evidenceSha256": "081c3f0610aa78c0a55b67e465893b9d8eb7b9c293dedf59d7cdda7a80b9d49f"
+    },
+    "ai-eval-harness:1dd27509997bbef8c122c8f8e5d1cc1d5b1c78e00aa1ae63cdf0c34ccf20edad": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T16:09:30.110Z",
+      "evidenceSha256": "5a4dab7d999290af703b67cdd3f4481aba0bf5f7ed451496661b286442eb4d5d"
+    },
+    "guide-code-app-routing:d35f7832f84912da79c02935a938cb3d1c3b5110a33cdfea724b4373d68dda17": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T19:47:39.072Z",
+      "evidenceSha256": "eb2302620719a60278a1ea3cb52cec1bd82c52269580027c3a4261f23d47bc48"
+    },
+    "guide-code-tests-scripts:ccfe89bc976f407a5c0f5395a6b9e203ab369d24ac542f4bd8140dfdd5506a12": {
+      "status": "pending",
+      "observedAt": "2026-11-25T19:13:35.124Z"
+    },
+    "ai-content-distribution:e9a0b07e0be4f7669c04536c2fa6b4646d5674ea84f5ab0df63405ef41a5038e": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T19:47:39.073Z",
+      "evidenceSha256": "e675f645bb885a3a1590e932f04ffb2d9ffff7e9c1262fe02a8056b9812b9c93"
+    },
+    "ai-mcp:94186426cd1baeb24e0797cd1f142a2cf7649960aa326ab71e16ae14ae6ec9b2": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T19:47:39.073Z",
+      "evidenceSha256": "efd68b06aff17387ff7d567a958b9f0a46a3c61f0804a21aa4637710038b89ab"
+    },
+    "ai-installation:8758b353bfd721b434c72c4d1e8a38888aea0a3739e85745cfd911acb490ca64": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T19:47:39.074Z",
+      "evidenceSha256": "5d3c3bee307e7ba9aeeb54a6fe896b963d51b98f837dba7578212e2b504709d0"
+    },
+    "ai-eval-harness:dda9cf681e5a41b2a188993155ff7a536701ed37675018b285c3c8ddbc91613a": {
+      "status": "pending",
+      "observedAt": "2026-11-25T19:14:29.322Z"
+    },
+    "ai-behavior-evals:fb3d1159f3c89438e77820994c2c33630821efa31b611a7b57a1054dfeea236f": {
+      "status": "failed",
+      "observedAt": "2026-11-25T19:15:38.335Z"
+    },
+    "ai-release:d1625818275b96aa0a9ad12ea762cf2b4e14afa0cd5148e96d59542c426c019b": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T19:47:39.074Z",
+      "evidenceSha256": "500638ae992847a2b3d6286bc946528a8ef804d33b504ff92d16d017558ff2d9"
+    },
+    "ai-behavior-evals:93bfe0b8e6fd9ceb2172f71dedb495ec3b86ea8018324005e6dc01c54d4319aa": {
+      "status": "failed",
+      "observedAt": "2026-11-25T19:19:55.854Z"
+    },
+    "guide-code-tests-scripts:14dad5d848984fd613bc00cc7513d31e1c16f204a292330923b39fbd684e81c6": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T19:47:39.072Z",
+      "evidenceSha256": "c597a7a6674c6f326ee52a64787297a4440aac2f40454a55a78a76c5c99eeb9d"
+    },
+    "ai-eval-harness:88f93c5b051fedfedb3011d5bdfe8c0974892bd88a69326c353e445b98263e84": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T19:47:39.074Z",
+      "evidenceSha256": "3501f15e6a06ccfbe5d5445c1da1ca1860853543a346efe742d530251b25fba6"
+    },
+    "ai-behavior-evals:d948089ee5f2ce2c1d182f78176b17cc48e3f55cd07ac4b730b1d692d49e7e63": {
+      "status": "failed",
+      "observedAt": "2026-11-25T19:26:00.058Z"
+    },
+    "ai-behavior-evals:a1ed47a5a08c098f5f373061a2d4d574ae543508b0717594018fd3b2ee346ac1": {
+      "status": "failed",
+      "observedAt": "2026-11-25T19:30:06.822Z"
+    },
+    "ai-behavior-evals:0502c608a545434ac3791e4f212199905b0f0b40264914056ccb55aebbcb73b0": {
+      "status": "failed",
+      "observedAt": "2026-11-25T19:35:02.510Z"
+    },
+    "ai-behavior-evals:853cbdf8ee438ebb4c93f6a860e66e8c654d3dd7727e166ee0348e277d5711d3": {
+      "status": "failed",
+      "observedAt": "2026-11-25T19:38:05.066Z"
+    },
+    "ai-behavior-evals:f0caa62660cee704a10e2ea702a3fea2b7b3250df5087c5fffe7d3c399735c8f": {
+      "status": "accepted",
+      "observedAt": "2026-11-25T19:47:39.075Z",
+      "evidenceSha256": "478f730881ac90f5f95fa80762e2de8a321783c2539b221e78fa95030b84651f"
+    },
+    "guide-code-app-routing:7d20b29d47ccadd86ad62341b8da573a0f0bdbe0aa098799558a9567ab3ff71f": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:40:22.674Z",
+      "evidenceSha256": "52aa1db6332988fbfcd255ea22bb2479faef990ca7c8e0b9e1906dc9897bc49c"
+    },
+    "guide-code-tests-scripts:4f71f0f9d6676424879f6d297cb2e198cd55ab5cf9cc6a5fbba0df1a44dfd33c": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T05:51:44.126Z",
+      "evidenceSha256": "21efa89aed7af82851068bff61b347d5f7a0e2c94fd8dd14927e01c91ef93d69"
+    },
+    "guide-code-documentation:11e08509b587dcbabb32bd87775712f981d2784dda922823f7292c667ec439a6": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T08:16:49.800Z",
+      "evidenceSha256": "89fb70182a0efd6cfd0879f2c08fd2cfdbf783eb24e3cd664f9854f0d7340f8f"
+    },
+    "ai-content-distribution:14fda2c72796689bd529a54d335c1627a87dac3291b529a6152849e93a83c95a": {
+      "status": "failed",
+      "observedAt": "2026-11-26T03:44:38.179Z"
+    },
+    "ai-mcp:7f50b117256eb257e50a4637204d2b87ffa4fc85442a1cf01173af15d3e44071": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T05:51:44.127Z",
+      "evidenceSha256": "44161665d8a24067c9716216671fca5762a4ce463d85e037a8c6b994bc8e2992"
+    },
+    "ai-installation:832f36f683b78a6c6c4d2fa6abeb051ae1013453753fcfc6648f290001f3bcb1": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T04:37:56.629Z",
+      "evidenceSha256": "ae82e940f414abcffe385d410ebd50a45c946fa6b33c9ceee7b5e83b06f787d0"
+    },
+    "ai-eval-harness:35ebc0053d4218f1e882222a1a98b85a441b53ed1445282c8122cd4de15d6f3e": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T05:51:44.127Z",
+      "evidenceSha256": "6130f73aa2cc974f2a5322c3f0ab29017d3b709a0fddaa1712822e1ddb51e413"
+    },
+    "ai-behavior-evals:05e627a98fb4900324ccfd5edeeae95d221d76af3e56c47f1a9fd45b1233fc5a": {
+      "status": "failed",
+      "observedAt": "2026-11-26T03:40:53.253Z"
+    },
+    "ai-release:aca3f6398ef66a09259ade8a4ca08cf9388b418d222dd4f67d27b461f7f9c0df": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T08:16:49.802Z",
+      "evidenceSha256": "dde84f4a83602232fdd372063e6ec1f53f826aa8fee1d7ed22303d2201a6a879"
+    },
+    "ai-content-distribution:e5bcec511117f08acb4189e97977e7544cbd84deb717f126d366a302bfe0d737": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T04:37:56.628Z",
+      "evidenceSha256": "18516cccb20100210eb9a3d412cf8987ad04afda82253042226aba6c59041200"
+    },
+    "ai-behavior-evals:cbe194ca20c3763841265592845f4df4ac47f17cde7b7190c0579c669a10ddaf": {
+      "status": "failed",
+      "observedAt": "2026-11-26T03:53:08.958Z"
+    },
+    "ai-behavior-evals:eb3354c346595444bb5b7921cdc85af35888fe6553b851a79a97e051074b8c03": {
+      "status": "failed",
+      "observedAt": "2026-11-26T04:02:31.262Z"
+    },
+    "ai-behavior-evals:1c396c8dd3c5efa0743f87126656c1e1f150fe6a8df01975594570abb6892697": {
+      "status": "failed",
+      "observedAt": "2026-11-26T04:14:23.842Z"
+    },
+    "ai-behavior-evals:5d991fd074c42700cba825f8ee30220081e1cc9ed28f110e74197b34ca2d3ad4": {
+      "status": "failed",
+      "observedAt": "2026-11-26T04:22:50.143Z"
+    },
+    "ai-behavior-evals:ca70bfc1dccd7b1bdded3837be92a777e591120c2cb249be76973b90a851359d": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T04:37:56.630Z",
+      "evidenceSha256": "f811e7634a0faa53e2a336e4309f5e2796eab04f5c8d2ab7a4fc5dea39cdd81f"
+    },
+    "ai-content-distribution:d0cdcbd4b67903eb17ef57312c64ee4a7602dfc2649db6132f91ee52f616ca88": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T05:51:44.128Z",
+      "evidenceSha256": "75a5d794dbd566b642f94f5bb21cf74c57d89cc4d9e43628f5a027279fb54f17"
+    },
+    "ai-installation:2d834c05a14db01bdc6df96514f43bc01d4cb7d9b813ec70dffb254c38bb6efb": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T05:51:44.127Z",
+      "evidenceSha256": "789b3fab74d5b2ece0dddfd70612c1ff72711eb575d64a47dfc2e26b259de340"
+    },
+    "ai-behavior-evals:5d463e9b30ee27694b6c6cdf87c4549af7ed68e7c8eec6c6f2d0736065303589": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T05:51:44.129Z",
+      "evidenceSha256": "b8aae2da1ecdd1438c4d81cfd75b0708b65f79d771a9013edbf519027c64c09b"
+    },
+    "guide-code-tests-scripts:d3893fc4525e7552a9d00714b470d05323f2ef82e670c07efb846187d06e50b6": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:40:22.674Z",
+      "evidenceSha256": "291178e04b50c08ab82d71a49b919edc9e8b4fd73cc1d7e738fe5c1a2bfaa083"
+    },
+    "ai-content-distribution:ae7ac3000ff4536c0b1a37dc0e2ddd0dbadcbc1a666e1b753f73ceaa8222103b": {
+      "status": "failed",
+      "observedAt": "2026-11-26T07:28:33.585Z"
+    },
+    "ai-mcp:ca00b1bb40aef82da05e62ad846a45b351482202b8e00f7dd29d6b1847cb02a9": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:40:22.675Z",
+      "evidenceSha256": "7361d016985f0d291269e7263a6b6949d79cd338b5b1fe38790c01e593f95258"
+    },
+    "ai-installation:37e47e5ff6d180b1718d5263b7cac77d2b06652c214b54c9369b044769eadef3": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T08:46:26.397Z",
+      "evidenceSha256": "d4c0164c542f8b50cd90249f516af45607b87f03e962b6efd125f783447cb3b0"
+    },
+    "ai-eval-harness:91cb0c8c7463d8ab44ea66166d1d7dd8733f2e73199eb80eadcbcf61d2500df8": {
+      "status": "pending",
+      "observedAt": "2026-11-26T07:28:54.594Z"
+    },
+    "ai-behavior-evals:7ca824d27f913f9e837f9149fd4aab37d0f07ca70658a1ec6e194f9a4df22185": {
+      "status": "failed",
+      "observedAt": "2026-11-26T07:30:02.219Z"
+    },
+    "ai-contextual-navigation:af5f2ea58f461da449ae962ecbce466d55c9f9d0b720e25d436d202aad89024a": {
+      "status": "failed",
+      "observedAt": "2026-11-26T07:30:11.524Z"
+    },
+    "ai-content-distribution:c5f42b5917ee2222558df9888bc99129af2726c87a160a79b9ba4d4c45f0102e": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T08:46:26.396Z",
+      "evidenceSha256": "6dd83f20064953447a06d9242592dfce0023333e43dc7f51acf4f912ae13a849"
+    },
+    "ai-eval-harness:fb6613b7ead6fc6c6913d72437d4610a692695e35938f7efce749cf6e53e5359": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T08:46:26.397Z",
+      "evidenceSha256": "99906a0a8f7fd1ac44b61ce45fa270d719eee44133e7dde6e59dc4f972338e66"
+    },
+    "ai-behavior-evals:ae24af8128e530b58a6ae8ba72385455cc31c281689e8ada767fc1eef8865823": {
+      "status": "failed",
+      "observedAt": "2026-11-26T07:46:00.977Z"
+    },
+    "ai-contextual-navigation:d5bd86a999c096e9699b54502607203320c994883eca04eb85e4893979c08c8f": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:03:51.585Z",
+      "evidenceSha256": "cd4aecb5f1c1112d0c2e5eafd9644f0c130a78d32fdc1929677f7adfc838c01d"
+    },
+    "ai-behavior-evals:2375269f4b14eece2f722019d3e035847637646ea6f9747cd466b94e57811526": {
+      "status": "failed",
+      "observedAt": "2026-11-26T08:08:49.840Z"
+    },
+    "ai-behavior-evals:5e892139e54c6c8fe62629787eeff49dc2994130b27595f111f15394f29f7490": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:03:51.584Z",
+      "evidenceSha256": "7e9349af7213fc04ece6a0fd4cc9358d9f580a9045b0f8ab03e318702732a819"
+    },
+    "guide-code-documentation:afbbd865ea9b0daf47be7d3c60ceb3e0c95ab4e1fa592a8dbc02b32869f476af": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:40:22.675Z",
+      "evidenceSha256": "e1bf184ffaf6a45b32012c65cdf67ad89b5559cd620e37ca4c0a74d76977ac6d"
+    },
+    "ai-release:294d29cce8e65a84f8b590dce25c002e5c84ee4d9ff8dc57a900654508527a86": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T08:40:58.895Z",
+      "evidenceSha256": "e6a94a17b2f105c6ecb4a9f37b57ae37e84263c93e30cac38730ccd35bb090fe"
+    },
+    "ai-release:3af8702d1283b7e15ef2d60462bcd1a22a97ceeef7a6c2567754533e88c84e2b": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T08:46:26.399Z",
+      "evidenceSha256": "2ebe8f0d1f62efc13abd3d091bfae550e5efc75f8a11b37620d399b837cf51eb"
+    },
+    "ai-content-distribution:66b339e94dfd484c7f33c387e59ecb5766375f271c7dc883ba23f347e4a3d70b": {
+      "status": "failed",
+      "observedAt": "2026-11-26T10:00:19.035Z"
+    },
+    "ai-installation:a8ce0cc6043eea3c9bf2f0b6e83b72b59fa092635e4c000c8ddfb149994d9563": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:32:32.923Z",
+      "evidenceSha256": "849f7093e3a4f2c89baf613cb6efb07c87c8381d0e4595dbbc87abfbf8989673"
+    },
+    "ai-eval-harness:8b1f06d18cb70c5a07f18257e1b1525120897744187c996560a35381a763f232": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:21:30.712Z",
+      "evidenceSha256": "dcb1c94a79d3b1c4f9e50814c498bd5093e07c84ef89eca8823d44daf86ffe8e"
+    },
+    "ai-release:833fefd10efcc2af6932fb071ffd2462cd5f4f3be2156c0200d58c0e329ff038": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:21:30.714Z",
+      "evidenceSha256": "9fc0928e12c642a4ec26d654a2c66d2193b63147b60005ab42926dd22a78e5c4"
+    },
+    "ai-content-distribution:615c5e4fa844016482a148b694a943458336dcbfe0164a5442fd8ef1b067d204": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:14:02.509Z",
+      "evidenceSha256": "1e278ce98ae6d5d7c05e8882217a6739c47496d8bbcf5c2ca7c06a36369562a0"
+    },
+    "ai-behavior-evals:6486687e350ca7e21eb26666f5d3c002f9fd8b1c0e327114abcd495a881f7086": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:14:02.512Z",
+      "evidenceSha256": "f93fc22fae08180f6def9090facd2bc33a9fb216c818325abbaeea5822e12d5d"
+    },
+    "ai-contextual-navigation:3d7afa2ed0fe4894dc858255e6810c41122264417442d4894c12d43ac0f36ebb": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:14:02.510Z",
+      "evidenceSha256": "576dc95fb20fb7f46d426be9ecd7abd8295d59d89c106dfbffa2bdc9430e6d61"
+    },
+    "ai-content-distribution:f96cf6fa1208f4d5c281a4a8b61fce116dbe76530ec3084754ccab986a9f53e8": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:16:37.825Z",
+      "evidenceSha256": "6f8fea448251b2f098b869df7eebf423140430d5f70ba06bcf594a8cce6a0b46"
+    },
+    "ai-behavior-evals:b7d8e090c8b2ce017a6b2a40d6459f9817378831592008bf22bc8a83891def11": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:32:32.924Z",
+      "evidenceSha256": "3ccc566d1f9ec822aca605e7151f67c9133c854cffc8cecbc6740bd63121e178"
+    },
+    "ai-contextual-navigation:21a56de5314af42da5a20ac60646e0a7f1bcf784a37eb25213829cb96fa2a4f9": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:32:32.925Z",
+      "evidenceSha256": "5cd2175788a285988b7eb365eb97a8b49954b0b2fc02f4560c8a138d3aae50cd"
+    },
+    "ai-content-distribution:27379adab6251a45ab518d5340b84b68e4b8204999d1837df332a93479512cee": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:21:30.714Z",
+      "evidenceSha256": "db11009599025005ba7f61097ca1971ba31f725ce5d60865a9478d2e0f2c8a8e"
+    },
+    "ai-content-distribution:df53c4f10fc7168a375e9974093408659b8838749376387d8c8de897c72625b8": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:32:32.923Z",
+      "evidenceSha256": "9ade092c1d26b867f3e2a626614f025140c9fcb6735d12369d39e15039c814f7"
+    },
+    "ai-eval-harness:de8183f2cb6d8d4225886d716bbc4e24530687d4833a00b97b955011f1aba767": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:40:22.676Z",
+      "evidenceSha256": "0668c411d1552053735884eb89753cc13e65c3b05fbcae8f618c1859af45efa5"
+    },
+    "ai-release:fe7b58b88abcd9e5198cb985d5e7a55c39606a0c78ae8a715912fae68aecd8f7": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:32:32.926Z",
+      "evidenceSha256": "ee6228c9812a3a8043d83c46c32bcbb3012866434b44485001dd2949ef4cdc8a"
+    },
+    "ai-content-distribution:e908e7e641447277f4123ea6ddb49f9945eeee80fc46c40da3bed9f410882574": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:40:22.676Z",
+      "evidenceSha256": "0ed4c31f165f59918a360c32ef614804b13574f598bb2ed0108df021b4a95f83"
+    },
+    "ai-installation:41d7353f391bf94bf9c55511f637132d64ff9107fcc220384abe5336a0d467f9": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:40:22.677Z",
+      "evidenceSha256": "96c481084baafd0882679f7b9f228d7990b395565da3bddb7bdce9a455a91dc9"
+    },
+    "ai-behavior-evals:1dfeaf47da83018baa2e87e668efbecf5c6a86dee09577b13fe5295444723f3b": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:40:22.678Z",
+      "evidenceSha256": "17f4b07fbece554a26c09a9431811e630f77bbfdddf3ff55151fb643638db6c4"
+    },
+    "ai-contextual-navigation:1e175b48d00ba29b10c21144dcb9a373b69f80d95304b4af0f85888608de9efe": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:40:22.677Z",
+      "evidenceSha256": "ac66342914a4346765fe688c50ede8c862effb9b6fdd322383887a89a490d71e"
+    },
+    "ai-release:b140fb18c023aaace95dfd3373397f4658df7f6fb2119b40c8fb7d29781983dc": {
+      "status": "accepted",
+      "observedAt": "2026-11-26T10:40:22.678Z",
+      "evidenceSha256": "cdec4f912601f591849fe3a8f780b92e72bf41879f9d92c618c695122dbbeb79"
     }
   }
 }

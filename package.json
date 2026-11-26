@@ -29,13 +29,18 @@
     "release:publish": "python3 scripts/publish-ai.py publish",
     "release:test": "python3 scripts/test_release_policy.py",
     "mcp:smoke": "tsx scripts/verify-mcp.ts",
-    "format:check": "prettier --check scripts/*.ts mcp/src/*.ts mcp/tests/*.ts mcp/*.ts src/AISetup.tsx src/pwa-zoom.ts tests/ai-*.ts tests/pwa-zoom*.ts .github/workflows/*.yml evals/codex-*.ts tests/eval-codex.test.ts tests/mcp-verification.test.ts",
-    "format": "prettier --write scripts/*.ts mcp/src/*.ts mcp/tests/*.ts mcp/*.ts src/AISetup.tsx src/pwa-zoom.ts tests/ai-*.ts tests/pwa-zoom*.ts .github/workflows/*.yml evals/codex-*.ts tests/eval-codex.test.ts tests/mcp-verification.test.ts",
+    "format:check": "prettier --check scripts/*.ts mcp/src/*.ts mcp/tests/*.ts mcp/*.ts src/AISetup.tsx src/pwa-zoom.ts tests/ai-*.ts tests/pwa-zoom*.ts .github/workflows/*.yml evals/codex-*.ts tests/eval-codex.test.ts tests/mcp-verification.test.ts src/AiCopy.tsx src/ai-onboarding.ts src/ai-guide.css evals/behavior-*.ts evals/export-behavior.ts evals/validate-behavior.ts tests/eval-behavior*.ts evals/contextual-evidence.ts tests/eval-contextual.test.ts",
+    "format": "prettier --write scripts/*.ts mcp/src/*.ts mcp/tests/*.ts mcp/*.ts src/AISetup.tsx src/pwa-zoom.ts tests/ai-*.ts tests/pwa-zoom*.ts .github/workflows/*.yml evals/codex-*.ts tests/eval-codex.test.ts tests/mcp-verification.test.ts src/AiCopy.tsx src/ai-onboarding.ts src/ai-guide.css evals/behavior-*.ts evals/export-behavior.ts evals/validate-behavior.ts tests/eval-behavior*.ts evals/contextual-evidence.ts tests/eval-contextual.test.ts",
     "eval:codex": "tsx evals/codex-review.ts --resume --accept",
-    "mcp:typecheck": "pnpm --dir mcp typecheck"
+    "mcp:typecheck": "pnpm --dir mcp typecheck",
+    "eval:behavior:export": "tsx evals/export-behavior.ts --all",
+    "eval:behavior:run": "pnpm eval:behavior:export && python3 evals/behavior.py --cases .superpowers/model-run/behavior-all-cases.json --workers 3 --defer-judge",
+    "eval:behavior:judge": "python3 evals/behavior-judge.py",
+    "eval:behavior:validate": "tsx evals/validate-behavior.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
+    "@babel/parser": "7.29.14",
     "@playwright/test": "^1.55.0",
     "@types/node": "^24.19.2",
     "@types/pngjs": "^6.0.5",

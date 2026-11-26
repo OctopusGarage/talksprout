@@ -1,0 +1,9 @@
+I’ll use the uploaded TalkSprout guide. What would you like to do?
+
+1. **Conversation coaching** — chat with feedback that suits you.
+2. **Role-play or interview** — practise a realistic situation.
+3. **Review** — use a practice conversation you provide.
+4. **Listening, reading or writing** — work on a specific skill or material.
+5. **Learning methods** — explore ways to study effectively.
+
+Choose a number or describe your goal.

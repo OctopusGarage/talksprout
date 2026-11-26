@@ -10,11 +10,11 @@ Reference: OctopusGarage/panfolio, inspected 2026-11-25. This ledger maps infras
 | ChatGPT plugin | distribution/plugins/talksprout/plugin.json | Distinct archive; host upload not certified |
 | Claude plugin | distribution/plugins/talksprout/claude-plugin.json | Native manifest path in archive |
 | Branding | Existing TalkSprout app icon | Reused identity, not reference branding |
-| Deterministic packaging | scripts/package-skill.py, package-check.py | Fixed ZIP timestamps, source pinning, checksums |
+| Deterministic packaging | scripts/package-skill.py, package-check.py | Fixed ZIP timestamps, artifact provenance, checksums; stable latest-content bootstrap |
 | MCP | mcp/src | Guide, bounded search, complete document reads |
 | Request isolation | Exact document keys, bounded Worker POST | No outbound material fetching or personal state |
 | Health identity | /health | Remote availability requires actual deployment |
-| App installation destination | Settings AI setup section | Bilingual, copy fallback, three downloads, MCP status |
+| App installation destination | Settings entry and dedicated #ai page | Bilingual, copy fallback, three downloads, MCP status |
 | User and maintainer documentation | ai-installation.md, mcp-server.md, distribution-maintenance.md | Distinguishes host formats and installation/publication |
 | Release CI | pages.yml, mcp-deploy.yml | Preflight, tested-build upload/deployment, remote identity/protocol/icon verification, then immutable publication; resumable drafts |
 | Evaluation evidence | Existing prompt evals plus AI transport/package tests | No new model/audio compatibility claim |
@@ -36,8 +36,14 @@ TalkSprout MCP was deployed to `https://talksprout-mcp.octopusgarage.workers.dev
 
 ## Accepted release checks
 
-The final local checks passed: 143 unit/evidence tests, `pnpm eval` with no issues, 110 Chromium browser tests and 90 WebKit browser tests. The installed-app keyboard-zoom addition also passed focused Chromium and WebKit checks. MCP strict TypeScript, SDK protocol tests, generated-channel consistency, package integrity, scoped formatting, documentation links and production builds passed separately. The remote smoke verifier compares complete document text, not just headings.
+The final local checks passed: 145 unit/evidence tests, `pnpm eval` with no issues, 111 Chromium browser tests and 91 WebKit browser tests. The installed-app keyboard-zoom addition also passed focused Chromium and WebKit checks. MCP strict TypeScript, SDK protocol tests, generated-channel consistency, package integrity, scoped formatting, documentation links and production builds passed separately. The remote smoke verifier compares complete document text, not just headings.
 
 The accepted Codex archive contains ten exact-source review cases, each with an actual isolated target and judge execution (twenty distinct native CLI thread records). Four failed/disagreed intermediate observations remain archived as non-accepted evidence. These source reviews do not certify third-party account installation, voice behavior or learning outcomes.
 
 Runtime publication evidence is available through GitHub Actions, the versioned AI release manifest/checksums and the deployed MCP health response. Both production entry points share one workflow-level lock. Published tags must resolve to the manifest source revision, and retries verify the actual remote release assets before accepting an existing release.
+
+## Direct AI setup page (0.1.1)
+
+Settings contains a single native navigation row. The dedicated `#ai` page follows Panfolio's Skill/plugin/MCP tabs, styled copy/download controls, host selection and examples, adapted to English practice. Browser Back, a direct-link fallback and settings-opener focus are covered by tests.
+
+The product copy distinguishes two routes: choose/copy prompts with the web app, or configure a supported integration and invoke the learning workflows directly inside the external AI. The second route does not require opening or installing the web app. This rule is present in the UI, setup instructions, shared Skill/MCP guidance and installation documentation; public content access and host capability requirements remain explicit. Prior accepted 0.1.0 Codex evidence is preserved separately.

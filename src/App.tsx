@@ -1,3 +1,4 @@
+import { AISetup } from "./AISetup";
 import "./quick-access.css";
 import {
   lazy,
@@ -144,7 +145,7 @@ export default function App() {
       const guideOpener = previous.startsWith("#guides/") && (route.base === "#guides" || route.base === "#guides?section=reading")
         ? document.getElementById(guideEntryId(canonicalGuideId(previous.slice("#guides/".length))))
         : null;
-      (guideOpener ?? opener ?? document.getElementById("library-heading"))?.focus({ preventScroll: true });
+      ((previous === "#ai" && route.base === "#settings" ? document.getElementById("ai-entry") : null) ?? guideOpener ?? opener ?? document.getElementById("library-heading"))?.focus({ preventScroll: true });
     });
     return () => cancelAnimationFrame(frame);
   }, [route.base]);
@@ -352,7 +353,7 @@ export default function App() {
   const currentCollection = collections.find((c) => c.id === route.collection);
   const currentGuideTitle = route.guideId ? guideTitles[route.guideId] : undefined;
   const title =
-    route.page === "guides"
+    route.page === "ai" ? s("在 AI 中使用","Use in your AI") : route.page === "guides"
       ? currentGuideTitle?.[locale] ?? s("学习指南", "Learning guides")
       : route.page === "learning"
       ? s("听读写辅助", "Listening, reading & writing")
@@ -417,7 +418,7 @@ export default function App() {
                 href={href}
                 aria-current={
                   route.page === page ||
-                  (page === "practice" && route.page === "learning")
+                  (page === "practice" && route.page === "learning") || (page === "settings" && route.page === "ai")
                     ? "page"
                     : undefined
                 }
@@ -455,15 +456,15 @@ export default function App() {
       <main className="app-main">
         <header className="app-header">
           {((route.page === "practice" && route.collection) ||
-            route.page === "learning") && (
+            route.page === "learning" || route.page === "ai") && (
             <button
               className="back-button icon-button"
               aria-label={
-                route.page === "learning"
+                route.page === "ai" ? s("返回设置", "Back to settings") : route.page === "learning"
                   ? s("← 返回练习", "← Back to practice")
                   : s("← 返回分类", "← Back to collections")
               }
-              onClick={() => navigate("#library")}
+              onClick={() => { if (route.page === "ai" && history.state?.talksproutAiOrigin) history.back(); else navigate(route.page === "ai" ? "#settings" : "#library"); }}
             >
               <Icon name="back" />
             </button>
@@ -506,7 +507,7 @@ export default function App() {
         >
           <div
             className="workspace"
-            hidden={route.page === "settings" || route.page === "learning" || route.page === "guides"}
+            hidden={route.page === "ai" || route.page === "settings" || route.page === "learning" || route.page === "guides"}
           >
             <PromptLibrary
               locale={locale}
@@ -546,11 +547,10 @@ export default function App() {
               <GuideLibrary locale={locale} writer={writer} copying={copying} shelf={route.guideShelf} guideId={route.page === "guides" ? route.guideId : undefined} />
             </Suspense>
           </div>}
+          {route.page === "ai" && <div className="workspace"><AISetup key={locale} locale={locale} writer={writer} copying={copying} online={online} /></div>}
           {route.page === "settings" && (
             <div className="workspace">
               <Settings
-                writer={writer}
-                copying={copying}
                 locale={locale}
                 onLocale={changeLocale}
                 online={online}

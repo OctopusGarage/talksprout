@@ -1,16 +1,33 @@
+import guidance from "../distribution/guidance.json";
 import { allPrompts } from "../src/prompts";
 import { learningPrompts } from "../src/content/learning";
 import { companionArticles } from "../src/content/companion-guides";
 import { expandedArticles } from "../src/content/expanded-reading";
 import { compatibleScenes, composeScene } from "../src/scenes";
 import { promptText, learningPromptText } from "../src/prompt-text";
-export function buildDocuments(): Record<string, string> {
+export function buildDocuments(
+  entryGuidance: { instructions: string } = guidance,
+): Record<string, string> {
   const files: Record<string, string> = {};
   for (const language of ["zh", "en"] as const) {
     const index = [
       `# TalkSprout — ${language === "en" ? "English practice library" : "英语学习目录"}`,
       "Prompt bodies are English learning instructions. Read the selected document before starting; preserve its coaching loop.",
     ];
+    files[`${language}/start.md`] =
+      `# ${language === "en" ? "TalkSprout session guide" : "TalkSprout 会话运行指南"}
+
+${entryGuidance.instructions}
+
+## ${language === "en" ? "Choose from the current catalogs" : "从当前目录选择"}
+
+- [${language === "en" ? "Coaches, reviews and listening/reading/writing" : "教练、复习与听读写练习"}](prompts/index.md)
+- [${language === "en" ? "Compatible scenarios and interview pacing" : "兼容场景与面试节奏"}](scenarios/index.md)
+- [${language === "en" ? "Learning methods and configurations" : "学习方法与配置"}](guides/index.md)
+`;
+    index.push(
+      `- [${language === "en" ? "Session guide and navigation" : "会话指南与导航"}](start.md)`,
+    );
     const catalogs: Record<string, string[]> = {};
     const add = (path: string, title: string, body: string) => {
       files[path] = `# ${title}\n\n${body}\n`;

@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "scope": "ai-v0.1.5 contextual navigation only: actual public-reader Skill and local HTTP MCP; not production/provider/learning-outcome certification",
+  "files": [
+    {
+      "file": "active--mcp.json",
+      "bytes": 44380,
+      "sha256": "3942efa97269beb646b817480112a0915b0a474997c3b3462ffe7bf5149789a7"
+    },
+    {
+      "file": "active--skill-web.json",
+      "bytes": 34227,
+      "sha256": "78326a48bda416943020843184408e28150665b8c109dac2d3ca0e00de4fdced"
+    },
+    {
+      "file": "ended--mcp.json",
+      "bytes": 44860,
+      "sha256": "4c9ae643b1bd58c99b1cdac614274a0e6eaf194ee604bab30cf69d8affd6fdd5"
+    },
+    {
+      "file": "ended--skill-web.json",
+      "bytes": 34809,
+      "sha256": "cd14c5bfe133dc83b7c1031c6b6bc348f3915b0ccf098e886e5aadbb36ab257a"
+    },
+    {
+      "file": "explicit-priority--mcp.json",
+      "bytes": 50315,
+      "sha256": "1209baff8e02294a728f614c7d46e9cdee107c01e37fc98925d4ef1f57ba9773"
+    },
+    {
+      "file": "explicit-priority--skill-web.json",
+      "bytes": 36909,
+      "sha256": "0c8fadb5302adc556f7173bfc4bbd85ea65bba72047e1e4503a3ecb0f3d889e7"
+    },
+    {
+      "file": "fresh--mcp.json",
+      "bytes": 22541,
+      "sha256": "27ce57a173b723870ddecd8914dddfcd9fe35d08b7b911f892cd10594d284165"
+    },
+    {
+      "file": "fresh--skill-web.json",
+      "bytes": 22454,
+      "sha256": "47f1cba02538cdb5a9dd2fc1c4043773ce29b3750eee59fee18891c451039d12"
+    },
+    {
+      "file": "judge-runner.py",
+      "bytes": 4635,
+      "sha256": "9da03528ee549974bfff6943d0fc827b2b717c66d6a71b0f6a2c71f26b5a1aa8"
+    },
+    {
+      "file": "mcp-judge.json",
+      "bytes": 31355,
+      "sha256": "aa1a489868e479ba76be1b2402125e4ced20a6637c1f14dff36dad59e1b650c0"
+    },
+    {
+      "file": "probe-runner.py",
+      "bytes": 6411,
+      "sha256": "d285a1012030e863a1aceedd3e66becd0c2ef69c88a552aa4d02e86ac646a3ce"
+    },
+    {
+      "file": "reviewed--mcp.json",
+      "bytes": 68302,
+      "sha256": "b5c6a6f4f1060e71e086bf49756d12449b7b31baf0b234cac59a3fe94f243343"
+    },
+    {
+      "file": "reviewed--skill-web.json",
+      "bytes": 49405,
+      "sha256": "4fd2c44f0683c372a74dd8b553f346cdabed1ef3e225ef661f6f6bac9aefe4b2"
+    },
+    {
+      "file": "setup-only--mcp.json",
+      "bytes": 39547,
+      "sha256": "53c6a0883e9f2c5d833766ecdd536bcab6e4b6585883885f1309daee95a6cb2c"
+    },
+    {
+      "file": "setup-only--skill-web.json",
+      "bytes": 30924,
+      "sha256": "8417d2241e7b1ad9b830e9f3edad5c1d1cac69691e0e6d5894a03077bca22222"
+    },
+    {
+      "file": "skill-web-judge.json",
+      "bytes": 42042,
+      "sha256": "40999c2615f3312ea0c665c3722dff9e8fe2ce7824a16872e6fb08cdf4c23185"
+    },
+    {
+      "file": "target-runner.py",
+      "bytes": 1281,
+      "sha256": "3efe03a83a7ddefe71f6bde8bdb2c0d05c394ad3f0f6a47922ae4d5bed08faf5"
+    }
+  ]
+}

@@ -24,7 +24,7 @@ const revision =
   process.env.GITHUB_SHA;
 if (revision && health.sourceRevision !== revision)
   throw Error("Deployed source revision mismatch");
-for (const [id, method, params] of [
+for (const { id, method, params } of [
   {
     id: 1,
     method: "initialize",
@@ -43,7 +43,15 @@ for (const [id, method, params] of [
       arguments: { path: "en/prompts/roleplay-coach.md" },
     },
   },
-].map((p) => [p.id, p.method, p.params] as const)) {
+  {
+    id: 4,
+    method: "tools/call",
+    params: {
+      name: "search_documents",
+      arguments: { query: "vocabulary", language: "en" },
+    },
+  },
+]) {
   const res = await fetch(endpoint, {
     method: "POST",
     headers: {
@@ -71,11 +79,20 @@ for (const [id, method, params] of [
     )
   )
     throw Error("Missing tools");
-  if (method === "tools/call")
+  if (id === 3)
     assertCompleteDocument(
       result.result,
       await readFile("content/en/prompts/roleplay-coach.md", "utf8"),
     );
+  if (id === 4) {
+    const matches = JSON.parse(result.result.content?.[0]?.text ?? "null");
+    if (
+      !Array.isArray(matches) ||
+      matches.length > 20 ||
+      matches[0]?.path !== "en/prompts/vocabulary-ipa-review.md"
+    )
+      throw Error("Deployed search does not prioritize the requested task");
+  }
 }
 const iconResponse = await fetch(
   new URL(`/icons/${identity.iconSha256}.png`, endpoint),
@@ -88,4 +105,6 @@ if (
     .digest("hex") !== identity.iconSha256
 )
   throw Error("Deployed icon mismatch");
-console.log("Deployed health identity and MCP protocol verified");
+console.log(
+  "Deployed health identity, MCP protocol and search ranking verified",
+);

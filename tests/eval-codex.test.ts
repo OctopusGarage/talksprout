@@ -113,3 +113,31 @@ for (const [filename, expectedIssues] of [
       ),
     );
   });
+
+test("previous 0.1.0 accepted Codex executions retain their original source and provenance", () => {
+  const historical = JSON.parse(
+    readFileSync(
+      "evals/results/2026-11-25-codex-source-reviews-ai-v0.1.0.json",
+      "utf8",
+    ),
+  );
+  const originalCases = historical.cases.map(
+    (row: { case: import("../evals/live-cases").LiveCase }) => row.case,
+  );
+  assert.deepEqual(validateCodexArchive(historical, originalCases).issues, []);
+  assert.equal(historical.cases.length, 10);
+});
+
+test("previous 0.1.1 accepted Codex executions retain their original source and provenance", () => {
+  const historical = JSON.parse(
+    readFileSync(
+      "evals/results/2026-11-26-codex-source-reviews-ai-v0.1.1.json",
+      "utf8",
+    ),
+  );
+  const originalCases = historical.cases.map(
+    (row: { case: import("../evals/live-cases").LiveCase }) => row.case,
+  );
+  assert.deepEqual(validateCodexArchive(historical, originalCases).issues, []);
+  assert.equal(historical.cases.length, 10);
+});

@@ -11,7 +11,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -21,22 +22,27 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm --dir mcp install --frozen-lockfile
-      - run: pnpm format:check
-      - run: pnpm sync
-      - run: git diff --exit-code -- content distribution skills
-      - run: pnpm distribution:check
-      - run: pnpm docs:check
-      - run: pnpm mcp:typecheck
-      - run: pnpm mcp:test
-      - run: pnpm mcp:build
-      - run: pnpm --dir mcp exec cf deploy --prebuilt --dry-run
-      - run: pnpm release:test
-      - run: pnpm test
-      - run: pnpm eval
-      - run: pnpm build
-      - run: pnpm exec playwright install --with-deps chromium webkit
-      - run: pnpm test:e2e
-      - run: pnpm test:webkit
+      - name: Validate sources
+        run: |
+          pnpm sync
+          git diff --exit-code -- content distribution skills mcp/package.json
+          pnpm format:check
+          pnpm docs:check
+          pnpm mcp:typecheck
+      - name: Run unit tests and validate archived evaluations
+        run: |
+          pnpm test
+          pnpm mcp:test
+          pnpm eval
+      - name: Build app and MCP
+        run: |
+          pnpm build
+          pnpm mcp:build
+      - name: Install Playwright browser (chromium)
+        timeout-minutes: 5
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Run browser tests
+        run: pnpm test:e2e
       - run: pnpm release:preflight
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         env:

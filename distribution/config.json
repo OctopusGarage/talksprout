@@ -12,7 +12,9 @@
   "packages": {
     "skill": "talksprout-skill.zip",
     "plugin": "talksprout-plugin-chatgpt.zip",
-    "claudePlugin": "talksprout-plugin-claude.zip"
+    "claudePlugin": "talksprout-plugin-claude.zip",
+    "fullSkill": "talksprout-skill-full.zip",
+    "fullSkillText": "talksprout-full.md"
   },
   "cloudflareAccountId": "057df7c08e1457f236e308a5d14c9934"
 }

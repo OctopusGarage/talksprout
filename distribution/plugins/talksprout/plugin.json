@@ -29,7 +29,7 @@
         ],
         "websiteURL": "https://github.com/OctopusGarage/talksprout",
         "defaultPrompt": [
-          "Use TalkSprout to practice a workplace conversation."
+          "Start practising with TalkSprout. Help me choose first."
         ],
         "composerIcon": "./assets/icon.png",
         "logo": "./assets/icon.png"

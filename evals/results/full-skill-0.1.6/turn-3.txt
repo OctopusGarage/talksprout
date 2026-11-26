@@ -1,0 +1,1 @@
+You added both a queue and idempotency keys to make retries safer. How did you handle a payment that succeeded when the client timed out before receiving confirmation?

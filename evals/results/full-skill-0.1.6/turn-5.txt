@@ -1,0 +1,9 @@
+**Self-test**
+
+1. Describe your contribution to making payment retries safer, including the original problem, your changes, testing and the reported result.
+
+**Answer key**
+
+1. **Your original answer:** “I built the retry logic for our payment service. Before that, a temporary network failure could lose a request. I added a queue and idempotency keys, and I tested the failure cases. This reduced duplicate charges and made retries safer.”
+
+   **Explanation:** Your wording is clear and natural. It connects the problem, your personal contribution and the reported result. No correction is needed.

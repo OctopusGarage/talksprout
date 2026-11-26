@@ -1,3 +1,5 @@
+import { buildSkillBootstrap } from "./ai-bootstrap";
+import { buildFullSkill } from "./ai-full-skill";
 import { readFile, writeFile, mkdir, readdir } from "node:fs/promises";
 import { dirname } from "node:path";
 import { createHash } from "node:crypto";
@@ -14,6 +16,8 @@ const releaseInputs = [
   "distribution/guidance.json",
   "scripts/sync-ai.ts",
   "scripts/ai-content.ts",
+  "scripts/ai-bootstrap.ts",
+  "scripts/ai-full-skill.ts",
   "scripts/package-skill.py",
   "scripts/package-check.py",
   "mcp/src/server.ts",
@@ -21,6 +25,9 @@ const releaseInputs = [
   "mcp/cloudflare.config.ts",
   "mcp/pnpm-lock.yaml",
   "src/AISetup.tsx",
+  "src/AiCopy.tsx",
+  "src/ai-onboarding.ts",
+  "src/ai-guide.css",
   "scripts/release_policy.py",
   "scripts/publish-ai.py",
   "scripts/verify-mcp.ts",
@@ -44,23 +51,7 @@ const identity = {
 };
 const fingerprint = hash(JSON.stringify(identity));
 const json = (v: unknown) => JSON.stringify(v, null, 2) + "\n";
-const skill = `---
-name: talksprout
-description: Practice English with TalkSprout conversation coaches, role-play and interview scenarios, conversation reviews, and source-grounded listening, reading and writing tasks. Use when the learner requests TalkSprout or these English practice workflows.
----
-# TalkSprout
-
-## Retrieve only the selected task
-If TalkSprout MCP tools are already connected, call get_guide and keep its returned content identity and sourceRevision for this task, then use read_document with an exact returned path. Installing a release-pinned Skill does not pin the connected MCP deployment: choosing MCP explicitly chooses the server's identity. Do not silently combine that route with release-pinned web documents. If the learner explicitly requires the package revision, compare the server sourceRevision with references/release.md and use the pinned web route when they differ; explain if neither matching route is accessible. Otherwise read ${config.contentBase}en/index.md or ${config.contentBase}zh/index.md with the host's public URL reader. Choose the index for the learner's language. Follow its relative links using the same content base and revision. Read only the selected prompt, scenario or guide, and retain that document throughout the task. Do not retrieve the whole library.
-
-If raw GitHub cannot be read, try the same path and revision once through https://github.com/OctopusGarage/talksprout/blob/main/content/. If neither route works, explain the limitation and ask for pasted material. Do not install runtimes or run shell commands to read learning content. Installing this skill does not connect MCP automatically.
-
-## Choose the workflow
-Offer actual index choices when the request is broad. For conversations select a coach and optional compatible scenario; mock interview documents explicitly defer feedback. Reviews use the current accessible chat or the speaker-labeled transcript template. Listening, reading and writing documents specify required source material. Guides explain methods and provide reusable configurations. Follow explicit help, review and stop requests.
-
-## Learning boundaries
-${guidance.instructions}
-`;
+const skill = buildSkillBootstrap();
 const manifest = {
   name: config.name,
   version: config.version,
@@ -87,13 +78,15 @@ const outputs: Record<string, string | Buffer> = {
     sourceRevision:
       process.env.AI_SOURCE_REVISION || process.env.GITHUB_SHA || "local",
     iconBase64: (await readFile(config.icon)).toString("base64"),
-    guidance: guidance.instructions,
+    guidance:
+      "Call get_guide for the learner’s language, then read its current start.md entry before learning. Follow that remote entry and retrieve only the selected material.",
     files,
   }),
   "skills/talksprout/SKILL.md": skill,
+  "distribution/full/talksprout/SKILL.md": buildFullSkill(),
   "skills/talksprout/LICENSE": await readFile("LICENSE"),
   "skills/talksprout/assets/icon.png": await readFile(config.icon),
-  "skills/talksprout/agents/openai.yaml": `interface:\n  display_name: "TalkSprout"\n  short_description: "English practice and review"\n  default_prompt: "Use $talksprout to help me practice English."\n  icon_small: "./assets/icon.png"\n  icon_large: "./assets/icon.png"\n`,
+  "skills/talksprout/agents/openai.yaml": `interface:\n  display_name: "TalkSprout"\n  short_description: "English practice and review"\n  default_prompt: "Use $talksprout to start practising English. Help me choose first."\n  icon_small: "./assets/icon.png"\n  icon_large: "./assets/icon.png"\n`,
   "distribution/plugins/talksprout/claude-plugin.json": json(manifest),
   "distribution/plugins/talksprout/plugin.json": json({
     $schema: "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
@@ -109,7 +102,7 @@ const outputs: Record<string, string | Buffer> = {
           capabilities: ["Read"],
           websiteURL: config.repository,
           defaultPrompt: [
-            "Use TalkSprout to practice a workplace conversation.",
+            "Start practising with TalkSprout. Help me choose first.",
           ],
           composerIcon: "./assets/icon.png",
           logo: "./assets/icon.png",

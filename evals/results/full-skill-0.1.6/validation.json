@@ -1,0 +1,57 @@
+{
+  "method": "offline exact-input/hash/native-thread/event/usage/tool-absence inspection; no new model calls",
+  "issues": [],
+  "testedArtifactSha256": "e65fcae2eeade137a8d7dec53615c0fecb29c03374d481217fcad71c7f21180c",
+  "testedArtifactBytes": 405137,
+  "finalArtifactSha256": "7b95d170f511d61ac597bde0a6e0e12f0fbe3d4d758f463f2fc41ded9a306d5d",
+  "finalArtifactBytes": 405130,
+  "postProbeDelta": "[]; normalized trailing blank lines at EOF",
+  "deltaScope": "Only lowercase {{spokencue}} alias added after probe started; no Spoken variant exercised. Final artifact exact bytes not model-tested by this run.",
+  "nativeThread": "01a2174f-570e-71e2-adec-ee1e36c3db70",
+  "targetTurns": 6,
+  "toolCalls": 0,
+  "usage": [
+    {
+      "input_tokens": 105317,
+      "cached_input_tokens": 9216,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 101,
+      "reasoning_output_tokens": 0
+    },
+    {
+      "input_tokens": 210772,
+      "cached_input_tokens": 114432,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 117,
+      "reasoning_output_tokens": 0
+    },
+    {
+      "input_tokens": 316297,
+      "cached_input_tokens": 219776,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 153,
+      "reasoning_output_tokens": 0
+    },
+    {
+      "input_tokens": 421874,
+      "cached_input_tokens": 325120,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 321,
+      "reasoning_output_tokens": 0
+    },
+    {
+      "input_tokens": 527633,
+      "cached_input_tokens": 430720,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 443,
+      "reasoning_output_tokens": 0
+    },
+    {
+      "input_tokens": 633532,
+      "cached_input_tokens": 536448,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 741,
+      "reasoning_output_tokens": 0
+    }
+  ]
+}

@@ -24,7 +24,7 @@ export function readDocument(path: string): string {
   return documents[path];
 }
 export function getGuide(language: "zh" | "en") {
-  return `# TalkSprout\n\nRead ${language}/index.md with read_document. Resolve relative links against the document directory. Search with search_documents for a focused request. Read only the selected document.\n\n${library.guidance}`;
+  return `# TalkSprout\n\nRead ${language}/start.md with read_document before handling this learning request. It contains the current guided entry and learning rules. Resolve relative links against that document directory and keep this returned content identity during the task. Read only the selected catalogs and material; do not retrieve the entire library.`;
 }
 export function searchDocuments(query: string, language: "zh" | "en") {
   const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -35,11 +35,21 @@ export function searchDocuments(query: string, language: "zh" | "en") {
         p.startsWith(language + "/") &&
         terms.every((t) => (p + " " + text).toLowerCase().includes(t)),
     )
+    .map(([path, text]) => {
+      const title = text.split("\n")[0].replace(/^# /, "");
+      const lowerTitle = title.toLowerCase();
+      const score = terms.reduce(
+        (total, term) =>
+          total +
+          (lowerTitle.includes(term) ? 20 : 0) +
+          (path.toLowerCase().includes(term) ? 5 : 0),
+        path.includes("/prompts/") && !path.endsWith("/index.md") ? 2 : 0,
+      );
+      return { path, title, score };
+    })
+    .sort((a, b) => b.score - a.score)
     .slice(0, 20)
-    .map(([path, text]) => ({
-      path,
-      title: text.split("\n")[0].replace(/^# /, ""),
-    }));
+    .map(({ path, title }) => ({ path, title }));
 }
 export function createServer() {
   const server = new McpServer(

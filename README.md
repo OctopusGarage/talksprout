@@ -93,6 +93,8 @@ pnpm test:e2e
 pnpm test:webkit
 ```
 
+CI runs unit tests, archived-evidence validation and Chromium browser tests on Ubuntu 24.04. WebKit remains a local release check for Safari/PWA changes; it is not installed on every push. Browser installation is limited to five minutes, and the check job to twenty minutes.
+
 The release evaluation validates all 1,872 composed scenario payloads, authored references, and committed real text API evidence. Separate English and four-turn actual-history suites supplement the speaking/review and learning archives. Target replies and isolated same-model judgments remain distinct from static adjudications and authored examples. Affected cases are refreshed with a pinned model; unchanged historical evidence retains its original provenance. See the evaluation report for exact counts and limitations.
 
 Optional execution uses `OPENAI_API_KEY` with `pnpm eval:live`, `pnpm eval:learning:live`, `pnpm eval:english:live`, or `pnpm eval:sessions:live` (Python 3 and curl required); these can incur API charges. Normal CI validates committed evidence without credentials. Text API evidence does not establish audio/provider compatibility or learning outcomes.
@@ -112,8 +114,10 @@ Project code and documentation use the [MIT License](LICENSE).
 
 ## AI integrations
 
-Open Settings → Use TalkSprout in your AI for Skill installation instructions, standalone Skill and host-specific ChatGPT/Claude plugin downloads. These channels read the same public learning documents generated from the app's canonical content. They require URL reading or an already connected MCP; no consumer runtime or TalkSprout API key is needed. Installation availability depends on the host and account controls.
+The website supports choosing and copying prompts into your AI. For practice without returning to the web app, open Settings → Use TalkSprout directly in your AI. The separate setup page offers Skill installation, host-specific plugin downloads and MCP configuration. After setup, ask your AI to use TalkSprout; it retrieves and follows the selected coach, scenario or review directly. Opening or installing the TalkSprout web app is not required for this route. These channels read the same public learning documents generated from the app's canonical content. They require URL reading or an already connected MCP; no consumer runtime or TalkSprout API key is needed. Installation availability depends on the host and account controls.
 
 The repository includes a self-hostable read-only Streamable HTTP MCP server. The public endpoint is `https://talksprout-mcp.octopusgarage.workers.dev/mcp` (authentication: none). Remote health, protocol and icon identity have been verified. See [MCP setup](docs/mcp-server.md), [distribution maintenance](docs/distribution-maintenance.md), [contribution guidance](CONTRIBUTING.md) and [security](SECURITY.md). Local protocol/package tests do not certify installed client accounts, audio behavior or learning outcomes.
 
 Source review can also run through the authenticated Codex CLI with `pnpm eval:codex`. This executes isolated Codex target and judge calls, records their native session/turn provenance, and accepts only passing evidence bound to the exact reviewed sources. Historical text API archives remain separately labeled. Codex source review does not establish browser, audio or learner-outcome behavior.
+
+The installed Skill is a lightweight bootstrap: each new session loads current remote guidance and catalogs. Skill and plugin packages follow the latest remote entry; ordinary content updates do not require client reinstallation. Older revision-pinned packages need a one-time update to this bootstrap.

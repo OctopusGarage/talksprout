@@ -1,0 +1,80 @@
+{
+  "scope": "Authored learner inputs, genuine Codex target replies and native preceding histories. No authored assistant seeds. Contextual navigation only, not learning-outcome/audio/provider certification.",
+  "routes": [
+    "standalone Skill with public runtime documents",
+    "configured local HTTP TalkSprout MCP"
+  ],
+  "cases": [
+    {
+      "id": "fresh",
+      "turns": [
+        "$talksprout"
+      ],
+      "checks": [
+        "Fresh session: contextual next-action entry, grounded choices, no claim prior practice, no forced exercise."
+      ]
+    },
+    {
+      "id": "active",
+      "turns": [
+        "Use TalkSprout Gentle Conversation Coach.",
+        "Yesterday I work late and feel tired.",
+        "$talksprout",
+        "继续"
+      ],
+      "checks": [
+        "Real assistant opening and actual learner reply precede invocation. Preserve selected coach and pending question; do not restart or replace it with a fresh goal menu.",
+        "After explicit continue, resume the actual pending question; do not count invocation or Continue as a learner exercise answer or advance an unanswered task."
+      ]
+    },
+    {
+      "id": "ended",
+      "turns": [
+        "Use TalkSprout Gentle Conversation Coach.",
+        "Yesterday I worked late, but today I feel better.",
+        "Finish the practice.",
+        "$talksprout"
+      ],
+      "checks": [
+        "Actual genuine learner exercise exists. After real stop, offer four grounded review types as useful next actions; do not invent completed corrections or start review without choice."
+      ]
+    },
+    {
+      "id": "reviewed",
+      "turns": [
+        "Use TalkSprout Gentle Conversation Coach.",
+        "I usually cook dinner at home because it helps me relax.",
+        "Finish the practice.",
+        "Use TalkSprout to make review cards from my actual practice answers in this conversation.",
+        "$talksprout"
+      ],
+      "checks": [
+        "Review uses actual preceding model/learner conversation. After actual review, offer relevant next steps without repeating the review or restarting automatically."
+      ]
+    },
+    {
+      "id": "setup-only",
+      "turns": [
+        "I am exploring TalkSprout, but I have not practised yet.",
+        "$talksprout",
+        "Please review only my real English practice answers from this chat."
+      ],
+      "checks": [
+        "Setup/control input and assistant examples are not practice. Context is ambiguous or has no real exercise: clarify/offer appropriate next actions; refuse fabricated review and request real material."
+      ]
+    },
+    {
+      "id": "explicit-priority",
+      "turns": [
+        "Use TalkSprout Gentle Conversation Coach.",
+        "My team uses short meetings to stay focused.",
+        "$talksprout Please switch to reading comprehension practice. I do not have a passage yet."
+      ],
+      "checks": [
+        "Explicit new task outranks bare invocation continuation; skip generic goal menu, resolve reading task and request material, never invent source content."
+      ]
+    }
+  ],
+  "execution": "Wait for parent product-source freeze and public runtime availability. Skill route uses actual explicit native $talksprout activation; MCP route replaces bare $talksprout with natural TalkSprout invocation and has no installed Skill.",
+  "limits": "Each route has six separate short histories (20 turns per route). Inspect actual pending question/state rather than assuming exact assistant wording. No new generic validation engine."
+}

@@ -1,0 +1,50 @@
+{
+  "method": "preregistered genuine Codex native-history guided-selection integration test; authored learner turns, actual assistant replies",
+  "routes": [
+    "skill-web",
+    "mcp"
+  ],
+  "turns": [
+    {
+      "input": "用 TalkSprout 开始练习",
+      "expected": "Ask missing goal with grounded relevant numbered choices; no coaching starts, no full/spoken copy-format question.",
+      "id": "goal"
+    },
+    {
+      "input": "请先整理当前对话的完整学习笔记，只用我真正练习过的回答。",
+      "expected": "No practice answers exist; request actual practice or a speaker-labeled transcript, never review menu/setup/host-English-note words or invent progress.",
+      "id": "review-boundary"
+    },
+    {
+      "input": "我想练英文面试，请推荐适合练项目经历的方式。",
+      "expected": "Retain interview goal; recommend relevant existing roleplay/project scene, wait for selection and ask only needed choice; do not start.",
+      "id": "recommend"
+    },
+    {
+      "input": "先返回上一步，我也想知道有什么复习方式。",
+      "expected": "Support back/change exploration; show grounded review choices without starting and without losing unrelated context.",
+      "id": "back"
+    },
+    {
+      "input": "还是练项目经历，软件工程师，选择模拟面试模式，结束时再反馈。",
+      "expected": "Resolve natural provided choices without redundant goal/coach/pace questions. Retrieve complete compatible project/mock canonical document; brief confirm and one interview question, no prompt copying/app requirement.",
+      "id": "mock"
+    },
+    {
+      "input": "结束练习",
+      "expected": "Stop without new question. No learner exercise answer was given, so no invented progress/review.",
+      "id": "finish"
+    },
+    {
+      "input": "现在我想了解学习方法，先让我选择文章，不要开始练习。",
+      "expected": "Route learning-method goal through actual guide catalog, offer real article choices, never start a coach or practice.",
+      "id": "methods"
+    },
+    {
+      "input": "讲讲如何根据目标选择纠错方式，只解释方法，不开始练习。",
+      "expected": "Retrieve complete chosen choose-feedback-style guide and explain its grounded method; no coach exercise or full/spoken question.",
+      "id": "explain-method"
+    }
+  ],
+  "limits": "Tests selection, back/recommendation, preservation and first mock start/stop, not full interview learning quality or audio."
+}

@@ -1,0 +1,20 @@
+{
+  "method": "adaptive numbered selection from actual displayed source-skills menu; no assumed menu index",
+  "turns": [
+    {
+      "input": "用 TalkSprout 开始练习",
+      "expected": "Grounded initial goals, including learning methods; no practice yet.",
+      "id": "goal"
+    },
+    {
+      "input": "@menu:source-skills",
+      "expected": "Actual target receives the number uniquely identifying the displayed listening/reading/writing goal; show relevant missing choice, do not misroute or start.",
+      "id": "numbered-goal"
+    },
+    {
+      "input": "我想练阅读理解，但是还没有文章。",
+      "expected": "Resolve reading-check naturally and request real accessible reading material; do not invent passage/comprehension questions.",
+      "id": "missing-reading"
+    }
+  ]
+}
