@@ -1,9 +1,9 @@
 {
-  "releaseInputsVersion": "8e66ce9adbb87e30d2d35621d804762d2aaa663876995998cbd09faa35e580bf",
+  "releaseInputsVersion": "e3a027dccd5aa92bcb0827efdf73a360c7c45766022b4b1defb71ae5722e7649",
   "name": "talksprout",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "contentVersion": "beddc372a4aef595acc993ad3b84e9ab46a8befd79bc166a10a7d1cc76d90f57",
   "guidanceVersion": "f115cb63511845852f7c51d90c787dc401778228eff679b50a1fcf68987559ba",
   "iconSha256": "e3e33ae186ae8d406e517a41e4aacf3fb40b6742bdb900f40c1bb7df897dd936",
-  "fingerprint": "902c46ca52dc8e4be9ecd9d56e190584b7a91c5dbfbf57f6994893431370e7a1"
+  "fingerprint": "a5f6b76a575decf82b53b2ee9d963fa3c838f787d71ea5dfb266fc7ed994e905"
 }

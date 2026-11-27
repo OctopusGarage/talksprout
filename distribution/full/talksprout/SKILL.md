@@ -4,7 +4,7 @@ description: Self-contained TalkSprout English practice, reviews and learning me
 ---
 # TalkSprout — Full edition
 
-Content snapshot: 0.1.1. This file contains the session guide, all coaches and reviews, listening/reading/writing tasks, all scenarios and complete learning guides. Use this content directly. Do not fetch a session guide, open a link, call MCP, or request another TalkSprout document before practising. A new content release requires replacing this file; the lightweight edition updates remotely.
+Content snapshot: 0.1.2. This file contains the session guide, all coaches and reviews, listening/reading/writing tasks, all scenarios and complete learning guides. Use this content directly. Do not fetch a session guide, open a link, call MCP, or request another TalkSprout document before practising. A new content release requires replacing this file; the lightweight edition updates remotely.
 
 ## How to use this file
 
