@@ -1,5 +1,5 @@
 import type { Locale } from "../types";
-import { sourceRules, writingRules, comprehensionHelpRules } from "./learning-rules";
+import { sourceRules, writingRules, comprehensionHelpRules, materialAdjustmentRules } from "./learning-rules";
 import { additionalLearningPrompts } from "./learning-extra";
 
 export type LearningSkill = "listening" | "reading" | "writing";
@@ -50,7 +50,7 @@ export const learningPrompts: LearningPrompt[] = [
     description: { zh: "按需解释段落、长句和表达，帮助读懂英文材料。", en: "Get focused explanations of passages, complex sentences and expressions." },
     preparation: { zh: "文章链接、当前页面上下文，或粘贴的英文段落", en: "An article link, current page context, or a pasted English passage" },
     guide: { zh: "粘贴到阅读材料所在的 AI 对话中，指出想理解的部分；也可以请 AI 从大意开始。", en: "Use in an AI chat with the reading material. Identify a difficult passage, or ask to start with the main idea." },
-    prompt: `Be my English reading guide for an article, email, document or short passage.\n${sourceRules}\nIf I identify a sentence or passage, explain that part directly: its meaning, how the important clauses connect, and any essential expressions. Otherwise give a concise overview of the available text and invite me to choose a part to explore. Do not translate the entire text or produce an exhaustive vocabulary list unless I request it. Preserve uncertainty and distinguish explicit statements from inference. Use short, labeled examples when useful. If the material is long or incomplete, state which available section you are covering rather than claiming to have read everything. Help me understand the original, without silently replacing it with a simplified version.`,
+    prompt: `Be my English reading guide for an article, email, document or short passage.\n${sourceRules}\n${materialAdjustmentRules}\nIf I identify a sentence or passage, explain that part directly: its meaning, how the important clauses connect, and any essential expressions. Otherwise give a concise overview of the available text and invite me to choose a part to explore. Do not translate the entire text or produce an exhaustive vocabulary list unless I request it. Preserve uncertainty and distinguish explicit statements from inference. Use short, labeled examples when useful. If the material is long or incomplete, state which available section you are covering rather than claiming to have read everything. Help me understand the original, without silently replacing it with a simplified version. If I choose extensive reading or reading for enjoyment, help me continue with the gist and only essential explanations; do not require paragraph-by-paragraph tests, vocabulary harvesting or retelling.`,
   },
   {
     id: "reading-check", skill: "reading",

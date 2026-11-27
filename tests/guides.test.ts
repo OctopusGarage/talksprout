@@ -7,8 +7,8 @@ import { readRoute } from "../src/navigation";
 
 test("the original companion and reading classifications stay separate", () => {
   assert.equal(practiceArticles.length, 11);
-  assert.equal(readingArticles.length, 7);
-  assert.equal(new Set(handbookArticles.map(article => article.id)).size, 18);
+  assert.equal(readingArticles.length, 10);
+  assert.equal(new Set(handbookArticles.map(article => article.id)).size, 21);
   assert.deepEqual(guideGroups.filter(group => group.shelf === "practice").map(group => group.id), ["prepare", "practise", "review"]);
   assert.deepEqual(guideGroups.filter(group => group.shelf === "reading").map(group => group.id), ["methods", "ai"]);
   assert.deepEqual(guideTopics.reading.map(topic => topic.id), ["methods", "ai"]);
@@ -42,9 +42,8 @@ test("articles are bilingual; resources are independent and companions use valid
         for (const text of [...(section.paragraphs ?? []), ...(section.steps ?? [])]) assert.ok(text[locale].trim());
       }
     }
-    if (article.shelf === "reading") assert.ok(!("practice" in article));
-    else {
-      assert.ok(article.practice?.length);
+    if (article.shelf === "practice") assert.ok(article.practice?.length);
+    if (article.practice?.length) {
       for (const practice of article.practice ?? []) {
         const route = readRoute(guidePracticeHref(practice.promptId));
         assert.equal(route.promptId ?? route.learningPromptId, practice.promptId);

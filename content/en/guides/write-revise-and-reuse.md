@@ -4,7 +4,7 @@ Write your version, understand revisions and reuse the language.
 
 ## Start or revise
 
-Choose Scenario writing practice for a new piece or Writing feedback for a draft. Dedicated helpers cover email, workplace messages and summaries.
+Choose Text Chat Partner for casual written exchanges, Scenario writing practice for a task, or Writing feedback for a draft.
 
 ## Define the reader and purpose
 
@@ -16,4 +16,12 @@ Focus on one to three important issues. Check time, tone and meaning, revise you
 
 ## Try another situation
 
-Hide the model and write for another reader or situation. Check summaries against the original rather than adding unsupported ideas.
+Hide the model and write for another reader or situation. For reconstruction in Summarize & paraphrase, note the meaning and later rewrite without the original; preserve meaning rather than identical wording.
+
+## Related tasks
+
+- [Text chat partner](../prompts/writing-text-chat.md)
+- [Scenario writing practice](../prompts/writing-practice.md)
+- [Writing feedback](../prompts/writing-feedback.md)
+- [Email replies & tone](../prompts/writing-email.md)
+- [Summarize & paraphrase](../prompts/writing-summary.md)

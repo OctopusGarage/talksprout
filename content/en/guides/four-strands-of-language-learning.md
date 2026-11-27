@@ -16,7 +16,7 @@ Choose a word, collocation or structure from an actual difficulty. Check its use
 
 ## Fluency: rely less on a script
 
-Use familiar material for smoother listening, retelling or writing. Move from keywords to no script, then try a related situation.
+Use familiar material for smoother listening, retelling or writing. Move from keywords to no script, then try a related situation. A retelling or timed explanation can be a focused task; timing is optional.
 
 ## Example: explain a delay
 

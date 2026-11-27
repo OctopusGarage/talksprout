@@ -55,7 +55,7 @@ test("invalid and inaccessible storage safely falls back", () => {
   );
 });
 test("all prompts have unique IDs and complete editorial metadata", () => {
-  assert.ok(prompts.length === 12);
+  assert.ok(prompts.length === 15);
   assert.equal(new Set(prompts.map((p) => p.id)).size, prompts.length);
   for (const p of prompts)
     for (const key of [
@@ -69,9 +69,9 @@ test("all prompts have unique IDs and complete editorial metadata", () => {
 });
 
 test("content modules cover three small coach collections", () => {
-  assert.equal(prompts.length, 12);
+  assert.equal(prompts.length, 15);
   assert.equal(filterPrompts(prompts, { category: "日常陪练" }).length, 6);
-  assert.equal(filterPrompts(prompts, { category: "互动训练" }).length, 3);
+  assert.equal(filterPrompts(prompts, { category: "互动训练" }).length, 6);
   assert.equal(filterPrompts(prompts, { category: "素材练习" }).length, 3);
 });
 

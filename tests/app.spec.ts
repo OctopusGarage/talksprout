@@ -24,7 +24,7 @@ test("each retained coach is reachable in exactly one collection", async ({
   const seen: string[] = [];
   for (const [id, count] of [
     ["companions", 6],
-    ["interaction", 3],
+    ["interaction", 6],
     ["materials", 3],
   ] as const) {
     await page.goto("/#library");
@@ -100,7 +100,10 @@ test("offline reload supports folder deep links and favorites", async ({
   });
   await page.locator('[data-favorite="gentle-start"]').click();
   // A Web Lock may complete after the click; wait for the persisted selection.
-  await expect(page.locator('[data-favorite="gentle-start"]')).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator('[data-favorite="gentle-start"]')).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
   await context.setOffline(true);
   await page.reload();
   await expect(page.locator(".card")).toHaveCount(6);

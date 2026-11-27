@@ -66,8 +66,8 @@ export const foundationArticles: HandbookArticle[] = [
       },
       "paragraphs": [
         {
-          "zh": "用熟悉内容练得更顺：重听、复述或重写。先看关键词，再离开提示，最后换相近情境。",
-          "en": "Use familiar material for smoother listening, retelling or writing. Move from keywords to no script, then try a related situation."
+          "zh": "用熟悉内容练得更顺：重听、复述或重写。先看关键词，再离开提示，最后换相近情境。可以选一次复述或限时说明作为针对性任务，计时只是可选辅助。",
+          "en": "Use familiar material for smoother listening, retelling or writing. Move from keywords to no script, then try a related situation. A retelling or timed explanation can be a focused task; timing is optional."
         }
       ]
     },
@@ -177,8 +177,8 @@ export const foundationArticles: HandbookArticle[] = [
       },
       "paragraphs": [
         {
-          "zh": "字幕、翻译和 AI 可以帮助理解。看懂后关掉部分提示，再自己听、概括或表达；重要信息回原文核对。",
-          "en": "Use captions, translation or AI when helpful. Then remove some support and listen, summarise or respond yourself. Check important information against the source."
+          "zh": "字幕、翻译和 AI 可以帮助理解。追内容时可保留字幕；检查听音辨词时，先听再用字幕核对。看懂后关掉部分提示，再自己听、概括或表达；重要信息回原文核对。",
+          "en": "Use captions, translation or AI when helpful. Keep captions to follow content, or listen first and check captions when testing word recognition. Then remove some support and listen, summarise or respond yourself. Check important information against the source."
         }
       ]
     },
@@ -190,8 +190,8 @@ export const foundationArticles: HandbookArticle[] = [
       },
       "paragraphs": [
         {
-          "zh": "选一段内容，理解大意，查一个关键表达，再离开原文说几句。常用材料留一份即可，不必不断增加收藏。",
-          "en": "Understand a short source, check one expression and speak without looking. Keep a main source you can return to rather than collecting endlessly."
+          "zh": "选一段内容，理解大意，查一个关键表达，再离开原文说几句。手写或键盘记录都可以，关键是离开原文主动回忆，不是抄写方式更优。常用材料留一份即可，不必不断增加收藏。",
+          "en": "Understand a short source, check one expression and speak without looking. Handwriting and typing can both work: recalling without the source matters more than the recording method. Keep a main source you can return to rather than collecting endlessly."
         }
       ]
     }

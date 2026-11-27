@@ -79,7 +79,7 @@ function GuideReader({ article, locale, writer, copying }: { article: HandbookAr
       {section.example && <div className="guide-example"><strong>{en ? "Example" : "示例"}</strong><p lang="en">{section.example}</p></div>}
       {section.prompt && <GuidePromptBlock prompt={section.prompt} locale={locale} writer={writer} copying={copying} />}
     </section>)}
-    {article.shelf === "practice" && article.practice?.length ? <section className="guide-practice">
+    {article.practice?.length ? <section className="guide-practice">
       <h2>{en ? "Related practice tools" : "对应练习工具"}</h2>
       <p>{en ? "Open the tool and send its prompt to your AI. For review, use the conversation where you practised." : "打开工具，再把提示词交给常用 AI；复习时回到有练习记录的对话。"}</p>
       <div>{article.practice.map(practice => <a key={practice.promptId} href={guidePracticeHref(practice.promptId)} onClick={event => { if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return; event.preventDefault(); navigate(guidePracticeHref(practice.promptId)); }}>{practice.label[locale]}<Icon name="chevron" /></a>)}</div>

@@ -35,9 +35,7 @@ test("bilingual directories, modal feedback, focus and locale persistence", asyn
     "搜索陪练模式",
   );
 });
-test("old favorites cannot surface removed tools", async ({
-  page,
-}) => {
+test("old favorites cannot surface removed tools", async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem(
       "talksprout:favorites",
@@ -109,7 +107,7 @@ test("English and Chinese directory and folder layouts fit narrow phones and des
       for (const [hash, count] of [
         ["#library", 0],
         ["#collection/companions", 6],
-        ["#collection/interaction", 3],
+        ["#collection/interaction", 6],
         ["#collection/materials", 3],
       ] as const) {
         await page.goto(`/${hash}`);

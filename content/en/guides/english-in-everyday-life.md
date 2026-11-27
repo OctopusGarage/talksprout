@@ -27,4 +27,4 @@ For conversation, finish the thought before correcting one issue. For accuracy, 
 
 ## Restart with a small task
 
-Do not repay missed sessions. Shorten the task or choose easier material, then build up again.
+Everyday English need not become routine homework. Choose a quiet moment with fewer interruptions and reduce the task if you feel tense. Do not repay missed sessions. Shorten the task or choose easier material, then build up again.

@@ -8,12 +8,12 @@ test("companion guides retain the original stages and contextual practice links"
   await expect(page.locator(".guide-entry")).toHaveCount(11);
   for (const name of ["开始前", "听说读写练习", "结束后复习"]) await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
   await page.getByRole("searchbox").fill("听写");
-  await expect(page.locator(".guide-entry")).toHaveCount(1);
-  await page.locator(".guide-entry").click();
+  await expect(page.locator(".guide-entry")).toHaveCount(2);
+  await page.locator(".guide-entry").filter({ hasText: "一段短音频的精听与跟读" }).click();
   await expect(page.getByRole("article")).toContainText("选择对应的听力工具");
   await page.getByRole("button", { name: "返回配套指南", exact: true }).click();
   await expect(page.getByRole("searchbox")).toHaveValue("听写");
-  await expect(page.locator(".guide-entry")).toBeFocused();
+  await expect(page.locator(".guide-entry").filter({ hasText: "一段短音频的精听与跟读" })).toBeFocused();
   await page.getByRole("button", { name: "清除筛选", exact: true }).click();
   await page.goto("/#guides/choose-feedback-style");
   await page.getByRole("link", { name: "严格纠错重练", exact: true }).click();
@@ -26,7 +26,7 @@ test("further resources retain categories, independent filters and three AI usag
   await page.getByRole("button", { name: "扩展资料", exact: true }).click();
   await expect(page).toHaveURL(/#guides\?section=reading$/);
   await expect(page.getByRole("searchbox")).toHaveAttribute("placeholder", "搜索指南内容");
-  await expect(page.locator(".guide-entry")).toHaveCount(7);
+  await expect(page.locator(".guide-entry")).toHaveCount(10);
   await expect(page.getByRole("button", { name: "精选资料", exact: true })).toHaveCount(0);
   await expect(page.getByText("英语学习资料怎么用", { exact: true })).toHaveCount(0);
   for (const name of ["学习方法论", "AI 使用参考"]) await expect(page.getByRole("button", { name, exact: true })).toBeVisible();
@@ -52,7 +52,7 @@ test("article identities stay distinct and source clutter remains absent", async
     await expect(page.getByRole("article")).toBeVisible();
     await expect(page.locator("#library-heading")).toHaveText(article.title.zh);
     await expect(page.getByRole("article").locator('a[href^="http"]')).toHaveCount(0);
-    if (article.shelf === "reading") await expect(page.getByRole("article").getByRole("link")).toHaveCount(0);
+    await expect(page.getByRole("article").getByRole("link")).toHaveCount(article.practice?.length ?? 0);
     await expect(page.locator(".guide-sources, .reading-resources, .guide-outline")).toHaveCount(0);
   }
 });
@@ -170,4 +170,22 @@ test("settings instructions lead to the complete workflow without leaving a dial
   await expect(page).toHaveURL(/#guides\/complete-workflow$/);
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.locator("#library-heading")).toHaveText("从开始练习到保存笔记");
+});
+
+test("method articles open the matching targeted practice without a scenario questionnaire", async ({
+  page,
+}) => {
+  for (const [article, tool, id] of [
+    ["chunks-in-new-contexts", "句型变式练习", "pattern-variation"],
+    ["repeat-and-transfer", "情境回忆练习", "expression-recall"],
+    ["explain-in-simple-english", "简单英语改述", "plain-english"],
+  ]) {
+    await page.goto(`/#guides/${article}`);
+    await page.getByRole("link", { name: tool, exact: true }).click();
+    await expect(page).toHaveURL(new RegExp(`#library\\?prompt=${id}$`));
+    await expect(page.getByRole("dialog")).toBeVisible();
+    await expect(page.locator("#prompt-text")).not.toHaveValue("");
+    await expect(page.locator(".scenario-settings")).toHaveCount(0);
+    await page.keyboard.press("Escape");
+  }
 });

@@ -79,3 +79,38 @@ test("all supplementary prompts copy exactly and share the clipboard lock with s
   await expect(page.locator(".copy").first()).toBeEnabled();
   await expect(page.getByRole("dialog")).toHaveCount(0);
 });
+
+test("text chat and material workflows are discoverable and preserve exact clipboard content", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "clipboard", {
+      value: {
+        writeText: async (text: string) => {
+          (window as unknown as { copiedText: string }).copiedText = text;
+        },
+      },
+      configurable: true,
+    });
+  });
+  for (const [id, tab, title] of [
+    ["writing-text-chat", "写作", "文字聊天伙伴"],
+    ["material-practice", "阅读", "一段材料练到能用"],
+  ]) {
+    await page.goto("/#learning");
+    await page.getByRole("button", { name: tab, exact: true }).click();
+    await page.locator(".learning-prompt").filter({ hasText: title }).click();
+    await expect(page).toHaveURL(new RegExp(`#learning\\?prompt=${id}$`));
+    const body = await page.locator("#prompt-text").inputValue();
+    expect(body).toBe(
+      learningPrompts.find((prompt) => prompt.id === id)!.prompt,
+    );
+    await page.getByRole("button", { name: "复制提示词", exact: true }).click();
+    expect(
+      await page.evaluate(
+        () => (window as unknown as { copiedText: string }).copiedText,
+      ),
+    ).toBe(body);
+    await page.keyboard.press("Escape");
+  }
+});

@@ -17,3 +17,10 @@ Share the sentence and your interpretation. Ask about the specific difference; f
 ## Answer without the explanation
 
 Read before answering and ask for a hint when stuck. If you have already seen the answers, try another passage to check independent understanding.
+
+## Related tasks
+
+- [Put a passage to use](../prompts/material-practice.md)
+- [Reading guide](../prompts/reading-guide.md)
+- [Reading comprehension check](../prompts/reading-check.md)
+- [Unpack a complex sentence](../prompts/reading-sentences.md)

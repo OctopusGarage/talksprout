@@ -35,6 +35,14 @@ const practiceCompanions: HandbookArticle[] = [
       ]
     },
     {
+      "id": "stuck",
+      "title": { "zh": "按卡点找练法", "en": "Choose by what feels difficult" },
+      "paragraphs": [
+        { "zh": "看不懂，先理解材料；看得懂却听不出，练一小段听写或跟读；学过却想不起，试试情境回忆。只是没想好说什么，可以先列一个观点和几个关键词。有明确目标时直接开始。", "en": "If the text is unclear, work on meaning. If you understand the text but miss the speech, try a short dictation or imitation task. If familiar expressions will not come to mind, try contextual recall. To organize an idea, start with one point and a few keywords. With a clear goal, begin directly." },
+        { "zh": "过程中随时可以请 AI 重复、换种说法或等你想一想。材料太难时，请它缩短片段或提供简化版；跟原音听写、跟读仍用原文。想回看变化时，提供两次真实练习样本再比较。", "en": "Ask the AI to repeat, rephrase or give you time whenever needed. For difficult material, request a shorter excerpt or adapted version; use the original text with original-audio dictation and shadowing. To compare attempts, provide two actual practice samples." }
+      ]
+    },
+    {
       "id": "use",
       "title": {
         "zh": "做一次能完成的练习",
@@ -311,6 +319,12 @@ const practiceCompanions: HandbookArticle[] = [
         }
       ]
     }
+    ,{
+      "id": "context-and-tone",
+      "title": { "zh": "问清习惯，不猜规则", "en": "Ask about preferences" },
+      "paragraphs": [{ "zh": "换了关系或场合，先确认对方的习惯。参加饭局可以询问怎么称呼、是否带东西或餐桌安排，不用按国籍替对方决定规矩。", "en": "Check preferences when the relationship or setting changes. For dinner, ask how to address the host, what to bring or how the meal works rather than assuming rules from nationality." }],
+      "example": "Is there anything you would like me to bring?"
+    }
   ],
   "practice": practiceLinks(["daily-check-in", "story-summary", "visual-vocabulary"])
 },
@@ -366,8 +380,8 @@ const practiceCompanions: HandbookArticle[] = [
       },
       "paragraphs": [
         {
-          "zh": "提供听写或要点及对应原文，让 AI 帮你找差异。只有文字时，它能解释语言，不能确认声音问题。熟悉后换一段相近材料再试。",
-          "en": "Supply your attempt and the reference for comparison. With text alone, the AI can explain language but not establish an acoustic cause. Try related new material afterward."
+          "zh": "提供听写或要点及对应原文，让 AI 帮你找差异。只有文字时，它能解释语言，不能确认声音问题。暂停模仿是听完再说；回音式模仿先在脑中回放声音再说；同步跟读则边听边跟。想检查能否运用，再不看稿表达自己的意思；泛听时继续听大意即可。",
+          "en": "Supply your attempt and the reference for comparison. With text alone, the AI can explain language but not establish an acoustic cause. Pause-and-repeat follows the phrase; echo practice adds a brief mental replay; synchronous shadowing follows along with the recording. Optionally retell without the script to try using it. For extensive listening, follow the meaning."
         }
       ]
     }
@@ -444,7 +458,7 @@ const practiceCompanions: HandbookArticle[] = [
       ]
     }
   ],
-  "practice": practiceLinks(["reading-guide", "reading-check", "reading-sentences"])
+  "practice": practiceLinks(["material-practice", "reading-guide", "reading-check", "reading-sentences"])
 },
 {
   "id": "write-revise-and-reuse",
@@ -471,8 +485,8 @@ const practiceCompanions: HandbookArticle[] = [
       },
       "paragraphs": [
         {
-          "zh": "没有草稿时选「场景写作练习」，已有草稿时选「写作纠错与解释」。邮件、工作消息和摘要也有对应工具。",
-          "en": "Choose Scenario writing practice for a new piece or Writing feedback for a draft. Dedicated helpers cover email, workplace messages and summaries."
+          "zh": "想像发消息一样交流，选「文字聊天伙伴」；练一篇短文选「场景写作练习」，已有草稿选「写作纠错与解释」。",
+          "en": "Choose Text Chat Partner for casual written exchanges, Scenario writing practice for a task, or Writing feedback for a draft."
         }
       ]
     },
@@ -510,13 +524,13 @@ const practiceCompanions: HandbookArticle[] = [
       },
       "paragraphs": [
         {
-          "zh": "隐藏范文，换一个收件人或场景再写几句。摘要回到原文核对，避免加入原文没有的观点。",
-          "en": "Hide the model and write for another reader or situation. Check summaries against the original rather than adding unsupported ideas."
+          "zh": "隐藏范文，换一个收件人或场景再写几句。想做双向重构，可在「摘要与改述练习」中先记意思，之后不看原句再写；核对原意，不要求逐字相同。",
+          "en": "Hide the model and write for another reader or situation. For reconstruction in Summarize & paraphrase, note the meaning and later rewrite without the original; preserve meaning rather than identical wording."
         }
       ]
     }
   ],
-  "practice": practiceLinks(["writing-practice", "writing-feedback", "writing-email"])
+  "practice": practiceLinks(["writing-text-chat", "writing-practice", "writing-feedback", "writing-email", "writing-summary"])
 },
 {
   "id": "technical-english-in-context",
@@ -616,8 +630,8 @@ const practiceCompanions: HandbookArticle[] = [
       },
       "paragraphs": [
         {
-          "zh": "优先选自己说不出、经常出错或近期会用到的表达，记下场景和一个例句。",
-          "en": "Choose expressions you needed, often miss or expect to use soon. Keep their context and an example."
+          "zh": "想积累个人表达时，只选少量近期会用的句子，记下场景，并区分自己说过的与 AI 提供的例句。无需每次整理整段对话。",
+          "en": "For a personal collection, keep a few expressions you expect to use, with context. Label your own usage separately from AI examples; a full transcript is unnecessary."
         }
       ]
     },
@@ -629,8 +643,8 @@ const practiceCompanions: HandbookArticle[] = [
       },
       "paragraphs": [
         {
-          "zh": "只看场景，尝试自己说一句，再核对答案。不要求逐字一致，先看意思和用法是否合适。",
-          "en": "Look at the situation, try a sentence and then check. Reasonable alternatives can work; meaning and usage matter more than identical wording."
+          "zh": "需要互动复习时，选「情境回忆练习」，只看场景先说一句，卡住先要提示，再核对参考表达。合理的不同说法也算完成。",
+          "en": "Choose Expression Recall for interactive practice. Respond to a situation first, ask for a hint if stuck and then check the model; natural alternatives can also work."
         }
       ]
     },
@@ -648,7 +662,7 @@ const practiceCompanions: HandbookArticle[] = [
       ]
     }
   ],
-  "practice": practiceLinks(["complete-study-notes", "sentence-correction-review", "vocabulary-ipa-review", "review-cards"])
+  "practice": practiceLinks(["complete-study-notes", "sentence-correction-review", "vocabulary-ipa-review", "review-cards", "expression-recall"])
 }
 ];
 

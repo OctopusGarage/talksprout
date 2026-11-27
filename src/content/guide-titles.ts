@@ -1,6 +1,10 @@
 import type { GuideText } from "./guide-types";
 
 export const guideTitles: Record<string, GuideText> = {
+  "chunks-in-new-contexts": {"zh": "语块怎么练到能用", "en": "Use chunks in new contexts"},
+  "repeat-and-transfer": {"zh": "同一件事讲几遍，怎样练得更顺", "en": "Repeat a story, then try a new situation"},
+  "explain-in-simple-english": {"zh": "不会那个词，也能把意思说清楚", "en": "Explain an idea when a word is missing"},
+
   "complete-workflow": { zh: "从开始练习到保存笔记", en: "From first practice to saved study notes" },
   "build-a-learning-routine": { zh: "建立能坚持的英语学习习惯", en: "Build a routine you can keep" },
   "use-ai-and-check-feedback": { zh: "使用 AI 并核验它的反馈", en: "Use AI tools and check their feedback" },
@@ -22,6 +26,7 @@ export const guideTitles: Record<string, GuideText> = {
 };
 
 export const readingArticleIds = new Set([
+  "chunks-in-new-contexts", "repeat-and-transfer", "explain-in-simple-english",
   "four-strands-of-language-learning", "english-in-everyday-life", "spacing-retrieval-and-repetition", "choose-learning-materials",
   "ai-tool-capabilities", "ai-dedicated-companions", "ai-global-instructions",
 ]);

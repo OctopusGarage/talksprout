@@ -20,8 +20,8 @@ Identify the meaning and part of speech, then inspect collocations, structure an
 
 ## Use support, then reduce it
 
-Use captions, translation or AI when helpful. Then remove some support and listen, summarise or respond yourself. Check important information against the source.
+Use captions, translation or AI when helpful. Keep captions to follow content, or listen first and check captions when testing word recognition. Then remove some support and listen, summarise or respond yourself. Check important information against the source.
 
 ## Complete a small cycle
 
-Understand a short source, check one expression and speak without looking. Keep a main source you can return to rather than collecting endlessly.
+Understand a short source, check one expression and speak without looking. Handwriting and typing can both work: recalling without the source matters more than the recording method. Keep a main source you can return to rather than collecting endlessly.

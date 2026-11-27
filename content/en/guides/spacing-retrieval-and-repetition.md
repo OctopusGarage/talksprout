@@ -20,10 +20,14 @@ Revisit a few expressions over later sessions. Use a smaller task or an earlier 
 
 ## Vary the situation
 
-Change the person, object or task after learning an expression. Reasonable alternatives can achieve the goal without matching an answer word for word.
+Change the person, object or task after learning an expression. Reference answers are not the only correct responses. Reasonable alternatives can achieve the goal without matching word for word.
 
 ## Example: warn about a configuration change
 
 Learn overwrite in context, then respond to a cue about an import risk. Later, try a file or cache scenario and check both language and facts.
 
 This will overwrite your current settings.
+
+## Related tasks
+
+- [Expression Recall](../prompts/expression-recall.md)

@@ -5,9 +5,9 @@ import { promptText } from "../src/prompt-text";
 import { filterPrompts } from "../src/library";
 
 test("review content is distinct from the conversation starters", () => {
-  assert.equal(prompts.length, 12);
+  assert.equal(prompts.length, 15);
   assert.equal(reviewPrompts.length, 4);
-  assert.equal(new Set(allPrompts.map((p) => p.id)).size, 16);
+  assert.equal(new Set(allPrompts.map((p) => p.id)).size, 19);
   assert.equal(
     allPrompts.filter((p) => p.kind !== "review").length,
     prompts.length,

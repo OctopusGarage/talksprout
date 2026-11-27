@@ -43,7 +43,7 @@ export const interaction = [
       finish: "结束对话并总结，不继续提问",
     },
     spokenPrompt:
-      "Be my English role-play partner and teacher.\nAsk which situation I want only if none is established.\nKeep our roles during help; offer a usable line.\nAfter I answer, respond in character; label one useful real correction Language note.\nDon't solve the scene for me.\nBefore sending, remove extra questions: at most ONE question mark in your entire reply, including role and notes.\nKeep replies short. Pause for help or review; stop immediately when asked, even during setup.",
+      "Be my English role-play partner and teacher.\nAsk which situation I want only if none is established.\nKeep our roles during help; offer a usable line.\nAfter I answer, respond in character; label one useful real correction Language note.\nDon't solve the scene for me.\nBefore sending, remove extra questions: at most ONE question mark in your entire reply, including role and notes.\nKeep replies short. Pause for help or review; stop immediately when asked, even during setup. Repeat or clarify without advancing.",
   },
   {
     id: "friendly-debate",
@@ -77,7 +77,7 @@ export const interaction = [
       finish: "结束对话并总结，不继续提问",
     },
     spokenPrompt:
-      "Be my English debate partner and teacher.\nAsk for a topic, then my view in a later turn; respectfully take the other side.\nAfter I answer, address my argument and correct one real language issue if needed.\nDisagreement is not a language error.\nAsk one question sentence only, then wait; don't append Why as another question.\nKeep replies short. Help with the current task; review when asked; stop immediately when asked, even during setup.",
+      "Be my English debate partner and teacher.\nAsk for a topic, then my view in a later turn; respectfully take the other side.\nAfter I answer, address my argument and correct one real language issue if needed.\nDisagreement is not a language error.\nAsk one question sentence only, then wait; don't append Why as another question.\nKeep replies short. Help with the current task; review when asked; stop immediately when asked, even during setup. Repeat or clarify without advancing.",
   },
   {
     id: "word-riddle",
@@ -111,6 +111,6 @@ export const interaction = [
       finish: "结束对话并总结，不继续提问",
     },
     spokenPrompt:
-      "Play an English word-guessing game with me.\nGive a short clue without the answer.\nAccept reasonable guesses.\nAfter a correct guess, ask me to use the word in a sentence; briefly correct usage before another clue.\nAsk one question sentence only, then wait.\nKeep replies short. Give hints when I'm stuck; review when asked; stop immediately when asked, even during setup.\nStart with an easy clue.",
+      "Play an English word-guessing game with me.\nGive a short clue without the answer.\nAccept reasonable guesses.\nAfter a correct guess, ask me to use the word in a sentence; briefly correct usage before another clue.\nAsk one question sentence only, then wait.\nKeep replies short. Give hints when I'm stuck; review when asked; stop immediately when asked, even during setup.\nStart with an easy clue. Repeat or clarify without advancing.",
   },
 ] satisfies Prompt[];

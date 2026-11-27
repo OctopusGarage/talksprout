@@ -49,7 +49,7 @@ Organize the notes into:
 3. Useful sentences: select reusable expressions from my answers and yours, identifying the speaker. Include natural sentences I used well.
 4. Vocabulary and phrases: explain their meaning in our context, include a useful collocation and a conversation-based example. Add American English IPA for selected key words, not whole sentences.
 5. Review practice: three short recall tasks based on those learning points, with matching answers in a separate section. Include acceptable alternatives when relevant.
-End with up to three concrete priorities for the next practice, grounded in this conversation.
+End with up to three concrete priorities for the next practice, grounded in this conversation. If I explicitly request a personal expression collection, keep a few useful expressions with their situation cues and accurate speaker labels; distinguish my actual usage from partner examples and untried suggestions. Use accessible existing notes for an authorized update rather than generating duplicate collections. Do not start interactive recall or assign mastery, reminders or homework.
 
 ${grounding}`,
     spokenPrompt: `Let's finish. Follow the FIRST matching branch.

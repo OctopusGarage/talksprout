@@ -4,7 +4,7 @@ Choose a practice, start a conversation, review it and keep what helps.
 
 ## Start by copying a prompt
 
-Choose a coach under Start practice, add an optional scenario and send the full prompt to your AI. Supply a topic or material when needed.
+Choose a coach under Start practice, add an optional scenario and send the full prompt to your AI. Choose pattern variation or expression recall for targeted practice, or find Text Chat Partner under Learning → Writing.
 
 ## Choose directly in your AI
 
@@ -32,4 +32,13 @@ Check the material, then ask your AI to save it to your chosen location. If savi
 
 ## Pick it up next time
 
-Bring a note or a few expressions next time. Review them briefly before starting a new practice, and supply the material in a new chat.
+Bring notes or a few expressions to Expression Recall and try using them. Supply them in a new chat, or simply continue the conversation if you prefer.
+
+## Related tasks
+
+- [Friendly Free Chat](../prompts/friend-chat.md)
+- [Gentle Conversation Coach](../prompts/gentle-start.md)
+- [Complete Study Notes](../prompts/complete-study-notes.md)
+- [Review Cards and Self-Test](../prompts/review-cards.md)
+- [Expression Recall](../prompts/expression-recall.md)
+- [Text chat partner](../prompts/writing-text-chat.md)

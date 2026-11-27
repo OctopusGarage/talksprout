@@ -13,3 +13,8 @@ Ask for a hint, another topic, a recap or an end to practice. Choose a review to
 ## Check the source and feedback
 
 Supply material directly to your AI. Check that revisions preserve meaning, time and tone, and ask for the basis of a correction. Text alone cannot establish actual pronunciation.
+
+## Related tasks
+
+- [Writing feedback](../prompts/writing-feedback.md)
+- [Video & audio guide](../prompts/listening-guide.md)

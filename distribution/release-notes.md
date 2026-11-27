@@ -1,7 +1,10 @@
-# TalkSprout 0.1.2
+# TalkSprout 0.1.3
 
-- Add a dedicated text-chat partner for writing practice at your own pace.
-- Keep friendly chat and opinion exchange in consistent fictional human roles, with natural perspectives and anecdotes.
-- Resolve or create the TalkSprout container before saving study notes, and verify the destination when supported.
+- Add pattern variation, contextual expression recall and plain-English explanation practice.
+- Offer optional repeated retelling, source-based practice and a direct writing entry for text chat.
+- Connect concise learning-method guides to executable practice tools across the app, Skills and MCP.
+- Refine listening, vocabulary, reconstruction and expression reuse while keeping free chat independent.
+
+- Support clarification without losing the current task, optional difficulty adjustment and comparison of actual practice samples.
 
 The lightweight Skill follows remote updates. Replace the full Skill snapshot for embedded content updates.

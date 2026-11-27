@@ -8,12 +8,20 @@ Create notes, corrections, vocabulary or cards in the original AI chat. Supply t
 
 ## Keep what matters
 
-Choose expressions you needed, often miss or expect to use soon. Keep their context and an example.
+For a personal collection, keep a few expressions you expect to use, with context. Label your own usage separately from AI examples; a full transcript is unnecessary.
 
 ## Recall before checking
 
-Look at the situation, try a sentence and then check. Reasonable alternatives can work; meaning and usage matter more than identical wording.
+Choose Expression Recall for interactive practice. Respond to a situation first, ask for a hint if stuck and then check the model; natural alternatives can also work.
 
 ## Space it and vary it
 
 Revisit a few expressions next time and use them in a related situation. Increase the interval when retrieval becomes easy.
+
+## Related tasks
+
+- [Complete Study Notes](../prompts/complete-study-notes.md)
+- [Sentences and Corrections](../prompts/sentence-correction-review.md)
+- [Vocabulary and Pronunciation Notes](../prompts/vocabulary-ipa-review.md)
+- [Review Cards and Self-Test](../prompts/review-cards.md)
+- [Expression Recall](../prompts/expression-recall.md)

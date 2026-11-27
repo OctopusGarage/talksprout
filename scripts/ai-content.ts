@@ -73,7 +73,21 @@ export function buildDocuments(
     add(
       `en/guides/${article.id}.md`,
       article.title.en,
-      [article.summary.en, ...sections].join("\n\n"),
+      [
+        article.summary.en,
+        ...sections,
+        article.practice?.length
+          ? "## Related tasks\n\n" +
+            article.practice
+              .map(
+                (task) =>
+                  `- [${task.label.en}](../prompts/${task.promptId}.md)`,
+              )
+              .join("\n")
+          : "",
+      ]
+        .filter(Boolean)
+        .join("\n\n"),
     );
   }
   for (const [directory, links] of Object.entries(catalogs)) {

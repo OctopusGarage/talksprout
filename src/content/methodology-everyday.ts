@@ -1,4 +1,5 @@
 import type { HandbookArticle } from "./guide-types";
+import { practiceLinks } from "./guide-practice";
 import { guideTitles } from "./guide-titles";
 
 export const independentMethods: HandbookArticle[] = [
@@ -93,8 +94,8 @@ export const independentMethods: HandbookArticle[] = [
       },
       "paragraphs": [
         {
-          "zh": "不用补偿漏掉的次数。觉得费劲时，先缩短任务或换容易一点的材料，再逐步增加。",
-          "en": "Do not repay missed sessions. Shorten the task or choose easier material, then build up again."
+          "zh": "不用把生活变成固定作业，也不用补偿漏掉的次数。找一个安静、少打断的时段，紧张时先缩小任务。觉得费劲时，先缩短任务或换容易一点的材料，再逐步增加。",
+          "en": "Everyday English need not become routine homework. Choose a quiet moment with fewer interruptions and reduce the task if you feel tense. Do not repay missed sessions. Shorten the task or choose easier material, then build up again."
         }
       ]
     }
@@ -102,6 +103,7 @@ export const independentMethods: HandbookArticle[] = [
 },
 {
   "id": "spacing-retrieval-and-repetition",
+  "practice": practiceLinks(["expression-recall"]),
   "shelf": "reading",
   "group": "methods",
   "topic": "methods",
@@ -177,8 +179,8 @@ export const independentMethods: HandbookArticle[] = [
       },
       "paragraphs": [
         {
-          "zh": "学会一种说法后，换人物、对象或任务再用。合理的不同表达也可以完成目标，不必逐字背答案。",
-          "en": "Change the person, object or task after learning an expression. Reasonable alternatives can achieve the goal without matching an answer word for word."
+          "zh": "学会一种说法后，换人物、对象或任务再用。参考答案不是唯一正确说法；合理的不同表达也可以完成目标，不必逐字背答案。",
+          "en": "Change the person, object or task after learning an expression. Reference answers are not the only correct responses. Reasonable alternatives can achieve the goal without matching word for word."
         }
       ]
     },

@@ -52,7 +52,6 @@ export function Settings({
               </label>
             ))}
           </div>
-          <p>{s("复习与学习辅助提示词的解释语言会跟随界面语言，英语练习内容保持英文。", "Review and learning helper explanations follow your interface language; English practice content stays in English.")}</p>
         </fieldset>
       </div>
       <h2 className="section-label">

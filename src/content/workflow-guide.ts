@@ -27,8 +27,8 @@ export const workflowGuide: HandbookArticle = {
       },
       "paragraphs": [
         {
-          "zh": "在「开始练习」选择教练，按需选场景，再把完整提示词发到自己的 AI。准备好主题或材料，就可以开始。",
-          "en": "Choose a coach under Start practice, add an optional scenario and send the full prompt to your AI. Supply a topic or material when needed."
+          "zh": "在「开始练习」选择教练，按需选场景，再把完整提示词发到自己的 AI。想专练表达，可选句型变式或情境回忆；想写消息，可到「听读写 → 写作」选择文字聊天伙伴。",
+          "en": "Choose a coach under Start practice, add an optional scenario and send the full prompt to your AI. Choose pattern variation or expression recall for targeted practice, or find Text Chat Partner under Learning → Writing."
         }
       ]
     },
@@ -107,11 +107,11 @@ export const workflowGuide: HandbookArticle = {
       },
       "paragraphs": [
         {
-          "zh": "带上笔记或几个想复习的表达，先回顾，再开始新练习。新对话中记得提供这些内容。",
-          "en": "Bring a note or a few expressions next time. Review them briefly before starting a new practice, and supply the material in a new chat."
+          "zh": "带上笔记或几个想复习的表达，选择「情境回忆练习」先试着用出来。新对话中提供这些内容；只想继续聊天也可以。",
+          "en": "Bring notes or a few expressions to Expression Recall and try using them. Supply them in a new chat, or simply continue the conversation if you prefer."
         }
       ]
     }
   ],
-  "practice": practiceLinks(["friend-chat", "gentle-start", "complete-study-notes", "review-cards"])
+  "practice": practiceLinks(["friend-chat", "gentle-start", "complete-study-notes", "review-cards", "expression-recall", "writing-text-chat"])
 };

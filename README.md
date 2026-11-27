@@ -24,16 +24,16 @@ Read [From first practice to saved study notes](content/en/guides/complete-workf
 | Area | Options |
 | --- | --- |
 | Conversation | Natural Conversation, Gentle Conversation, Focused Correction, Score and Rewrite, Friendly Free Chat, Exchange Views |
-| Interactive practice | Role-play, Debate, Vocabulary Game |
+| Interactive practice | Role-play, Debate, Vocabulary Game, Pattern Variation, Expression Recall, Plain English |
 | Practice with material | Visual Description, Live Camera, Retelling |
-| Listening, reading and writing | 18 focused helpers, including dictation comparison, comprehension, technical documents, email and revision |
+| Listening, reading and writing | 20 focused helpers, including dictation comparison, comprehension, technical documents, email, revision, text chat and source-based practice |
 | Review | Study notes, sentence corrections, vocabulary and pronunciation notes, self-test cards |
 
-Friendly Free Chat and Exchange Views support reciprocal discussion, substantive AI contributions and optional questions. Other coaches offer their own correction and retry rhythms. Select a mode that fits your purpose.
+Friendly Free Chat and Exchange Views support reciprocal discussion, substantive AI contributions and optional questions. Other coaches offer their own correction and retry rhythms. Targeted drills are separate choices; retelling supports optional repeated-expression practice. Select a mode that fits your purpose.
 
 Scenario-capable coaches offer 160 presets across everyday life, travel, services, workplace communication and technical interviews. Compatible interviews support coached practice or mock interviews with feedback at the end. Private background stays out of saved combinations and share links.
 
-Learning Guides contains eleven companion guides and seven further readings, including learning methods, voice practice, dedicated AI chats and global instructions. Written review artifacts can follow a shared [naming and archiving convention](content/en/notes.md): a TalkSprout container and `YYYY-MM-DD - Topic - Material Type` titles. Generating a note does not save it; saving requires an explicit request and an authorized host tool, or manual copying/export.
+Learning Guides contains eleven companion guides and ten further readings, including learning methods, voice practice, dedicated AI chats and global instructions. Written review artifacts can follow a shared [naming and archiving convention](content/en/notes.md): a TalkSprout container and `YYYY-MM-DD - Topic - Material Type` titles. Generating a note does not save it; saving requires an explicit request and an authorized host tool, or manual copying/export.
 
 ## App features
 
@@ -62,6 +62,7 @@ Release checks:
 ```sh
 pnpm test
 pnpm build
+pnpm release:preflight
 pnpm exec playwright install chromium webkit
 pnpm test:e2e
 pnpm test:webkit

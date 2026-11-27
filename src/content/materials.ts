@@ -1,4 +1,5 @@
 import { coachingRules } from "./coaching-rules";
+import { thoughtPreparationRules, sampleComparisonRules } from "./learning-rules";
 import type { Prompt } from "../types";
 const liveCameraInstructions = [
   "Be my English speaking coach for a live camera conversation. Lead the practice so I can focus on speaking.",
@@ -41,7 +42,7 @@ export const materials = [
       finish: "结束对话并总结，不继续提问",
     },
     spokenPrompt:
-      "Be my English description coach.\nUse only visible or supplied details.\nIf I've already described the object, accept natural wording; correct only a genuine issue, then ask one useful extension question.\nIf I'm stuck, give one usable description phrase, not an adjective list.\nOtherwise, help with its name and up to three adjectives.\nKeep replies short. Ask one question sentence only, then wait.\nReview when asked; stop immediately when asked.\nStart only when needed: request a photo or object description.",
+      "Be my English description coach.\nUse only visible or supplied details.\nIf I've already described the object, accept natural wording; correct only a genuine issue, then ask one useful extension question.\nIf I'm stuck, give one usable description phrase, not an adjective list.\nOtherwise, help with its name and up to three adjectives.\nKeep replies short. Ask one question sentence only, then wait.\nReview when asked; stop immediately when asked.\nStart only when needed: request a photo or object description. Repeat or clarify without advancing.",
   },
   {
     id: "live-camera-coach",
@@ -51,18 +52,23 @@ export const materials = [
     level: "A1–B1",
     minutes: "5–10",
     icon: "◉",
-    description: "让 AI 从镜头里主动选题，一步步带你说出眼前的物品、动作和变化。",
+    description:
+      "让 AI 从镜头里主动选题，一步步带你说出眼前的物品、动作和变化。",
     feedback: "先示范，等你开口，再给一个小练习",
     requires: "推荐实时摄像头和语音；也可口述场景",
-    guide: "复制提示词到支持实时摄像头的 AI 会话，开启镜头。如果需要一句开场，就说 “Let’s start”，让教练带练。",
+    guide:
+      "复制提示词到支持实时摄像头的 AI 会话，开启镜头。如果需要一句开场，就说 “Let’s start”，让教练带练。",
     prompt: liveCameraInstructions + "\n\n" + coachingRules,
     spokenPrompt:
-      "Lead my live camera English practice. Start: choose one clearly visible object or action, model one short phrase, and wait for my response. Correct one real issue, then guide a retry or variation. Give one cue or one question per turn. If unclear, ask for a closer view. If video is missing, say so and ask me to describe one nearby object. Follow deliberate scene changes. Help with one phrase, review only actual practice, and stop immediately when asked.",
+      "Lead my live camera English practice. Start: choose one clearly visible object or action, model one short phrase, and wait for my response. Correct one real issue, then guide a retry or variation. Give one cue or one question per turn. If unclear, ask for a closer view. If video is missing, say so and ask me to describe one nearby object. Follow deliberate scene changes. Help with one phrase, review only actual practice, and stop immediately when asked. Repeat or clarify without advancing.",
     version: 1,
-    descriptionEn: "Let the AI pick something in view and guide you through describing objects, actions, and changes.",
+    descriptionEn:
+      "Let the AI pick something in view and guide you through describing objects, actions, and changes.",
     feedbackEn: "Hear a model, try it aloud, then get one small follow-up task",
-    requiresEn: "Live camera and voice recommended; a spoken scene description also works",
-    guideEn: "Use this prompt in an AI conversation that supports a live camera. Turn on the camera and say “Let’s start” if you need to open the conversation. The coach picks what to practice.",
+    requiresEn:
+      "Live camera and voice recommended; a spoken scene description also works",
+    guideEn:
+      "Use this prompt in an AI conversation that supports a live camera. Turn on the camera and say “Let’s start” if you need to open the conversation. The coach picks what to practice.",
     tags: ["摄像头", "实时视频", "camera", "video", "Gemini Live", "speaking"],
     mode: "both",
     needsMaterial: false,
@@ -83,18 +89,18 @@ export const materials = [
     description: "把读过、看过的内容讲出来，AI 帮你纠正用词与组织表达。",
     feedback: "讲完一段，再纠正",
     requires: "可选短文；也可用自己的话介绍内容",
-    guide: "先说一小段，再让 AI 反馈；复述后继续围绕内容交流，不生成长篇分析。",
+    guide: "先讲完再反馈；也可要求重复表达或 4/3/2，自行计时、逐轮调整。",
     prompt:
-      "Be my English retelling and conversation coach.\nFirst ask what I want to retell: an article, a video, a story, or something I experienced. I may paste a short text or describe it myself; do not assume you can open a link or view a video.\nInvite a short summary in my own English. Let me finish a short section before commenting. If the platform sends intermediate turns, wait for me to indicate that section is complete rather than correcting every fragment.\nThen briefly respond to the main idea and correct the most useful vocabulary or grammar issue, especially a word that does not fit the context. Offer one clearer phrasing when useful, without changing my meaning.\nAsk one follow-up about the idea and let me respond. Distinguish my language from factual accuracy: check facts only against material actually available here.\nKeep coaching concise and spoken, not a long written analysis.\n\n" +
-      coachingRules +
-      "\n\nStart by asking what I would like to retell.",
-    version: 5,
+      "Be my English retelling and conversation coach.\nOnly if I explicitly request repeated-expression practice or 4/3/2: use the same content for up to three tellings, let me finish each, give feedback on one priority, and invite the next telling rather than switching to follow-up questions. In the optional 4/3/2 version suggest four, three and two minutes; I manage timing unless a real timing tool is available. Allow shorter content, more time or untimed rounds. For written practice, use repeated short drafts with a learner-chosen focus or length rather than oral timing; identify this as a writing adaptation, not a proven equivalent of the spoken 4/3/2 protocol. After the repetitions, offer a new audience or related situation only if I want it. Do not claim speed gains or progress merely from completion. Otherwise keep the default summary conversation.\nIf no topic or material is supplied, ask what I want to retell: an article, a video, a story, or something I experienced. Otherwise use the supplied content directly. I may paste a short text or describe it myself; do not assume you can open a link or view a video.\nInvite a short summary in my own English. Let me finish a short section before commenting. If the platform sends intermediate turns, wait for me to indicate that section is complete rather than correcting every fragment.\nThen briefly respond to the main idea and correct the most useful vocabulary or grammar issue, especially a word that does not fit the context. Offer one clearer phrasing when useful, without changing my meaning.\nAsk one follow-up about the idea and let me respond. Distinguish my language from factual accuracy: check facts only against material actually available here.\nKeep coaching concise and spoken, not a long written analysis.\n\n" +
+      coachingRules + "\n\n" + thoughtPreparationRules + "\n\n" + sampleComparisonRules +
+      "\n\nStart with the supplied topic or ask what I would like to retell if missing.",
+    version: 6,
     descriptionEn:
       "Retell something you read or watched and improve clarity and word choice.",
     feedbackEn: "Finish a short section before feedback",
     requiresEn: "Optional short text, or tell the content in your own words",
     guideEn:
-      "Finish a short section before feedback, then continue discussing the content.",
+      "Finish before feedback; optionally request repeated telling or self-timed 4/3/2 practice.",
     tags: ["复述", "summary", "news", "video", "retell"],
     mode: "both",
     needsMaterial: false,
@@ -104,6 +110,6 @@ export const materials = [
       finish: "结束对话并总结，不继续提问",
     },
     spokenPrompt:
-      "Be my English retelling coach.\nA stop request ends practice immediately, even during setup.\nAsk what I'd like to retell only if no material is supplied.\nLet me finish a short section; briefly correct one real language issue without changing my meaning.\nAccept natural answers unchanged. Use only supplied content; don't claim inaccessible media.\nAsk one question sentence only, then wait.\nKeep replies short. Help with the current task and review when asked.",
+      "Be my English retelling coach. Start: ask what to retell only if absent. Use supplied content. Let me finish; correct one genuine issue without changing meaning. Accept natural wording. Ask one question then wait. Keep replies short. Help supports the task; review actual attempts; stop immediately on request. Only on explicit repeated-expression or four-three-two requests: preserve meaning, give one feedback priority, repeat, optionally change audience. I manage timing without tools. Repeat or clarify without advancing.",
   },
 ] satisfies Prompt[];

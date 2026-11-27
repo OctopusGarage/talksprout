@@ -12,9 +12,9 @@ export const collections = [
     id: "interaction",
     category: "互动训练",
     titleEn: "Interactive coaching",
-    description: "让 AI 用扮演、辩论或猜词带你练习，并及时纠正表达。",
+    description: "用扮演、辩论、句型变式或情境回忆，集中练一项表达能力。",
     descriptionEn:
-      "Practice through role-play, debate, or word games with focused feedback.",
+      "Focus on a skill through role-play, debate, pattern variation or expression recall.",
     icon: "↔",
   },
   {

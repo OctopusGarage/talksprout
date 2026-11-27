@@ -19,3 +19,8 @@ For flow, speak before receiving feedback. For accuracy, pause to fix one issue.
 ## Finish with a small review
 
 Choose one to three useful expressions and use them in another situation. Revisit one at your next session.
+
+## Related tasks
+
+- [Role-play Coach](../prompts/roleplay-coach.md)
+- [Complete Study Notes](../prompts/complete-study-notes.md)
