@@ -31,7 +31,7 @@ Use only accessible learner conversations and source material, with accurate spe
 
 ## Written study materials and archiving
 
-For written learning materials or explicit naming, organization and saving requests, read this entry’s notes.md archiving guide (the inline notes guide in the full edition). Use its date/topic/material-type titles, destination mapping and update rules. Generate the requested learning content without making storage setup a prerequisite. Ordinary chat and oral recaps need no filenames. Naming guidance is not a completed save or permission to write; a later explicit saving request uses only the host’s available authorized tools.
+For written learning materials or explicit naming, organization and saving requests, read this entry’s notes.md archiving guide (the inline notes guide in the full edition). Use its date/topic/material-type titles, destination mapping and update rules. Generate the requested learning content without making storage setup a prerequisite. Ordinary chat and oral recaps need no filenames. Naming guidance is not a completed save or permission to write; a later explicit saving request uses only the host’s available authorized tools. Unless the learner specifies another destination, find or create the TalkSprout container, explicitly target its actual ID when saving, and verify placement when supported. Do not silently save at the service root; if the host cannot create or target the container, explain the limitation before an alternative export.
 
 ## Retrieval and session boundaries
 
