@@ -1,7 +1,7 @@
 {
   "name": "talksprout",
   "displayName": "TalkSprout",
-  "version": "0.1.4",
+  "version": "0.1.3",
   "publisher": "OctopusGarage",
   "repository": "https://github.com/OctopusGarage/talksprout",
   "contentBase": "https://raw.githubusercontent.com/OctopusGarage/talksprout/main/content/",
