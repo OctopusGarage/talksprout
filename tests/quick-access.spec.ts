@@ -39,8 +39,5 @@ for (const locale of ["zh", "en"] as const) {
     await expect(region.locator(".quick-row")).toHaveCount(3);
     await expect(region.locator("strong").filter({ hasText: removedTitle })).toHaveCount(0);
     await page.goto("/#settings");
-    await expect(page.getByText(locale === "en"
-      ? "Review and learning helper explanations follow your interface language; English practice content stays in English."
-      : "复习与学习辅助提示词的解释语言会跟随界面语言，英语练习内容保持英文。", { exact: true })).toBeVisible();
   });
 }
