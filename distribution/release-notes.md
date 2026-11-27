@@ -1,10 +1,6 @@
-# TalkSprout 0.1.3
+# TalkSprout 0.1.4
 
-- Add pattern variation, contextual expression recall and plain-English explanation practice.
-- Offer optional repeated retelling, source-based practice and a direct writing entry for text chat.
-- Connect concise learning-method guides to executable practice tools across the app, Skills and MCP.
-- Refine listening, vocabulary, reconstruction and expression reuse while keeping free chat independent.
-
-- Support clarification without losing the current task, optional difficulty adjustment and comparison of actual practice samples.
+- Offer a usable English phrase when learners ask how to request repetition, clarification or thinking time.
+- Use visible gestures and surroundings as context without presenting inferred feelings or intentions as facts.
 
 The lightweight Skill follows remote updates. Replace the full Skill snapshot for embedded content updates.
